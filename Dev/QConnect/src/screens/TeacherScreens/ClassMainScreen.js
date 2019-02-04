@@ -1,10 +1,11 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {View, Text} from 'react-native';
 
 class ClassMainScreen extends React.Component {
     render() {
         return (
-            <View><Text>السلام عليكم أستاذ</Text></View>
+            <View><Text style={{marginTop: 50}}>السلام عليكم أستاذ</Text>
+            <Text>Class Main Screen</Text></View>
         );
     }
 }

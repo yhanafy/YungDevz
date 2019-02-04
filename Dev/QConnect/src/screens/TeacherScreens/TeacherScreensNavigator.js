@@ -1,10 +1,27 @@
 import React from 'react';
-import {TabNavigator, createBottomTabNavigator, createAppContainer} from 'react-navigation';
+import {createBottomTabNavigator, createAppContainer} from 'react-navigation';
 import colors from 'config/colors';
 import { Icon } from 'react-native-elements';
 import ClassMainScreen from 'screens/TeacherScreens/ClassMainScreen';
+import ClassAttendanceScreen from './ClassAttendanceScreen';
+import ClassEditScreen from './ClassEditScreen';
 
   const routeConfig = {
+    AttendanceTab: {
+        screen: ClassAttendanceScreen,
+        path: '/first_run',
+        navigationOptions: {
+        tabBarLabel: 'Attendance',
+        tabBarIcon: ({ tintColor, focused }) => (
+            <Icon
+                name="calendar-check-o"
+                size={20}
+                type="font-awesome"
+                color={tintColor}
+            />
+        ),
+        },
+    },
     ClassStudentsTab: {
         screen: ClassMainScreen,
         path: '/class',
@@ -21,28 +38,13 @@ import ClassMainScreen from 'screens/TeacherScreens/ClassMainScreen';
         },
     },
     EditClassTab: {
-        screen: ClassMainScreen,
+        screen: ClassEditScreen,
         path: '/edit_class',
         navigationOptions: {
         tabBarLabel: 'Edit',
         tabBarIcon: ({ tintColor, focused }) => (
             <Icon
                 name="edit"
-                size={20}
-                type="font-awesome"
-                color={tintColor}
-            />
-        ),
-        },
-    },
-    AttendanceTab: {
-        screen: ClassMainScreen,
-        path: '/first_run',
-        navigationOptions: {
-        tabBarLabel: 'Attendance',
-        tabBarIcon: ({ tintColor, focused }) => (
-            <Icon
-                name="calendar-check-o"
                 size={20}
                 type="font-awesome"
                 color={tintColor}
