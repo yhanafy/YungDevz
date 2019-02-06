@@ -2,7 +2,7 @@ import React from 'react';
 import {createBottomTabNavigator, createAppContainer} from 'react-navigation';
 import colors from 'config/colors';
 import { Icon } from 'react-native-elements';
-import ClassMainScreen from 'screens/TeacherScreens/ClassMainScreen';
+import ClassMainScreen from './ClassMainScreen';
 import ClassAttendanceScreen from './ClassAttendanceScreen';
 import ClassEditScreen from './ClassEditScreen';
 
@@ -88,6 +88,6 @@ const navigatorConfig = {
 
 const TeacherBottomTabNavigator = createBottomTabNavigator(routeConfig, navigatorConfig);
 
-const TeacherScreensNavigator = createAppContainer(TeacherBottomTabNavigator);
+const ClassTabsNavigator = createAppContainer(TeacherBottomTabNavigator);
 
-export default TeacherScreensNavigator;
+export default ClassTabsNavigator;

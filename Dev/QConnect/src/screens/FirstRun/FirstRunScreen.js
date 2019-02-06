@@ -15,7 +15,7 @@ const BG_IMAGE = require('assets/images/read_child_bg.jpg');
 class FirstRunScreen extends React.Component {
 
     onTeacherFlow = () => {
-        this.props.navigation.navigate('TeacherScreensNavigator');
+        this.props.navigation.navigate('TeacherScreens');
     }
 
     render(){

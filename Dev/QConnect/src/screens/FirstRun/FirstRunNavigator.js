@@ -1,13 +1,13 @@
 import { createStackNavigator, createAppContainer } from 'react-navigation'
 import FirstRunScreen from './FirstRunScreen'
-import TeacherScreensNavigator from 'screens/TeacherScreens/TeacherScreensNavigator'
+import TeacherMenu from '../TeacherScreens/TeacherMenu';
 
 const routeConfig = {
     FirstRunScreen: {
         screen: FirstRunScreen
     },
-    TeacherScreensNavigator: {
-        screen: TeacherScreensNavigator
+    TeacherScreens: {
+        screen: TeacherMenu
   }
 }
 
