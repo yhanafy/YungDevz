@@ -6,6 +6,7 @@ import {
     Dimensions, 
     ImageBackground} from 'react-native';
 import QcActionButton from 'components/QcActionButton'
+import QcAppBanner from 'components/QcAppBanner'
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
@@ -23,7 +24,8 @@ class FirstRunScreen extends React.Component {
         return (
           <View style={styles.container}>
                 <ImageBackground source={BG_IMAGE} style={styles.bgImage}>
-                    <Text>بسم الله الرحمان الرحيم</Text>
+                    <QcAppBanner />
+                    <View style={styles.spacer}></View>
                     <QcActionButton
                         navigation={navigation}
                         text="I am a teacher"
@@ -36,7 +38,10 @@ class FirstRunScreen extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
+      flex: 1
+    },
+    spacer: {
+      marginTop: 100 //hack, change this to be flex based.
     },
     bgImage: {
       flex: 1,

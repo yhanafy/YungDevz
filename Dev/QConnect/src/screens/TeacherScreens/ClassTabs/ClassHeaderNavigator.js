@@ -3,6 +3,7 @@ import { createStackNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 
 import ClassTabsNavigator from './ClassTabsNavigator';
+import StudentProfileScreen from 'screens/StudentProfile/StudentProfileScreen'
 
 const ClassHeaderNavigator = createStackNavigator({
   CurrentClass: {
@@ -11,27 +12,35 @@ const ClassHeaderNavigator = createStackNavigator({
       title: 'Monday Class - ICOE',
       headerLeft: (
         <Icon
-          name="menu"
-          size={30}
-          type="entypo"
+          name="navicon"
+          type="font-awesome"
           iconStyle={{ paddingLeft: 10 }}
           onPress={() => navigation.openDrawer()}
         />
       ),
     }),
   },
+  StudentProfile: {
+    screen: StudentProfileScreen,
+    navigationOptions: ({ navigation }) => ({
+      title: navigation.state.params.name,
+      headerLeft: (
+        <Icon
+          name="angle-left"
+          type="font-awesome"
+          iconStyle={{ paddingLeft: 10 }}
+          onPress={() => navigation.goBack()}
+        />
+      ),
+    }),
+  }
 },
 {
     drawerLabel: 'Monday Class - ICOE',
     drawerIcon: ({ tintColor }) => (
       <Icon
-        name="group"
-        size={30}
-        iconStyle={{
-          width: 30,
-          height: 30,
-        }}
-        type="material"
+        name="navicon"
+        type="font-awesome"
         color={tintColor}
       />
     ),

@@ -25,6 +25,7 @@ class ClassMainScreen extends React.Component {
                     title={u.name}
                     leftAvatar={{ rounded: true, source: { uri: u.avatar } }}
                     subtitle={u.assignment}
+                    onPress={() => this.props.navigation.navigate('StudentProfile', { name: u.name })}
                     />
               );
             })}
