@@ -1,0 +1,29 @@
+{
+  "students": [
+    {
+      "name": "Ahmed Khan",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg",
+      "assignment": "Al-Hijr page 3"
+    },
+    {
+      "name": "Amina Iqbal",
+      "avatar": "https://randomuser.me/api/portraits/thumb/women/42.jpg",
+      "assignment": "An-Naze'aat"
+    },
+    {
+      "name": "Ayoub Barrak",
+      "avatar": "https://randomuser.me/api/portraits/thumb/men/43.jpg",
+      "assignment": "Aal-Imran"
+    },
+    {
+      "name": "Khaled Kwick",
+      "avatar": "https://randomuser.me/api/portraits/thumb/men/45.jpg",
+      "assignment": "Al-Toor pages 2,3"
+    },
+    {
+      "name": "Yassine Lightening",
+      "avatar": "https://randomuser.me/api/portraits/thumb/men/22.jpg",
+      "assignment": "Al-An'aam"
+    }
+  ]
+}
