@@ -55,8 +55,8 @@ const styles = StyleSheet.create({
         height: 100,
         marginLeft: 7,
         marginTop: 10,
-        backgroundColor:'#ffffff',
-        borderColor: '#000000'
+        backgroundColor: colors.white,
+        borderColor: colors.black
         
     
     },
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
         marginLeft: 40,
         flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'center'
+    
 
     },
     profilePicStyle: {
