@@ -30,13 +30,13 @@ class ClassMainScreen extends React.Component {
         return (
             <View>
 
-                {this.state.students.forEach((u) => {
+                {this.state.students.forEach((student) => {
               return (
                 <StudentCard
-                    studentName={u.name}
-                    profilePic={u.avatar}
-                    currentAssignment={u.assignment}
-                    onPress={() => this.props.navigation.navigate('StudentProfile', { name: u.name })}
+                    studentName={student.name}
+                    profilePic={student.avatar}
+                    currentAssignment={student.assignment}
+                    onPress={() => this.props.navigation.navigate('StudentProfile', { name: student.name })}
                     />
               );
             })}
