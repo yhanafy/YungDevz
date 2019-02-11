@@ -1,6 +1,7 @@
 import React from 'react';
 import {View} from 'react-native';
-import {ListItem} from 'react-native-elements'
+import {StudentCard} from 'components/StudentCard'
+import {Picture} from 'assets/splash.png'
 
 class ClassMainScreen extends React.Component {
     state = {
@@ -17,15 +18,14 @@ class ClassMainScreen extends React.Component {
     render() {        
         return (
             <View>
-                {this.state.students.map((u, i) => {
+
+                {this.state.students.forEach((student) => {
               return (
-                <ListItem
-                    key={i}
-                    roundAvatar
-                    title={u.name}
-                    leftAvatar={{ rounded: true, source: { uri: u.avatar } }}
-                    subtitle={u.assignment}
-                    onPress={() => this.props.navigation.navigate('StudentProfile', { name: u.name })}
+                <StudentCard
+                    studentName={student.name}
+                    profilePic={student.avatar}
+                    currentAssignment={student.assignment}
+                    onPress={() => this.props.navigation.navigate('StudentProfile', { name: student.name })}
                     />
               );
             })}
