@@ -5,18 +5,7 @@ import {Picture} from 'assets/splash.png'
 
 class ClassMainScreen extends React.Component {
     state = {
-        students: [
-            {
-                name: "Khalid",
-                avatar: {Picture},
-                currentAssignment: "Al Baqara Page 1"
-            },
-            {
-                name: "Zyad",
-                avatar: {Picture},
-                currentAssignment: "Al Nas Ayah 3"
-            }
-        ]
+        students: []
     };
 
     componentDidMount() {
