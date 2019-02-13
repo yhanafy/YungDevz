@@ -24,4 +24,12 @@ Native App Development
 ----------------------
 
 	Pros:
+	-Uses languages we are familiar with, Java and Swift
+	-Up to date technologies
+	-Performence metrics very high
+	-Libraries fully up to date
+
+	Cons:
+	-No code sharing and application must be developed twice
+	-Developing in swift recquires learning a new language plus investing in a mac
 	-
