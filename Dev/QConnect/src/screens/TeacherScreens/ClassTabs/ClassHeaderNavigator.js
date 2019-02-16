@@ -1,7 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
-
+import colors from 'config/colors'
 import ClassTabsNavigator from './ClassTabsNavigator';
 import StudentProfileScreen from 'screens/StudentProfile/StudentProfileScreen'
 
@@ -17,7 +17,20 @@ const ClassHeaderNavigator = createStackNavigator({
           iconStyle={{ paddingLeft: 10 }}
           onPress={() => navigation.openDrawer()}
         />
-      ),
+      ),   
+      headerStyle: {
+        backgroundColor: colors.white,
+        height: 90,
+      },
+      headerTintColor: colors.white,
+      headerTitleStyle: {
+        color: colors.primaryDark,
+        marginTop: 10,
+        marginBottom: 10,
+        fontSize: 22,
+        alignSelf: 'center',
+        fontWeight: 'normal'
+      },
     }),
   },
   StudentProfile: {
@@ -31,8 +44,20 @@ const ClassHeaderNavigator = createStackNavigator({
           iconStyle={{ paddingLeft: 10 }}
           onPress={() => navigation.goBack()}
         />
-      ),
-    }),
+      ),   
+      headerStyle: {
+        backgroundColor: colors.white,
+      },
+      headerTintColor: colors.white,
+      headerTitleStyle: {
+        color: colors.primaryDark,
+        marginTop: 10,
+        marginBottom: 10,
+        fontSize: 22,
+        alignSelf: 'center',
+        fontWeight: 'normal'
+      },
+    })
   }
 },
 {
