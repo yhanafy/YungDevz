@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { TouchableOpacity, Text, StyleSheet, Image, View} from 'react-native';
 import colors from 'config/colors'
+import {Font} from 'expo';
+import FontLoadingComponent from './FontLoadingComponent';
 
 /*Class represents the student card that will show up in the list of students
 *from the teachers view.
@@ -9,27 +11,36 @@ import colors from 'config/colors'
 *current assignment.
 *The card will also be able to be pressed which controls the color of the card (Student Status)
 */
-export default class StudentCard extends Component {
+export default class StudentCard extends FontLoadingComponent {
+    
     render() {
         //The properties of the component.
         const {studentName, profilePic, currentAssignment, onPress} = this.props;
         return(
             //The style of the card as a whole. Inside the card, you have the image,
             //student name, and student assignment
+            <View>
+            {this.state.fontLoaded ? (  
             <TouchableOpacity
                 style = {styles.cardStyle}
+                borderColor = {colors.black}
                 //The on press function is for when the teacher clicks the card, the color of it 
                 //should change depending on the behavior (i.e attendence screen)
                 onPress = {() => {onPress()}}>
                 <Image
                     style = {styles.profilePicStyle}
-                    source = {profilePic}/>
-                <View 
+                    source = {{uri: profilePic }}/>
+                <View
                     style = {styles.infoStyle}>
                     <Text style = {styles.studentNameStyle}>{studentName}</Text>
                     <Text style = {styles.assignmentStyle}>{currentAssignment}</Text>
                 </View>
             </TouchableOpacity>
+            ) : (
+                <View></View>
+                )
+            }
+            </View>
         );
     }
 }
@@ -41,7 +52,7 @@ export default class StudentCard extends Component {
 */
 StudentCard.propTypes = {
     studentName: PropTypes.string.isRequired,
-    profilePic: PropTypes.number.isRequired,
+    profilePic: PropTypes.string.isRequired,
     currentAssignment: PropTypes.string.isRequired,
     onPress: PropTypes.func.isRequired
 }
@@ -49,42 +60,33 @@ StudentCard.propTypes = {
 //Styles that control the look of the card, and everything within it
 const styles = StyleSheet.create({
     cardStyle: {
-
         flexDirection: 'row',
         marginRight: 7,
         height: 100,
         marginLeft: 7,
         marginTop: 10,
         backgroundColor: colors.white,
-        borderColor: colors.black
-        
-    
     },
     infoStyle: {
-
-        marginLeft: 40,
+        marginLeft: 15,
         flexDirection: 'column',
         justifyContent: 'center',
-    
-
     },
     profilePicStyle: {
-
-        marginTop: 15,
+        marginTop: 20,
         marginLeft: 15,
-        width: 70,
-        height: 70, 
-        borderRadius: 35
-
+        width: 60,
+        height: 60, 
+        borderRadius: 30
     },
     studentNameStyle: {
-
-        fontSize: 30,
-        color: colors.primaryDark
+        fontFamily: 'regular',
+        fontSize: 24,
+        color: colors.black
     },
     assignmentStyle: {
-
-        fontSize: 20,
-        color: colors.primaryDark
+        fontFamily: 'regular',
+        fontSize: 18,
+        color: colors.darkGrey
     }
 });

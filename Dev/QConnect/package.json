@@ -8,11 +8,12 @@
     "test": "node ./node_modules/jest/bin/jest.js"
   },
   "dependencies": {
-    "expo": "^32.0.0",
+    "expo": "^32.0.5",
     "react": "16.5.0",
+    "react-devtools": "^3.6.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
     "react-native-elements": "^1.0.0",
-    "react-navigation": "^3.1.2"
+    "react-navigation": "^3.2.3"
   },
   "devDependencies": {
     "babel-jest": "^24.1.0",

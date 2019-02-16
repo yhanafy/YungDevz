@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {View} from 'react-native';
-import {StudentCard} from 'components/StudentCard'
+import {ScrollView, StyleSheet, Text} from 'react-native';
+import StudentCard from 'components/StudentCard'
 import colors from 'config/colors'
 
 class ClassMainScreen extends Component {
@@ -19,28 +19,18 @@ class ClassMainScreen extends Component {
         this.setState( {students} );
     }
 
-    //A hamburger menu component still needs to be created
-    render() {        
-        return (
-            <View style = {styles.container}>
-                <View style = {styles.topBanner}> 
-                    <HamburgerMenu />
-                    <Text style = {styles.classTitle}>{this.state.classId.className}</Text>
-                </View>
-                <View>
-                    {this.state.students.forEach((student) => {
-                        return (
-                        <StudentCard
-                        studentName={student.name}
-                        profilePic={student.avatar}
-                        currentAssignment={student.assignment}
-                        onPress={() => this.props.navigation.navigate('StudentProfile', { name: student.name })}
-                        />
-                        );
-                    })}
-                </View>
-            </View>
+    render() {    
+        return (<ScrollView style={styles.container}>{this.state.students.map((student, i) => {
+            return (
+            <StudentCard
+                key={i}
+                studentName={student.name}
+                profilePic={student.avatar}
+                currentAssignment={student.assignment}
+                onPress={() => this.props.navigation.navigate('StudentProfile', { name: student.name })}
+            />
             );
+        })}</ScrollView>);
     }
 }
 
@@ -48,12 +38,8 @@ class ClassMainScreen extends Component {
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'column',
+        backgroundColor: colors.lightGrey,
         flex: 1
-    },
-    topBanner: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center'  
     },
     classTitle: {
         color: colors.primaryDark,
