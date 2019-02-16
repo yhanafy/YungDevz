@@ -7,8 +7,6 @@ class AddClassScreen extends Component {
     className:'',
   }
     render() {
-        const { navigate } = this.props.navigation;
-    
         return (
           <View ID="addNewClass">
             <TextInput
