@@ -2,22 +2,9 @@ import React, {Component} from 'react';
 import {Font} from 'expo';
 import {View, Text, StyleSheet} from 'react-native';
 import colors from 'config/colors';
+import FontLoadingComponent from './FontLoadingComponent';
 
-class QcAppBanner extends Component {
-    state = {
-        fontLoaded: false,
-    };
-
-    async componentDidMount() {
-        await Font.loadAsync({
-          regular: require('assets/fonts/Montserrat-Regular.ttf'),
-          light: require('assets/fonts/Montserrat-Light.ttf'),
-          bold: require('assets/fonts/Montserrat-Bold.ttf'),
-        });
-    
-        this.setState({ fontLoaded: true });
-    }
-
+class QcAppBanner extends FontLoadingComponent {
     render() {
         return (
             <View ID="AppBanner">
