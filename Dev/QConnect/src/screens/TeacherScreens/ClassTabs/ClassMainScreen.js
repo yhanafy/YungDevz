@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {ScrollView, StyleSheet, Text} from 'react-native';
+import { connect } from 'react-redux';
 import StudentCard from 'components/StudentCard'
 import colors from 'config/colors'
 
@@ -13,7 +14,7 @@ class ClassMainScreen extends Component {
 
     //A method needs to be written to get the class ids from the JSONFile
     componentDidMount() {
-        const students = require('model/class.json').students.map(s => ({
+        const students = this.props.classroom.students.map(s => ({
                 ...s
         }));
         this.setState( {students} );
@@ -32,6 +33,7 @@ class ClassMainScreen extends Component {
             );
         })}</ScrollView>);
     }
+    
 }
 
 //Styles for the entire container along with the top banner
@@ -47,4 +49,9 @@ const styles = StyleSheet.create({
     }
 });
 
-export default ClassMainScreen;
+const mapStateToProps = (state) => {
+    const { classroom } = state
+    return { classroom }
+  };
+  
+  export default connect(mapStateToProps)(ClassMainScreen);
