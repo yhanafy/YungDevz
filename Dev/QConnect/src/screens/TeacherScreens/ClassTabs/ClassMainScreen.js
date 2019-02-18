@@ -1,26 +1,13 @@
 import React, {Component} from 'react';
 import {ScrollView, StyleSheet, Text} from 'react-native';
+import { connect } from 'react-redux';
 import StudentCard from 'components/StudentCard'
 import colors from 'config/colors'
 
 class ClassMainScreen extends Component {
-    state = {
-        //A class id JSON file needs to be created holding all of the id's for the classes this
-        //teacher has
-        classId: "placeholder id",
-        students: []
-    };
-
-    //A method needs to be written to get the class ids from the JSONFile
-    componentDidMount() {
-        const students = require('model/class.json').students.map(s => ({
-                ...s
-        }));
-        this.setState( {students} );
-    }
 
     render() {    
-        return (<ScrollView style={styles.container}>{this.state.students.map((student, i) => {
+        return (<ScrollView style={styles.container}>{this.props.classroom.students.map((student, i) => {
             return (
             <StudentCard
                 key={i}
@@ -32,6 +19,7 @@ class ClassMainScreen extends Component {
             );
         })}</ScrollView>);
     }
+    
 }
 
 //Styles for the entire container along with the top banner
@@ -47,4 +35,9 @@ const styles = StyleSheet.create({
     }
 });
 
-export default ClassMainScreen;
+const mapStateToProps = (state) => {
+    const { classroom } = state
+    return { classroom }
+  };
+  
+  export default connect(mapStateToProps)(ClassMainScreen);
