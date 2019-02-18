@@ -8,16 +8,23 @@ import { deleteStudent } from 'model/actions/deleteStudent';
 import { addStudent } from 'model/actions/addStudent';
 import QcActionButton from 'components/QcActionButton'
 import {ToastAndroid} from 'react-native';
+
 class ClassEditScreen extends Component {
 
     state = {
         newStudentName: "",
     }
 
+    getAvatarUrl(){
+        let photoNum = Math.floor(Math.random() * Math.floor(90));
+        let url = "https://randomuser.me/api/portraits/thumb/men/" + photoNum + ".jpg";
+        return url;
+    }
+
     addNewStudent(){
         this.props.addStudent({
             name: this.state.newStudentName,
-            avatar: "https://randomuser.me/api/portraits/thumb/men/77.jpg",
+            avatar: this.getAvatarUrl(),
             assignment: "No assignment yet"
         });
         ToastAndroid.show(this.state.newStudentName + " is now added to the class", ToastAndroid.SHORT);
@@ -25,6 +32,7 @@ class ClassEditScreen extends Component {
 
     render() {    
         return (<ScrollView style={styles.container}>
+      <View style={styles.inputContainer}>
         <TextInput
             placeholder="Enter new student's name"
             onChangeText={(newStudentName) => this.setState({newStudentName})}
@@ -34,7 +42,7 @@ class ClassEditScreen extends Component {
             text="Add student"
             onPress={() => this.addNewStudent()}
         />
-
+      </View>
       <View>
             {this.props.classroom.students.map((student, i) => {
             return (
@@ -59,6 +67,12 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         backgroundColor: colors.lightGrey,
         flex: 1
+    },
+    inputContainer: {
+        flexDirection: 'column',
+        backgroundColor: colors.white,
+        padding: 10,
+        flex: 1  
     },
     classTitle: {
         color: colors.primaryDark,
