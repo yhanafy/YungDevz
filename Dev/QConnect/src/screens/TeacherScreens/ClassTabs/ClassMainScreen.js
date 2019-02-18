@@ -5,23 +5,9 @@ import StudentCard from 'components/StudentCard'
 import colors from 'config/colors'
 
 class ClassMainScreen extends Component {
-    state = {
-        //A class id JSON file needs to be created holding all of the id's for the classes this
-        //teacher has
-        classId: "placeholder id",
-        students: []
-    };
-
-    //A method needs to be written to get the class ids from the JSONFile
-    componentDidMount() {
-        const students = this.props.classroom.students.map(s => ({
-                ...s
-        }));
-        this.setState( {students} );
-    }
 
     render() {    
-        return (<ScrollView style={styles.container}>{this.state.students.map((student, i) => {
+        return (<ScrollView style={styles.container}>{this.props.classroom.students.map((student, i) => {
             return (
             <StudentCard
                 key={i}

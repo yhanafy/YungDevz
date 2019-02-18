@@ -36,7 +36,23 @@ const INITIAL_STATE = {
 };
 
 const classReducer = (state = INITIAL_STATE, action) => {
+  // pulls list of current student in current state
+  const {
+    students
+  } = state;
+  
   switch (action.type) {
+    case 'ADD_STUDENT':
+    return { 
+          ...state,
+          students: state.students.concat(action.studentInfo)
+         }
+    case 'DELETE_STUDENT':
+      students.splice(action.studentIndex, 1);
+
+      // Finally, update our redux state
+      const newState2 = { students };
+      return newState2;
     default:
       return state
   }
