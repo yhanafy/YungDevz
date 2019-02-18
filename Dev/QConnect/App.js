@@ -19,7 +19,7 @@ const persistedReducer = persistReducer(persistConfig, classReducer)
 
 export const store = createStore(
   persistedReducer,
-  undefined,
+  undefined
 );
 
 export const persistor = persistStore(store);
