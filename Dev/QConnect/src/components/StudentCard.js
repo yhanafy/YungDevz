@@ -81,12 +81,12 @@ const styles = StyleSheet.create({
     },
     studentNameStyle: {
         fontFamily: 'regular',
-        fontSize: 24,
+        fontSize: 20,
         color: colors.black
     },
     assignmentStyle: {
         fontFamily: 'regular',
-        fontSize: 18,
+        fontSize: 16,
         color: colors.darkGrey
     }
 });
