@@ -8,8 +8,6 @@ import classReducer from 'model/reducers/classReducer'
 import { persistStore, persistReducer } from 'redux-persist'
 import { AsyncStorage } from 'react-native';
 
-// const store = createStore(classReducer)
-// const persistor = persistStore(store);
 
 const persistConfig = {
   key: 'root2',
