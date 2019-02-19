@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "QConnect",
+    "name": "QConnectYsn",
     "slug": "QConnect",
     "privacy": "public",
     "sdkVersion": "32.0.0",
@@ -24,6 +24,7 @@
     ],
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "description": ""
   }
 }
