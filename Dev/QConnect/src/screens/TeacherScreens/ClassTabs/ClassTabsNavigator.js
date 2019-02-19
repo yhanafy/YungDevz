@@ -19,8 +19,7 @@ import ClassEditScreen from './ClassEditScreen';
                 type="font-awesome"
                 color={tintColor}
             />
-        ),
-        },
+        )},
     },
     ClassStudentsTab: {
         screen: ClassMainScreen,
@@ -37,21 +36,6 @@ import ClassEditScreen from './ClassEditScreen';
         ),
         },
     },
-    EditClassTab: {
-        screen: ClassEditScreen,
-        path: '/edit_class',
-        navigationOptions: {
-        tabBarLabel: 'Edit',
-        tabBarIcon: ({ tintColor, focused }) => (
-            <Icon
-                name="edit"
-                size={20}
-                type="font-awesome"
-                color={tintColor}
-            />
-        ),
-        },
-    }
 }
 
 const navigatorConfig = {
@@ -65,6 +49,11 @@ const navigatorConfig = {
       inactiveTintColor: colors.darkGrey,
       style: {
         backgroundColor: colors.white,
+        height: 70,
+        padding: 10,
+      },
+      labelStyle: {
+          fontSize: 14
       },
       // Android's default showing of icons is false whereas iOS is true
       showIcon: true,
