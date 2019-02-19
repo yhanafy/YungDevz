@@ -17,6 +17,11 @@ class AddClassScreen extends Component {
             />
 
             <Text>Your Class name is {this.state.className}</Text>
+            <QcActionButton
+                        navigation={navigation}
+                        text="Add Class"
+                        onPress={this.onTeacherFlow}  />
+
           </View>
         );
       }
