@@ -10,7 +10,7 @@ import { AsyncStorage } from 'react-native';
 
 
 const persistConfig = {
-  key: 'root2',
+  key: 'qconnect2',
   storage: AsyncStorage
 }
 const persistedReducer = persistReducer(persistConfig, classReducer)

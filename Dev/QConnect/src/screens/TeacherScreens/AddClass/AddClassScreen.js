@@ -61,6 +61,11 @@ class AddClassScreen extends Component {
           }}
         />
 
+        <Text>Here Are Your Classes: </Text>
+        <Component 
+        style={{
+          textAlign: "center"
+        }}> this.className </Component>
       </View>
 
     );

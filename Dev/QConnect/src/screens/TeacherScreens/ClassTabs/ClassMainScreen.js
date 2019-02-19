@@ -7,7 +7,7 @@ import colors from 'config/colors'
 class ClassMainScreen extends Component {
 
     render() {    
-        return (<ScrollView style={styles.container}>{this.props.classroom.students.map((student, i) => {
+        return (<ScrollView style={styles.container}>{this.props.classrooms.classes[0].students.map((student, i) => {
             return (
             <StudentCard
                 key={i}
@@ -36,8 +36,8 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
-    const { classroom } = state
-    return { classroom }
+    const { classrooms } = state
+    return { classrooms }
   };
   
   export default connect(mapStateToProps)(ClassMainScreen);
