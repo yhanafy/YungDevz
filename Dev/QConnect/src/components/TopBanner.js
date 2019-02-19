@@ -52,7 +52,6 @@ TopBanner.propTypes = {
 
 const styles = StyleSheet.create({
     entireTopView: {
-        
         height: 75,
         flexDirection: 'row',
         justifyContent: 'space-between',
