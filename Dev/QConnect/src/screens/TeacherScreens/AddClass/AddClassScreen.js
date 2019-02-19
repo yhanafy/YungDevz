@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, Image, Platform, StyleSheet } from 'react-native';
 import colors from 'config/colors'
+import QcActionButton from 'components/QcActionButton'
+import { addClass } from '../../../model/actions/addClass';
 
 
 class AddClassScreen extends Component {
@@ -15,9 +17,16 @@ class AddClassScreen extends Component {
 
       <View ID="addNewClass" style={{
         alignItems: "center",
-        justifyContent: "center",
       }}>
 
+        <Image source={{ uri: 'https://cdn0.iconfinder.com/data/icons/activities-glyph/2048/2154_-_Sitting_in_class-512.png' }}
+          style={{
+            width: 200,
+            height: 200,
+            alignItems: 'center',
+            borderRadius: 150 / 2,
+            justifyContent: 'center'
+          }} />
 
         <TextInput
           style={{
@@ -41,16 +50,19 @@ class AddClassScreen extends Component {
 
 
         />
-        <Image source={{ uri: '<iframe width="901" height="507" src="https://www.youtube.com/embed/2TQWbxxyJUA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>' }}
-          style={{
-            width: 200,
-            height: 200,
-            alignItems: 'center',
-            borderRadius: 150 / 2
-          }} />
 
         <Text>Your Class name is {this.state.className}</Text>
+
+        <QcActionButton
+          text="Add Class"
+          onPress={() => {
+            //Add class button
+            addClass;
+          }}
+        />
+
       </View>
+
     );
   }
 
