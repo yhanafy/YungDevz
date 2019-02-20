@@ -1,75 +1,58 @@
 import React from 'react';
+import TopBanner from 'components/TopBanner'
 import { createStackNavigator } from 'react-navigation';
-import { Icon } from 'react-native-elements';
-import colors from 'config/colors'
 import ClassTabsNavigator from './ClassTabsNavigator';
-import StudentProfileScreen from 'screens/StudentProfile/StudentProfileScreen'
+import StudentProfileScreen from 'screens/StudentProfile/StudentProfileScreen';
+import ClassEditScreen from 'screens/TeacherScreens/ClassTabs/ClassEditScreen';
 
 const ClassHeaderNavigator = createStackNavigator({
   CurrentClass: {
     screen: ClassTabsNavigator,
     navigationOptions: ({ navigation }) => ({
-      title: 'Monday Class - ICOE',
-      headerLeft: (
-        <Icon
-          name="navicon"
-          type="font-awesome"
-          iconStyle={{ paddingLeft: 10 }}
-          onPress={() => navigation.openDrawer()}
+      header: (
+        <TopBanner
+          Icon1Name="navicon"
+          Icon1OnPress={() => navigation.openDrawer()}
+          Title="Quran Class"
+          Icon2Name="edit"
+          Icon2OnPress={() => navigation.navigate('ClassEdit')}
         />
-      ),   
-      headerStyle: {
-        backgroundColor: colors.white,
-        height: 90,
-      },
-      headerTintColor: colors.white,
-      headerTitleStyle: {
-        color: colors.primaryDark,
-        marginTop: 10,
-        marginBottom: 10,
-        fontSize: 22,
-        alignSelf: 'center',
-        fontWeight: 'normal'
-      },
+      ),  
     }),
   },
   StudentProfile: {
     screen: StudentProfileScreen,
     navigationOptions: ({ navigation }) => ({
-      title: navigation.state.params.name,
-      headerLeft: (
-        <Icon
-          name="angle-left"
-          type="font-awesome"
-          iconStyle={{ paddingLeft: 10 }}
-          onPress={() => navigation.goBack()}
+      header: (
+        <TopBanner
+          Icon1Name="angle-left"
+          Icon1OnPress={() => navigation.goBack()}
+          Title={navigation.state.params.name}
+          Icon2Name="edit"
+          Icon2OnPress={() => {}}
         />
-      ),   
-      headerStyle: {
-        backgroundColor: colors.white,
-      },
-      headerTintColor: colors.white,
-      headerTitleStyle: {
-        color: colors.primaryDark,
-        marginTop: 10,
-        marginBottom: 10,
-        fontSize: 22,
-        alignSelf: 'center',
-        fontWeight: 'normal'
-      },
+      )
+    })
+  },
+  //Will lead to the edit class screen. If the user clicks the left back button, the changes
+  //to the class should not be saved. If however the user clicks the check mark, the changes to
+  //the class will be changed. (That still needs to be coded in)
+  ClassEdit: {
+    screen: ClassEditScreen,
+    navigationOptions: ({navigation}) => ({
+      header: (
+        <TopBanner
+          Icon1Name="angle-left"
+          Icon1OnPress={() => navigation.goBack()}
+          Title="Edit Class"
+          Icon2Name="check"
+          Icon2OnPress={() => navigation.goBack()}
+        />
+      )
     })
   }
-},
-{
-    drawerLabel: 'Monday Class - ICOE',
-    drawerIcon: ({ tintColor }) => (
-      <Icon
-        name="navicon"
-        type="font-awesome"
-        color={tintColor}
-      />
-    ),
-  });
+
+})
 
 
 export default ClassHeaderNavigator;

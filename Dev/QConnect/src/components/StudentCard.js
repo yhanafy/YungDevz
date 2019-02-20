@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { TouchableOpacity, Text, StyleSheet, Image, View} from 'react-native';
 import colors from 'config/colors'
-import {Font} from 'expo';
 import FontLoadingComponent from './FontLoadingComponent';
 
 /*Class represents the student card that will show up in the list of students
@@ -29,7 +28,7 @@ export default class StudentCard extends FontLoadingComponent {
                 onPress = {() => {onPress()}}>
                 <Image
                     style = {styles.profilePicStyle}
-                    source = {{uri: profilePic }}/>
+                    source = {profilePic}/>
                 <View
                     style = {styles.infoStyle}>
                     <Text style = {styles.studentNameStyle}>{studentName}</Text>
@@ -52,7 +51,7 @@ export default class StudentCard extends FontLoadingComponent {
 */
 StudentCard.propTypes = {
     studentName: PropTypes.string.isRequired,
-    profilePic: PropTypes.string.isRequired,
+    profilePic: PropTypes.object.isRequired,
     currentAssignment: PropTypes.string.isRequired,
     onPress: PropTypes.func.isRequired
 }

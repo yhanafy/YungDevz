@@ -35,7 +35,7 @@ class ClassAttendanceScreen extends React.Component {
 
     render() {
         return (<ScrollView style={styles.container}>{this.props.classrooms.classes[0].students.map((student, i) => {
-            let url = this.state.selectedStudents.includes(i)? 'https://facebook.github.io/react/logo-og.png' : student.avatar;
+            let url = this.state.selectedStudents.includes(i)? {uri: 'https://cdn0.iconfinder.com/data/icons/round-ui-icons/512/tick_green.png'} : {uri: student.avatar};
             
             return (
             <StudentCard

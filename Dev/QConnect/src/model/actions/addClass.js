@@ -1,6 +1,6 @@
-export const addClass = ClassInfo => (
+export const addClass = classInfo => (
     {
       type: 'ADD_CLASS',
-      ClassInfo,
+      classInfo,
     }
   );
