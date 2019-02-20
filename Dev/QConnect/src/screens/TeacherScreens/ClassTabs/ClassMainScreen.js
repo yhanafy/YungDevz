@@ -12,7 +12,7 @@ class ClassMainScreen extends Component {
             <StudentCard
                 key={i}
                 studentName={student.name}
-                profilePic={student.avatar}
+                profilePic={{uri: student.avatar}}
                 currentAssignment={student.assignment}
                 onPress={() => this.props.navigation.navigate('StudentProfile', { name: student.name })}
             />

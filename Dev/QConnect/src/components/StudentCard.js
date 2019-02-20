@@ -29,7 +29,7 @@ export default class StudentCard extends FontLoadingComponent {
                 onPress = {() => {onPress()}}>
                 <Image
                     style = {styles.profilePicStyle}
-                    source = {{uri: profilePic }}/>
+                    source = {profilePic}/>
                 <View
                     style = {styles.infoStyle}>
                     <Text style = {styles.studentNameStyle}>{studentName}</Text>
@@ -52,7 +52,7 @@ export default class StudentCard extends FontLoadingComponent {
 */
 StudentCard.propTypes = {
     studentName: PropTypes.string.isRequired,
-    profilePic: PropTypes.string.isRequired,
+    profilePic: PropTypes.object.isRequired,
     currentAssignment: PropTypes.string.isRequired,
     onPress: PropTypes.func.isRequired
 }
