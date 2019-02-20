@@ -7,12 +7,12 @@ import colors from 'config/colors'
 class ClassMainScreen extends Component {
 
     render() {    
-        return (<ScrollView style={styles.container}>{this.props.classroom.students.map((student, i) => {
+        return (<ScrollView style={styles.container}>{this.props.classrooms.classes[0].students.map((student, i) => {
             return (
             <StudentCard
                 key={i}
                 studentName={student.name}
-                profilePic={student.avatar}
+                profilePic={{uri: student.avatar}}
                 currentAssignment={student.assignment}
                 onPress={() => this.props.navigation.navigate('StudentProfile', { name: student.name })}
             />
@@ -36,8 +36,8 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
-    const { classroom } = state
-    return { classroom }
+    const { classrooms } = state
+    return { classrooms }
   };
   
   export default connect(mapStateToProps)(ClassMainScreen);
