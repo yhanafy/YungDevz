@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {ScrollView, StyleSheet, Text} from 'react-native';
+import {ScrollView, StyleSheet} from 'react-native';
 import { connect } from 'react-redux';
 import StudentCard from 'components/StudentCard'
 import colors from 'config/colors'
@@ -41,3 +41,4 @@ const mapStateToProps = (state) => {
   };
   
   export default connect(mapStateToProps)(ClassMainScreen);
+  
