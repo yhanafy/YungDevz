@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {ScrollView, StyleSheet} from 'react-native';
+import {ScrollView, StyleSheet, Text} from 'react-native';
 import { connect } from 'react-redux';
 import StudentCard from 'components/StudentCard'
 import colors from 'config/colors'
@@ -14,6 +14,7 @@ class ClassMainScreen extends Component {
                 studentName={student.name}
                 profilePic={{uri: student.avatar}}
                 currentAssignment={student.assignment}
+                background={colors.white}
                 onPress={() => this.props.navigation.navigate('StudentProfile', { name: student.name })}
             />
             );
@@ -41,4 +42,3 @@ const mapStateToProps = (state) => {
   };
   
   export default connect(mapStateToProps)(ClassMainScreen);
-  
