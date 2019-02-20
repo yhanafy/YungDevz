@@ -10,6 +10,9 @@ class AddClassScreen extends Component {
   state = {
     className: '',
   }
+
+
+
   render() {
     const { navigate } = this.props.navigation;
 
@@ -62,10 +65,7 @@ class AddClassScreen extends Component {
         />
 
         <Text>Here Are Your Classes: </Text>
-        <Component 
-        style={{
-          textAlign: "center"
-        }}> this.className </Component>
+        <Text>{} </Text>
       </View>
 
     );
