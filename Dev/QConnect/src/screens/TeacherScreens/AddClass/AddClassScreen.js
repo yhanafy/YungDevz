@@ -64,11 +64,6 @@ class AddClassScreen extends Component {
           })}
         />
 
-        <QcActionButton
-          text="Add Class"
-          onPress={() => this.addNewClass()}
-        />
-
         <Text>(This is temp UI for debug purposes, final UI will come next iA)</Text>
         <Text>You have {this.props.classrooms.classes.length} classes, here they are:</Text>
         <View>{this.props.classrooms.classes.map((classroom, i) => {
@@ -85,6 +80,8 @@ class AddClassScreen extends Component {
           )
         })}</View>
       </ScrollView>
+        <Text>Here Are Your Classes: </Text>
+        <Text>{} </Text>
       </View>
 
     );
