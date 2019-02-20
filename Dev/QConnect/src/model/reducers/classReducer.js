@@ -69,13 +69,18 @@ const classReducer = (state = INITIAL_STATE, action) => {
 
       // Finally, update our redux state
       updatedClass = {
-        ...classes[0],
+        ...classes[classIndex],
         students: studentsList
       } 
 
       return {
         ...state,
         classes: [updatedClass]
+      }
+    case 'ADD_CLASS':
+      return { 
+        ...state,
+        classes: state.classes.concat(action.classInfo)
       }
     default:
       return state
