@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {View, Image} from 'react-native';
+import {View, Image, Text} from 'react-native';
+import StudentCard from 'components/StudentCard'
 
 class StudentProfileScreen extends Component {
 
@@ -13,8 +14,9 @@ class StudentProfileScreen extends Component {
             height: 200,
             alignItems: 'center',
             borderRadius: 150 / 2,
-            backgroundColor: "blue"
           }} />
+
+          <Text>Student Name: {StudentCard.props.StudentName}</Text>
           </View>
         );
       }
