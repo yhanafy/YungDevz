@@ -1,23 +1,20 @@
 import React from 'react';
-import { createStackNavigator } from 'react-navigation';
+import { createStackNavigator, DrawerActions } from 'react-navigation';
 import { Icon } from 'react-native-elements';
-
 import AddClassScreen from './AddClassScreen';
+import TopBanner from 'components/TopBanner';
 
 const AddClassNavigator = createStackNavigator({
   AddClass: {
     screen: AddClassScreen,
     navigationOptions: ({ navigation }) => ({
-      title: 'Add a new class',
-      headerLeft: (
-        <Icon
-          name="menu"
-          size={30}
-          type="entypo"
-          iconStyle={{ paddingLeft: 10 }}
-          onPress={() => navigation.openDrawer()}
+      header: (
+        <TopBanner
+          Icon1Name="navicon"
+          Icon1OnPress={() => navigation.openDrawer()}
+          Title="Add a new class"
         />
-      ),
+      )
     }),
   },
 },

@@ -43,11 +43,11 @@ class TopBanner extends FontLoadingComponent {
 
 //Verifies the propTypes are correct
 TopBanner.propTypes = {
-    Icon1Name: PropTypes.string.isRequired,
-    Icon1OnPress: PropTypes.func.isRequired,
-    Title: PropTypes.string.isRequired,
-    Icon2Name: PropTypes.string.isRequired,
-    Icon2OnPress: PropTypes.func.isRequired
+    Icon1Name: PropTypes.string,
+    Icon1OnPress: PropTypes.func,
+    Title: PropTypes.string,
+    Icon2Name: PropTypes.string,
+    Icon2OnPress: PropTypes.func,
 }
 
 const styles = StyleSheet.create({

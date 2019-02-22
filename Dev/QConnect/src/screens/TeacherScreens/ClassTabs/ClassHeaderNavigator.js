@@ -1,6 +1,6 @@
 import React from 'react';
 import TopBanner from 'components/TopBanner'
-import { createStackNavigator } from 'react-navigation';
+import { createStackNavigator, DrawerActions } from 'react-navigation';
 import ClassTabsNavigator from './ClassTabsNavigator';
 import StudentProfileScreen from 'screens/StudentProfile/StudentProfileScreen';
 import ClassEditScreen from 'screens/TeacherScreens/ClassTabs/ClassEditScreen';
@@ -13,7 +13,7 @@ const ClassHeaderNavigator = createStackNavigator({
         <TopBanner
           Icon1Name="navicon"
           Icon1OnPress={() => navigation.openDrawer()}
-          Title="Quran Class"
+          Title="Monday Class"
           Icon2Name="edit"
           Icon2OnPress={() => navigation.navigate('ClassEdit')}
         />
