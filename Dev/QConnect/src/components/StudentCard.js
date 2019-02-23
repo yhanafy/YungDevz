@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { TouchableOpacity, Text, StyleSheet, Image, View} from 'react-native';
 import colors from 'config/colors'
-import {Font} from 'expo';
 import FontLoadingComponent from './FontLoadingComponent';
 
 /*Class represents the student card that will show up in the list of students
@@ -15,21 +14,21 @@ export default class StudentCard extends FontLoadingComponent {
     
     render() {
         //The properties of the component.
-        const {studentName, profilePic, currentAssignment, onPress} = this.props;
+        const {studentName, profilePic, currentAssignment, background, onPress} = this.props;
         return(
             //The style of the card as a whole. Inside the card, you have the image,
             //student name, and student assignment
             <View>
             {this.state.fontLoaded ? (  
             <TouchableOpacity
-                style = {styles.cardStyle}
+                style = {[styles.cardStyle, {backgroundColor: background}]}
                 borderColor = {colors.black}
                 //The on press function is for when the teacher clicks the card, the color of it 
                 //should change depending on the behavior (i.e attendence screen)
                 onPress = {() => {onPress()}}>
                 <Image
                     style = {styles.profilePicStyle}
-                    source = {{uri: profilePic }}/>
+                    source = {profilePic}/>
                 <View
                     style = {styles.infoStyle}>
                     <Text style = {styles.studentNameStyle}>{studentName}</Text>
@@ -52,7 +51,7 @@ export default class StudentCard extends FontLoadingComponent {
 */
 StudentCard.propTypes = {
     studentName: PropTypes.string.isRequired,
-    profilePic: PropTypes.string.isRequired,
+    profilePic: PropTypes.object.isRequired,
     currentAssignment: PropTypes.string.isRequired,
     onPress: PropTypes.func.isRequired
 }
@@ -65,7 +64,6 @@ const styles = StyleSheet.create({
         height: 100,
         marginLeft: 7,
         marginTop: 10,
-        backgroundColor: colors.white,
     },
     infoStyle: {
         marginLeft: 15,

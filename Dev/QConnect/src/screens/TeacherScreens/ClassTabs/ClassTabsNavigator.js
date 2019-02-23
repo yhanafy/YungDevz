@@ -4,7 +4,6 @@ import colors from 'config/colors';
 import { Icon } from 'react-native-elements';
 import ClassMainScreen from './ClassMainScreen';
 import ClassAttendanceScreen from './ClassAttendanceScreen';
-import ClassEditScreen from './ClassEditScreen';
 
   const routeConfig = {
     AttendanceTab: {
