@@ -10,7 +10,7 @@ import colors from 'config/colors'
 class TopBanner extends FontLoadingComponent {
     render() {
         //Component properties
-        const {Icon1Name, Icon1OnPress, Title, Icon2Name, Icon2OnPress} = this.props;
+        const {Icon1Name, Text1Name, LeftOnPress, Title, Icon2Name, Text2Name, RightOnPress} = this.props;
         return(
             <View>
                 {this.state.fontLoaded ? (
@@ -19,8 +19,10 @@ class TopBanner extends FontLoadingComponent {
                         <Icon
                             name={Icon1Name}
                             type="font-awesome"
-                            onPress={() => {Icon1OnPress()}}
+                            onPress={() => {LeftOnPress()}}
                         />
+                        <Text style={styles.leftText} 
+                            onPress={() => {LeftOnPress()}}>{Text1Name}</Text>
                     </View>
                     <View style={styles.topMiddleView}>
                         <Text style={styles.titleStyle}>{Title}</Text>
@@ -29,8 +31,10 @@ class TopBanner extends FontLoadingComponent {
                         <Icon
                             name={Icon2Name}
                             type="font-awesome"
-                            onPress={() => {Icon2OnPress()}}
+                            onPress={() => {RightOnPress()}}
                         />
+                        <Text style={styles.rightText}
+                            onPress={() => {RightOnPress()}}>{Text2Name}</Text>
                     </View>
                     </View>
                 ) : (
@@ -44,10 +48,12 @@ class TopBanner extends FontLoadingComponent {
 //Verifies the propTypes are correct
 TopBanner.propTypes = {
     Icon1Name: PropTypes.string,
-    Icon1OnPress: PropTypes.func,
+    Text1Name: PropTypes.string,
+    LeftOnPress: PropTypes.func,
     Title: PropTypes.string,
     Icon2Name: PropTypes.string,
-    Icon2OnPress: PropTypes.func,
+    Text2Name: PropTypes.string,
+    RightOnPress: PropTypes.func,
 }
 
 const styles = StyleSheet.create({
@@ -63,7 +69,9 @@ const styles = StyleSheet.create({
     topLeftView: {
         height: 95,
         justifyContent: 'center',
-        paddingLeft: 20
+        alignItems: 'center',
+        paddingLeft: 20,
+        flexDirection: 'row'
     },
     topMiddleView: {
         height: 95,
@@ -72,12 +80,20 @@ const styles = StyleSheet.create({
     },
     topRightView: {
         height: 95,
-        justifyContent: 'center',
-        paddingRight: 20
+        justifyContent: 'center', 
+        alignItems: 'center',
+        paddingRight: 20,
+        flexDirection: 'row'
     },
     titleStyle: {
         fontSize: 25,
         color: colors.primaryDark
+    },
+    leftText: {
+        fontSize: 15,
+    }, 
+    rightText: {
+        fontSize: 15,
     }
 });
   

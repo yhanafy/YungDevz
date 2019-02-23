@@ -28,7 +28,7 @@ const routeConfig = {
       title: 'Add new class',
     }),
   }
-};
+}; 
 
 const navigationConfig = {
     drawerWidth: 325,
@@ -36,7 +36,9 @@ const navigationConfig = {
     drawerOpenRoute: 'DrawerOpen',
     drawerCloseRoute: 'DrawerClose',
     drawerToggleRoute: 'DrawerToggle',
+    initialRouteName: 'CurrentClass'
 }
+
 
 const drawer = createDrawerNavigator(routeConfig, navigationConfig);
 

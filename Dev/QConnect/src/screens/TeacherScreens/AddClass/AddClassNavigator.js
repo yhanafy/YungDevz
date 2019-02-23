@@ -11,7 +11,7 @@ const AddClassNavigator = createStackNavigator({
       header: (
         <TopBanner
           Icon1Name="navicon"
-          Icon1OnPress={() => navigation.openDrawer()}
+          LeftOnPress={() => navigation.openDrawer()}
           Title="Add a new class"
         />
       )
