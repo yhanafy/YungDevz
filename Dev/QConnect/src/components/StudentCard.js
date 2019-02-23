@@ -14,14 +14,14 @@ export default class StudentCard extends FontLoadingComponent {
     
     render() {
         //The properties of the component.
-        const {studentName, profilePic, currentAssignment, onPress} = this.props;
+        const {studentName, profilePic, currentAssignment, background, onPress} = this.props;
         return(
             //The style of the card as a whole. Inside the card, you have the image,
             //student name, and student assignment
             <View>
             {this.state.fontLoaded ? (  
             <TouchableOpacity
-                style = {styles.cardStyle}
+                style = {[styles.cardStyle, {backgroundColor: background}]}
                 borderColor = {colors.black}
                 //The on press function is for when the teacher clicks the card, the color of it 
                 //should change depending on the behavior (i.e attendence screen)
@@ -64,7 +64,6 @@ const styles = StyleSheet.create({
         height: 100,
         marginLeft: 7,
         marginTop: 10,
-        backgroundColor: colors.white,
     },
     infoStyle: {
         marginLeft: 15,

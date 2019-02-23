@@ -55,7 +55,10 @@ const styles = StyleSheet.create({
         height: 75,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'stretch'
+        alignItems: 'stretch',
+        backgroundColor: colors.white,
+        borderBottomWidth: 0.25,
+        borderBottomColor: colors.black
     },
     topLeftView: {
         height: 95,
