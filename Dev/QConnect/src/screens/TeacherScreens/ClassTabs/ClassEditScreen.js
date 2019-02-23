@@ -57,7 +57,7 @@ class ClassEditScreen extends Component {
                 key={i}
                 studentName={student.name}
                 profilePic={{uri: student.avatar}}
-                currentAssignment={student.assignment}
+                background={colors.white}
                 onPress={() => this.props.deleteStudent({
                     classIndex: classIndex,
                     studentIndex: i})}

@@ -1,5 +1,5 @@
 import React from 'react';
-import {createBottomTabNavigator, createAppContainer} from 'react-navigation';
+import {createBottomTabNavigator, createAppContainer, DrawerActions} from 'react-navigation';
 import colors from 'config/colors';
 import { Icon } from 'react-native-elements';
 import ClassMainScreen from './ClassMainScreen';

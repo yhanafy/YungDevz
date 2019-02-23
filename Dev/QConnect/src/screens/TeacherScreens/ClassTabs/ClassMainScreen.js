@@ -7,21 +7,18 @@ import colors from 'config/colors'
 class ClassMainScreen extends Component {
 
     render() {    
-        classIndex = this.props.navigation.state.params? this.props.navigation.state.params.classIndex : 0;
-    
-        return (<ScrollView style={styles.container}>{
-        this.props.classrooms.classes[classIndex].students.map((student, i) => {
-             return (
-             <StudentCard
+        return (<ScrollView style={styles.container}>
+            {this.props.classrooms.classes[0].students.map((student, i) => {
+            return (
+            <StudentCard
                 key={i}
                 studentName={student.name}
-                 profilePic={{uri: student.avatar}}
-                 currentAssignment={student.assignment}
-                 onPress={() => this.props.navigation.navigate('StudentProfile', { name: student.name })}
-             />
-             );
-         })
-        }</ScrollView>);
+                profilePic={{uri: student.avatar}}
+                currentAssignment={student.assignment}
+                onPress={() => this.props.navigation.navigate('StudentProfile', { name: student.name })}
+            />
+            );
+        })}</ScrollView>);
     }
     
 }

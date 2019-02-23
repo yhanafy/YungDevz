@@ -25,18 +25,25 @@ class ClassAttendanceScreen extends React.Component {
           selectedStudents: tmp
         });
       }
+
+    //   getStudentAvatar = () =>{
+    //     let url = this.state.selectedStudents.includes(i)? student.avatar : "https://cdn0.iconfinder.com/data/icons/social-messaging-ui-color-shapes-3/3/31-512.png"
+    //     alert (url);
+    //     return url;
+    // }
     
 
     render() {
         return (<ScrollView style={styles.container}>{this.props.classrooms.classes[0].students.map((student, i) => {
-            let url = this.state.selectedStudents.includes(i)? {uri: 'https://cdn0.iconfinder.com/data/icons/round-ui-icons/512/tick_green.png'} : {uri: student.avatar};
+            let color = this.state.selectedStudents.includes(i) ? colors.red : colors.green;
             
             return (
             <StudentCard
                 key={i}
                 studentName={student.name}
-                profilePic={url}
+                profilePic={{uri: student.avatar}}
                 currentAssignment={student.assignment}
+                background={color}
                 onPress={() => this.onStudentSelected(i) }
             />
             );
