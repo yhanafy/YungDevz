@@ -13,9 +13,9 @@ const ClassHeaderNavigator = createStackNavigator({
         <TopBanner
           Icon1Name="navicon"
           Icon1OnPress={() => navigation.openDrawer()}
-          Title="Quran Class"
+          Title={(navigation.state.params && navigation.state.params.classTitle)? navigation.state.params.classTitle : 'Quran Class'}
           Icon2Name="edit"
-          Icon2OnPress={() => navigation.navigate('ClassEdit')}
+          Icon2OnPress={() => navigation.push('ClassEdit', navigation.state.params)}
         />
       ),  
     }),

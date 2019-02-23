@@ -25,12 +25,6 @@ class ClassAttendanceScreen extends React.Component {
           selectedStudents: tmp
         });
       }
-
-    //   getStudentAvatar = () =>{
-    //     let url = this.state.selectedStudents.includes(i)? student.avatar : "https://cdn0.iconfinder.com/data/icons/social-messaging-ui-color-shapes-3/3/31-512.png"
-    //     alert (url);
-    //     return url;
-    // }
     
 
     render() {

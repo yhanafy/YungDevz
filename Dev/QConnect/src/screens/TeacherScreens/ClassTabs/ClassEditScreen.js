@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {ScrollView, View, StyleSheet, TextInput} from 'react-native';
+import {ScrollView, View, Text, StyleSheet, TextInput} from 'react-native';
 import { connect } from 'react-redux';
 import StudentCard from 'components/StudentCard'
 import colors from 'config/colors'
@@ -21,10 +21,10 @@ class ClassEditScreen extends Component {
         return url;
     }
 
-    addNewStudent(){
+    addNewStudent(classIndex){
         this.props.addStudent(
         {
-            classIndex: 0,
+            classIndex: classIndex,
             studentInfo: {
                 name: this.state.newStudentName,
                 avatar: this.getAvatarUrl(),
@@ -35,9 +35,11 @@ class ClassEditScreen extends Component {
         ToastAndroid.show(this.state.newStudentName + " is now added to the class", ToastAndroid.SHORT);
     }
 
-    render() {    
+    render() {  
+        classIndex = this.props.navigation.state.params? this.props.navigation.state.params.classIndex : 0;
+        //alert(JSON.stringify(this.props.classrooms))
         return (<ScrollView style={styles.container}>
-      <View style={styles.inputContainer}>
+      <View ID={classIndex} style={styles.inputContainer}>
         <TextInput
             placeholder="Enter new student's name"
             onChangeText={(newStudentName) => this.setState({newStudentName})}
@@ -45,11 +47,11 @@ class ClassEditScreen extends Component {
         />
         <QcActionButton 
             text="Add student"
-            onPress={() => this.addNewStudent()}
+            onPress={() => this.addNewStudent(classIndex)}
         />
       </View>
       <View>
-            {this.props.classrooms.classes[0].students.map((student, i) => {
+            {this.props.classrooms.classes[classIndex].students.map((student, i) => {
             return (
             <StudentCard
                 key={i}
@@ -57,7 +59,7 @@ class ClassEditScreen extends Component {
                 profilePic={{uri: student.avatar}}
                 currentAssignment={student.assignment}
                 onPress={() => this.props.deleteStudent({
-                    classIndex: 0,
+                    classIndex: classIndex,
                     studentIndex: i})}
             />
             );
