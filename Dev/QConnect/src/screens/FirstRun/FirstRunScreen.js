@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-    View, 
-    Text, 
-    StyleSheet, 
-    Dimensions, 
-    ImageBackground} from 'react-native';
+import { View, StyleSheet, Dimensions, ImageBackground} from 'react-native';
 import QcActionButton from 'components/QcActionButton'
 import QcAppBanner from 'components/QcAppBanner'
 
@@ -19,7 +14,7 @@ class FirstRunScreen extends React.Component {
         this.props.navigation.navigate('TeacherScreens');
     }
 
-    render(){
+    render() {
         const { navigation } = this.props;
         return (
           <View style={styles.container}>
