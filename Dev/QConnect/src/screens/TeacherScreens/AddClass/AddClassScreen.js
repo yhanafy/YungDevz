@@ -1,45 +1,38 @@
+
 import React, { Component } from 'react';
-import { View, Text, TextInput, Image, Platform, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Image, ScrollView , StyleSheet } from 'react-native';
 import colors from 'config/colors'
-import { addClass } from 'model/actions/addClass';
+import QcActionButton from 'components/QcActionButton'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Icon } from 'react-native-elements';
+import {addClass} from 'model/actions/addClass'
+//import { addClass } from '../../../model/actions/addClass';
 
 
 class AddClassScreen extends Component {
 
   state = {
-
     className: '',
-    className: 'HelloWorld',
   }
 
-  addNewClass() {
-    let classInfo =
-    {
+  addNewClass () {
+    let classInfo = {
       name: this.state.className,
-      students: [],
+      students: []
     };
-    this.props.addClass(
-      classInfo
-    );
 
-    ToastAndroid.show(this.state.className + " class is now added", ToastAndroid.SHORT);
+    this.props.addClass(classInfo);
+
   }
+
   render() {
-
     const { navigate } = this.props.navigation;
-
-
 
     return (
 
       <View ID="addNewClass" style={{
         alignItems: "center",
-        justifyContent: "center"
       }}>
-
 
         <Image source={{ uri: 'https://cdn0.iconfinder.com/data/icons/activities-glyph/2048/2154_-_Sitting_in_class-512.png' }}
           style={{
@@ -75,67 +68,16 @@ class AddClassScreen extends Component {
 
         <Text>Your Class name is {this.state.className}</Text>
 
+        <QcActionButton
+          text="Add Class"
+          onPress={() => {
+            this.addNewClass();
+          }}
+        />
 
-        <ScrollView>
-          <Image source={{ uri: 'https://cdn0.iconfinder.com/data/icons/activities-glyph/2048/2154_-_Sitting_in_class-512.png' }}
-            style={{
-              width: 200,
-              height: 200,
-              alignItems: 'center',
-              borderRadius: 150 / 2,
-              justifyContent: 'center'
-            }} />
-
-          <TextInput
-            style={{
-
-              backgroundColor: colors.lightGrey,
-              borderColor: colors.darkGrey,
-              width: 250,
-              textAlign: "center",
-              alignItems: "center",
-              justifyContent: "center"
-
-            }}
-
-            placeholder='Write Class Name Here'
-
-            onChangeText={(classInput) => this.setState({
-
-              className: classInput,
-
-            })}
-          />
-
-            <Text
-              Style={{
-                textAlign: "center",
-                justifyContent: "center",
-                alignItems: "center"
-              }}>
-              You have {this.props.classrooms.classes.length} classes, here they are:
-          </Text>
-
-          <View>{this.props.classrooms.classes.map((classroom, i) => {
-            return (
-
-              <View key={classroom.name} style={{ flex: 1, flexDirection: 'row' }}>
-
-                <Icon
-
-                  name="group"
-                  size={15}
-                  type="font-awesome"
-                  iconStyle={{ paddingLeft: 10 }}
-
-                />
-
-                <Text>{classroom.name}</Text>
-
-              </View>
-            )
-          })}</View>
-        </ScrollView>
+        <View>
+          <Text>there are {this.props.classrooms.classes.length} classes added so far </Text>
+        </View>
 
       </View>
 
@@ -146,4 +88,16 @@ class AddClassScreen extends Component {
 
 };
 
-export default AddClassScreen;
+
+const mapStateToProps = (state) => {
+  const { classrooms } = state
+  return { classrooms }
+};
+
+const mapDispatchToProps = dispatch => (
+  bindActionCreators({
+    addClass,
+  }, dispatch)
+);
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddClassScreen);
