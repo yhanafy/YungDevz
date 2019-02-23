@@ -15,9 +15,16 @@ class AddClassScreen extends Component {
 
       <View ID="addNewClass" style={{
         alignItems: "center",
-        justifyContent: "center",
       }}>
 
+        <Image source={{ uri: 'https://cdn0.iconfinder.com/data/icons/activities-glyph/2048/2154_-_Sitting_in_class-512.png' }}
+          style={{
+            width: 200,
+            height: 200,
+            alignItems: 'center',
+            borderRadius: 150 / 2,
+            justifyContent: 'center'
+          }} />
 
         <TextInput
           style={{
@@ -41,16 +48,12 @@ class AddClassScreen extends Component {
 
 
         />
-        <Image source={{ uri: '<iframe width="901" height="507" src="https://www.youtube.com/embed/2TQWbxxyJUA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>' }}
-          style={{
-            width: 200,
-            height: 200,
-            alignItems: 'center',
-            borderRadius: 150 / 2
-          }} />
 
         <Text>Your Class name is {this.state.className}</Text>
+
+
       </View>
+
     );
   }
 
