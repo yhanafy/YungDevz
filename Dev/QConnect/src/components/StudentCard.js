@@ -24,7 +24,7 @@ export default class StudentCard extends FontLoadingComponent {
                 style = {[styles.cardStyle, {backgroundColor: background}]}
                 borderColor = {colors.black}
                 //The on press function is for when the teacher clicks the card, the color of it 
-                //should change depending on the behavior (i.e attendence screen)
+                //should change depending on the behavior (i.e attendance screen)
                 onPress = {() => {onPress()}}>
                 <Image
                     style = {styles.profilePicStyle}

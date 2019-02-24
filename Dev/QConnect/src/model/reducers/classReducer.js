@@ -9,7 +9,7 @@ const INITIAL_STATE = {
             name: "Ahmed Reducer",
             avatar: "https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg",
             assignment: "Al-Nahl page 5",
-            attendenceHistory: [
+            attendanceHistory: [
               {
                 date: "02-23-2019",
                 isHere: true
@@ -20,7 +20,7 @@ const INITIAL_STATE = {
             name: "Amina Khan",
             avatar: "https://randomuser.me/api/portraits/thumb/women/42.jpg",
             assignment: "An-Naze'aat",
-            attendenceHistory: [
+            attendanceHistory: [
               {
                 date: "02-23-2019",
                 isHere: true
@@ -31,7 +31,7 @@ const INITIAL_STATE = {
             name: "Ayoub Barrak",
             avatar: "https://randomuser.me/api/portraits/thumb/men/43.jpg",
             assignment: "Aal-Imran",
-            attendenceHistory: [
+            attendanceHistory: [
               {
                 date: "02-23-2019",
                 isHere: false
@@ -42,7 +42,7 @@ const INITIAL_STATE = {
             name: "Khaled Kwick",
             avatar: "https://randomuser.me/api/portraits/thumb/men/45.jpg",
             assignment: "Al-Toor pages 2,3",
-            attendenceHistory: [
+            attendanceHistory: [
               {
                 date: "02-23-2019",
                 isHere: true
@@ -53,7 +53,7 @@ const INITIAL_STATE = {
             name: "Yassine Lightening",
             avatar: "https://randomuser.me/api/portraits/thumb/men/22.jpg",
             assignment: "Al-An'aam",
-            attendenceHistory: [
+            attendanceHistory: [
               {
                 date: "02-23-2019",
                 isHere: true
@@ -64,7 +64,7 @@ const INITIAL_STATE = {
             name: "Yusuf Awesome",
             avatar: "https://randomuser.me/api/portraits/thumb/men/26.jpg",
             assignment: "Huud, pages 3 and 4",
-            attendenceHistory: [
+            attendanceHistory: [
               {
                 date: "02-23-2019",
                 isHere: false
@@ -117,21 +117,21 @@ const classReducer = (state = INITIAL_STATE, action) => {
         ...state,
         classes: state.classes.concat(action.classInfo)
       }
-    case 'ADD_ATTENDENCE':
+    case 'ADD_ATTENDANCE':
       //Fetches the current list of students
-      let studentList = state.classes[action.studentInfo.classIndex].students;
+      let studentslist = state.classes[action.classIndex].students;
       
-      //Concatenates the new attendence info of each student to the old info
+      //Concatenates the new attendance info of each student to the old info
       //assuming that the order of the students in the state are in the same
       //order that they are displayed. 
-      for(i = 0; i < students.length; i++) {
-        students[i].attendenceHistory.push(action.attendenceInfo);
+      for(i = 0; i < studentslist.length; i++) {
+        studentslist[i].attendanceHistory.push(action.attendanceInfo[i]);
       }
 
       //Updates the redux state with the new list of students
       updatedClass = {
-        ...classes[classIndex],
-        students: studentList
+        ...classes[action.classIndex],
+        students: studentslist
       }
 
       return {

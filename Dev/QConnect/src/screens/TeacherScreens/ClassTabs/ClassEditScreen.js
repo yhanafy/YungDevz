@@ -29,7 +29,7 @@ class ClassEditScreen extends Component {
                 name: this.state.newStudentName,
                 avatar: this.getAvatarUrl(),
                 assignment: "No assignment yet",
-                attendenceHistory: []
+                attendanceHistory: []
             }
         }
         );
@@ -91,13 +91,13 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => {
     const { classrooms } = state
     return { classrooms }
-  };
+};
   
-  const mapDispatchToProps = dispatch => (
+const mapDispatchToProps = dispatch => (
     bindActionCreators({
-      deleteStudent,
-      addStudent,
+        deleteStudent,
+        addStudent,
     }, dispatch)
-  );
+);
   
-  export default connect(mapStateToProps, mapDispatchToProps)(ClassEditScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(ClassEditScreen);
