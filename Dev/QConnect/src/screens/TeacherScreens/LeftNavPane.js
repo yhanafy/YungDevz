@@ -17,7 +17,7 @@ class LeftNavPane extends React.Component {
     this.props.navigation.closeDrawer();
   };
 
-  //todo: change the ListItem footer below to the shared drawer component intead
+  //todo: change the ListItem header and footer below to the shared drawer component intead
   // generalize the QcDrawerItem to accept either an image or an icon
   render() {
     return (
@@ -37,11 +37,24 @@ class LeftNavPane extends React.Component {
           >
             <QcAppBanner />
           </View>
-          <QcDrawerItem
-              title="Mrs. Eslam"
-              image= {require('assets/images/class-icons/6.png')}
-              onPress={() => this.props.navigation.push("TeacherProfile")} />
-              
+        
+           <ListItem
+            title="Ms. Eslam's Profile"
+            containerStyle={{ margin: 5, marginTop: 0, borderBottomWidth: 1, borderBottomColor: colors.lightGrey }}
+            leftAvatar={{
+              rounded: true,
+              icon: {
+                name: 'user',
+                type: 'font-awesome',
+                color: colors.primaryDark,
+              },
+              overlayContainerStyle: {
+                backgroundColor: colors.primaryLight,
+              }
+            }}
+            onPress={() => this.props.navigation.push("TeacherProfile")}
+          />
+
           <FlatList
             data={this.props.classrooms.classes}
             keyExtractor={(item, index) => item.name} // fix, should be item.id (add id to classes)
