@@ -86,8 +86,9 @@ const styles = StyleSheet.create({
         flexDirection: 'row'
     },
     titleStyle: {
-        fontSize: 25,
-        color: colors.primaryDark
+        fontSize: 22,
+        color: colors.primaryDark,
+        fontFamily: 'regular',
     },
     leftText: {
         fontSize: 15,
