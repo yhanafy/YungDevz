@@ -50,8 +50,7 @@ const classReducer = (state = INITIAL_STATE, action) => {
 
   switch (action.type) {
     case 'ADD_STUDENT':
-
-    let classIndex = action.studentInfo.classIndex
+      let classIndex = action.studentInfo.classIndex;
       let students = state.classes[classIndex].students;
 
       updatedClass = {
@@ -82,6 +81,9 @@ const classReducer = (state = INITIAL_STATE, action) => {
         ...state,
         classes: state.classes.concat(action.classInfo)
       }
+    case 'ADD_ATTENDENCE':
+      let classIndex = action.studentInfo.classIndex;
+      let students = state.classes[classIndex].students;
     default:
       return state
   }
