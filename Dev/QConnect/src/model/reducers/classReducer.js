@@ -118,8 +118,26 @@ const classReducer = (state = INITIAL_STATE, action) => {
         classes: state.classes.concat(action.classInfo)
       }
     case 'ADD_ATTENDENCE':
-      let classIndex = action.studentInfo.classIndex;
-      let students = state.classes[classIndex].students;
+      //Fetches the current list of students
+      let studentList = state.classes[action.studentInfo.classIndex].students;
+      
+      //Concatenates the new attendence info of each student to the old info
+      //assuming that the order of the students in the state are in the same
+      //order that they are displayed. 
+      for(i = 0; i < students.length; i++) {
+        students[i].attendenceHistory.push(action.attendenceInfo);
+      }
+
+      //Updates the redux state with the new list of students
+      updatedClass = {
+        ...classes[classIndex],
+        students: studentList
+      }
+
+      return {
+        ...state,
+        classes: [updatedClass]
+      }
     default:
       return state
   }
