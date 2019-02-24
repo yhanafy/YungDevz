@@ -10,7 +10,7 @@ const TeacherProfileNavigator = createStackNavigator({
         navigationOptions: ({ navigation }) => ({
             header: (
                 <TopBanner
-                  Icon1Name="navicon"
+                  LeftIconName="navicon"
                   LeftOnPress={() => navigation.openDrawer()}
                   Title="My Profile"
                 />

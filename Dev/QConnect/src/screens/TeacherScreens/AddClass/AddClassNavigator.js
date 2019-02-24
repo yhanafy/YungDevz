@@ -10,7 +10,7 @@ const AddClassNavigator = createStackNavigator({
     navigationOptions: ({ navigation }) => ({
       header: (
         <TopBanner
-          Icon1Name="navicon"
+          LeftIconName="navicon"
           LeftOnPress={() => navigation.openDrawer()}
           Title="Add a new class"
         />
