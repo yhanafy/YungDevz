@@ -1,6 +1,12 @@
+
 import React, { Component } from 'react';
-import { View, Text, TextInput, Image, Platform, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Image, ScrollView , StyleSheet } from 'react-native';
 import colors from 'config/colors'
+import QcActionButton from 'components/QcActionButton'
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import {addClass} from 'model/actions/addClass'
+//import { addClass } from '../../../model/actions/addClass';
 
 
 class AddClassScreen extends Component {
@@ -8,6 +14,17 @@ class AddClassScreen extends Component {
   state = {
     className: '',
   }
+
+  addNewClass () {
+    let classInfo = {
+      name: this.state.className,
+      students: []
+    };
+
+    this.props.addClass(classInfo);
+
+  }
+
   render() {
     const { navigate } = this.props.navigation;
 
@@ -51,6 +68,16 @@ class AddClassScreen extends Component {
 
         <Text>Your Class name is {this.state.className}</Text>
 
+        <QcActionButton
+          text="Add Class"
+          onPress={() => {
+            this.addNewClass();
+          }}
+        />
+
+        <View>
+          <Text>there are {this.props.classrooms.classes.length} classes added so far </Text>
+        </View>
 
       </View>
 
@@ -61,4 +88,16 @@ class AddClassScreen extends Component {
 
 };
 
-export default AddClassScreen;
+
+const mapStateToProps = (state) => {
+  const { classrooms } = state
+  return { classrooms }
+};
+
+const mapDispatchToProps = dispatch => (
+  bindActionCreators({
+    addClass,
+  }, dispatch)
+);
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddClassScreen);
