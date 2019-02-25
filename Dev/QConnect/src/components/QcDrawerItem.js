@@ -14,10 +14,21 @@ class QcDrawerItem extends FontLoadingComponent {
                 containerStyle={{ margin: 5, marginTop: 0, borderBottomWidth: 1, borderBottomColor: colors.lightGrey }}
                 title={this.props.title}
                 fontFamily='regular'
-                leftAvatar={{
+                leftAvatar={this.props.image? {
                   rounded: true,
                   source: this.props.image
-                }}
+                } : {
+                  rounded: true,
+                  icon: {
+                    name: this.props.icon,
+                    type: 'font-awesome',
+                    color: colors.primaryDark,
+                  },
+                  overlayContainerStyle: {
+                    backgroundColor: colors.primaryLight,
+                  }
+                } }
+
                 onPress={() => this.props.onPress()}
               />
               )

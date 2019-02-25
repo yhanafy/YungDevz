@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { SafeAreaView } from "react-navigation";
 import { ListItem } from "react-native-elements";
 import QcAppBanner from "components/QcAppBanner";
-import QcDrawerItem from 'components/QcDrawerItem';
+import QcDrawerItem from "components/QcDrawerItem";
 
 class LeftNavPane extends React.Component {
   openClass = (i, className) => {
@@ -17,11 +17,10 @@ class LeftNavPane extends React.Component {
     this.props.navigation.closeDrawer();
   };
 
-  //todo: change the ListItem header and footer below to the shared drawer component intead
+  //todo: change the ListItem header and tgfooter below to the shared drawer component intead
   // generalize the QcDrawerItem to accept either an image or an icon
   render() {
     return (
-
       <ScrollView style={{ flex: 1, backgroundColor: colors.lightGrey }}>
         <SafeAreaView
           style={styles.container}
@@ -37,21 +36,10 @@ class LeftNavPane extends React.Component {
           >
             <QcAppBanner />
           </View>
-        
-           <ListItem
+
+          <QcDrawerItem
             title="Ms. Eslam's Profile"
-            containerStyle={{ margin: 5, marginTop: 0, borderBottomWidth: 1, borderBottomColor: colors.lightGrey }}
-            leftAvatar={{
-              rounded: true,
-              icon: {
-                name: 'user',
-                type: 'font-awesome',
-                color: colors.primaryDark,
-              },
-              overlayContainerStyle: {
-                backgroundColor: colors.primaryLight,
-              }
-            }}
+            icon="user"
             onPress={() => this.props.navigation.push("TeacherProfile")}
           />
 
@@ -60,27 +48,16 @@ class LeftNavPane extends React.Component {
             keyExtractor={(item, index) => item.name} // fix, should be item.id (add id to classes)
             renderItem={({ item, index }) => (
               <QcDrawerItem
-              title={item.name}
-              image= {classImages.images[item.imageId]}
-              onPress={() => this.openClass(index, item.name)} />
+                title={item.name}
+                image={classImages.images[item.imageId]}
+                onPress={() => this.openClass(index, item.name)}
+              />
             )}
           />
 
-           <ListItem
-            backgroundColor={colors.white}
+          <QcDrawerItem
             title="Add a new class"
-            containerStyle={{ margin: 5, marginTop: 0, borderBottomWidth: 1, borderBottomColor: colors.lightGrey }}
-            leftAvatar={{
-              rounded: true,
-              icon: {
-                name: 'plus',
-                type: 'font-awesome',
-                color: colors.primaryDark,
-              },
-              overlayContainerStyle: {
-                backgroundColor: colors.primaryLight,
-              }
-            }}
+            icon="plus"
             onPress={() => this.props.navigation.push("AddClass")}
           />
         </SafeAreaView>
