@@ -15,7 +15,7 @@ class EvaluationPage extends Component{
                     justifyContent: "center"
                   }}>
                   
-                
+                  
                     
                   
                   </View>
