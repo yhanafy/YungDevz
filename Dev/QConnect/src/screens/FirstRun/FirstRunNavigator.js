@@ -1,5 +1,5 @@
-import { createStackNavigator, createAppContainer } from 'react-navigation'
-import FirstRunScreen from './FirstRunScreen'
+import { createStackNavigator, createAppContainer, DrawerActions } from 'react-navigation';
+import FirstRunScreen from './FirstRunScreen';
 import TeacherMenu from '../TeacherScreens/TeacherMenu';
 
 const routeConfig = {
@@ -8,12 +8,12 @@ const routeConfig = {
     },
     TeacherScreens: {
         screen: TeacherMenu
-  }
+    }
 }
 
 const navigatorConfig = {
     headerMode: 'none',
-  }
+}
 
 const FirstRunStackNavigator = createStackNavigator(routeConfig, navigatorConfig);
 

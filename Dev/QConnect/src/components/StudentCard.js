@@ -52,7 +52,7 @@ export default class StudentCard extends FontLoadingComponent {
 StudentCard.propTypes = {
     studentName: PropTypes.string.isRequired,
     profilePic: PropTypes.object.isRequired,
-    currentAssignment: PropTypes.string.isRequired,
+    currentAssignment: PropTypes.string,
     onPress: PropTypes.func.isRequired
 }
 
