@@ -11,11 +11,11 @@ const ClassHeaderNavigator = createStackNavigator({
     navigationOptions: ({ navigation }) => ({
       header: (
         <TopBanner
-          Icon1Name="navicon"
+          LeftIconName="navicon"
           LeftOnPress={() => navigation.openDrawer()}
           Title={(navigation.state.params && navigation.state.params.classTitle)? navigation.state.params.classTitle : 'Quran Class'}
-          Icon2Name="edit"
-          RightOnPress={() => navigation.push('ClassEdit', navigation.state.params)}
+          RightIconName="edit"
+          RightOnPress={() => navigation.navigate('ClassEdit')}
         />
       ),  
     }),
@@ -25,10 +25,10 @@ const ClassHeaderNavigator = createStackNavigator({
     navigationOptions: ({ navigation }) => ({
       header: (
         <TopBanner
-          Icon1Name="angle-left"
+          LeftIconName="angle-left"
           LeftOnPress={() => navigation.goBack()}
           Title={navigation.state.params.name}
-          Icon2Name="edit"
+          RightIconName="edit"
           RightOnPress={() => {}}
         />
       )
@@ -42,10 +42,10 @@ const ClassHeaderNavigator = createStackNavigator({
     navigationOptions: ({navigation}) => ({
       header: (
         <TopBanner
-          Text1Name="Cancel"
+          LeftTextName="Cancel"
           LeftOnPress={() => navigation.goBack()}
           Title="Edit Class"
-          Text2Name="Save"
+          RightTextName="Save"
           RightOnPress={() => navigation.goBack()}
         />
       )

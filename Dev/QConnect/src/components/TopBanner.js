@@ -10,31 +10,32 @@ import colors from 'config/colors'
 class TopBanner extends FontLoadingComponent {
     render() {
         //Component properties
-        const {Icon1Name, Text1Name, LeftOnPress, Title, Icon2Name, Text2Name, RightOnPress} = this.props;
+        const {LeftIconName, LeftTextName, LeftOnPress, Title, 
+            RightIconName, RightTextName, RightOnPress} = this.props;
         return(
             <View>
                 {this.state.fontLoaded ? (
                     <View style={styles.entireTopView}>
                     <View style={styles.topLeftView}>
                         <Icon
-                            name={Icon1Name}
+                            name={LeftIconName}
                             type="font-awesome"
                             onPress={() => {LeftOnPress()}}
                         />
                         <Text style={styles.leftText} 
-                            onPress={() => {LeftOnPress()}}>{Text1Name}</Text>
+                            onPress={() => {LeftOnPress()}}>{LeftTextName}</Text>
                     </View>
                     <View style={styles.topMiddleView}>
                         <Text style={styles.titleStyle}>{Title}</Text>
                     </View>
                     <View style={styles.topRightView}>
                         <Icon
-                            name={Icon2Name}
+                            name={RightIconName}
                             type="font-awesome"
                             onPress={() => {RightOnPress()}}
                         />
                         <Text style={styles.rightText}
-                            onPress={() => {RightOnPress()}}>{Text2Name}</Text>
+                            onPress={() => {RightOnPress()}}>{RightTextName}</Text>
                     </View>
                     </View>
                 ) : (
@@ -47,12 +48,12 @@ class TopBanner extends FontLoadingComponent {
 
 //Verifies the propTypes are correct
 TopBanner.propTypes = {
-    Icon1Name: PropTypes.string,
-    Text1Name: PropTypes.string,
+    LeftIconName: PropTypes.string,
+    LeftTextName: PropTypes.string,
     LeftOnPress: PropTypes.func,
     Title: PropTypes.string,
-    Icon2Name: PropTypes.string,
-    Text2Name: PropTypes.string,
+    RightIconName: PropTypes.string,
+    RightTextName: PropTypes.string,
     RightOnPress: PropTypes.func,
 }
 
