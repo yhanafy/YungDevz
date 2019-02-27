@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { ScrollView, StyleSheet, View, ToastAndroid } from 'react-native';
+import { ScrollView, StyleSheet, View, FlatList, ToastAndroid } from 'react-native';
 import DatePicker from 'react-native-datepicker';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -66,6 +66,11 @@ class ClassAttendanceScreen extends Component {
     }
     
     render() {
+        
+        const { classParam } = this.props.navigation.state.params;
+
+        classIndex = classParam && classParam.classIndex? classParam.classIndex : 0;
+    
         return (
         //The scroll view will have at the top a date picker which will be defaulted to the current
         //date and it will allow the user to view previous day's attendance along with setting
@@ -94,19 +99,20 @@ class ClassAttendanceScreen extends Component {
                     style={{paddingRight: 30}}
                 />
             </View>
-            {this.props.classrooms.classes[0].students.map((student, i) => {
-                let color = this.state.selectedStudents.includes(i) ? colors.red : colors.green;
-                return (
-                    <StudentCard
-                        key={i}
-                        studentName={student.name}
-                        profilePic={{uri: student.avatar}}
-                        currentAssignment={student.assignment}
-                        background={color}
-                        onPress={() => this.onStudentSelected(i) }
-                    />
-                );
-            })}
+            <FlatList
+                data={this.props.classrooms.classes[0].students}
+                keyExtractor={(item, index) => item.name} // fix, should be item.id (add id to classes)
+                renderItem={({ item, index }) => (
+                <StudentCard
+                    key={index}
+                    studentName={item.name}
+                    profilePic={{uri: item.avatar}}
+                    currentAssignment={item.assignment}
+                    background={this.state.selectedStudents.includes(index) ? colors.red : colors.green}
+                    onPress={() => this.onStudentSelected(index) }
+            />
+            )}
+          />
         </ScrollView>);
     }
 }
