@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet, View, ToastAndroid } from 'react-native';
 import DatePicker from 'react-native-datepicker';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -58,20 +58,13 @@ class ClassAttendanceScreen extends Component {
                 }) ;
             }
         }
-        this.props.addAttendance({
-            classIndex: 0,
+        this.props.addAttendance(
+            0,
             attendanceInfo
-        });
+        );
         ToastAndroid.show("Attendance for " + date + " has been saved", ToastAndroid.SHORT);
     }
-
-    //   getStudentAvatar = () =>{
-    //     let url = this.state.selectedStudents.includes(i)? student.avatar : "https://cdn0.iconfinder.com/data/icons/social-messaging-ui-color-shapes-3/3/31-512.png"
-    //     alert (url);
-    //     return url;
-    // }
     
-
     render() {
         return (
         //The scroll view will have at the top a date picker which will be defaulted to the current
