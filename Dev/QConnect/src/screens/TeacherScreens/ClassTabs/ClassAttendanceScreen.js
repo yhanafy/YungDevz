@@ -33,14 +33,15 @@ class ClassAttendanceScreen extends Component {
           selectedStudents: tmp,
           selectedDate: this.state.selectedDate
         });
+
     }
 
     //fetches the current selected students and the current selected date and adds the current
     //attendance to the database
-    saveAttendance = () => {
+    saveAttendance = (classIndex) => {
         let selected = this.state.selectedStudents;
         let date = this.state.selectedDate;
-        let studentList = this.props.classrooms.classes[0].students;
+        let studentList = this.props.classrooms.classes[classIndex].students;
         let attendanceInfo =[];
         for(i = 0; i < studentList.length; i++) {
             //If the current state of selected students includes the current student being
@@ -54,22 +55,22 @@ class ClassAttendanceScreen extends Component {
             } else {
                 attendanceInfo.push({
                     date: date,
-                    isHere: false
+                    isHere: true
                 }) ;
             }
         }
         this.props.addAttendance(
-            0,
+            classIndex,
             attendanceInfo
         );
         ToastAndroid.show("Attendance for " + date + " has been saved", ToastAndroid.SHORT);
     }
     
     render() {
-        
-        const { classParam } = this.props.navigation.state.params;
 
-        classIndex = classParam && classParam.classIndex? classParam.classIndex : 0;
+        const { params } = this.props.navigation.state;
+
+        classIndex = params && params.classIndex? params.classIndex : 0;
     
         return (
         //The scroll view will have at the top a date picker which will be defaulted to the current
@@ -95,24 +96,23 @@ class ClassAttendanceScreen extends Component {
                     />
                 <QcActionButton
                     text="Save Attendance"
-                    onPress={() => this.saveAttendance()}
+                    onPress={() => this.saveAttendance(classIndex)}
                     style={{paddingRight: 30}}
                 />
             </View>
-            <FlatList
-                data={this.props.classrooms.classes[0].students}
-                keyExtractor={(item, index) => item.name} // fix, should be item.id (add id to classes)
-                renderItem={({ item, index }) => (
-                <StudentCard
-                    key={index}
-                    studentName={item.name}
-                    profilePic={{uri: item.avatar}}
-                    currentAssignment={item.assignment}
-                    background={this.state.selectedStudents.includes(index) ? colors.red : colors.green}
-                    onPress={() => this.onStudentSelected(index) }
-            />
-            )}
-          />
+            {this.props.classrooms.classes[classIndex].students.map((student, i) => {
+                let color = this.state.selectedStudents.includes(i) ? colors.red : colors.green;
+                return (
+                    <StudentCard
+                        key={i}
+                        studentName={student.name}
+                        profilePic={{uri: student.avatar}}
+                        currentAssignment={student.assignment}
+                        background={color}
+                        onPress={() => this.onStudentSelected(i) }
+                    />
+                );
+            })}
         </ScrollView>);
     }
 }

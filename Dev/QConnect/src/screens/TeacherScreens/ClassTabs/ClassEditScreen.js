@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ScrollView, View, Text, StyleSheet, TextInput } from "react-native";
+import { ScrollView, View, Text, StyleSheet, TextInput, FlatList } from "react-native";
 import { connect } from "react-redux";
 import StudentCard from "components/StudentCard";
 import colors from "config/colors";
@@ -38,11 +38,10 @@ class ClassEditScreen extends Component {
   }
 
   render() {
-    const { classParam } = this.props.navigation.state.params;
+    const { params } = this.props.navigation.state;
     const { deleteStudent, addStudent, classrooms } = this.props;
-
-    classIndex =
-      classParams && classParams.classIndex ? classParams.classIndex : 0;
+    
+    classIndex = params && params.classIndex? params.classIndex : 0;
 
     return (
       <ScrollView style={styles.container}>
@@ -67,10 +66,10 @@ class ClassEditScreen extends Component {
               profilePic={{ uri: item.avatar }}
               background={colors.white}
               onPress={() =>
-                deleteStudent({
-                  classIndex: classIndex,
-                  studentIndex: index
-                })
+                deleteStudent(
+                  classIndex,
+                  index
+                )
               }
             />
           )}

@@ -15,7 +15,7 @@ const ClassHeaderNavigator = createStackNavigator({
           LeftOnPress={() => navigation.openDrawer()}
           Title={(navigation.state.params && navigation.state.params.classTitle)? navigation.state.params.classTitle : 'Quran Class'}
           RightIconName="edit"
-          RightOnPress={() => navigation.navigate('ClassEdit')}
+          RightOnPress={() => navigation.push('ClassEdit', navigation.state.params)}
         />
       ),  
     }),
