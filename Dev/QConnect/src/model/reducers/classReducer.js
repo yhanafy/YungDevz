@@ -1,9 +1,12 @@
 import { combineReducers } from 'redux';
+import update from 'immutability-helper';
 
 const INITIAL_STATE = {
+  currentClassIndex: 0,
   classes: [
     {
         name: "Monday Class ICOE",
+        imageId: 1,
         students: [
           {
             name: "Ahmed Reducer",
@@ -84,34 +87,18 @@ const classReducer = (state = INITIAL_STATE, action) => {
     classes
   } = state;
 
+  const baseState= {...state};
+
   switch (action.type) {
     case 'ADD_STUDENT':
-      let classIndex = action.studentInfo.classIndex;
-      let students = state.classes[classIndex].students;
+      let classIndex = action.studentInfo.classIndex
+      newState = update(baseState, {classes: {[classIndex]: {students: {$push: [action.studentInfo.studentInfo]}}}});
+      return newState;
 
-      updatedClass = {
-        ...classes[classIndex],
-        students: students.concat(action.studentInfo.studentInfo)
-      } 
-
-      return {
-        ...state,
-        classes: [updatedClass]
-      }
     case 'DELETE_STUDENT':
-      let studentsList = state.classes[action.studentIndex.classIndex].students;
-      studentsList.splice(action.studentIndex.studentIndex, 1);
-
-      // Finally, update our redux state
-      updatedClass = {
-        ...classes[classIndex],
-        students: studentsList
-      } 
-
-      return {
-        ...state,
-        classes: [updatedClass]
-      }
+      newState = update(baseState, {classes: {[action.classIndex]: {students: {$splice: [[action.studentIndex, 1]]}}}});
+      return newState;
+      
     case 'ADD_CLASS':
       return { 
         ...state,
@@ -119,7 +106,7 @@ const classReducer = (state = INITIAL_STATE, action) => {
       }
     case 'ADD_ATTENDANCE':
       //Fetches the current list of students
-      let studentslist = state.classes[action.classIndex].students;
+      studentslist = state.classes[action.classIndex].students;
       
       //Concatenates the new attendance info of each student to the old info
       //assuming that the order of the students in the state are in the same
@@ -128,16 +115,8 @@ const classReducer = (state = INITIAL_STATE, action) => {
         studentslist[i].attendanceHistory.push(action.attendanceInfo[i]);
       }
 
-      //Updates the redux state with the new list of students
-      updatedClass = {
-        ...classes[action.classIndex],
-        students: studentslist
-      }
-
-      return {
-        ...state,
-        classes: [updatedClass]
-      }
+      newState = update(baseState, {classes: {[action.classIndex]: {students: {$set: [studentslist]}}}});
+      return state
     default:
       return state
   }

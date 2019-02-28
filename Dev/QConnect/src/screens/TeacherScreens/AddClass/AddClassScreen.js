@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, Image, ScrollView , StyleSheet } from 'react-native';
 import colors from 'config/colors'
+import classImages from 'config/classImages'
 import QcActionButton from 'components/QcActionButton'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -16,8 +17,10 @@ class AddClassScreen extends Component {
   }
 
   addNewClass () {
+    let classImageId = Math.floor(Math.random()*10); // fix this to be selected by user
     let classInfo = {
       name: this.state.className,
+      imageId: classImageId, 
       students: []
     };
 
