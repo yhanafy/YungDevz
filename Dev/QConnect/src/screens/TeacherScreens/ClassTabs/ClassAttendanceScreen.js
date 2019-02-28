@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet, View, FlatList, ToastAndroid } from 'react-native';
 import DatePicker from 'react-native-datepicker';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -33,14 +33,15 @@ class ClassAttendanceScreen extends Component {
           selectedStudents: tmp,
           selectedDate: this.state.selectedDate
         });
+
     }
 
     //fetches the current selected students and the current selected date and adds the current
     //attendance to the database
-    saveAttendance = () => {
+    saveAttendance = (classIndex) => {
         let selected = this.state.selectedStudents;
         let date = this.state.selectedDate;
-        let studentList = this.props.classrooms.classes[0].students;
+        let studentList = this.props.classrooms.classes[classIndex].students;
         let attendanceInfo =[];
         for(i = 0; i < studentList.length; i++) {
             //If the current state of selected students includes the current student being
@@ -54,25 +55,23 @@ class ClassAttendanceScreen extends Component {
             } else {
                 attendanceInfo.push({
                     date: date,
-                    isHere: false
+                    isHere: true
                 }) ;
             }
         }
-        this.props.addAttendance({
-            classIndex: 0,
+        this.props.addAttendance(
+            classIndex,
             attendanceInfo
-        });
+        );
         ToastAndroid.show("Attendance for " + date + " has been saved", ToastAndroid.SHORT);
     }
-
-    //   getStudentAvatar = () =>{
-    //     let url = this.state.selectedStudents.includes(i)? student.avatar : "https://cdn0.iconfinder.com/data/icons/social-messaging-ui-color-shapes-3/3/31-512.png"
-    //     alert (url);
-    //     return url;
-    // }
     
-
     render() {
+
+        const { params } = this.props.navigation.state;
+
+        classIndex = params && params.classIndex? params.classIndex : 0;
+    
         return (
         //The scroll view will have at the top a date picker which will be defaulted to the current
         //date and it will allow the user to view previous day's attendance along with setting
@@ -97,11 +96,11 @@ class ClassAttendanceScreen extends Component {
                     />
                 <QcActionButton
                     text="Save Attendance"
-                    onPress={() => this.saveAttendance()}
+                    onPress={() => this.saveAttendance(classIndex)}
                     style={{paddingRight: 30}}
                 />
             </View>
-            {this.props.classrooms.classes[0].students.map((student, i) => {
+            {this.props.classrooms.classes[classIndex].students.map((student, i) => {
                 let color = this.state.selectedStudents.includes(i) ? colors.red : colors.green;
                 return (
                     <StudentCard
