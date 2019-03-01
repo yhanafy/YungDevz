@@ -18,6 +18,7 @@ const persistedReducer = persistReducer(persistConfig, classReducer)
 
 export const store = createStore(
   persistedReducer,
+  //This is to allow react native redux debugger to show redux content
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 );
 
