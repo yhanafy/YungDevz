@@ -1,0 +1,1117 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Teacher screens snapshots render AddClassScreen 1`] = `
+<View
+  ID="addNewClass"
+  style={
+    Object {
+      "alignItems": "center",
+    }
+  }
+>
+  <Image
+    source={
+      Object {
+        "uri": "https://cdn0.iconfinder.com/data/icons/activities-glyph/2048/2154_-_Sitting_in_class-512.png",
+      }
+    }
+    style={
+      Object {
+        "alignItems": "center",
+        "borderRadius": 75,
+        "height": 200,
+        "justifyContent": "center",
+        "width": 200,
+      }
+    }
+  />
+  <TextInput
+    allowFontScaling={true}
+    onChangeText={[Function]}
+    placeholder="Write Class Name Here"
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#F3F3F3",
+        "borderColor": "#6b6b6b",
+        "justifyContent": "center",
+        "textAlign": "center",
+        "width": 250,
+      }
+    }
+    underlineColorAndroid="transparent"
+  />
+  <Text>
+    Your Class name is 
+    
+  </Text>
+  <View
+    accessible={true}
+    isTVSelectable={true}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#efdecc",
+        "borderRadius": 30,
+        "justifyContent": "center",
+        "marginLeft": 10,
+        "marginRight": 10,
+        "marginTop": 10,
+        "opacity": 1,
+        "paddingBottom": 7,
+        "paddingLeft": 21,
+        "paddingRight": 21,
+        "paddingTop": 7,
+        "textAlign": "center",
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#937f6b",
+        }
+      }
+    >
+      Add Class
+    </Text>
+  </View>
+  <View>
+    <Text>
+      there are 
+      1
+       classes added so far
+       
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`Teacher screens snapshots render ClassAttendanceScreen 1`] = `
+<RCTScrollView
+  style={
+    Object {
+      "backgroundColor": "#F3F3F3",
+      "flex": 1,
+      "flexDirection": "column",
+    }
+  }
+>
+  <View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#F3F3F3",
+          "flex": 1,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingBottom": 20,
+          "paddingTop": 20,
+        }
+      }
+    >
+      <View
+        accessible={true}
+        isTVSelectable={true}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "width": 142,
+            },
+            Object {
+              "paddingLeft": 15,
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "height": 40,
+                "justifyContent": "center",
+              },
+              undefined,
+            ]
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "borderColor": "#aaa",
+                  "borderWidth": 1,
+                  "flex": 1,
+                  "height": 40,
+                  "justifyContent": "center",
+                },
+                Object {
+                  "borderColor": "#F3F3F3",
+                },
+                false,
+                false,
+              ]
+            }
+          >
+            <Text
+              allowFontScaling={true}
+              style={
+                Array [
+                  Object {
+                    "color": "#333",
+                  },
+                  undefined,
+                ]
+              }
+            >
+              02-28-2019
+            </Text>
+          </View>
+          <Image
+            source={1}
+            style={
+              Array [
+                Object {
+                  "height": 32,
+                  "marginLeft": 5,
+                  "marginRight": 5,
+                  "width": 32,
+                },
+                undefined,
+              ]
+            }
+          />
+          <Modal
+            animationType="none"
+            hardwareAccelerated={false}
+            onRequestClose={[Function]}
+            supportedOrientations={
+              Array [
+                "portrait",
+                "portrait-upside-down",
+                "landscape",
+                "landscape-left",
+                "landscape-right",
+              ]
+            }
+            transparent={true}
+            visible={false}
+          >
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                }
+              }
+            >
+              <View
+                accessible={true}
+                isTVSelectable={true}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "alignItems": "flex-end",
+                    "backgroundColor": "#00000077",
+                    "flex": 1,
+                    "flexDirection": "row",
+                  }
+                }
+              >
+                <View
+                  accessible={true}
+                  isTVSelectable={true}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    Object {
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "backgroundColor": "#fff",
+                        "height": 0,
+                        "overflow": "hidden",
+                      }
+                    }
+                  >
+                    <View
+                      pointerEvents="auto"
+                    >
+                      <View
+                        style={
+                          Array [
+                            Object {
+                              "borderTopColor": "#ccc",
+                              "borderTopWidth": 1,
+                              "marginTop": 42,
+                            },
+                            undefined,
+                          ]
+                        }
+                      >
+                        <RCTDatePicker
+                          date={1551340800000}
+                          maximumDate={1551340800000}
+                          mode="date"
+                          onChange={[Function]}
+                          onResponderTerminationRequest={[Function]}
+                          onStartShouldSetResponder={[Function]}
+                          style={
+                            Object {
+                              "height": 216,
+                            }
+                          }
+                          timeZoneOffsetInMinutes={null}
+                        />
+                      </View>
+                    </View>
+                    <View
+                      accessible={true}
+                      isTVSelectable={true}
+                      onResponderGrant={[Function]}
+                      onResponderMove={[Function]}
+                      onResponderRelease={[Function]}
+                      onResponderTerminate={[Function]}
+                      onResponderTerminationRequest={[Function]}
+                      onStartShouldSetResponder={[Function]}
+                      style={
+                        Array [
+                          Object {
+                            "alignItems": "center",
+                            "flexDirection": "row",
+                            "height": 42,
+                            "justifyContent": "center",
+                            "paddingHorizontal": 20,
+                            "position": "absolute",
+                            "top": 0,
+                          },
+                          Object {
+                            "left": 0,
+                          },
+                          undefined,
+                        ]
+                      }
+                    >
+                      <Text
+                        allowFontScaling={true}
+                        style={
+                          Array [
+                            Object {
+                              "color": "#46cf98",
+                              "fontSize": 16,
+                            },
+                            Object {
+                              "color": "#666",
+                            },
+                            undefined,
+                          ]
+                        }
+                      >
+                        Cancel
+                      </Text>
+                    </View>
+                    <View
+                      accessible={true}
+                      isTVSelectable={true}
+                      onResponderGrant={[Function]}
+                      onResponderMove={[Function]}
+                      onResponderRelease={[Function]}
+                      onResponderTerminate={[Function]}
+                      onResponderTerminationRequest={[Function]}
+                      onStartShouldSetResponder={[Function]}
+                      style={
+                        Array [
+                          Object {
+                            "alignItems": "center",
+                            "flexDirection": "row",
+                            "height": 42,
+                            "justifyContent": "center",
+                            "paddingHorizontal": 20,
+                            "position": "absolute",
+                            "top": 0,
+                          },
+                          Object {
+                            "right": 0,
+                          },
+                          undefined,
+                        ]
+                      }
+                    >
+                      <Text
+                        allowFontScaling={true}
+                        style={
+                          Array [
+                            Object {
+                              "color": "#46cf98",
+                              "fontSize": 16,
+                            },
+                            undefined,
+                          ]
+                        }
+                      >
+                        Confirm
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </Modal>
+        </View>
+      </View>
+      <View
+        accessible={true}
+        isTVSelectable={true}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#efdecc",
+            "borderRadius": 30,
+            "justifyContent": "center",
+            "marginLeft": 10,
+            "marginRight": 10,
+            "marginTop": 10,
+            "opacity": 1,
+            "paddingBottom": 7,
+            "paddingLeft": 21,
+            "paddingRight": 21,
+            "paddingTop": 7,
+            "textAlign": "center",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#937f6b",
+            }
+          }
+        >
+          Save Attendance
+        </Text>
+      </View>
+    </View>
+    <View>
+      <View />
+    </View>
+    <View>
+      <View />
+    </View>
+    <View>
+      <View />
+    </View>
+    <View>
+      <View />
+    </View>
+    <View>
+      <View />
+    </View>
+    <View>
+      <View />
+    </View>
+  </View>
+</RCTScrollView>
+`;
+
+exports[`Teacher screens snapshots render ClassEditScreen 1`] = `
+<RCTScrollView
+  style={
+    Object {
+      "backgroundColor": "#F3F3F3",
+      "flex": 1,
+      "flexDirection": "column",
+    }
+  }
+>
+  <View>
+    <View
+      ID={0}
+      style={
+        Object {
+          "backgroundColor": "#fdfdff",
+          "flex": 1,
+          "flexDirection": "column",
+          "padding": 10,
+        }
+      }
+    >
+      <TextInput
+        allowFontScaling={true}
+        onChangeText={[Function]}
+        placeholder="Enter new student's name"
+        underlineColorAndroid="transparent"
+        value=""
+      />
+      <View
+        accessible={true}
+        isTVSelectable={true}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#efdecc",
+            "borderRadius": 30,
+            "justifyContent": "center",
+            "marginLeft": 10,
+            "marginRight": 10,
+            "marginTop": 10,
+            "opacity": 1,
+            "paddingBottom": 7,
+            "paddingLeft": 21,
+            "paddingRight": 21,
+            "paddingTop": 7,
+            "textAlign": "center",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#937f6b",
+            }
+          }
+        >
+          Add student
+        </Text>
+      </View>
+    </View>
+    <RCTScrollView
+      data={
+        Array [
+          Object {
+            "assignment": "Al-Nahl page 5",
+            "attendanceHistory": Array [
+              Object {
+                "date": "02-23-2019",
+                "isHere": true,
+              },
+            ],
+            "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg",
+            "name": "Ahmed Reducer",
+          },
+          Object {
+            "assignment": "An-Naze'aat",
+            "attendanceHistory": Array [
+              Object {
+                "date": "02-23-2019",
+                "isHere": true,
+              },
+            ],
+            "avatar": "https://randomuser.me/api/portraits/thumb/women/42.jpg",
+            "name": "Amina Khan",
+          },
+          Object {
+            "assignment": "Aal-Imran",
+            "attendanceHistory": Array [
+              Object {
+                "date": "02-23-2019",
+                "isHere": false,
+              },
+            ],
+            "avatar": "https://randomuser.me/api/portraits/thumb/men/43.jpg",
+            "name": "Ayoub Barrak",
+          },
+          Object {
+            "assignment": "Al-Toor pages 2,3",
+            "attendanceHistory": Array [
+              Object {
+                "date": "02-23-2019",
+                "isHere": true,
+              },
+            ],
+            "avatar": "https://randomuser.me/api/portraits/thumb/men/45.jpg",
+            "name": "Khaled Kwick",
+          },
+          Object {
+            "assignment": "Al-An'aam",
+            "attendanceHistory": Array [
+              Object {
+                "date": "02-23-2019",
+                "isHere": true,
+              },
+            ],
+            "avatar": "https://randomuser.me/api/portraits/thumb/men/22.jpg",
+            "name": "Yassine Lightening",
+          },
+          Object {
+            "assignment": "Huud, pages 3 and 4",
+            "attendanceHistory": Array [
+              Object {
+                "date": "02-23-2019",
+                "isHere": false,
+              },
+            ],
+            "avatar": "https://randomuser.me/api/portraits/thumb/men/26.jpg",
+            "name": "Yusuf Awesome",
+          },
+        ]
+      }
+      disableVirtualization={false}
+      getItem={[Function]}
+      getItemCount={[Function]}
+      horizontal={false}
+      initialNumToRender={10}
+      keyExtractor={[Function]}
+      maxToRenderPerBatch={10}
+      numColumns={1}
+      onContentSizeChange={[Function]}
+      onEndReachedThreshold={2}
+      onLayout={[Function]}
+      onMomentumScrollEnd={[Function]}
+      onScroll={[Function]}
+      onScrollBeginDrag={[Function]}
+      onScrollEndDrag={[Function]}
+      renderItem={[Function]}
+      scrollEventThrottle={50}
+      stickyHeaderIndices={Array []}
+      updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={Array []}
+      windowSize={21}
+    >
+      <View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View>
+            <View />
+          </View>
+        </View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View>
+            <View />
+          </View>
+        </View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View>
+            <View />
+          </View>
+        </View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View>
+            <View />
+          </View>
+        </View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View>
+            <View />
+          </View>
+        </View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View>
+            <View />
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+</RCTScrollView>
+`;
+
+exports[`Teacher screens snapshots render ClassMainScreen 1`] = `
+<RCTScrollView
+  style={
+    Object {
+      "backgroundColor": "#F3F3F3",
+      "flex": 1,
+      "flexDirection": "column",
+    }
+  }
+>
+  <View>
+    <RCTScrollView
+      data={
+        Array [
+          Object {
+            "assignment": "Al-Nahl page 5",
+            "attendanceHistory": Array [
+              Object {
+                "date": "02-23-2019",
+                "isHere": true,
+              },
+            ],
+            "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg",
+            "name": "Ahmed Reducer",
+          },
+          Object {
+            "assignment": "An-Naze'aat",
+            "attendanceHistory": Array [
+              Object {
+                "date": "02-23-2019",
+                "isHere": true,
+              },
+            ],
+            "avatar": "https://randomuser.me/api/portraits/thumb/women/42.jpg",
+            "name": "Amina Khan",
+          },
+          Object {
+            "assignment": "Aal-Imran",
+            "attendanceHistory": Array [
+              Object {
+                "date": "02-23-2019",
+                "isHere": false,
+              },
+            ],
+            "avatar": "https://randomuser.me/api/portraits/thumb/men/43.jpg",
+            "name": "Ayoub Barrak",
+          },
+          Object {
+            "assignment": "Al-Toor pages 2,3",
+            "attendanceHistory": Array [
+              Object {
+                "date": "02-23-2019",
+                "isHere": true,
+              },
+            ],
+            "avatar": "https://randomuser.me/api/portraits/thumb/men/45.jpg",
+            "name": "Khaled Kwick",
+          },
+          Object {
+            "assignment": "Al-An'aam",
+            "attendanceHistory": Array [
+              Object {
+                "date": "02-23-2019",
+                "isHere": true,
+              },
+            ],
+            "avatar": "https://randomuser.me/api/portraits/thumb/men/22.jpg",
+            "name": "Yassine Lightening",
+          },
+          Object {
+            "assignment": "Huud, pages 3 and 4",
+            "attendanceHistory": Array [
+              Object {
+                "date": "02-23-2019",
+                "isHere": false,
+              },
+            ],
+            "avatar": "https://randomuser.me/api/portraits/thumb/men/26.jpg",
+            "name": "Yusuf Awesome",
+          },
+        ]
+      }
+      disableVirtualization={false}
+      getItem={[Function]}
+      getItemCount={[Function]}
+      horizontal={false}
+      initialNumToRender={10}
+      keyExtractor={[Function]}
+      maxToRenderPerBatch={10}
+      numColumns={1}
+      onContentSizeChange={[Function]}
+      onEndReachedThreshold={2}
+      onLayout={[Function]}
+      onMomentumScrollEnd={[Function]}
+      onScroll={[Function]}
+      onScrollBeginDrag={[Function]}
+      onScrollEndDrag={[Function]}
+      renderItem={[Function]}
+      scrollEventThrottle={50}
+      stickyHeaderIndices={Array []}
+      updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={Array []}
+      windowSize={21}
+    >
+      <View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View>
+            <View />
+          </View>
+        </View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View>
+            <View />
+          </View>
+        </View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View>
+            <View />
+          </View>
+        </View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View>
+            <View />
+          </View>
+        </View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View>
+            <View />
+          </View>
+        </View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View>
+            <View />
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+</RCTScrollView>
+`;
+
+exports[`Teacher screens snapshots render TeacherProfileScreen 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#F3F3F3",
+      "flex": 1,
+      "flexDirection": "column",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "paddingBottom": 20,
+        "paddingTop": 20,
+      }
+    }
+  >
+    <Image
+      source={
+        Object {
+          "uri": "https://randomuser.me/api/portraits/thumb/women/42.jpg",
+        }
+      }
+      style={
+        Object {
+          "borderRadius": 65,
+          "height": 130,
+          "width": 130,
+        }
+      }
+    />
+    <View
+      accessible={true}
+      isTVSelectable={true}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#efdecc",
+          "borderRadius": 30,
+          "justifyContent": "center",
+          "marginLeft": 10,
+          "marginRight": 10,
+          "marginTop": 10,
+          "opacity": 1,
+          "paddingBottom": 7,
+          "paddingLeft": 21,
+          "paddingRight": 21,
+          "paddingTop": 7,
+          "textAlign": "center",
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#937f6b",
+          }
+        }
+      >
+        Change Profile Photo
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#fdfdff",
+        "flexDirection": "column",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "borderBottomColor": "#101011",
+          "borderBottomWidth": 0.25,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingBottom": 20,
+          "paddingTop": 20,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "fontSize": 28,
+            "paddingLeft": 20,
+          }
+        }
+      >
+        Information
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "borderBottomColor": "#101011",
+          "borderBottomWidth": 0.25,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingBottom": 20,
+          "paddingTop": 20,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "fontSize": 22,
+            "paddingLeft": 20,
+          }
+        }
+      >
+        Name
+      </Text>
+      <TextInput
+        allowFontScaling={true}
+        defaultValue="Eslam Abdo"
+        style={
+          Object {
+            "fontSize": 22,
+            "paddingRight": 20,
+          }
+        }
+        underlineColorAndroid="transparent"
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "borderBottomColor": "#101011",
+          "borderBottomWidth": 0.25,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingBottom": 20,
+          "paddingTop": 20,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "fontSize": 22,
+            "paddingLeft": 20,
+          }
+        }
+      >
+        Phone Number
+      </Text>
+      <TextInput
+        allowFontScaling={true}
+        defaultValue="425-XXX-XXXX"
+        style={
+          Object {
+            "fontSize": 22,
+            "paddingRight": 20,
+          }
+        }
+        underlineColorAndroid="transparent"
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingBottom": 20,
+          "paddingTop": 20,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "fontSize": 22,
+            "paddingLeft": 20,
+          }
+        }
+      >
+        Password
+      </Text>
+      <TextInput
+        allowFontScaling={true}
+        defaultValue="12345678"
+        style={
+          Object {
+            "fontSize": 22,
+            "paddingRight": 20,
+          }
+        }
+        underlineColorAndroid="transparent"
+      />
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "space-evenly",
+        "paddingTop": 20,
+      }
+    }
+  >
+    <View
+      accessible={true}
+      isTVSelectable={true}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#efdecc",
+          "borderRadius": 30,
+          "justifyContent": "center",
+          "marginLeft": 10,
+          "marginRight": 10,
+          "marginTop": 10,
+          "opacity": 1,
+          "paddingBottom": 7,
+          "paddingLeft": 21,
+          "paddingRight": 21,
+          "paddingTop": 7,
+          "textAlign": "center",
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#937f6b",
+          }
+        }
+      >
+        Save
+      </Text>
+    </View>
+    <View
+      accessible={true}
+      isTVSelectable={true}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#efdecc",
+          "borderRadius": 30,
+          "justifyContent": "center",
+          "marginLeft": 10,
+          "marginRight": 10,
+          "marginTop": 10,
+          "opacity": 1,
+          "paddingBottom": 7,
+          "paddingLeft": 21,
+          "paddingRight": 21,
+          "paddingTop": 7,
+          "textAlign": "center",
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#937f6b",
+          }
+        }
+      >
+        Cancel
+      </Text>
+    </View>
+  </View>
+</View>
+`;

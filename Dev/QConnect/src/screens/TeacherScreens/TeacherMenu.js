@@ -3,6 +3,7 @@ import {createDrawerNavigator, createAppContainer} from 'react-navigation';
 import { Icon } from 'react-native-elements';
 import AddClassNavigator from './AddClass/AddClassNavigator';
 import ClassHeaderNavigator from './ClassTabs/ClassHeaderNavigator';
+import LeftNavPane from './LeftNavPane';
 import TeacherProfileNavigator from './TeacherProfile/TeacherProfileNavigator';
 
 const routeConfig = {
@@ -19,18 +20,19 @@ const routeConfig = {
     path: 'teacher/class/tabs', //todo: the path should have class id as a param to be unique
     navigationOptions: ({ navigation }) => ({
         title: 'Monday Class',
-    }),
-  },
-  AddClass: {
-    screen: AddClassNavigator,
-    path: 'teacher/class/new',
-    navigationOptions: ({ navigation }) => ({
-      title: 'Add new class',
-    }),
-  }
-}; 
+      }),
+ },
+ AddClass: {
+  screen: AddClassNavigator,
+  path: 'teacher/class/new',
+  navigationOptions: ({ navigation }) => ({
+     title: 'Add new class',
+   }),
+}
+};
 
 const navigationConfig = {
+    contentComponent: LeftNavPane,
     drawerWidth: 325,
     drawerPosition: 'left',
     drawerOpenRoute: 'DrawerOpen',

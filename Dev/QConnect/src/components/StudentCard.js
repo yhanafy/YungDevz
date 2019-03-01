@@ -24,7 +24,7 @@ export default class StudentCard extends FontLoadingComponent {
                 style = {[styles.cardStyle, {backgroundColor: background}]}
                 borderColor = {colors.black}
                 //The on press function is for when the teacher clicks the card, the color of it 
-                //should change depending on the behavior (i.e attendence screen)
+                //should change depending on the behavior (i.e attendance screen)
                 onPress = {() => {onPress()}}>
                 <Image
                     style = {styles.profilePicStyle}
@@ -64,11 +64,13 @@ const styles = StyleSheet.create({
         height: 100,
         marginLeft: 7,
         marginTop: 10,
+        fontFamily: 'regular',
     },
     infoStyle: {
         marginLeft: 15,
         flexDirection: 'column',
         justifyContent: 'center',
+        fontFamily: 'regular',
     },
     profilePicStyle: {
         marginTop: 20,
@@ -80,7 +82,7 @@ const styles = StyleSheet.create({
     studentNameStyle: {
         fontFamily: 'regular',
         fontSize: 20,
-        color: colors.black
+        color: colors.black,
     },
     assignmentStyle: {
         fontFamily: 'regular',

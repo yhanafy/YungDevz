@@ -11,7 +11,8 @@ const BG_IMAGE = require('assets/images/read_child_bg.jpg');
 class FirstRunScreen extends React.Component {
 
     onTeacherFlow = () => {
-        this.props.navigation.navigate('TeacherScreens');
+      //todo: get the first class to show from redux persist (current class)
+        this.props.navigation.push('TeacherScreens', { classIndex: 0, classTitle: "Quran Clas"});
     }
 
     render() {
