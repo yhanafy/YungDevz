@@ -10,7 +10,7 @@ import colors from 'config/colors';
 
 //const { directions: { SWIPE_UP, SWIPE_LEFT, SWIPE_DOWN, SWIPE_RIGHT } } = swipeable;
 
-class ClassAttendanceScreen extends Component {
+export class ClassAttendanceScreen extends Component {
 
     state = {
         selectedStudents: [],
@@ -43,7 +43,7 @@ class ClassAttendanceScreen extends Component {
         let date = this.state.selectedDate;
         let studentList = this.props.classrooms.classes[classIndex].students;
         let attendanceInfo =[];
-        for(i = 0; i < studentList.length; i++) {
+        for(let i = 0; i < studentList.length; i++) {
             //If the current state of selected students includes the current student being
             //iterated over, then the student will be marked as absent. If not, then the student
             //is present

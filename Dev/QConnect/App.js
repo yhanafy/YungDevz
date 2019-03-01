@@ -11,13 +11,14 @@ import { AsyncStorage } from 'react-native';
 
 const persistConfig = {
   key: 'qcstorealpha',
-  storage: AsyncStorage
+  storage: AsyncStorage,
+  version: 0,
 }
 const persistedReducer = persistReducer(persistConfig, classReducer)
 
 export const store = createStore(
   persistedReducer,
-  undefined
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 );
 
 export const persistor = persistStore(store);
