@@ -5,6 +5,7 @@ import {INITIAL_STATE} from '../src/model/reducers/classReducer';
 import {ClassEditScreen} from '../src/screens/TeacherScreens/ClassTabs/ClassEditScreen';
 import {ClassAttendanceScreen} from '../src/screens/TeacherScreens/ClassTabs/ClassAttendanceScreen';
 import {AddClassScreen} from '../src/screens/TeacherScreens/AddClass/AddClassScreen';
+import {TeacherProfileScreen} from '../src/screens/TeacherScreens/TeacherProfile/TeacherProfileScreen.js'
 
 describe('Teacher screens snapshots', () => {
   const testRenderTeacherScreen = (screenName, Component) => {
@@ -30,4 +31,5 @@ describe('Teacher screens snapshots', () => {
   testRenderTeacherScreen("ClassEditScreen", ClassEditScreen)
   testRenderTeacherScreen("ClassAttendanceScreen", ClassAttendanceScreen)
   testRenderTeacherScreen("AddClassScreen", AddClassScreen)
+  testRenderTeacherScreen("TeacherProfileScreen", TeacherProfileScreen)
 })

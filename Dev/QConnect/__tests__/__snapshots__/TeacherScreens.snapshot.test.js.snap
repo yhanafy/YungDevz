@@ -86,7 +86,8 @@ exports[`Teacher screens snapshots render AddClassScreen 1`] = `
     <Text>
       there are 
       1
-       classes added so far 
+       classes added so far
+       
     </Text>
   </View>
 </View>
@@ -818,4 +819,299 @@ exports[`Teacher screens snapshots render ClassMainScreen 1`] = `
     </RCTScrollView>
   </View>
 </RCTScrollView>
+`;
+
+exports[`Teacher screens snapshots render TeacherProfileScreen 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#F3F3F3",
+      "flex": 1,
+      "flexDirection": "column",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "paddingBottom": 20,
+        "paddingTop": 20,
+      }
+    }
+  >
+    <Image
+      source={
+        Object {
+          "uri": "https://randomuser.me/api/portraits/thumb/women/42.jpg",
+        }
+      }
+      style={
+        Object {
+          "borderRadius": 65,
+          "height": 130,
+          "width": 130,
+        }
+      }
+    />
+    <View
+      accessible={true}
+      isTVSelectable={true}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#efdecc",
+          "borderRadius": 30,
+          "justifyContent": "center",
+          "marginLeft": 10,
+          "marginRight": 10,
+          "marginTop": 10,
+          "opacity": 1,
+          "paddingBottom": 7,
+          "paddingLeft": 21,
+          "paddingRight": 21,
+          "paddingTop": 7,
+          "textAlign": "center",
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#937f6b",
+          }
+        }
+      >
+        Change Profile Photo
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#fdfdff",
+        "flexDirection": "column",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "borderBottomColor": "#101011",
+          "borderBottomWidth": 0.25,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingBottom": 20,
+          "paddingTop": 20,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "fontSize": 28,
+            "paddingLeft": 20,
+          }
+        }
+      >
+        Information
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "borderBottomColor": "#101011",
+          "borderBottomWidth": 0.25,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingBottom": 20,
+          "paddingTop": 20,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "fontSize": 22,
+            "paddingLeft": 20,
+          }
+        }
+      >
+        Name
+      </Text>
+      <TextInput
+        allowFontScaling={true}
+        defaultValue="Eslam Abdo"
+        style={
+          Object {
+            "fontSize": 22,
+            "paddingRight": 20,
+          }
+        }
+        underlineColorAndroid="transparent"
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "borderBottomColor": "#101011",
+          "borderBottomWidth": 0.25,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingBottom": 20,
+          "paddingTop": 20,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "fontSize": 22,
+            "paddingLeft": 20,
+          }
+        }
+      >
+        Phone Number
+      </Text>
+      <TextInput
+        allowFontScaling={true}
+        defaultValue="425-XXX-XXXX"
+        style={
+          Object {
+            "fontSize": 22,
+            "paddingRight": 20,
+          }
+        }
+        underlineColorAndroid="transparent"
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingBottom": 20,
+          "paddingTop": 20,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "fontSize": 22,
+            "paddingLeft": 20,
+          }
+        }
+      >
+        Password
+      </Text>
+      <TextInput
+        allowFontScaling={true}
+        defaultValue="12345678"
+        style={
+          Object {
+            "fontSize": 22,
+            "paddingRight": 20,
+          }
+        }
+        underlineColorAndroid="transparent"
+      />
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "space-evenly",
+        "paddingTop": 20,
+      }
+    }
+  >
+    <View
+      accessible={true}
+      isTVSelectable={true}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#efdecc",
+          "borderRadius": 30,
+          "justifyContent": "center",
+          "marginLeft": 10,
+          "marginRight": 10,
+          "marginTop": 10,
+          "opacity": 1,
+          "paddingBottom": 7,
+          "paddingLeft": 21,
+          "paddingRight": 21,
+          "paddingTop": 7,
+          "textAlign": "center",
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#937f6b",
+          }
+        }
+      >
+        Save
+      </Text>
+    </View>
+    <View
+      accessible={true}
+      isTVSelectable={true}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#efdecc",
+          "borderRadius": 30,
+          "justifyContent": "center",
+          "marginLeft": 10,
+          "marginRight": 10,
+          "marginTop": 10,
+          "opacity": 1,
+          "paddingBottom": 7,
+          "paddingLeft": 21,
+          "paddingRight": 21,
+          "paddingTop": 7,
+          "textAlign": "center",
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#937f6b",
+          }
+        }
+      >
+        Cancel
+      </Text>
+    </View>
+  </View>
+</View>
 `;
