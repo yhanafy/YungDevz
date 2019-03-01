@@ -5,7 +5,7 @@ import colors from 'config/colors';
 
 //To-Do: All info in this class is static, still needs to be hooked up to data base in order
 //to function dynamically
-class TeacherProfileScreen extends Component {
+export class TeacherProfileScreen extends Component {
     render() {
         return(
             //Random image appears, still need to hook up database, see to-do above

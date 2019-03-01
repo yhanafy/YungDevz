@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import update from 'immutability-helper';
 
-const INITIAL_STATE = {
+export const INITIAL_STATE = {
   currentClassIndex: 0,
   classes: [
     {

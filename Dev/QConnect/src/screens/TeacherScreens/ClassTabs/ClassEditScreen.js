@@ -9,7 +9,7 @@ import { addStudent } from "model/actions/addStudent";
 import QcActionButton from "components/QcActionButton";
 import { ToastAndroid } from "react-native";
 
-class ClassEditScreen extends Component {
+export class ClassEditScreen extends Component {
   state = {
     newStudentName: ""
   };
@@ -116,3 +116,4 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(ClassEditScreen);
+ 
