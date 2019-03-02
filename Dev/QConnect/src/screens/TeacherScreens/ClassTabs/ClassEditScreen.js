@@ -22,6 +22,7 @@ export class ClassEditScreen extends Component {
   }
 
   addNewStudent(classIndex) {
+    if (this.state.newStudentName){
     this.props.addStudent({
       classIndex: classIndex,
       studentInfo: {
@@ -34,7 +35,9 @@ export class ClassEditScreen extends Component {
     ToastAndroid.show(
       this.state.newStudentName + " is now added to the class",
       ToastAndroid.SHORT
-    );
+    );}else{
+      alert("Please input a Name!")
+    }
   }
 
   render() {
