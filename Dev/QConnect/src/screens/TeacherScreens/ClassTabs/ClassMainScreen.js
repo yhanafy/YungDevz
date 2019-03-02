@@ -23,7 +23,7 @@ export class ClassMainScreen extends Component {
               profilePic={{ uri: item.avatar }}
               currentAssignment={item.assignment}
               onPress={() =>
-                this.props.navigation.navigate("StudentProfile", {
+                this.props.navigation.navigate("EvaluationPage", {
                   name: item.name
                 })
               }
