@@ -16,18 +16,22 @@ import { addClass } from "model/actions/addClass";
 
 export class AddClassScreen extends Component {
   state = {
-    className: ""
+    className: "",
+    classImageId: Math.floor(Math.random() * 10),
   };
 
   addNewClass() {
-    let classImageId = Math.floor(Math.random() * 10); // fix this to be selected by user
-    let classInfo = {
-      name: this.state.className,
-      imageId: classImageId,
-      students: []
-    };
+    if (this.state.className) {
+      let classInfo = {
+        name: this.state.className,
+        imageId: this.state.classImageId,
+        students: []
+      };
 
-    this.props.addClass(classInfo);
+      this.props.addClass(classInfo);
+    }else{
+      alert("Please make sure to have an input!")
+    }
   }
 
   render() {
@@ -40,15 +44,15 @@ export class AddClassScreen extends Component {
         }}
       >
         <Image
-          source={{
-            uri:
-              "https://cdn0.iconfinder.com/data/icons/activities-glyph/2048/2154_-_Sitting_in_class-512.png"
-          }}
+          source={(classImages.images[this.state.classImageId])}
           style={{
-            width: 200,
-            height: 200,
+            backgroundColor: colors.lightGrey,
+            borderRadius: 50/2,
+            marginTop: 100,
+            marginBottom:30,
+            width: 150,
+            height: 150,
             alignItems: "center",
-            borderRadius: 150 / 2,
             justifyContent: "center"
           }}
         />
@@ -58,6 +62,7 @@ export class AddClassScreen extends Component {
             backgroundColor: colors.lightGrey,
             borderColor: colors.darkGrey,
             width: 250,
+            height: 30,
             textAlign: "center",
             alignItems: "center",
             justifyContent: "center"
@@ -70,7 +75,10 @@ export class AddClassScreen extends Component {
           }
         />
 
-        <Text>Your Class name is {this.state.className}</Text>
+        <Text style={{
+          fontSize:15,
+          marginTop:5
+        }}>Your Class name is {this.state.className}</Text>
 
         <QcActionButton
           text="Add Class"
@@ -78,13 +86,6 @@ export class AddClassScreen extends Component {
             this.addNewClass();
           }}
         />
-
-        <View>
-          <Text>
-            there are {this.props.classrooms.classes.length} classes added so
-            far{" "}
-          </Text>
-        </View>
       </View>
     );
   }
