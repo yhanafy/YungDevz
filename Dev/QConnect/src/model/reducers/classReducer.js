@@ -108,11 +108,26 @@ const classReducer = (state = INITIAL_STATE, action) => {
       //Fetches the current list of students
       studentslist = state.classes[action.classIndex].students;
       
-      //Concatenates the new attendance info of each student to the old info
-      //assuming that the order of the students in the state are in the same
-      //order that they are displayed. 
+      //First checks if the student already has a recorded date with an attendance saved.
+      //If he does, it will overwrite the old information with the new information. If he doesn't,
+      //it will write the new information 
       for(i = 0; i < studentslist.length; i++) {
-        studentslist[i].attendanceHistory.push(action.attendanceInfo[i]);
+        let attHistory = studentslist[i].attendanceHistory;
+        let addingDate = action.attendanceInfo[i].date;
+        let isDatePreviouslySaved = false;
+        let counter = 0;
+        for(counter = 0; counter < attHistory.length; counter++) {
+          if(attHistory[counter].date === addingDate) {
+            isDatePreviouslySaved = true;
+            break;
+          }
+        }
+        if(isDatePreviouslySaved) {
+          studentslist[i].attendanceHistory.splice(counter, 1, action.attendanceInfo[i])
+        } else {
+          studentslist[i].attendanceHistory.push(action.attendanceInfo[i]);
+        }
+        
       }
 
       newState = update(baseState, {classes: {[action.classIndex]: {students: {$set: [studentslist]}}}});
