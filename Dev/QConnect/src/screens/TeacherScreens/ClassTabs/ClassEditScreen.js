@@ -22,11 +22,16 @@ class ClassEditScreen extends Component {
     }
 
     addNewStudent(){
-        this.props.addStudent({
-            name: this.state.newStudentName,
-            avatar: this.getAvatarUrl(),
-            assignment: "No assignment yet"
-        });
+        this.props.addStudent(
+        {
+            classIndex: 0,
+            studentInfo: {
+                name: this.state.newStudentName,
+                avatar: this.getAvatarUrl(),
+                assignment: "No assignment yet"
+            }
+        }
+        );
         ToastAndroid.show(this.state.newStudentName + " is now added to the class", ToastAndroid.SHORT);
     }
 
@@ -44,14 +49,16 @@ class ClassEditScreen extends Component {
         />
       </View>
       <View>
-            {this.props.classroom.students.map((student, i) => {
+            {this.props.classrooms.classes[0].students.map((student, i) => {
             return (
             <StudentCard
                 key={i}
                 studentName={student.name}
-                profilePic={student.avatar}
+                profilePic={{uri: student.avatar}}
                 currentAssignment={student.assignment}
-                onPress={() => this.props.deleteStudent(i)}
+                onPress={() => this.props.deleteStudent({
+                    classIndex: 0,
+                    studentIndex: i})}
             />
             );
             })}
@@ -81,8 +88,8 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
-    const { classroom } = state
-    return { classroom }
+    const { classrooms } = state
+    return { classrooms }
   };
   
   const mapDispatchToProps = dispatch => (
