@@ -2,81 +2,88 @@ import { combineReducers } from 'redux';
 import update from 'immutability-helper';
 
 export const INITIAL_STATE = {
-  currentClassIndex: 0,
-  classes: [
+  teachers: [
     {
-        name: "Monday Class ICOE",
-        imageId: 1,
-        students: [
-          {
-            name: "Ahmed Reducer",
-            avatar: "https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg",
-            assignment: "Al-Nahl page 5",
-            attendanceHistory: [
-              {
-                date: "02-23-2019",
-                isHere: true
-              }
-            ]
-          },
-          {
-            name: "Amina Khan",
-            avatar: "https://randomuser.me/api/portraits/thumb/women/42.jpg",
-            assignment: "An-Naze'aat",
-            attendanceHistory: [
-              {
-                date: "02-23-2019",
-                isHere: true
-              }
-            ]
-          },
-          {
-            name: "Ayoub Barrak",
-            avatar: "https://randomuser.me/api/portraits/thumb/men/43.jpg",
-            assignment: "Aal-Imran",
-            attendanceHistory: [
-              {
-                date: "02-23-2019",
-                isHere: false
-              }
-            ]
-          },
-          {
-            name: "Khaled Kwick",
-            avatar: "https://randomuser.me/api/portraits/thumb/men/45.jpg",
-            assignment: "Al-Toor pages 2,3",
-            attendanceHistory: [
-              {
-                date: "02-23-2019",
-                isHere: true
-              }
-            ]
-          },
-          {
-            name: "Yassine Lightening",
-            avatar: "https://randomuser.me/api/portraits/thumb/men/22.jpg",
-            assignment: "Al-An'aam",
-            attendanceHistory: [
-              {
-                date: "02-23-2019",
-                isHere: true
-              }
-            ]
-          },
-          {
-            name: "Yusuf Awesome",
-            avatar: "https://randomuser.me/api/portraits/thumb/men/26.jpg",
-            assignment: "Huud, pages 3 and 4",
-            attendanceHistory: [
-              {
-                date: "02-23-2019",
-                isHere: false
-              }
-            ]
-          }
-        ],
-    }
+      name: "Eslam Abdo",
+      phoneNumber: "425-246-5971",
+      emailAddress: "eslam_w@hotmail.com",
+      currentClassIndex: 0,
+      classes: [
+        {
+          name: "Monday Class ICOE",
+          imageId: 1,
+          students: [
+            {
+              name: "Ahmed Reducer",
+              avatar: "https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg",
+              assignment: "Al-Nahl page 5",
+              attendanceHistory: [
+                {
+                  date: "02-23-2019",
+                  isHere: true
+                }
+              ]
+            },
+            {
+              name: "Amina Khan",
+              avatar: "https://randomuser.me/api/portraits/thumb/women/42.jpg",
+              assignment: "An-Naze'aat",
+              attendanceHistory: [
+                {
+                  date: "02-23-2019",
+                  isHere: true
+                }
+              ]
+            },
+            {
+              name: "Ayoub Barrak",
+              avatar: "https://randomuser.me/api/portraits/thumb/men/43.jpg",
+              assignment: "Aal-Imran",
+              attendanceHistory: [
+                {
+                  date: "02-23-2019",
+                  isHere: true
+                }
+              ]
+            },
+            {
+              name: "Khaled Kwick",
+              avatar: "https://randomuser.me/api/portraits/thumb/men/45.jpg",
+              assignment: "Al-Toor pages 2,3",
+              attendanceHistory: [
+                {
+                  date: "02-23-2019",
+                  isHere: true
+                }
+              ]
+            },
+            {
+              name: "Yassine Lightening",
+              avatar: "https://randomuser.me/api/portraits/thumb/men/22.jpg",
+              assignment: "Al-An'aam",
+              attendanceHistory: [
+                {
+                  date: "02-23-2019",
+                  isHere: true
+                }
+              ]
+            },
+            {
+              name: "Yusuf Awesome",
+              avatar: "https://randomuser.me/api/portraits/thumb/men/26.jpg",
+              assignment: "Huud, pages 3 and 4",
+              attendanceHistory: [
+                {
+                  date: "02-23-2019",
+                  isHere: true
+                }
+              ]
+            }
+          ],
+        }
 
+      ]
+    }
   ]
 
 };
@@ -85,7 +92,7 @@ const classReducer = (state = INITIAL_STATE, action) => {
   // pulls list of current student in current state
   const {
     classes
-  } = state;
+  } = state.teachers[0];
 
   const baseState= {...state};
 
