@@ -13,7 +13,7 @@ export class ClassMainScreen extends Component {
     return (
       <ScrollView style={styles.container}>
         <FlatList
-          data={this.props.classrooms.classes[classIndex].students}
+          data={this.props.classes[classIndex].students}
           keyExtractor={(item, index) => item.name} // fix, should be item.id (add id to classes)
           renderItem={({ item, index }) => (
             <StudentCard
@@ -49,8 +49,8 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  const { classrooms } = state;
-  return { classrooms };
+  const { classes } = state.data.teachers[0];
+  return { classes };
 };
 
 export default connect(mapStateToProps)(ClassMainScreen);

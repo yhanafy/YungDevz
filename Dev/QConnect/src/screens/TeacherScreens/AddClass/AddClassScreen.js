@@ -35,7 +35,6 @@ export class AddClassScreen extends Component {
   }
 
   render() {
-    //console.log(this.props.classrooms)
     return (
       <View
         ID="addNewClass"
@@ -91,9 +90,9 @@ export class AddClassScreen extends Component {
   }
 }
 
-export const mapStateToProps = state => {
-  const { classrooms } = state;
-  return { classrooms };
+const mapStateToProps = state => {
+  const { classes } = state.data.teachers[0];
+  return { classes };
 };
 
 export const mapDispatchToProps = dispatch =>

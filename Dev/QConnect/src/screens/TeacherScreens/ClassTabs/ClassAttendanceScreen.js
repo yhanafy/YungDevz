@@ -41,7 +41,7 @@ export class ClassAttendanceScreen extends Component {
     saveAttendance = (classIndex) => {
         let selected = this.state.selectedStudents;
         let date = this.state.selectedDate;
-        let studentList = this.props.classrooms.classes[classIndex].students;
+        let studentList = this.props.classes[classIndex].students;
         let attendanceInfo =[];
         for(let i = 0; i < studentList.length; i++) {
             //If the current state of selected students includes the current student being
@@ -69,7 +69,7 @@ export class ClassAttendanceScreen extends Component {
     //This method will set the state of the attendance screen based on the isHere property
     //from each student's attendance history based on the corresponding date
     getAttendance = (classIndex, date) => {
-        let studentList = this.props.classrooms.classes[classIndex].students;
+        let studentList = this.props.teacher.classes[classIndex].students;
         let selected = [];
         //Maps out the list of students
         studentList.map((student, i) => {
@@ -129,7 +129,7 @@ export class ClassAttendanceScreen extends Component {
                     style={{paddingRight: 30}}
                 />
             </View>
-            {this.props.classrooms.classes[classIndex].students.map((student, i) => {
+            {this.props.classes[classIndex].students.map((student, i) => {
                 let color = this.state.selectedStudents.includes(i) ? colors.red : colors.green;
                 return (
                     <StudentCard
@@ -164,10 +164,10 @@ const styles = StyleSheet.create({
     }
 });
 
-const mapStateToProps = (state) => {
-    const { classrooms } = state
-    return { classrooms }
-};
+const mapStateToProps = state => {
+    const { classes } = state.data.teachers[0];
+    return { classes };
+  };
 
 const mapDispatchToProps = dispatch => (
     bindActionCreators({

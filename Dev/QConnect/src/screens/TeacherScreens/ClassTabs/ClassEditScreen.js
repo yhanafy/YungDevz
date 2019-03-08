@@ -42,7 +42,7 @@ export class ClassEditScreen extends Component {
 
   render() {
     const { params } = this.props.navigation.state;
-    const { deleteStudent, addStudent, classrooms } = this.props;
+    const { deleteStudent, addStudent, classes } = this.props;
     
     classIndex = params && params.classIndex? params.classIndex : 0;
 
@@ -60,7 +60,7 @@ export class ClassEditScreen extends Component {
           />
         </View>
         <FlatList
-          data={classrooms.classes[classIndex].students}
+          data={classes[classIndex].students}
           keyExtractor={(item, index) => item.name} // fix, should be item.id (add id to classes)
           renderItem={({ item, index }) => (
             <StudentCard
@@ -102,8 +102,8 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  const { classrooms } = state;
-  return { classrooms };
+  const { classes } = state.data.teachers[0];
+  return { classes };
 };
 
 const mapDispatchToProps = dispatch =>

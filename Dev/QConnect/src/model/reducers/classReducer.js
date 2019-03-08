@@ -145,5 +145,5 @@ const classReducer = (state = INITIAL_STATE, action) => {
 };
 
 export default combineReducers({
-  classrooms: classReducer,
+  data: classReducer,
 });
