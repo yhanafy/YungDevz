@@ -1,6 +1,7 @@
-export const deleteStudent = studentIndex => (
+export const deleteStudent = (classIndex, studentIndex) => (
     {
       type: 'DELETE_STUDENT',
-      studentIndex,
+      classIndex,
+      studentIndex
     }
   );

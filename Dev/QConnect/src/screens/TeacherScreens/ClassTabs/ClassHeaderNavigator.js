@@ -1,9 +1,10 @@
 import React from 'react';
 import TopBanner from 'components/TopBanner'
-import { createStackNavigator } from 'react-navigation';
+import { createStackNavigator, DrawerActions } from 'react-navigation';
 import ClassTabsNavigator from './ClassTabsNavigator';
 import StudentProfileScreen from 'screens/StudentProfile/StudentProfileScreen';
 import ClassEditScreen from 'screens/TeacherScreens/ClassTabs/ClassEditScreen';
+import EvaluationPage from 'screens/Evaluation/EvaluationPage';
 
 const ClassHeaderNavigator = createStackNavigator({
   CurrentClass: {
@@ -11,11 +12,11 @@ const ClassHeaderNavigator = createStackNavigator({
     navigationOptions: ({ navigation }) => ({
       header: (
         <TopBanner
-          Icon1Name="navicon"
-          Icon1OnPress={() => navigation.openDrawer()}
-          Title="Quran Class"
-          Icon2Name="edit"
-          Icon2OnPress={() => navigation.navigate('ClassEdit')}
+          LeftIconName="navicon"
+          LeftOnPress={() => navigation.openDrawer()}
+          Title={(navigation.state.params && navigation.state.params.classTitle)? navigation.state.params.classTitle : 'Quran Class'}
+          RightIconName="edit"
+          RightOnPress={() => navigation.push('ClassEdit', navigation.state.params)}
         />
       ),  
     }),
@@ -25,11 +26,11 @@ const ClassHeaderNavigator = createStackNavigator({
     navigationOptions: ({ navigation }) => ({
       header: (
         <TopBanner
-          Icon1Name="angle-left"
-          Icon1OnPress={() => navigation.goBack()}
+          LeftIconName="angle-left"
+          LeftOnPress={() => navigation.goBack()}
           Title={navigation.state.params.name}
-          Icon2Name="edit"
-          Icon2OnPress={() => {}}
+          RightIconName="edit"
+          RightOnPress={() => {}}
         />
       )
     })
@@ -42,15 +43,29 @@ const ClassHeaderNavigator = createStackNavigator({
     navigationOptions: ({navigation}) => ({
       header: (
         <TopBanner
-          Icon1Name="angle-left"
-          Icon1OnPress={() => navigation.goBack()}
+          LeftTextName="Cancel"
+          LeftOnPress={() => navigation.goBack()}
           Title="Edit Class"
-          Icon2Name="check"
-          Icon2OnPress={() => navigation.goBack()}
+          RightTextName="Save"
+          RightOnPress={() => navigation.goBack()}
         />
       )
     })
-  }
+  },
+  EvaluationPage: {
+    screen: EvaluationPage,
+    navigationOptions: ({ navigation }) => ({
+      header: (
+        <TopBanner
+          LeftIconName="angle-left"
+          LeftOnPress={() => navigation.goBack()}
+          Title={navigation.state.params.name}
+          RightIconName="edit"
+          RightOnPress={() => {}}
+        />
+      )
+    })
+  },
 
 })
 

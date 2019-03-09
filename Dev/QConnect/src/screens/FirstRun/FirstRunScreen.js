@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-    View, 
-    Text, 
-    StyleSheet, 
-    Dimensions, 
-    ImageBackground} from 'react-native';
+import { View, StyleSheet, Dimensions, ImageBackground} from 'react-native';
 import QcActionButton from 'components/QcActionButton'
 import QcAppBanner from 'components/QcAppBanner'
 
@@ -16,10 +11,11 @@ const BG_IMAGE = require('assets/images/read_child_bg.jpg');
 class FirstRunScreen extends React.Component {
 
     onTeacherFlow = () => {
-        this.props.navigation.navigate('TeacherScreens');
+      //todo: get the first class to show from redux persist (current class)
+        this.props.navigation.push('TeacherScreens', { classIndex: 0, classTitle: "Quran Clas"});
     }
 
-    render(){
+    render() {
         const { navigation } = this.props;
         return (
           <View style={styles.container}>
