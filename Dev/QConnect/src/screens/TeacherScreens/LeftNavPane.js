@@ -44,7 +44,7 @@ class LeftNavPane extends React.Component {
           />
 
           <FlatList
-            data={this.props.classrooms.classes}
+            data={this.props.classes}
             keyExtractor={(item, index) => item.name} // fix, should be item.id (add id to classes)
             renderItem={({ item, index }) => (
               <QcDrawerItem
@@ -73,8 +73,8 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  const { classrooms } = state;
-  return { classrooms };
+  const { classes } = state.data.teachers[0];
+  return { classes };
 };
 
 export default connect(mapStateToProps)(LeftNavPane);

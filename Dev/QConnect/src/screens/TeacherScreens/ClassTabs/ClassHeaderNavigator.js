@@ -4,6 +4,7 @@ import { createStackNavigator, DrawerActions } from 'react-navigation';
 import ClassTabsNavigator from './ClassTabsNavigator';
 import StudentProfileScreen from 'screens/StudentProfile/StudentProfileScreen';
 import ClassEditScreen from 'screens/TeacherScreens/ClassTabs/ClassEditScreen';
+import EvaluationPage from 'screens/Evaluation/EvaluationPage';
 
 const ClassHeaderNavigator = createStackNavigator({
   CurrentClass: {
@@ -50,7 +51,21 @@ const ClassHeaderNavigator = createStackNavigator({
         />
       )
     })
-  }
+  },
+  EvaluationPage: {
+    screen: EvaluationPage,
+    navigationOptions: ({ navigation }) => ({
+      header: (
+        <TopBanner
+          LeftIconName="angle-left"
+          LeftOnPress={() => navigation.goBack()}
+          Title={navigation.state.params.name}
+          RightIconName="edit"
+          RightOnPress={() => {}}
+        />
+      )
+    })
+  },
 
 })
 

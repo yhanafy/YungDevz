@@ -10,18 +10,17 @@ exports[`Teacher screens snapshots render AddClassScreen 1`] = `
   }
 >
   <Image
-    source={
-      Object {
-        "uri": "https://cdn0.iconfinder.com/data/icons/activities-glyph/2048/2154_-_Sitting_in_class-512.png",
-      }
-    }
+    source={1}
     style={
       Object {
         "alignItems": "center",
-        "borderRadius": 75,
-        "height": 200,
+        "backgroundColor": "#F3F3F3",
+        "borderRadius": 25,
+        "height": 150,
         "justifyContent": "center",
-        "width": 200,
+        "marginBottom": 30,
+        "marginTop": 100,
+        "width": 150,
       }
     }
   />
@@ -34,6 +33,7 @@ exports[`Teacher screens snapshots render AddClassScreen 1`] = `
         "alignItems": "center",
         "backgroundColor": "#F3F3F3",
         "borderColor": "#6b6b6b",
+        "height": 30,
         "justifyContent": "center",
         "textAlign": "center",
         "width": 250,
@@ -41,7 +41,14 @@ exports[`Teacher screens snapshots render AddClassScreen 1`] = `
     }
     underlineColorAndroid="transparent"
   />
-  <Text>
+  <Text
+    style={
+      Object {
+        "fontSize": 15,
+        "marginTop": 5,
+      }
+    }
+  >
     Your Class name is 
     
   </Text>
@@ -80,14 +87,6 @@ exports[`Teacher screens snapshots render AddClassScreen 1`] = `
       }
     >
       Add Class
-    </Text>
-  </View>
-  <View>
-    <Text>
-      there are 
-      1
-       classes added so far
-       
     </Text>
   </View>
 </View>
@@ -180,7 +179,7 @@ exports[`Teacher screens snapshots render ClassAttendanceScreen 1`] = `
                 ]
               }
             >
-              02-28-2019
+              03-08-2019
             </Text>
           </View>
           <Image
@@ -278,8 +277,8 @@ exports[`Teacher screens snapshots render ClassAttendanceScreen 1`] = `
                         }
                       >
                         <RCTDatePicker
-                          date={1551340800000}
-                          maximumDate={1551340800000}
+                          date={1552032000000}
+                          maximumDate={1552032000000}
                           mode="date"
                           onChange={[Function]}
                           onResponderTerminationRequest={[Function]}
@@ -544,7 +543,7 @@ exports[`Teacher screens snapshots render ClassEditScreen 1`] = `
             "attendanceHistory": Array [
               Object {
                 "date": "02-23-2019",
-                "isHere": false,
+                "isHere": true,
               },
             ],
             "avatar": "https://randomuser.me/api/portraits/thumb/men/43.jpg",
@@ -577,7 +576,7 @@ exports[`Teacher screens snapshots render ClassEditScreen 1`] = `
             "attendanceHistory": Array [
               Object {
                 "date": "02-23-2019",
-                "isHere": false,
+                "isHere": true,
               },
             ],
             "avatar": "https://randomuser.me/api/portraits/thumb/men/26.jpg",
@@ -703,7 +702,7 @@ exports[`Teacher screens snapshots render ClassMainScreen 1`] = `
             "attendanceHistory": Array [
               Object {
                 "date": "02-23-2019",
-                "isHere": false,
+                "isHere": true,
               },
             ],
             "avatar": "https://randomuser.me/api/portraits/thumb/men/43.jpg",
@@ -736,7 +735,7 @@ exports[`Teacher screens snapshots render ClassMainScreen 1`] = `
             "attendanceHistory": Array [
               Object {
                 "date": "02-23-2019",
-                "isHere": false,
+                "isHere": true,
               },
             ],
             "avatar": "https://randomuser.me/api/portraits/thumb/men/26.jpg",
