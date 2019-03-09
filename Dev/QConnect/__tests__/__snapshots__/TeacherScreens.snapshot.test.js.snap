@@ -9,21 +9,88 @@ exports[`Teacher screens snapshots render AddClassScreen 1`] = `
     }
   }
 >
-  <Image
-    source={1}
-    style={
-      Object {
-        "alignItems": "center",
-        "backgroundColor": "#F3F3F3",
-        "borderRadius": 25,
-        "height": 150,
-        "justifyContent": "center",
-        "marginBottom": 30,
-        "marginTop": 100,
-        "width": 150,
+  <Modal
+    animationType="slide"
+    hardwareAccelerated={false}
+    onRequestClose={[Function]}
+    transparent={false}
+    visible={false}
+  >
+    <View
+      style={
+        Object {
+          "marginTop": 22,
+        }
       }
-    }
-  />
+    >
+      <View>
+        <Text>
+          Hello World!
+        </Text>
+        <View
+          accessible={true}
+          isTVSelectable={true}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={null}
+        >
+          <Text
+            style={null}
+          >
+            Hide Modal
+          </Text>
+        </View>
+      </View>
+    </View>
+  </Modal>
+  <View
+    accessible={true}
+    isTVSelectable={true}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={null}
+  >
+    <Image
+      source={1}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#F3F3F3",
+          "borderRadius": 25,
+          "height": 150,
+          "justifyContent": "center",
+          "marginBottom": 30,
+          "marginTop": 100,
+          "width": 150,
+        }
+      }
+    />
+  </View>
+  <View
+    accessible={true}
+    isTVSelectable={true}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={null}
+  >
+    <Text
+      style={null}
+    >
+      Edit Class Image
+    </Text>
+  </View>
   <TextInput
     allowFontScaling={true}
     onChangeText={[Function]}
@@ -179,7 +246,7 @@ exports[`Teacher screens snapshots render ClassAttendanceScreen 1`] = `
                 ]
               }
             >
-              03-08-2019
+              03-09-2019
             </Text>
           </View>
           <Image
@@ -277,8 +344,8 @@ exports[`Teacher screens snapshots render ClassAttendanceScreen 1`] = `
                         }
                       >
                         <RCTDatePicker
-                          date={1552032000000}
-                          maximumDate={1552032000000}
+                          date={1552118400000}
+                          maximumDate={1552118400000}
                           mode="date"
                           onChange={[Function]}
                           onResponderTerminationRequest={[Function]}
