@@ -91,7 +91,7 @@ export const INITIAL_STATE = {
 const classReducer = (state = INITIAL_STATE, action) => {
   // pulls list of current student in current state
   const {
-    classes
+    name, phoneNumber, emailAddress, classes
   } = state.teachers[0];
 
   const baseState= {...state};
@@ -99,21 +99,19 @@ const classReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case 'ADD_STUDENT':
       let classIndex = action.studentInfo.classIndex
-      newState = update(baseState, {classes: {[classIndex]: {students: {$push: [action.studentInfo.studentInfo]}}}});
+      newState = update(baseState, {teachers: {[0]: {classes: {[classIndex]: {students: {$push: [action.studentInfo.studentInfo]}}}}}});
       return newState;
 
     case 'DELETE_STUDENT':
-      newState = update(baseState, {classes: {[action.classIndex]: {students: {$splice: [[action.studentIndex, 1]]}}}});
+      newState = update(baseState, {teachers: {[0]: {classes: {[action.classIndex]: {students: {$splice: [[action.studentIndex, 1]]}}} } }});
       return newState;
       
     case 'ADD_CLASS':
-      return { 
-        ...state,
-        classes: state.classes.concat(action.classInfo)
-      }
+      newState = update(baseState, {teachers: {[0]: {classes: {$push: [action.classInfo]}}}});
+      return newState
     case 'ADD_ATTENDANCE':
       //Fetches the current list of students
-      studentslist = state.classes[action.classIndex].students;
+      studentslist = state.teachers[0].classes[action.classIndex].students;
       
       //First checks if the student already has a recorded date with an attendance saved.
       //If he does, it will overwrite the old information with the new information. If he doesn't,
@@ -137,8 +135,14 @@ const classReducer = (state = INITIAL_STATE, action) => {
         
       }
 
-      newState = update(baseState, {classes: {[action.classIndex]: {students: {$set: [studentslist]}}}});
-      return state
+      newState = update(baseState, {teachers: {[0]: {classes: {[action.classIndex]: {students: {$set: [studentslist]}}}}  }});
+      return newState;
+    case 'SAVE_TEACHER_INFO':
+      //fetches current teacher info
+      newState = update(baseState, {teachers: {[action.teacherIndex]: {name: {$set: action.teacherInfo.name}}}});
+      newState = update(newState, {teachers: {[action.teacherIndex]: {phoneNumber: {$set: action.teacherInfo.phoneNumber}}}});
+      newState = update(newState, {teachers: {[action.teacherIndex]: {emailAddress: {$set: action.teacherInfo.emailAddress}}}});
+      return newState;
     default:
       return state
   }
