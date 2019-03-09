@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Image, TextInput, Text } from 'react-native';
 import QcActionButton from 'components/QcActionButton';
+import { connect } from "react-redux";
 import colors from 'config/colors';
 
 //To-Do: All info in this class is static, still needs to be hooked up to data base in order
@@ -26,35 +27,39 @@ export class TeacherProfileScreen extends Component {
                         <Text style={styles.infoTitle}>Name</Text>
                         <TextInput 
                         style={styles.infoTextInput} 
-                        defaultValue="Eslam Abdo"/>
+                        defaultValue={this.props.name}/>
                     </View>
                     <View style={styles.infoRow}>
                         <Text style={styles.infoTitle}>Phone Number</Text>
                         <TextInput 
                         style={styles.infoTextInput} 
-                        defaultValue="425-XXX-XXXX"/>
+                        defaultValue={this.props.phoneNumber}/>
                     </View>
                     <View style={styles.infoRowLast}>
-                        <Text style={styles.infoTitle}>Password</Text>
+                        <Text style={styles.infoTitle}>Email Address</Text>
                         <TextInput 
                         style={styles.infoTextInput} 
-                        defaultValue="12345678"/>
+                        defaultValue={this.props.emailAddress}/>
                     </View>
                 </View>
                 <View style={styles.buttonsContainer}>
                     <QcActionButton
-                    text="Save"
-                    onPress={() => this.saveProfileInfo(0)}
+                    text="Cancel"
+                    onPress={() => this.resetProfileInfo()}
                     />
                     <QcActionButton
-                    text="Cancel"
-                    onPress={() => this.props.navigation.navigate('TeacherProfile')}
+                    text="Save"
+                    onPress={() => this.saveProfileInfo(0)}
                     />
                 </View>
             </View>
         )
     }
 
+    //rerenders the information to contain the information that belongs to this teacher
+    resetProfileInfo = () => {
+        
+    }
     //to-do: method must be able to update the profile picture
     editProfilePic = (teacherID) => {
 
@@ -106,11 +111,11 @@ const styles = StyleSheet.create({
     },
     infoTextInput: {
         paddingRight: 20, 
-        fontSize: 22
+        fontSize: 16
     },
     infoTitle: {
         paddingLeft: 20, 
-        fontSize: 22
+        fontSize: 16
     },
     buttonsContainer: {
         paddingTop: 20,
@@ -120,5 +125,10 @@ const styles = StyleSheet.create({
     }
 })
 
-export default TeacherProfileScreen;
+const mapStateToProps = state => {
+    const { name, phoneNumber, emailAddress } = state.data.teachers[0];
+    return { name, phoneNumber, emailAddress };
+  };
+
+export default connect(mapStateToProps)(TeacherProfileScreen);
 
