@@ -41,7 +41,7 @@ export class ClassAttendanceScreen extends Component {
     saveAttendance = (classIndex) => {
         let selected = this.state.selectedStudents;
         let date = this.state.selectedDate;
-        let studentList = this.props.classrooms.classes[classIndex].students;
+        let studentList = this.props.classes[classIndex].students;
         let attendanceInfo =[];
         for(let i = 0; i < studentList.length; i++) {
             //If the current state of selected students includes the current student being
@@ -65,6 +65,40 @@ export class ClassAttendanceScreen extends Component {
         );
         ToastAndroid.show("Attendance for " + date + " has been saved", ToastAndroid.SHORT);
     }
+
+    //This method will set the state of the attendance screen based on the isHere property
+    //from each student's attendance history based on the corresponding date
+    getAttendance = (classIndex, date) => {
+        let studentList = this.props.teacher.classes[classIndex].students;
+        let selected = [];
+        //Maps out the list of students
+        studentList.map((student, i) => {
+            let attHistory = student.attendanceHistory;
+            let counter = 0;
+            let wasHere = true;
+            //goes through attendance history of the student from the beginning.
+            //If the date in the attendance history matches the date that is currently
+            //seleted, then the boolean "wasHere" will be set to whether the student
+            //was there or not on the given date. Then it will break out of the for loop
+            //since there is no point of going any further.
+            for(counter; counter < attHistory.length; counter++) {
+                if(attHistory[counter].date === date) {
+                    wasHere = attHistory[counter].isHere;
+                    break;
+                }
+            }
+            //At the end, it will add which students should be selected into the selected
+            //array which will later be passed to the state.
+            if(!wasHere) {
+                selected.push(i);
+            }
+        })
+
+        this.setState({
+            selectedStudents: selected, 
+            selectedDate: date
+        })
+    }
     
     render() {
 
@@ -87,12 +121,7 @@ export class ClassAttendanceScreen extends Component {
                     style={{paddingLeft: 15}}
                     maxDate={new Date().toLocaleDateString("en-US")}
                     customStyles={{dateInput: {borderColor: colors.lightGrey}}}
-                    onDateChange={(date) => {
-                        this.setState({
-                            selectedStudents: [], 
-                            selectedDate: date
-                        })
-                    }}
+                    onDateChange={(date) => this.getAttendance(classIndex, date)}
                     />
                 <QcActionButton
                     text="Save Attendance"
@@ -100,7 +129,7 @@ export class ClassAttendanceScreen extends Component {
                     style={{paddingRight: 30}}
                 />
             </View>
-            {this.props.classrooms.classes[classIndex].students.map((student, i) => {
+            {this.props.classes[classIndex].students.map((student, i) => {
                 let color = this.state.selectedStudents.includes(i) ? colors.red : colors.green;
                 return (
                     <StudentCard
@@ -135,10 +164,10 @@ const styles = StyleSheet.create({
     }
 });
 
-const mapStateToProps = (state) => {
-    const { classrooms } = state
-    return { classrooms }
-};
+const mapStateToProps = state => {
+    const { classes } = state.data.teachers[0];
+    return { classes };
+  };
 
 const mapDispatchToProps = dispatch => (
     bindActionCreators({

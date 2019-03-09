@@ -18,8 +18,11 @@ describe('Teacher screens snapshots', () => {
           }
         }
 
+        const {teachers} = INITIAL_STATE;
+        const { classes } = teachers[0];
+        
         const tree = renderer.create(<Component 
-          classrooms = {INITIAL_STATE} 
+          classes = {classes}
           navigation = {navigation}
         />).toJSON();
 
