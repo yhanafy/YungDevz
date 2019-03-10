@@ -4,4 +4,4 @@ export const deleteStudent = (classIndex, studentIndex) => (
       classIndex,
       studentIndex
     }
-  );
+);

@@ -91,7 +91,7 @@ export const INITIAL_STATE = {
 const classReducer = (state = INITIAL_STATE, action) => {
   // pulls list of current student in current state
   const {
-    classes
+    name, phoneNumber, emailAddress, classes
   } = state.teachers[0];
 
   const baseState= {...state};
@@ -136,7 +136,13 @@ const classReducer = (state = INITIAL_STATE, action) => {
       }
 
       newState = update(baseState, {teachers: {[0]: {classes: {[action.classIndex]: {students: {$set: [studentslist]}}}}  }});
-      return state
+      return newState;
+    case 'SAVE_TEACHER_INFO':
+      //fetches current teacher info
+      newState = update(baseState, {teachers: {[action.teacherIndex]: {name: {$set: action.teacherInfo.name}}}});
+      newState = update(newState, {teachers: {[action.teacherIndex]: {phoneNumber: {$set: action.teacherInfo.phoneNumber}}}});
+      newState = update(newState, {teachers: {[action.teacherIndex]: {emailAddress: {$set: action.teacherInfo.emailAddress}}}});
+      return newState;
     default:
       return state
   }
