@@ -127,7 +127,7 @@ export class AddClassScreen extends Component {
         <QcActionButton
           text="Add Class"
           onPress={() => {
-            this.setModalVisible(true)
+            this.addNewClass();
           }}
         />
       </View>
