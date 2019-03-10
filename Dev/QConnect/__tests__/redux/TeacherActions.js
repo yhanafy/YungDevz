@@ -35,4 +35,56 @@ describe('actions', () => {
     }
     expect(addStudent(studentInfo)).toEqual(expectedAction)
   })
+
+  it('should create an action to delete a student from a class', () => {
+
+    classIndex = 0;
+    studentIndex = 3;
+
+    const expectedAction = {
+      type: "DELETE_STUDENT",
+      classIndex,
+      studentIndex
+    }
+    expect(deleteStudent(classIndex, studentIndex)).toEqual(expectedAction)
+  })
+
+  it('should create an action to update a class attendance', () => {
+
+    let date = Date.now
+    const attendanceInfo =[
+        {
+            date: date,
+            isHere: false
+        },
+        {
+            date: date,
+            isHere: true
+        },
+        {
+            date: date,
+            isHere: false
+        },
+        {
+            date: date,
+            isHere: true
+        },
+        {
+            date: date,
+            isHere: false
+        },
+        {
+            date: date,
+            isHere: true
+        }
+    ];
+    const classIndex = 0;
+
+    const expectedAction = {
+      type: "ADD_ATTENDANCE",
+      classIndex,
+      attendanceInfo
+    }
+    expect(addAttendance(classIndex, attendanceInfo)).toEqual(expectedAction)
+  })
 })
