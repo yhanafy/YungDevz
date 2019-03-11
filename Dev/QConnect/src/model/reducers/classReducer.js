@@ -88,7 +88,7 @@ export const INITIAL_STATE = {
 
 };
 
-const classReducer = (state = INITIAL_STATE, action) => {
+export const classReducer = (state = INITIAL_STATE, action) => {
   // pulls list of current student in current state
   const {
     classes
