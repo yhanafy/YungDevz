@@ -10,13 +10,17 @@ describe('teacher reducer', () => {
 
     //------------ AddClass test ---------------------
     it('should handle ADD_CLASS', () => {
+        const teacher_props = {
+            name: "Teacher Name 1",
+            phoneNumber: "123-456-789",
+            emailAddress: "test@email.com",
+            currentClassIndex: 0,
+        };
+
         const initial_state = {
             teachers: [
                 {
-                    name: "Teacher Name 1",
-                    phoneNumber: "123-456-789",
-                    emailAddress: "test@email.com",
-                    currentClassIndex: 0,
+                    ...teacher_props,
                     classes: []
                 }]
         };
@@ -35,16 +39,9 @@ describe('teacher reducer', () => {
         ).toEqual({
             teachers: [
                 {
-                    name: "Teacher Name 1",
-                    phoneNumber: "123-456-789",
-                    emailAddress: "test@email.com",
-                    currentClassIndex: 0,
+                    ...teacher_props,
                     classes: [
-                        {
-                            name: "test class",
-                            imageId: 1,
-                            students: []
-                        }
+                        classInfo
                     ]
                 }
             ]
