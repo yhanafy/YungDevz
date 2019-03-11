@@ -135,7 +135,7 @@ export const classReducer = (state = INITIAL_STATE, action) => {
         
       }
 
-      newState = update(baseState, {teachers: {[0]: {classes: {[action.classIndex]: {students: {$set: [studentslist]}}}}  }});
+      newState = update(baseState, {teachers: {[0]: {classes: {[action.classIndex]: {students: {$set: studentslist}}}}  }});
       return newState;
     case 'SAVE_TEACHER_INFO':
       //fetches current teacher info

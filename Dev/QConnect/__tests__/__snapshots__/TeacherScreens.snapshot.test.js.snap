@@ -939,7 +939,7 @@ exports[`Teacher screens snapshots render TeacherProfileScreen 1`] = `
       <Text
         style={
           Object {
-            "fontSize": 22,
+            "fontSize": 16,
             "paddingLeft": 20,
           }
         }
@@ -948,10 +948,10 @@ exports[`Teacher screens snapshots render TeacherProfileScreen 1`] = `
       </Text>
       <TextInput
         allowFontScaling={true}
-        defaultValue="Eslam Abdo"
+        onChangeText={[Function]}
         style={
           Object {
-            "fontSize": 22,
+            "fontSize": 16,
             "paddingRight": 20,
           }
         }
@@ -974,7 +974,7 @@ exports[`Teacher screens snapshots render TeacherProfileScreen 1`] = `
       <Text
         style={
           Object {
-            "fontSize": 22,
+            "fontSize": 16,
             "paddingLeft": 20,
           }
         }
@@ -983,10 +983,10 @@ exports[`Teacher screens snapshots render TeacherProfileScreen 1`] = `
       </Text>
       <TextInput
         allowFontScaling={true}
-        defaultValue="425-XXX-XXXX"
+        onChangeText={[Function]}
         style={
           Object {
-            "fontSize": 22,
+            "fontSize": 16,
             "paddingRight": 20,
           }
         }
@@ -1007,19 +1007,19 @@ exports[`Teacher screens snapshots render TeacherProfileScreen 1`] = `
       <Text
         style={
           Object {
-            "fontSize": 22,
+            "fontSize": 16,
             "paddingLeft": 20,
           }
         }
       >
-        Password
+        Email Address
       </Text>
       <TextInput
         allowFontScaling={true}
-        defaultValue="12345678"
+        onChangeText={[Function]}
         style={
           Object {
-            "fontSize": 22,
+            "fontSize": 16,
             "paddingRight": 20,
           }
         }
@@ -1071,7 +1071,7 @@ exports[`Teacher screens snapshots render TeacherProfileScreen 1`] = `
           }
         }
       >
-        Save
+        Cancel
       </Text>
     </View>
     <View
@@ -1108,7 +1108,7 @@ exports[`Teacher screens snapshots render TeacherProfileScreen 1`] = `
           }
         }
       >
-        Cancel
+        Save
       </Text>
     </View>
   </View>
