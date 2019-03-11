@@ -23,7 +23,7 @@ describe('teacher reducer', () => {
         imageId: 1,
         students: []
     };
-
+    
     const teacher_one_class_no_students = {
         teachers: [
             {
@@ -42,7 +42,7 @@ describe('teacher reducer', () => {
         attendanceHistory: []
     };
 
-    const teacher_one_class_one_students = {
+    const teacher_one_class_one_student = {
         teachers: [
             {
                 ...teacher_props,
@@ -57,6 +57,37 @@ describe('teacher reducer', () => {
             }
         ]
     };
+
+    const date = Date.now;
+
+    const attendanceInfo = {
+            date: date,
+            isHere: false
+        }
+    ;
+
+    const teacher_one_class_one_student_with_attendance = {
+        teachers: [
+            {
+                ...teacher_props,
+                classes: [
+                    {
+                        ...classInfo,
+                        students: [
+                            {
+                                ...studentInfo,
+                                attendanceHistory: [
+                                    attendanceInfo
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    };
+
+
 
     //------------ Initial state test ---------------------
     it('should return the initial state', () => {
@@ -84,7 +115,31 @@ describe('teacher reducer', () => {
                 type: "ADD_STUDENT",
                 studentInfo: payload
             })
-        ).toEqual(teacher_one_class_one_students);
+        ).toEqual(teacher_one_class_one_student);
+    })
+
+    //------------ DeleteStudent test ---------------------
+    it('should handle DELETE_STUDENT', () => {
+        expect(
+            classReducer(teacher_one_class_one_student, {
+                type: "DELETE_STUDENT",
+                classIndex: 0,
+                studentIndex: 0
+            })
+        ).toEqual(teacher_one_class_no_students);
+    })
+
+    //------------ AddAttendance test ---------------------
+    it('should handle ADD_ATTENDANCE', () => {
+        const classIndex = 0;
+
+        expect(
+            classReducer(teacher_one_class_one_student, {
+                type: "ADD_ATTENDANCE",
+                classIndex: classIndex,
+                attendanceInfo: [attendanceInfo]
+            })
+        ).toEqual(teacher_one_class_one_student_with_attendance);
     })
 
 })
