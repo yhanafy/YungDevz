@@ -5,7 +5,9 @@ import {
   TextInput,
   Image,
   ScrollView,
-  StyleSheet
+  StyleSheet,
+  Modal,
+  TouchableHighlight,
 } from "react-native";
 import colors from "config/colors";
 import classImages from "config/classImages";
@@ -18,7 +20,12 @@ export class AddClassScreen extends Component {
   state = {
     className: "",
     classImageId: Math.floor(Math.random() * 10),
+    modalVisible: false,
   };
+
+  setModalVisible(visible) {
+    this.setState({ modalVisible: visible });
+  }
 
   addNewClass() {
     if (this.state.className) {
@@ -29,7 +36,7 @@ export class AddClassScreen extends Component {
       };
 
       this.props.addClass(classInfo);
-    }else{
+    } else {
       alert("Please make sure to have an input!")
     }
   }
@@ -42,19 +49,57 @@ export class AddClassScreen extends Component {
           alignItems: "center"
         }}
       >
-        <Image
-          source={(classImages.images[this.state.classImageId])}
-          style={{
-            backgroundColor: colors.lightGrey,
-            borderRadius: 50/2,
-            marginTop: 100,
-            marginBottom:30,
-            width: 150,
-            height: 150,
-            alignItems: "center",
-            justifyContent: "center"
-          }}
-        />
+
+        <Modal
+          animationType="slide"
+          transparent={false}
+          visible={this.state.modalVisible}
+          onRequestClose={() => {
+            Alert.alert('Modal has been closed.');
+          }}>
+          <View style={{ marginTop: 22 }}>
+            <View>
+              <Text>Hello World!</Text>
+
+              <TouchableHighlight
+                onPress={() => {
+                  this.setModalVisible(!this.state.modalVisible);
+                }}>
+                <Text>Hide Modal</Text>
+              </TouchableHighlight>
+            </View>
+          </View>
+        </Modal>
+
+
+
+        <TouchableHighlight
+          onPress={() => {
+            this.setModalVisible(!this.state.modalVisible);
+          }}>
+          <Image
+            source={(classImages.images[this.state.classImageId])}
+            style={{
+              backgroundColor: colors.lightGrey,
+              borderRadius: 50 / 2,
+              marginTop: 100,
+              marginBottom: 30,
+              width: 150,
+              height: 150,
+              alignItems: "center",
+              justifyContent: "center"
+            }}
+          />
+        </TouchableHighlight>
+
+
+        <TouchableHighlight
+          onPress={() => {
+            this.setModalVisible(!this.state.modalVisible);
+          }}>
+          <Text>Edit Class Image</Text>
+        </TouchableHighlight>
+
 
         <TextInput
           style={{
@@ -75,8 +120,8 @@ export class AddClassScreen extends Component {
         />
 
         <Text style={{
-          fontSize:15,
-          marginTop:5
+          fontSize: 15,
+          marginTop: 5
         }}>Your Class name is {this.state.className}</Text>
 
         <QcActionButton
