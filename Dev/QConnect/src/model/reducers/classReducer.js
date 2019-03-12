@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import update from 'immutability-helper';
+import actionTypes from '../actions/actionTypes';
 
 export const INITIAL_STATE = {
   teachers: [
@@ -97,19 +98,19 @@ export const classReducer = (state = INITIAL_STATE, action) => {
   const baseState = { ...state };
 
   switch (action.type) {
-    case 'ADD_STUDENT':
+    case actionTypes.ADD_STUDENT:
       let classIndex = action.studentInfo.classIndex
       newState = update(baseState, { teachers: { [0]: { classes: { [classIndex]: { students: { $push: [action.studentInfo.studentInfo] } } } } } });
       return newState;
 
-    case 'DELETE_STUDENT':
+    case actionTypes.DELETE_STUDENT:
       newState = update(baseState, { teachers: { [0]: { classes: { [action.classIndex]: { students: { $splice: [[action.studentIndex, 1]] } } } } } });
       return newState;
 
-    case 'ADD_CLASS':
+    case actionTypes.ADD_CLASS:
       newState = update(baseState, { teachers: { [0]: { classes: { $push: [action.classInfo] } } } });
       return newState
-    case 'ADD_ATTENDANCE':
+    case actionTypes.ADD_ATTENDANCE:
       //Fetches the current list of students
       studentslist = state.teachers[0].classes[action.classIndex].students;
 
