@@ -59,7 +59,7 @@ TopBanner.propTypes = {
 
 const styles = StyleSheet.create({
     entireTopView: {
-        height: 75,
+        height: 83.5,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'stretch',
@@ -68,19 +68,19 @@ const styles = StyleSheet.create({
         borderBottomColor: colors.black
     },
     topLeftView: {
-        height: 95,
+        height: 100,
         justifyContent: 'center',
         alignItems: 'center',
         paddingLeft: 20,
         flexDirection: 'row'
     },
     topMiddleView: {
-        height: 95,
+        height: 100,
         paddingBottom: 3,
         justifyContent: 'center'
     },
     topRightView: {
-        height: 95,
+        height: 100,
         justifyContent: 'center', 
         alignItems: 'center',
         paddingRight: 20,

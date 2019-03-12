@@ -1,6 +1,8 @@
+import actionTypes from './actionTypes';
+
 export const addStudent = studentInfo => (
     {
-      type: 'ADD_STUDENT',
+      type: actionTypes.ADD_STUDENT,
       studentInfo,
     }
   );

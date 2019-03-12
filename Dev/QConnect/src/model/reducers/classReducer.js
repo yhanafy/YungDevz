@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import update from 'immutability-helper';
+import actionTypes from '../actions/actionTypes';
 
 export const INITIAL_STATE = {
   teachers: [
@@ -88,60 +89,60 @@ export const INITIAL_STATE = {
 
 };
 
-const classReducer = (state = INITIAL_STATE, action) => {
+export const classReducer = (state = INITIAL_STATE, action) => {
   // pulls list of current student in current state
   const {
     name, phoneNumber, emailAddress, classes
   } = state.teachers[0];
 
-  const baseState= {...state};
+  const baseState = { ...state };
 
   switch (action.type) {
-    case 'ADD_STUDENT':
+    case actionTypes.ADD_STUDENT:
       let classIndex = action.studentInfo.classIndex
-      newState = update(baseState, {teachers: {[0]: {classes: {[classIndex]: {students: {$push: [action.studentInfo.studentInfo]}}}}}});
+      newState = update(baseState, { teachers: { [0]: { classes: { [classIndex]: { students: { $push: [action.studentInfo.studentInfo] } } } } } });
       return newState;
 
-    case 'DELETE_STUDENT':
-      newState = update(baseState, {teachers: {[0]: {classes: {[action.classIndex]: {students: {$splice: [[action.studentIndex, 1]]}}} } }});
+    case actionTypes.DELETE_STUDENT:
+      newState = update(baseState, { teachers: { [0]: { classes: { [action.classIndex]: { students: { $splice: [[action.studentIndex, 1]] } } } } } });
       return newState;
-      
-    case 'ADD_CLASS':
-      newState = update(baseState, {teachers: {[0]: {classes: {$push: [action.classInfo]}}}});
+
+    case actionTypes.ADD_CLASS:
+      newState = update(baseState, { teachers: { [0]: { classes: { $push: [action.classInfo] } } } });
       return newState
-    case 'ADD_ATTENDANCE':
+    case actionTypes.ADD_ATTENDANCE:
       //Fetches the current list of students
       studentslist = state.teachers[0].classes[action.classIndex].students;
-      
+
       //First checks if the student already has a recorded date with an attendance saved.
       //If he does, it will overwrite the old information with the new information. If he doesn't,
       //it will write the new information 
-      for(i = 0; i < studentslist.length; i++) {
+      for (i = 0; i < studentslist.length; i++) {
         let attHistory = studentslist[i].attendanceHistory;
         let addingDate = action.attendanceInfo[i].date;
         let isDatePreviouslySaved = false;
         let counter = 0;
-        for(counter = 0; counter < attHistory.length; counter++) {
-          if(attHistory[counter].date === addingDate) {
+        for (counter = 0; counter < attHistory.length; counter++) {
+          if (attHistory[counter].date === addingDate) {
             isDatePreviouslySaved = true;
             break;
           }
         }
-        if(isDatePreviouslySaved) {
+        if (isDatePreviouslySaved) {
           studentslist[i].attendanceHistory.splice(counter, 1, action.attendanceInfo[i])
         } else {
           studentslist[i].attendanceHistory.push(action.attendanceInfo[i]);
         }
-        
+
       }
 
-      newState = update(baseState, {teachers: {[0]: {classes: {[action.classIndex]: {students: {$set: [studentslist]}}}}  }});
+      newState = update(baseState, { teachers: { [0]: { classes: { [action.classIndex]: { students: { $set: studentslist } } } } } });
       return newState;
     case 'SAVE_TEACHER_INFO':
       //fetches current teacher info
-      newState = update(baseState, {teachers: {[action.teacherIndex]: {name: {$set: action.teacherInfo.name}}}});
-      newState = update(newState, {teachers: {[action.teacherIndex]: {phoneNumber: {$set: action.teacherInfo.phoneNumber}}}});
-      newState = update(newState, {teachers: {[action.teacherIndex]: {emailAddress: {$set: action.teacherInfo.emailAddress}}}});
+      newState = update(baseState, { teachers: { [action.teacherIndex]: { name: { $set: action.teacherInfo.name } } } });
+      newState = update(newState, { teachers: { [action.teacherIndex]: { phoneNumber: { $set: action.teacherInfo.phoneNumber } } } });
+      newState = update(newState, { teachers: { [action.teacherIndex]: { emailAddress: { $set: action.teacherInfo.emailAddress } } } });
       return newState;
     default:
       return state

@@ -1,6 +1,8 @@
+import actionTypes from './actionTypes';
+
 export const addAttendance = (classIndex, attendanceInfo) => (
     {
-        type: 'ADD_ATTENDANCE',
+        type: actionTypes.ADD_ATTENDANCE,
         classIndex,
         attendanceInfo
     }
