@@ -12,7 +12,7 @@ class FirstRunScreen extends React.Component {
 
     onTeacherFlow = () => {
       //todo: get the first class to show from redux persist (current class)
-        this.props.navigation.push('TeacherScreens', { classIndex: 0, classTitle: "Quran Clas"});
+        this.props.navigation.push('TeacherWelcomeScreen', { classIndex: 0, classTitle: "Quran Clas"});
     }
 
     render() {
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
       flex: 1
     },
     spacer: {
-      marginTop: 100 //hack, change this to be flex based.
+      marginTop: 150 //hack, change this to be flex based.
     },
     bgImage: {
       flex: 1,
