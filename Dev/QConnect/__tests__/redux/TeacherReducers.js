@@ -1,4 +1,5 @@
 import { classReducer, INITIAL_STATE } from 'model/reducers/classReducer';
+import actionTypes from "model/actions/actionTypes";
 
 describe('teacher reducer', () => {
 
@@ -98,7 +99,7 @@ describe('teacher reducer', () => {
     it('should handle ADD_CLASS', () => {
         expect(
             classReducer(teacher_no_class, {
-                type: "ADD_CLASS",
+                type: actionTypes.ADD_CLASS,
                 classInfo
             })
         ).toEqual(teacher_one_class_no_students);
@@ -112,7 +113,7 @@ describe('teacher reducer', () => {
         }
         expect(
             classReducer(teacher_one_class_no_students, {
-                type: "ADD_STUDENT",
+                type: actionTypes.ADD_STUDENT,
                 studentInfo: payload
             })
         ).toEqual(teacher_one_class_one_student);
@@ -122,7 +123,7 @@ describe('teacher reducer', () => {
     it('should handle DELETE_STUDENT', () => {
         expect(
             classReducer(teacher_one_class_one_student, {
-                type: "DELETE_STUDENT",
+                type: actionTypes.DELETE_STUDENT,
                 classIndex: 0,
                 studentIndex: 0
             })
@@ -135,7 +136,7 @@ describe('teacher reducer', () => {
 
         expect(
             classReducer(teacher_one_class_one_student, {
-                type: "ADD_ATTENDANCE",
+                type: actionTypes.ADD_ATTENDANCE,
                 classIndex: classIndex,
                 attendanceInfo: [attendanceInfo]
             })

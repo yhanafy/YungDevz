@@ -1,6 +1,8 @@
+import actionTypes from './actionTypes';
+
 export const saveTeacherInfo = (teacherIndex, teacherInfo) => (
     {
-      type: 'SAVE_TEACHER_INFO',
+      type: actionTypes.SAVE_TEACHER_INFO,
       teacherIndex,
       teacherInfo
     }

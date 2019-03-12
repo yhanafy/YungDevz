@@ -2,6 +2,7 @@ import { addClass } from "model/actions/addClass";
 import { addStudent } from "model/actions/addStudent";
 import { deleteStudent } from "model/actions/deleteStudent";
 import { addAttendance } from "model/actions/addAttendance";
+import actionTypes from "model/actions/actionTypes";
 //import * as types from '../../constants/ActionTypes'
 
 describe('actions', () => {
@@ -12,7 +13,7 @@ describe('actions', () => {
         students: []
       };
     const expectedAction = {
-      type: "ADD_CLASS",
+      type: actionTypes.ADD_CLASS,
       classInfo
     }
     expect(addClass(classInfo)).toEqual(expectedAction)
@@ -30,7 +31,7 @@ describe('actions', () => {
       };
 
     const expectedAction = {
-      type: "ADD_STUDENT",
+      type: actionTypes.ADD_STUDENT,
       studentInfo
     }
     expect(addStudent(studentInfo)).toEqual(expectedAction)
@@ -42,7 +43,7 @@ describe('actions', () => {
     studentIndex = 3;
 
     const expectedAction = {
-      type: "DELETE_STUDENT",
+      type: actionTypes.DELETE_STUDENT,
       classIndex,
       studentIndex
     }
@@ -81,7 +82,7 @@ describe('actions', () => {
     const classIndex = 0;
 
     const expectedAction = {
-      type: "ADD_ATTENDANCE",
+      type: actionTypes.ADD_ATTENDANCE,
       classIndex,
       attendanceInfo
     }

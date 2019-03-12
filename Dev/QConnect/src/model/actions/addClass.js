@@ -1,6 +1,8 @@
+import actionTypes from './actionTypes';
+
 export const addClass = classInfo => (
     {
-      type: 'ADD_CLASS',
+      type: actionTypes.ADD_CLASS,
       classInfo,
     }
 );
