@@ -22,7 +22,10 @@ export class AddClassScreen extends Component {
     classImageId: Math.floor(Math.random() * 10),
     modalVisible: false,
   };
-
+/*This method will toggle the 
+ *
+ *
+*/
   setModalVisible(visible) {
     this.setState({ modalVisible: visible });
   }
@@ -130,6 +133,8 @@ export class AddClassScreen extends Component {
             this.addNewClass();
           }}
         />
+
+
       </View>
     );
   }
