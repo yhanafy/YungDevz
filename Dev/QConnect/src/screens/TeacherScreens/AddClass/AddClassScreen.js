@@ -22,10 +22,11 @@ export class AddClassScreen extends Component {
     classImageId: Math.floor(Math.random() * 10),
     modalVisible: false,
   };
-/*This method will toggle the 
- *
- *
-*/
+
+  /*This method will toggle the 
+   *On the modal visablity.
+  */
+
   setModalVisible(visible) {
     this.setState({ modalVisible: visible });
   }
@@ -46,96 +47,101 @@ export class AddClassScreen extends Component {
 
   render() {
     return (
+
       <View
         ID="addNewClass"
         style={{
           alignItems: "center"
         }}
       >
-
-        <Modal
-          animationType="slide"
-          transparent={false}
-          visible={this.state.modalVisible}
-          onRequestClose={() => {
-            Alert.alert('Modal has been closed.');
-          }}>
-          <View style={{ marginTop: 22 }}>
-            <View>
-              <Text>Hello World!</Text>
-
-              <TouchableHighlight
-                onPress={() => {
-                  this.setModalVisible(!this.state.modalVisible);
-                }}>
-                <Text>Hide Modal</Text>
-              </TouchableHighlight>
-            </View>
-          </View>
-        </Modal>
+        
+          <Modal
+            animationType="slide"
+            transparent={false}
+            visible={this.state.modalVisible}
+            onRequestClose={() => {
+              Alert.alert('Modal has been closed.');
+            }}>
 
 
 
-        <TouchableHighlight
-          onPress={() => {
-            this.setModalVisible(!this.state.modalVisible);
-          }}>
-          <Image
-            source={(classImages.images[this.state.classImageId])}
-            style={{
-              backgroundColor: colors.lightGrey,
-              borderRadius: 50 / 2,
-              marginTop: 100,
-              marginBottom: 30,
-              width: 150,
-              height: 150,
-              alignItems: "center",
-              justifyContent: "center"
-            }}
-          />
-        </TouchableHighlight>
+              
+              <QcActionButton
+              text="Close Image Menu"
+              style = {{
+                justifyContent: "center",
+                paddingVertical: 10,
+                
+              }}
+              onPress={() => {
+                this.setModalVisible(!this.state.modalVisible);
+              }}/>
+              
+      
+        </Modal >
 
 
-        <TouchableHighlight
-          onPress={() => {
-            this.setModalVisible(!this.state.modalVisible);
-          }}>
-          <Text>Edit Class Image</Text>
-        </TouchableHighlight>
 
-
-        <TextInput
+      <TouchableHighlight
+        onPress={() => {
+          this.setModalVisible(!this.state.modalVisible);
+        }}>
+        <Image
+          source={(classImages.images[this.state.classImageId])}
           style={{
             backgroundColor: colors.lightGrey,
-            borderColor: colors.darkGrey,
-            width: 250,
-            height: 30,
-            textAlign: "center",
+            borderRadius: 50 / 2,
+            marginTop: 100,
+            marginBottom: 30,
+            width: 150,
+            height: 150,
             alignItems: "center",
             justifyContent: "center"
           }}
-          placeholder="Write Class Name Here"
-          onChangeText={classInput =>
-            this.setState({
-              className: classInput
-            })
-          }
         />
-
-        <Text style={{
-          fontSize: 15,
-          marginTop: 5
-        }}>Your Class name is {this.state.className}</Text>
-
-        <QcActionButton
-          text="Add Class"
-          onPress={() => {
-            this.addNewClass();
-          }}
-        />
+      </TouchableHighlight>
 
 
-      </View>
+      <TouchableHighlight
+        onPress={() => {
+          this.setModalVisible(!this.state.modalVisible);
+        }}>
+        <Text>Edit Class Image</Text>
+      </TouchableHighlight>
+
+
+      <TextInput
+        style={{
+          backgroundColor: colors.lightGrey,
+          borderColor: colors.darkGrey,
+          width: 250,
+          height: 30,
+          textAlign: "center",
+          alignItems: "center",
+          justifyContent: "center"
+        }}
+        placeholder="Write Class Name Here"
+        onChangeText={classInput =>
+          this.setState({
+            className: classInput
+          })
+        }
+      />
+
+      <Text style={{
+        fontSize: 15,
+        marginTop: 5
+      }}>Your Class name is {this.state.className}</Text>
+
+      <QcActionButton
+        text="Add Class"
+        onPress={() => {
+          this.addNewClass();
+        }}
+      />
+
+
+      </View >
     );
   }
 }
