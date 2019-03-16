@@ -5,9 +5,18 @@ import classImages from 'config/classImages';
 
 class EvaluationPage extends Component {
 
+  state = {
+    tajweed: {
+    edgham: 0,
+    madd: 0
+    //... (todo: add others like this)
+    },
+    memorization: 0, //memorization rating (0 to 3)
+    notes: ""
+    };
+
     render(){
         return(
-        
         <View>
 <Text>Header</Text>
 
