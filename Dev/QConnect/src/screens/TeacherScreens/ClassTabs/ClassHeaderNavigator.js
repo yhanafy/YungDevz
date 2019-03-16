@@ -29,7 +29,6 @@ const ClassHeaderNavigator = createStackNavigator({
           LeftIconName="angle-left"
           LeftOnPress={() => navigation.goBack()}
           Title="Student Profile"
-          RightIconName="edit"
           RightOnPress={() => {}}
         />
       )
