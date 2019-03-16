@@ -28,7 +28,7 @@ const ClassHeaderNavigator = createStackNavigator({
         <TopBanner
           LeftIconName="angle-left"
           LeftOnPress={() => navigation.goBack()}
-          Title={navigation.state.params.name}
+          Title="Student Profile"
           RightIconName="edit"
           RightOnPress={() => {}}
         />
