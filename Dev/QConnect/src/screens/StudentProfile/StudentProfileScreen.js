@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Image, Text, StyleSheet } from 'react-native';
+import { View, Image, Text, StyleSheet, ScrollView } from 'react-native';
 import colors from 'config/colors';
 import QcActionButton from "components/QcActionButton"
 import { Rating } from 'react-native-elements';
@@ -16,7 +16,7 @@ class StudentProfileScreen extends Component {
     const { navigate } = this.props.navigation;
     const { classIndex, studentIndex } = this.props.navigation.state.params;
     const currentStudent = this.props.classes[classIndex].students[studentIndex];
-    const rating = 5.0;
+    const rating = 5.0; //to-do: make this into a method that computes the average ratings
 
     return (
       <View style={styles.container}>
@@ -51,9 +51,9 @@ class StudentProfileScreen extends Component {
                 })} />
         </View>
 
-        <View style={styles.prevAssignments}>
-
-        </View>
+        <ScrollView style={styles.prevAssignments}>
+          <Text>Placeholder for past assignments</Text>
+        </ScrollView>
       </View>
     );
   }
@@ -69,7 +69,8 @@ const styles = StyleSheet.create({
   profileInfo: {
     flexDirection: 'column',
     backgroundColor: colors.white,
-    height: 125
+    height: 125,
+    marginBottom: 10
   },
   nonButtons: {
     flexDirection: 'column'
@@ -100,10 +101,14 @@ const styles = StyleSheet.create({
   buttons: {
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   prevAssignments: {
-
+    flexDirection: 'column',
+    backgroundColor: colors.white,
+    marginLeft: 7, 
+    marginRight: 7,
+    marginTop: 10,
   }
 });
 

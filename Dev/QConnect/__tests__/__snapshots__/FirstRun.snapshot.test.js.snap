@@ -51,7 +51,7 @@ exports[`First run screens snapshots initial first run screen renders correctly 
     <View
       style={
         Object {
-          "marginTop": 100,
+          "marginTop": 150,
         }
       }
     />
@@ -70,6 +70,7 @@ exports[`First run screens snapshots initial first run screen renders correctly 
           "backgroundColor": "#efdecc",
           "borderRadius": 30,
           "justifyContent": "center",
+          "marginBottom": 10,
           "marginLeft": 10,
           "marginRight": 10,
           "marginTop": 10,
