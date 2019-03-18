@@ -3,6 +3,7 @@ import { View, Image, Text, StyleSheet, ScrollView } from 'react-native';
 import colors from 'config/colors';
 import QcActionButton from "components/QcActionButton"
 import { Rating } from 'react-native-elements';
+import fonts from 'config/colors';
 import { connect } from "react-redux";
 
 class StudentProfileScreen extends Component {
@@ -28,14 +29,14 @@ class StudentProfileScreen extends Component {
                   style={styles.profilePic} />
               </View>
               <View style={styles.profileInfoTopRight}>
-                <Text style={{ fontSize: 24 }}>{currentStudent.name}</Text>
+                <Text style={styles.bigText}>{currentStudent.name}</Text>
                 <Rating readonly={true} startingValue={rating} imageSize={25} />
-                <Text style={{ fontSize: 14 }}>{rating >= 3 ? 'Outstanding!' : 'Needs Work'}</Text>
+                <Text style={styles.subText}>{rating >= 3 ? 'Outstanding!' : 'Needs Work'}</Text>
               </View>
             </View>
 
             <View style={styles.profileInfoBottom}>
-              <Text style={{ fontSize: 14 }}>{'Current Assignment: ' + currentStudent.assignment}</Text>
+              <Text style={styles.subText}>{'Current Assignment: ' + currentStudent.assignment}</Text>
             </View>
 
         </View>
@@ -61,6 +62,14 @@ class StudentProfileScreen extends Component {
 
 //styles for the entire page
 const styles = StyleSheet.create({
+  bigText: {
+    fontSize: 24,
+    fontFamily: fonts.regular
+  },
+  subText: {
+    fontSize: 14,
+    fontFamily: fonts.regular
+  },
   container: {
     flexDirection: "column",
     backgroundColor: colors.lightGrey,
