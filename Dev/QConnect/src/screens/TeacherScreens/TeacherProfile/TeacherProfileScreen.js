@@ -1,11 +1,41 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Image, TextInput, Text } from 'react-native';
+import { StyleSheet, View, Image, TextInput, Text, ToastAndroid} from 'react-native';
 import QcActionButton from 'components/QcActionButton';
+import { saveTeacherInfo } from "model/actions/saveTeacherInfo";
+import { bindActionCreators } from 'redux';
+import { connect } from "react-redux";
 import colors from 'config/colors';
 
 //To-Do: All info in this class is static, still needs to be hooked up to data base in order
 //to function dynamically
 export class TeacherProfileScreen extends Component {
+    state = {
+        name: this.props.name,
+        phoneNumber: this.props.phoneNumber,
+        emailAddress: this.props.emailAddress
+    }
+    //this method resets the text inputs back to the teacher's info
+    resetProfileInfo = (teacherID) => {
+        this.setState({
+            name: this.props.name,
+            phoneNumber: this.props.phoneNumber,
+            emailAddress: this.props.emailAddress
+        })
+    }
+    //to-do: method must be able to update the profile picture
+    editProfilePic = (teacherID) => {
+
+    }
+
+    //this method saves the new profile information to the redux database
+    saveProfileInfo = (teacherID) => {
+        this.props.saveTeacherInfo(
+            teacherID,
+            this.state
+        );
+        ToastAndroid.show("Your profile has been saved", ToastAndroid.SHORT);
+    }
+
     render() {
         return(
             //Random image appears, still need to hook up database, see to-do above
@@ -26,44 +56,54 @@ export class TeacherProfileScreen extends Component {
                         <Text style={styles.infoTitle}>Name</Text>
                         <TextInput 
                         style={styles.infoTextInput} 
-                        defaultValue="Eslam Abdo"/>
+                        onChangeText={newText =>
+                            this.setState({
+                                name: newText,
+                                phoneNumber: this.state.phoneNumber,
+                                emailAddress: this.state.emailAddress
+                        })} 
+                        value={this.state.name}/>
                     </View>
                     <View style={styles.infoRow}>
                         <Text style={styles.infoTitle}>Phone Number</Text>
                         <TextInput 
                         style={styles.infoTextInput} 
-                        defaultValue="425-XXX-XXXX"/>
+                        onChangeText={newText =>
+                            this.setState({
+                                name: this.state.name,
+                                phoneNumber: newText,
+                                emailAddress: this.state.emailAddress
+                        })} 
+                        value={this.state.phoneNumber}/>
                     </View>
                     <View style={styles.infoRowLast}>
-                        <Text style={styles.infoTitle}>Password</Text>
+                        <Text style={styles.infoTitle}>Email Address</Text>
                         <TextInput 
-                        style={styles.infoTextInput} 
-                        defaultValue="12345678"/>
+                        style={styles.infoTextInput}
+                        onChangeText={newText =>
+                            this.setState({
+                                name: this.state.name,
+                                phoneNumber: this.state.phoneNumber,
+                                emailAddress: newText
+                        })} 
+                        value={this.state.emailAddress}/>
                     </View>
                 </View>
                 <View style={styles.buttonsContainer}>
                     <QcActionButton
-                    text="Save"
-                    onPress={() => this.saveProfileInfo(0)}
+                    text="Cancel"
+                    onPress={() => this.resetProfileInfo()}
                     />
                     <QcActionButton
-                    text="Cancel"
-                    onPress={() => this.props.navigation.navigate('TeacherProfile')}
+                    text="Save"
+                    onPress={() => this.saveProfileInfo(0)} //to-do: Make sure that teacher ID 
+                                                            //is passed instead of 0
                     />
                 </View>
             </View>
         )
     }
 
-    //to-do: method must be able to update the profile picture
-    editProfilePic = (teacherID) => {
-
-    }
-
-    //to-do: method must be able to save profile info
-    saveProfileInfo= (teacherID) => {
-        
-    }
 }
 
 //Styles for the Teacher profile class
@@ -106,11 +146,11 @@ const styles = StyleSheet.create({
     },
     infoTextInput: {
         paddingRight: 20, 
-        fontSize: 22
+        fontSize: 16
     },
     infoTitle: {
         paddingLeft: 20, 
-        fontSize: 22
+        fontSize: 16
     },
     buttonsContainer: {
         paddingTop: 20,
@@ -120,5 +160,16 @@ const styles = StyleSheet.create({
     }
 })
 
-export default TeacherProfileScreen;
+const mapStateToProps = state => {
+    const { name, phoneNumber, emailAddress } = state.data.teachers[0];
+    return { name, phoneNumber, emailAddress };
+};
+
+const mapDispatchToProps = dispatch => (
+    bindActionCreators({
+        saveTeacherInfo
+    }, dispatch)
+);
+
+export default connect(mapStateToProps, mapDispatchToProps)(TeacherProfileScreen);
 

@@ -1,7 +1,9 @@
+import actionTypes from './actionTypes';
+
 export const deleteStudent = (classIndex, studentIndex) => (
     {
-      type: 'DELETE_STUDENT',
+      type: actionTypes.DELETE_STUDENT,
       classIndex,
       studentIndex
     }
-  );
+);
