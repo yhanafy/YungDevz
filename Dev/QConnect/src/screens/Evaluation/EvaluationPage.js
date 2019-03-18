@@ -17,9 +17,6 @@ class EvaluationPage extends Component {
 
     render(){
         return(
-        <View>
-      <Text>Header</Text>
-
       <View
         style={{
           alignContent: "center",

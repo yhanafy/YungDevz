@@ -51,7 +51,7 @@ exports[`First run screens snapshots initial first run screen renders correctly 
     <View
       style={
         Object {
-          "marginTop": 100,
+          "marginTop": 150,
         }
       }
     />
