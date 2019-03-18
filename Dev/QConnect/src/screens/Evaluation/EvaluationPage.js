@@ -4,9 +4,21 @@ import { Rating, AirbnbRating } from 'react-native-elements';
 import colors from 'config/colors';
 
 class EvaluationPage extends Component {
+  
+  state = {
+    tajweed: {
+    edgham: 0,
+    madd: 0
+    //... (todo: add others like this)
+    },
+    memorization: 0, //memorization rating (0 to 3)
+    notes: ""
+    };
 
-  render() {
-    return (
+    render(){
+        return(
+        <View>
+      <Text>Header</Text>
 
       <View
         style={{
