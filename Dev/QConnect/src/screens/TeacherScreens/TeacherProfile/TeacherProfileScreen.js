@@ -16,6 +16,7 @@ export class TeacherProfileScreen extends Component {
         phoneNumber: this.props.phoneNumber,
         emailAddress: this.props.emailAddress,
         profileImageId: this.props.profileImageId,
+        modalVisible: false,
     }
     //this method resets the text inputs back to the teacher's info
     resetProfileInfo = (teacherID) => {
@@ -27,9 +28,13 @@ export class TeacherProfileScreen extends Component {
         })
     }
 
+    setModalVisible(visible) {
+        this.setState({ modalVisible: visible });
+    }
+
     //to-do: method must be able to update the profile picture
     editProfilePic = (teacherID) => {
-
+        this.setModalVisible(true);
     }
 
     //this method saves the new profile information to the redux database
@@ -54,10 +59,22 @@ export class TeacherProfileScreen extends Component {
         this.setState({emailAddress: value})
     }
 
+    onImageSelected(index) {
+        this.setState({profileImageId: index,})
+        this.setModalVisible(false);
+    }
+
+    //-----------renders the teacher profile UI ------------------------------------
     render() {
         return(
-            //Random image appears, still need to hook up database, see to-do above
             <View style={styles.container}>
+                <ImageSelectionModal
+                    visible={this.state.modalVisible}
+                    images={teacherImages.images}
+                    cancelText="Cancel"
+                    setModalVisible={this.setModalVisible.bind(this)}
+                    onImageSelected={this.onImageSelected.bind(this)}
+                />
                 <View style={styles.picContainer}>
                     <Image 
                         style={styles.profilePic} 

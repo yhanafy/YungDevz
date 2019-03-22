@@ -128,7 +128,7 @@ the holy book.</Text>
 
 }
 
-//Styles for the Teacher profile class
+//-----------------   Styles for the Teacher profile class-----------------------------------
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'column',
@@ -170,6 +170,7 @@ const styles = StyleSheet.create({
     }
 })
 
+//-------------- Redux hooks ----------------------------------------------------
 const mapStateToProps = state => {
     const { name, phoneNumber, emailAddress, profileImageId } = state.data.teachers[0];
     return { name, phoneNumber, emailAddress, profileImageId };
