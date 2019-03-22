@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Image, TextInput, Text, ToastAndroid} from 'react-native';
 import QcActionButton from 'components/QcActionButton';
+import TouchableText from 'components/TouchableText'
 import { saveTeacherInfo } from "model/actions/saveTeacherInfo";
 import { bindActionCreators } from 'redux';
 import { connect } from "react-redux";
@@ -36,6 +37,19 @@ export class TeacherProfileScreen extends Component {
         ToastAndroid.show("Your profile has been saved", ToastAndroid.SHORT);
     }
 
+    //------ event handlers to capture user input into state as user modifies the entries -----
+    onNameChanged = (value) => {
+        this.setState({name: value})
+    }
+
+    onPhoneNumberChanged = (value) => {
+        this.setState({phoneNumber: value})
+    }
+
+    onEmailAddressChanged = (value) => {
+        this.setState({emailAddress: value})
+    }
+
     render() {
         return(
             //Random image appears, still need to hook up database, see to-do above
@@ -44,51 +58,18 @@ export class TeacherProfileScreen extends Component {
                     <Image 
                         style={styles.profilePic} 
                         source={{uri: "https://randomuser.me/api/portraits/thumb/women/42.jpg"}} />
-                    <QcActionButton
-                        text="Change Profile Photo"
+                    <TouchableText
+                        text="Update profile image"
                         onPress={() => this.editProfilePic(0)} />
                 </View>
-                <View style={styles.editInfo}>
-                    <View style={styles.infoRow}>
-                        <Text style={{fontSize: 28, paddingLeft: 20}}>Information</Text>
-                    </View>
-                    <View style={styles.infoRow}>
-                        <Text style={styles.infoTitle}>Name</Text>
-                        <TextInput 
-                        style={styles.infoTextInput} 
-                        onChangeText={newText =>
-                            this.setState({
-                                name: newText,
-                                phoneNumber: this.state.phoneNumber,
-                                emailAddress: this.state.emailAddress
-                        })} 
-                        value={this.state.name}/>
-                    </View>
-                    <View style={styles.infoRow}>
-                        <Text style={styles.infoTitle}>Phone Number</Text>
-                        <TextInput 
-                        style={styles.infoTextInput} 
-                        onChangeText={newText =>
-                            this.setState({
-                                name: this.state.name,
-                                phoneNumber: newText,
-                                emailAddress: this.state.emailAddress
-                        })} 
-                        value={this.state.phoneNumber}/>
-                    </View>
-                    <View style={styles.infoRowLast}>
-                        <Text style={styles.infoTitle}>Email Address</Text>
-                        <TextInput 
-                        style={styles.infoTextInput}
-                        onChangeText={newText =>
-                            this.setState({
-                                name: this.state.name,
-                                phoneNumber: this.state.phoneNumber,
-                                emailAddress: newText
-                        })} 
-                        value={this.state.emailAddress}/>
-                    </View>
-                </View>
+                <TeacherInfoEntries
+                        name={this.state.name}
+                        phoneNumber={this.state.phoneNumber}
+                        emailAddress={this.state.emailAddress}
+                        onNameChanged={this.onNameChanged}
+                        onPhoneNumberChanged={this.onPhoneNumberChanged}
+                        onEmailAddressChanged={this.onEmailAddressChanged}
+                    />
                 <View style={styles.buttonsContainer}>
                     <QcActionButton
                     text="Cancel"
@@ -161,8 +142,8 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = state => {
-    const { name, phoneNumber, emailAddress } = state.data.teachers[0];
-    return { name, phoneNumber, emailAddress };
+    const { name, phoneNumber, emailAddress, profileImageId } = state.data.teachers[0];
+    return { name, phoneNumber, emailAddress, profileImageId };
 };
 
 const mapDispatchToProps = dispatch => (
