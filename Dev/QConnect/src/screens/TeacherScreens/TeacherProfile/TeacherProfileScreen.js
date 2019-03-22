@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Image, TextInput, Text, ToastAndroid} from 'react-native';
 import QcActionButton from 'components/QcActionButton';
 import TouchableText from 'components/TouchableText'
+import teacherImages from 'config/teacherImages'
 import { saveTeacherInfo } from "model/actions/saveTeacherInfo";
 import { bindActionCreators } from 'redux';
 import { connect } from "react-redux";
@@ -13,16 +14,19 @@ export class TeacherProfileScreen extends Component {
     state = {
         name: this.props.name,
         phoneNumber: this.props.phoneNumber,
-        emailAddress: this.props.emailAddress
+        emailAddress: this.props.emailAddress,
+        profileImageId: this.props.profileImageId,
     }
     //this method resets the text inputs back to the teacher's info
     resetProfileInfo = (teacherID) => {
         this.setState({
             name: this.props.name,
             phoneNumber: this.props.phoneNumber,
-            emailAddress: this.props.emailAddress
+            emailAddress: this.props.emailAddress,
+            profileImageId: this.props.profileImageId,
         })
     }
+
     //to-do: method must be able to update the profile picture
     editProfilePic = (teacherID) => {
 
@@ -57,7 +61,7 @@ export class TeacherProfileScreen extends Component {
                 <View style={styles.picContainer}>
                     <Image 
                         style={styles.profilePic} 
-                        source={{uri: "https://randomuser.me/api/portraits/thumb/women/42.jpg"}} />
+                        source={teacherImages.images[this.state.profileImageId]} />
                     <TouchableText
                         text="Update profile image"
                         onPress={() => this.editProfilePic(0)} />
