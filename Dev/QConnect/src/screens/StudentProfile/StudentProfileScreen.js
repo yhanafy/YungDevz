@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
-import { View, Image, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Image, Text, StyleSheet, ScrollView, KeyboardAvoidingView } from 'react-native';
 import colors from 'config/colors';
 import QcActionButton from "components/QcActionButton"
 import { Rating } from 'react-native-elements';
 import fonts from 'config/colors';
+import DialogInput from 'react-native-dialog-input';
 import { connect } from "react-redux";
 
 class StudentProfileScreen extends Component {
 
+  state = {
+    isDialogVisible: false
+  }
   //Method retrieves the current average rating for the current student
   getAverageRating() {
 
@@ -21,35 +25,40 @@ class StudentProfileScreen extends Component {
 
     return (
       <View style={styles.container}>
+        <DialogInput
+          isDialogVisible={this.state.isDialogVisible}
+          title="Edit Assignment"
+          hintInput="Enter assignment here..."
+          dialogStyle={{marginBottom: 100}}
+          submitInput={(inputText) => { this.setState({ isDialogVisible: false }) }}
+          closeDialog={() => { this.setState({ isDialogVisible: false }) }} />
         <View style={styles.profileInfo}>
 
-            <View style={styles.profileInfoTop}>
-              <View style={styles.profileInfoTopLeft}>
-                <Image source={{ uri: currentStudent.avatar }}
-                  style={styles.profilePic} />
-              </View>
-              <View style={styles.profileInfoTopRight}>
-                <Text style={styles.bigText}>{currentStudent.name}</Text>
-                <Rating readonly={true} startingValue={rating} imageSize={25} />
-                <Text style={styles.subText}>{rating >= 3 ? 'Outstanding!' : 'Needs Work'}</Text>
-              </View>
+          <View style={styles.profileInfoTop}>
+            <View style={styles.profileInfoTopLeft}>
+              <Image source={{ uri: currentStudent.avatar }}
+                style={styles.profilePic} />
             </View>
+            <View style={styles.profileInfoTopRight}>
+              <Text style={styles.bigText}>{currentStudent.name}</Text>
+              <Rating readonly={true} startingValue={rating} imageSize={25} />
+              <Text style={styles.subText}>{rating >= 3 ? 'Outstanding!' : 'Needs Work'}</Text>
+            </View>
+          </View>
 
-            <View style={styles.profileInfoBottom}>
-              <Text style={styles.subText}>{'Current Assignment: ' + currentStudent.assignment}</Text>
-            </View>
+          <View style={styles.profileInfoBottom}>
+            <Text style={styles.subText}>{'Current Assignment: ' + currentStudent.assignment}</Text>
+          </View>
 
         </View>
 
         <View style={styles.buttons}>
-              <QcActionButton text='Add Assignment' onPress={() => 
-                //to-do: Make it possible to add assignment
-                {}}/>
-              <QcActionButton text='Grade Assignment' onPress={() => 
-                this.props.navigation.push("EvaluationPage", {
-                  studentIndex: studentIndex,
-                  classIndex: classIndex
-                })} />
+          <QcActionButton text='Edit Assignment' onPress={() => { this.setState({ isDialogVisible: true }) }} />
+          <QcActionButton text='Grade Assignment' onPress={() =>
+            this.props.navigation.push("EvaluationPage", {
+              studentIndex: studentIndex,
+              classIndex: classIndex
+            })} />
         </View>
 
         <ScrollView style={styles.prevAssignments}>
@@ -115,7 +124,7 @@ const styles = StyleSheet.create({
   prevAssignments: {
     flexDirection: 'column',
     backgroundColor: colors.white,
-    marginLeft: 7, 
+    marginLeft: 7,
     marginRight: 7,
     marginTop: 10,
   }
