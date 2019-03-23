@@ -1,19 +1,33 @@
 import React, { Component } from 'react';
-import { View, Image, Text, StyleSheet, ScrollView, KeyboardAvoidingView } from 'react-native';
+import { View, Image, Text, StyleSheet, ScrollView } from 'react-native';
 import colors from 'config/colors';
 import QcActionButton from "components/QcActionButton"
 import { Rating } from 'react-native-elements';
 import fonts from 'config/colors';
 import DialogInput from 'react-native-dialog-input';
+import { editCurrentAssignment } from 'model/actions/editCurrentAssignment';
+import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
 class StudentProfileScreen extends Component {
 
   state = {
-    isDialogVisible: false
+    isDialogVisible: false, 
   }
+
   //Method retrieves the current average rating for the current student
   getAverageRating() {
+
+  }
+
+  //method updates the current assignment of the student
+  editAssignment(classIndex, studentIndex, newAssignmentName) {
+    this.props.editCurrentAssignment(classIndex, studentIndex, newAssignmentName);
+    this.setState({ isDialogVisible: false });
+  }
+
+  //method will add a new assignment for the student
+  addAssignment(newAssignmentName) {
 
   }
 
@@ -21,6 +35,7 @@ class StudentProfileScreen extends Component {
     const { navigate } = this.props.navigation;
     const { classIndex, studentIndex } = this.props.navigation.state.params;
     const currentStudent = this.props.classes[classIndex].students[studentIndex];
+    const hasCurrentAssignment = currentStudent.assignment === 'None' ? false : true;
     const rating = 5.0; //to-do: make this into a method that computes the average ratings
 
     return (
@@ -30,8 +45,12 @@ class StudentProfileScreen extends Component {
           title="Edit Assignment"
           hintInput="Enter assignment here..."
           dialogStyle={{marginBottom: 100}}
-          submitInput={(inputText) => { this.setState({ isDialogVisible: false }) }}
+          submitInput={(inputText) => 
+            //If the student already has an existing assignment, then it will simply edit the
+            //name of the current assignment, if not, then it will create a new assignment
+            { hasCurrentAssignment ? this.editAssignment(classIndex, studentIndex, inputText) : this.addAssignment(inputText)}}
           closeDialog={() => { this.setState({ isDialogVisible: false }) }} />
+
         <View style={styles.profileInfo}>
 
           <View style={styles.profileInfoTop}>
@@ -53,7 +72,8 @@ class StudentProfileScreen extends Component {
         </View>
 
         <View style={styles.buttons}>
-          <QcActionButton text='Edit Assignment' onPress={() => { this.setState({ isDialogVisible: true }) }} />
+          <QcActionButton text={hasCurrentAssignment ? 'Edit Assignment' : 'Add Assignment'} 
+          onPress={() => { this.setState({ isDialogVisible: true }) }} />
           <QcActionButton text='Grade Assignment' onPress={() =>
             this.props.navigation.push("EvaluationPage", {
               studentIndex: studentIndex,
@@ -134,5 +154,12 @@ const mapStateToProps = state => {
   const { classes } = state.data.teachers[0];
   return { classes };
 };
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      editCurrentAssignment
+    },
+    dispatch
+  );
 
-export default connect(mapStateToProps)(StudentProfileScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(StudentProfileScreen);

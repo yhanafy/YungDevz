@@ -99,7 +99,7 @@ export const classReducer = (state = INITIAL_STATE, action) => {
 
   switch (action.type) {
     case actionTypes.ADD_STUDENT:
-      let classIndex = action.studentInfo.classIndex
+      classIndex = action.studentInfo.classIndex
       newState = update(baseState, { teachers: { [0]: { classes: { [classIndex]: { students: { $push: [action.studentInfo.studentInfo] } } } } } });
       return newState;
 
@@ -138,11 +138,17 @@ export const classReducer = (state = INITIAL_STATE, action) => {
 
       newState = update(baseState, { teachers: { [0]: { classes: { [action.classIndex]: { students: { $set: studentslist } } } } } });
       return newState;
-    case 'SAVE_TEACHER_INFO':
+    case actionTypes.SAVE_TEACHER_INFO:
       //fetches current teacher info
       newState = update(baseState, { teachers: { [action.teacherIndex]: { name: { $set: action.teacherInfo.name } } } });
       newState = update(newState, { teachers: { [action.teacherIndex]: { phoneNumber: { $set: action.teacherInfo.phoneNumber } } } });
       newState = update(newState, { teachers: { [action.teacherIndex]: { emailAddress: { $set: action.teacherInfo.emailAddress } } } });
+      return newState;
+    case actionTypes.EDIT_CURRENT_ASSIGNMENT:
+      classIndex = action.classIndex;
+      studentIndex = action.studentIndex;
+      newAssignment = action.newAssignment;
+      newState = update(baseState, { teachers: { [0] : { classes: { [classIndex]: { students: { [studentIndex]: { assignment: { $set: newAssignment } } } } } } } });
       return newState;
     default:
       return state
