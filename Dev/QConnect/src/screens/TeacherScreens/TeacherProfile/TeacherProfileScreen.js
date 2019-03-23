@@ -7,6 +7,8 @@ import { saveTeacherInfo } from "model/actions/saveTeacherInfo";
 import { bindActionCreators } from 'redux';
 import { connect } from "react-redux";
 import colors from 'config/colors';
+import ImageSelectionModal from 'components/ImageSelectionModal'
+import TeacherInfoEntries from 'components/TeacherInfoEntries'
 
 //To-Do: All info in this class is static, still needs to be hooked up to data base in order
 //to function dynamically
@@ -118,7 +120,8 @@ const styles = StyleSheet.create({
     picContainer: {
         paddingTop: 20,
         alignItems: 'center',
-        paddingBottom: 20
+        paddingBottom: 20,
+        backgroundColor: colors.white,
     },
     profilePic: {
         width: 130,
@@ -158,7 +161,9 @@ const styles = StyleSheet.create({
         paddingTop: 20,
         alignItems: 'center',
         justifyContent: 'space-evenly',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        marginTop: 10,
+        backgroundColor: colors.white,
     }
 })
 

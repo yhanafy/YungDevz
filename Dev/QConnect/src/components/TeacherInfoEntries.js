@@ -9,7 +9,7 @@ import colors from 'config/colors'
 //--------------------------------------------------------------------------
 export default TeacherInfoEntries = (props) => {
     return (
-        <View>
+        <View  style={styles.container}>
             <View style={styles.infoRow}>
                 <Text style={styles.subtitle}>Information</Text>
             </View>
@@ -49,6 +49,9 @@ TeacherInfoEntries.propTypes = {
 
 //Styles for the Teacher profile class
 const styles = StyleSheet.create({
+    container: {
+        backgroundColor: colors.white,
+    },
     subtitle: {
         fontSize: 16,
         paddingLeft: 20,
