@@ -21,7 +21,7 @@ export class TeacherWelcomeScreen extends Component {
         emailAddress: this.props.emailAddress,
         modalVisible: false,
         profileImageId: this.props.profileImageId,
-        highlightedImagesIndices: [1, 2, 10, 11]
+        highlightedImagesIndices: [1, 2, 3, 10]
     }
 
     //--- event handlers, handle user interaction ------------------
@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
     },
     buttonsContainer: {
         flexDirection: 'column',
-        marginTop: 15,
+        marginTop: 10,
         backgroundColor: colors.white,
         justifyContent: 'center',
     }
