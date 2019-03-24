@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Image, KeyboardAvoidingView, ToastAndroid} from 'react-native';
+import Toast, {DURATION} from 'react-native-easy-toast'
 import QcActionButton from 'components/QcActionButton';
 import TouchableText from 'components/TouchableText'
 import teacherImages from 'config/teacherImages'
@@ -45,7 +46,7 @@ export class TeacherProfileScreen extends Component {
             teacherID,
             this.state
         );
-        ToastAndroid.show("Your profile has been saved", ToastAndroid.SHORT);
+        this.refs.toast.show("Your profile has been saved", DURATION.LENGTH_SHORT);
     }
 
     //------ event handlers to capture user input into state as user modifies the entries -----
@@ -106,6 +107,7 @@ export class TeacherProfileScreen extends Component {
                                                             //is passed instead of 0
                     />
                 </View>
+                <Toast ref="toast"/>
             </KeyboardAvoidingView>
         )
     }

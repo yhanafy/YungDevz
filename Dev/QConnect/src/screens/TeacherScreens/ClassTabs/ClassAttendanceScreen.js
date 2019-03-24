@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import { ScrollView, StyleSheet, View, FlatList, ToastAndroid } from 'react-native';
+import { ScrollView, StyleSheet, View, ToastAndroid } from 'react-native';
+import Toast, {DURATION} from 'react-native-easy-toast'
 import DatePicker from 'react-native-datepicker';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -63,7 +64,7 @@ export class ClassAttendanceScreen extends Component {
             classIndex,
             attendanceInfo
         );
-        ToastAndroid.show("Attendance for " + date + " has been saved", ToastAndroid.SHORT);
+        this.refs.toast.show("Attendance for " + date + " has been saved", DURATION.LENGTH_SHORT);
     }
 
     //This method will set the state of the attendance screen based on the isHere property
@@ -142,6 +143,7 @@ export class ClassAttendanceScreen extends Component {
                     />
                 );
             })}
+            <Toast ref="toast"/>
         </ScrollView>);
     }
 }
