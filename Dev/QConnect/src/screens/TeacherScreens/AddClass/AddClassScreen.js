@@ -4,15 +4,13 @@ import {
   Text,
   TextInput,
   Image,
-  ScrollView,
+  KeyboardAvoidingView,
   StyleSheet,
-  Modal,
-  TouchableHighlight,
 } from "react-native";
 import colors from "config/colors";
 import classImages from "config/classImages";
 import QcActionButton from "components/QcActionButton";
-import IconSelectionGrid from "components/IconSelectionGrid"
+import ImageSelectionModal from "components/ImageSelectionModal"
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { addClass } from "model/actions/addClass";
@@ -34,8 +32,7 @@ export class AddClassScreen extends Component {
 
   onImageSelected(imageId) {
     this.setState({ classImageId: imageId })
-
-    setModalVisible(false);
+    this.setModalVisible(false);
   }
 
   addNewClass() {
@@ -55,119 +52,96 @@ export class AddClassScreen extends Component {
   render() {
     return (
 
-      <View
-        ID="addNewClass"
-        style={{
-          alignItems: "center",
-          justifyContent: "center",
+      <KeyboardAvoidingView style={styles.container} behavior="padding">
+        <View
+          style={styles.container}
+        >
 
-        }}
-      >
-
-        <Modal
-          animationType="fade"
-          transparent={false}
-          visible={this.state.modalVisible}
-          onRequestClose={() => {
-            Alert.alert('Modal has been closed.');
-            style={
-              flex: 1
-            }
-          }}>
-
-          <IconSelectionGrid
-            style={{
-              flex: 1,
-              width: 100,
-              height: 100
-            }}
+          <ImageSelectionModal
+            visible={this.state.modalVisible}
             images={classImages.images}
-            onImageSelected={() => this.onImageSelected.bind(this)}
-          >
+            cancelText="Cancel"
+            setModalVisible={this.setModalVisible.bind(this)}
+            onImageSelected={this.onImageSelected.bind(this)}
+          />
 
-          </IconSelectionGrid>
+          <View style={styles.picContainer}>
+            <Image
+              style={styles.profilePic}
+              source={classImages.images[this.state.classImageId]}
+              ResizeMode="contain" />
+            <TouchableText
+              text="Edit class image"
+              onPress={() => this.setModalVisible(true)} />
+          </View>
+          <View style={styles.bottomContainer}>
+            <TextInput
+              style={textInputStyle}
+              placeholder="Write Class Name Here"
+              onChangeText={classInput =>
+                this.setState({
+                  className: classInput
+                })
+              }
+            />
 
-
-          <View style={{ margin: 150 }}>
+            <Text style={{
+              fontSize: 15,
+              marginTop: 5
+            }}>Your Class name is {this.state.className}</Text>
 
             <QcActionButton
-            style={{
-              flex: 1,
-            }}
-              text="Close Image Menu"
+              text="Add Class"
               onPress={() => {
-                this.setModalVisible(!this.state.modalVisible);
-              }} />
-
+                this.addNewClass();
+              }}
+            />
           </View>
-        </Modal >
-
-
-
-        <TouchableHighlight
-          onPress={() => {
-            this.setModalVisible(!this.state.modalVisible);
-          }}>
-          <Image
-            source={(classImages.images[this.state.classImageId])}
-            style={{
-              backgroundColor: colors.lightGrey,
-              borderRadius: 50 / 2,
-              marginTop: 100,
-              marginBottom: 30,
-              width: 150,
-              height: 150,
-              alignItems: "center",
-              justifyContent: "center"
-            }}
-          />
-        </TouchableHighlight>
-
-
-        <TouchableHighlight
-          onPress={() => {
-            this.setModalVisible(!this.state.modalVisible);
-          }}>
-          <Text>Edit Class Image</Text>
-        </TouchableHighlight>
-
-
-        <TextInput
-          style={{
-            backgroundColor: colors.lightGrey,
-            borderColor: colors.darkGrey,
-            width: 250,
-            height: 30,
-            textAlign: "center",
-            alignItems: "center",
-            justifyContent: "center"
-          }}
-          placeholder="Write Class Name Here"
-          onChangeText={classInput =>
-            this.setState({
-              className: classInput
-            })
-          }
-        />
-
-        <Text style={{
-          fontSize: 15,
-          marginTop: 5
-        }}>Your Class name is {this.state.className}</Text>
-
-        <QcActionButton
-          text="Add Class"
-          onPress={() => {
-            this.addNewClass();
-          }}
-        />
-
-
-      </View >
+        </View>
+      </KeyboardAvoidingView>
     );
   }
 }
 
+//Styles for the Teacher profile class
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'column',
+    backgroundColor: colors.lightGrey,
+    flex: 1,
+  },
+  picContainer: {
+    paddingTop: 25,
+    alignItems: 'center',
+    paddingBottom: 20,
+    marginTop: 10,
+    marginBottom: 10,
+    backgroundColor: colors.white,
+  },
+  profilePic: {
+    width: 130,
+    height: 130,
+    borderRadius: 65,
+  },
+  bottomContainer: {
+    paddingTop: 15,
+    flex: 1,
+    backgroundColor: colors.white,
+    alignItems: "center",
+    flex: 1
+  },
+  textInputStyle: {
+    backgroundColor: colors.lightGrey,
+    borderColor: colors.darkGrey,
+    width: 250,
+    height: 30,
+    textAlign: "center",
+    alignItems: "center",
+    justifyContent: "center"
+  }
+
+}
+);
 const mapStateToProps = state => {
   const { classes } = state.data.teachers[0];
   return { classes };
