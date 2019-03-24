@@ -21,7 +21,7 @@ export class ClassMainScreen extends Component {
               studentName={item.name}
               background={colors.white}
               profilePic={{ uri: item.avatar }}
-              currentAssignment={item.assignment}
+              currentAssignment={item.currentAssignment.name}
               onPress={() =>
                 this.props.navigation.push("StudentProfile", {
                   studentIndex: index,

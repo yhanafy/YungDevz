@@ -3,7 +3,6 @@ import { addStudent } from "model/actions/addStudent";
 import { deleteStudent } from "model/actions/deleteStudent";
 import { addAttendance } from "model/actions/addAttendance";
 import actionTypes from "model/actions/actionTypes";
-//import * as types from '../../constants/ActionTypes'
 
 describe('actions', () => {
   it('should create an action to add a class', () => {
@@ -25,7 +24,8 @@ describe('actions', () => {
         studentInfo: {
           name: "Tester Student 1",
           avatar: "http://test.avatar.url",
-          assignment: "Test assignment",
+          currentAssignment: "Test assignment",
+          assignmentHistory: [],
           attendanceHistory: []
         }
       };

@@ -39,7 +39,8 @@ describe('teacher reducer', () => {
     const studentInfo = {
         name: "Test Student 1",
         avatar: "http://test.avatar.url",
-        assignment: "Test assignment",
+        currentAssignment: "Test assignment",
+        assignmentHistory: [],
         attendanceHistory: []
     };
 

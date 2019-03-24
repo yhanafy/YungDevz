@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Image, Text, ToastAndroid, KeyboardAvoidingView } from 'react-native';
 import QcActionButton from 'components/QcActionButton';
+import Toast, {DURATION} from 'react-native-easy-toast'
 import { saveTeacherInfo } from "model/actions/saveTeacherInfo";
 import { bindActionCreators } from 'redux';
 import { connect } from "react-redux";
@@ -56,7 +57,7 @@ export class TeacherWelcomeScreen extends Component {
             teacherID,
             this.state
         );
-        ToastAndroid.show("Your profile has been saved", ToastAndroid.SHORT);
+        this.refs.toast.show('Your profile has been saved', DURATION.LENGTH_SHORT);
         this.onTeacherFlow();
     }
 
@@ -122,6 +123,7 @@ the holy book.</Text>
                     //is passed instead of 0
                     />
                 </View>
+                <Toast ref="toast"/>
             </View>
         )
     }

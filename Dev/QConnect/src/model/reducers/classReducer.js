@@ -18,7 +18,28 @@ export const INITIAL_STATE = {
             {
               name: "Ahmed Reducer",
               avatar: "https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg",
-              assignment: "Al-Nahl page 5",
+              currentAssignment: {
+                name: "Al-Nahl page 5",
+                startDate: "03-24-2019"
+              },
+              assignmentHistory: [
+                {
+                  name: "Aal-Imran Pages 1-5",
+                  startDate: "03-20-2019",
+                  completionDate: "03-23-2019",
+                  evaluation: {
+                    finalGrade: 3.6
+                  }
+                },
+                {
+                  name: "Al-Baqara 5-9",
+                  startDate: "03-17-2019",
+                  completionDate: "03-20-2019",
+                  evaluation: {
+                    finalGrade: 4.5
+                  }
+                }
+              ],
               attendanceHistory: [
                 {
                   date: "02-23-2019",
@@ -29,7 +50,28 @@ export const INITIAL_STATE = {
             {
               name: "Amina Khan",
               avatar: "https://randomuser.me/api/portraits/thumb/women/42.jpg",
-              assignment: "An-Naze'aat",
+              currentAssignment: {
+                name: "An-Naze'aat",
+                startDate: "03-24-2019"
+              },
+              assignmentHistory: [
+                {
+                  name: "Aal-Imran Pages 1-5",
+                  startDate: "03-20-2019",
+                  completionDate: "03-23-2019",
+                  evaluation: {
+                    finalGrade: 3.6
+                  }
+                },
+                {
+                  name: "Al-Baqara 5-9",
+                  startDate: "03-17-2019",
+                  completionDate: "03-20-2019",
+                  evaluation: {
+                    finalGrade: 4.5
+                  }
+                }
+              ],
               attendanceHistory: [
                 {
                   date: "02-23-2019",
@@ -40,7 +82,28 @@ export const INITIAL_STATE = {
             {
               name: "Ayoub Barrak",
               avatar: "https://randomuser.me/api/portraits/thumb/men/43.jpg",
-              assignment: "Aal-Imran",
+              currentAssignment: {
+                name: "Aal-Imran",
+                startDate: "03-24-2019"
+              },
+              assignmentHistory: [
+                {
+                  name: "Aal-Imran Pages 1-5",
+                  startDate: "03-20-2019",
+                  completionDate: "03-23-2019",
+                  evaluation: {
+                    finalGrade: 3.6
+                  }
+                },
+                {
+                  name: "Al-Baqara 5-9",
+                  startDate: "03-17-2019",
+                  completionDate: "03-20-2019",
+                  evaluation: {
+                    finalGrade: 4.5
+                  }
+                }
+              ],
               attendanceHistory: [
                 {
                   date: "02-23-2019",
@@ -51,7 +114,28 @@ export const INITIAL_STATE = {
             {
               name: "Khaled Kwick",
               avatar: "https://randomuser.me/api/portraits/thumb/men/45.jpg",
-              assignment: "Al-Toor pages 2,3",
+              currentAssignment: {
+                name: "Al-Toor pages 5, 6, 8",
+                startDate: "03-24-2019"
+              },
+              assignmentHistory: [
+                {
+                  name: "Aal-Imran Pages 1-5",
+                  startDate: "03-20-2019",
+                  completionDate: "03-23-2019",
+                  evaluation: {
+                    finalGrade: 3.6
+                  }
+                },
+                {
+                  name: "Al-Baqara 5-9",
+                  startDate: "03-17-2019",
+                  completionDate: "03-20-2019",
+                  evaluation: {
+                    finalGrade: 4.5
+                  }
+                }
+              ],
               attendanceHistory: [
                 {
                   date: "02-23-2019",
@@ -62,7 +146,28 @@ export const INITIAL_STATE = {
             {
               name: "Yassine Lightening",
               avatar: "https://randomuser.me/api/portraits/thumb/men/22.jpg",
-              assignment: "Al-An'aam",
+              currentAssignment: {
+                name: "Al-Baqara pages 5-8",
+                startDate: "03-24-2019"
+              },
+              assignmentHistory: [
+                {
+                  name: "Aal-Imran Pages 1-5",
+                  startDate: "03-20-2019",
+                  completionDate: "03-23-2019",
+                  evaluation: {
+                    finalGrade: 3.6
+                  }
+                },
+                {
+                  name: "Al-Baqara 5-9",
+                  startDate: "03-17-2019",
+                  completionDate: "03-20-2019",
+                  evaluation: {
+                    finalGrade: 4.5
+                  }
+                }
+              ],
               attendanceHistory: [
                 {
                   date: "02-23-2019",
@@ -73,7 +178,28 @@ export const INITIAL_STATE = {
             {
               name: "Yusuf Awesome",
               avatar: "https://randomuser.me/api/portraits/thumb/men/26.jpg",
-              assignment: "Huud, pages 3 and 4",
+              currentAssignment: {
+                name: "Huud pages 3, 4",
+                startDate: "03-24-2019"
+              },
+              assignmentHistory: [
+                {
+                  name: "Aal-Imran Pages 1-5",
+                  startDate: "03-20-2019",
+                  completionDate: "03-23-2019",
+                  evaluation: {
+                    finalGrade: 3.6
+                  }
+                },
+                {
+                  name: "Al-Baqara 5-9",
+                  startDate: "03-17-2019",
+                  completionDate: "03-20-2019",
+                  evaluation: {
+                    finalGrade: 4.5
+                  }
+                }
+              ],
               attendanceHistory: [
                 {
                   date: "02-23-2019",
@@ -151,8 +277,38 @@ export const classReducer = (state = INITIAL_STATE, action) => {
       classIndex = action.classIndex;
       studentIndex = action.studentIndex;
       newAssignment = action.newAssignment;
-      newState = update(baseState, { teachers: { [0] : { classes: { [classIndex]: { students: { [studentIndex]: { assignment: { $set: newAssignment } } } } } } } });
+      newState = update(baseState, { teachers: { [0] : { classes: { [classIndex]: { students: { [studentIndex]: { currentAssignment: { name: { $set: newAssignment } } } } } } } } });
       return newState;
+    
+    case actionTypes.ADD_NEW_ASSIGNMENT:
+      classIndex = action.classIndex;
+      studentIndex = action.studentIndex;
+      newAssignmentName = action.newAssignmentName;
+      newAssignmentDate = new Date().toLocaleDateString("en-US");
+      //creates the new assignment before adding it to the persist
+      newCurrentAssignment = {
+        name: newAssignmentName,
+        startDate: newAssignmentDate 
+      }
+      //updates the current assignment
+      newState = update(baseState, { teachers: { [0] : { classes: { [classIndex]: { students: { [studentIndex]: { currentAssignment: { $set: newCurrentAssignment } } } } } } } });
+      return newState;
+    
+    case actionTypes.COMPLETE_ASSIGNMENT:
+      classIndex = action.classIndex;
+      studentIndex = action.studentIndex;
+      //creates the assignment based on the given action params
+      assignment = {
+        name: action.assignmentInfo.name,
+        startDate: action.assignmentInfo.startDate,
+        completionDate: action.assignmentInfo.completionDate,
+        evaluation: action.assignmentInfo.evaluation
+      }
+      //pushes the assignment to the array of assignment history (Remember, this action does not 
+      //update the current assignment, this needs to be done using the addNewAssignment action)
+      newState = update(baseState, { teachers: { [0] : { classes: { [classIndex]: { students: { [studentIndex]: { assignmentHistory: { $push: assignment } } } } } } } });
+      return newState;
+
     default:
       return state
   }
