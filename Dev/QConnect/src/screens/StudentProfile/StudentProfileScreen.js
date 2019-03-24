@@ -26,9 +26,10 @@ class StudentProfileScreen extends Component {
     this.setState({ isDialogVisible: false });
   }
 
-  //method will add a new assignment for the student
-  addAssignment(newAssignmentName) {
-
+  //method will add a new assignment for the student (only to current assignment, will not add
+  //to assignment history until after completion of the assignment)
+  addAssignment(classIndex, studentIndex, newAssignmentName) {
+    this.setState({ isDialogVisible: false })
   }
 
   render() {
@@ -48,7 +49,8 @@ class StudentProfileScreen extends Component {
           submitInput={(inputText) => 
             //If the student already has an existing assignment, then it will simply edit the
             //name of the current assignment, if not, then it will create a new assignment
-            { hasCurrentAssignment ? this.editAssignment(classIndex, studentIndex, inputText) : this.addAssignment(inputText)}}
+            { hasCurrentAssignment ? this.editAssignment(classIndex, studentIndex, inputText)
+               : this.addAssignment(classIndex, studentIndex, inputText)}}
           closeDialog={() => { this.setState({ isDialogVisible: false }) }} />
 
         <View style={styles.profileInfo}>

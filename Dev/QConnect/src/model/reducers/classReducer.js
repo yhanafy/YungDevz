@@ -22,6 +22,24 @@ export const INITIAL_STATE = {
                 name: "Al-Nahl page 5",
                 startDate: "03-24-2019"
               },
+              assignmentHistory: [
+                {
+                  name: "Aal-Imran Pages 1-5",
+                  startDate: "03-20-2019",
+                  completionDate: "03-23-2019",
+                  evaluation: {
+                    finalGrade: 3.6
+                  }
+                },
+                {
+                  name: "Al-Baqara 5-9",
+                  startDate: "03-17-2019",
+                  completionDate: "03-20-2019",
+                  evaluation: {
+                    finalGrade: 4.5
+                  }
+                }
+              ],
               attendanceHistory: [
                 {
                   date: "02-23-2019",
@@ -36,6 +54,24 @@ export const INITIAL_STATE = {
                 name: "An-Naze'aat",
                 startDate: "03-24-2019"
               },
+              assignmentHistory: [
+                {
+                  name: "Aal-Imran Pages 1-5",
+                  startDate: "03-20-2019",
+                  completionDate: "03-23-2019",
+                  evaluation: {
+                    finalGrade: 3.6
+                  }
+                },
+                {
+                  name: "Al-Baqara 5-9",
+                  startDate: "03-17-2019",
+                  completionDate: "03-20-2019",
+                  evaluation: {
+                    finalGrade: 4.5
+                  }
+                }
+              ],
               attendanceHistory: [
                 {
                   date: "02-23-2019",
@@ -50,6 +86,24 @@ export const INITIAL_STATE = {
                 name: "Aal-Imran",
                 startDate: "03-24-2019"
               },
+              assignmentHistory: [
+                {
+                  name: "Aal-Imran Pages 1-5",
+                  startDate: "03-20-2019",
+                  completionDate: "03-23-2019",
+                  evaluation: {
+                    finalGrade: 3.6
+                  }
+                },
+                {
+                  name: "Al-Baqara 5-9",
+                  startDate: "03-17-2019",
+                  completionDate: "03-20-2019",
+                  evaluation: {
+                    finalGrade: 4.5
+                  }
+                }
+              ],
               attendanceHistory: [
                 {
                   date: "02-23-2019",
@@ -64,6 +118,24 @@ export const INITIAL_STATE = {
                 name: "Al-Toor pages 5, 6, 8",
                 startDate: "03-24-2019"
               },
+              assignmentHistory: [
+                {
+                  name: "Aal-Imran Pages 1-5",
+                  startDate: "03-20-2019",
+                  completionDate: "03-23-2019",
+                  evaluation: {
+                    finalGrade: 3.6
+                  }
+                },
+                {
+                  name: "Al-Baqara 5-9",
+                  startDate: "03-17-2019",
+                  completionDate: "03-20-2019",
+                  evaluation: {
+                    finalGrade: 4.5
+                  }
+                }
+              ],
               attendanceHistory: [
                 {
                   date: "02-23-2019",
@@ -78,6 +150,24 @@ export const INITIAL_STATE = {
                 name: "Al-Baqara pages 5-8",
                 startDate: "03-24-2019"
               },
+              assignmentHistory: [
+                {
+                  name: "Aal-Imran Pages 1-5",
+                  startDate: "03-20-2019",
+                  completionDate: "03-23-2019",
+                  evaluation: {
+                    finalGrade: 3.6
+                  }
+                },
+                {
+                  name: "Al-Baqara 5-9",
+                  startDate: "03-17-2019",
+                  completionDate: "03-20-2019",
+                  evaluation: {
+                    finalGrade: 4.5
+                  }
+                }
+              ],
               attendanceHistory: [
                 {
                   date: "02-23-2019",
@@ -92,6 +182,24 @@ export const INITIAL_STATE = {
                 name: "Huud pages 3, 4",
                 startDate: "03-24-2019"
               },
+              assignmentHistory: [
+                {
+                  name: "Aal-Imran Pages 1-5",
+                  startDate: "03-20-2019",
+                  completionDate: "03-23-2019",
+                  evaluation: {
+                    finalGrade: 3.6
+                  }
+                },
+                {
+                  name: "Al-Baqara 5-9",
+                  startDate: "03-17-2019",
+                  completionDate: "03-20-2019",
+                  evaluation: {
+                    finalGrade: 4.5
+                  }
+                }
+              ],
               attendanceHistory: [
                 {
                   date: "02-23-2019",
