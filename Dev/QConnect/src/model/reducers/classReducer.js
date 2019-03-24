@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux';
 import update from 'immutability-helper';
 import actionTypes from '../actions/actionTypes';
-import { saveEvaluationPage } from '../actions/saveEvaluation';
 
 export const INITIAL_STATE = {
   teachers: [
@@ -9,7 +8,6 @@ export const INITIAL_STATE = {
       name: "Eslam Abdo",
       phoneNumber: "425-246-5971",
       emailAddress: "eslam_w@hotmail.com",
-      profileImageId: 1,
       currentClassIndex: 0,
       classes: [
         {
@@ -101,7 +99,7 @@ export const classReducer = (state = INITIAL_STATE, action) => {
 
   switch (action.type) {
     case actionTypes.ADD_STUDENT:
-      let classIndex = action.studentInfo.classIndex
+      classIndex = action.studentInfo.classIndex
       newState = update(baseState, { teachers: { [0]: { classes: { [classIndex]: { students: { $push: [action.studentInfo.studentInfo] } } } } } });
       return newState;
 
@@ -140,19 +138,17 @@ export const classReducer = (state = INITIAL_STATE, action) => {
 
       newState = update(baseState, { teachers: { [0]: { classes: { [action.classIndex]: { students: { $set: studentslist } } } } } });
       return newState;
-
-
-    case actionTypes.SAVE_EVALUATION_PAGE:
-    
-    ;
-
-
     case actionTypes.SAVE_TEACHER_INFO:
       //fetches current teacher info
       newState = update(baseState, { teachers: { [action.teacherIndex]: { name: { $set: action.teacherInfo.name } } } });
       newState = update(newState, { teachers: { [action.teacherIndex]: { phoneNumber: { $set: action.teacherInfo.phoneNumber } } } });
       newState = update(newState, { teachers: { [action.teacherIndex]: { emailAddress: { $set: action.teacherInfo.emailAddress } } } });
-      newState = update(newState, { teachers: { [action.teacherIndex]: { profileImageId: { $set: action.teacherInfo.profileImageId } } } });
+      return newState;
+    case actionTypes.EDIT_CURRENT_ASSIGNMENT:
+      classIndex = action.classIndex;
+      studentIndex = action.studentIndex;
+      newAssignment = action.newAssignment;
+      newState = update(baseState, { teachers: { [0] : { classes: { [classIndex]: { students: { [studentIndex]: { assignment: { $set: newAssignment } } } } } } } });
       return newState;
     default:
       return state
