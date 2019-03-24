@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import update from 'immutability-helper';
 import actionTypes from '../actions/actionTypes';
+import { saveEvaluationPage } from '../actions/saveEvaluation';
 
 export const INITIAL_STATE = {
   teachers: [
@@ -139,7 +140,14 @@ export const classReducer = (state = INITIAL_STATE, action) => {
 
       newState = update(baseState, { teachers: { [0]: { classes: { [action.classIndex]: { students: { $set: studentslist } } } } } });
       return newState;
-    case 'SAVE_TEACHER_INFO':
+
+
+    case actionTypes.SAVE_EVALUATION_PAGE:
+    
+    ;
+
+
+    case actionTypes.SAVE_TEACHER_INFO:
       //fetches current teacher info
       newState = update(baseState, { teachers: { [action.teacherIndex]: { name: { $set: action.teacherInfo.name } } } });
       newState = update(newState, { teachers: { [action.teacherIndex]: { phoneNumber: { $set: action.teacherInfo.phoneNumber } } } });
