@@ -8,7 +8,7 @@ import {AddClassScreen} from '../src/screens/TeacherScreens/AddClass/AddClassScr
 import {TeacherProfileScreen} from '../src/screens/TeacherScreens/TeacherProfile/TeacherProfileScreen.js'
 
 describe('Teacher screens snapshots', () => {
-  const testRenderTeacherScreen = (screenName, Component) => {
+  const testRenderTeacherScreen = (screenName, Component, props) => {
     test(`render ${screenName}`, () => {
         const navigation = {
           state: {
@@ -24,6 +24,7 @@ describe('Teacher screens snapshots', () => {
         const tree = renderer.create(<Component 
           classes = {classes}
           navigation = {navigation}
+          {...props} 
         />).toJSON();
 
         expect(tree).toMatchSnapshot();
@@ -32,7 +33,7 @@ describe('Teacher screens snapshots', () => {
 
   testRenderTeacherScreen("ClassMainScreen", ClassMainScreen)
   testRenderTeacherScreen("ClassEditScreen", ClassEditScreen)
-  testRenderTeacherScreen("ClassAttendanceScreen", ClassAttendanceScreen)
+  testRenderTeacherScreen("ClassAttendanceScreen", ClassAttendanceScreen, {defaultDate: new Date(1552719600000)})
   testRenderTeacherScreen("AddClassScreen", AddClassScreen)
   testRenderTeacherScreen("TeacherProfileScreen", TeacherProfileScreen)
 })

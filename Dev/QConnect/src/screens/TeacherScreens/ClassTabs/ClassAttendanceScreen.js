@@ -14,7 +14,7 @@ export class ClassAttendanceScreen extends Component {
 
     state = {
         selectedStudents: [],
-        selectedDate: new Date().toLocaleDateString("en-US")
+        selectedDate: this.props.defaultDate? this.props.defaultDate : new Date().toLocaleDateString("en-US")
     }
 
     //This method will set the student selected property to the opposite of whatever it was
@@ -119,7 +119,7 @@ export class ClassAttendanceScreen extends Component {
                     format="MM-DD-YYYY"
                     duration={300}
                     style={{paddingLeft: 15}}
-                    maxDate={new Date().toLocaleDateString("en-US")}
+                    maxDate={this.state.selectedDate}
                     customStyles={{dateInput: {borderColor: colors.lightGrey}}}
                     onDateChange={(date) => this.getAttendance(classIndex, date)}
                     />

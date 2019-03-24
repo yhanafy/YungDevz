@@ -12,6 +12,7 @@ import {
 import colors from "config/colors";
 import classImages from "config/classImages";
 import QcActionButton from "components/QcActionButton";
+import IconSelectionGrid from "components/IconSelectionGrid"
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { addClass } from "model/actions/addClass";
@@ -23,8 +24,18 @@ export class AddClassScreen extends Component {
     modalVisible: false,
   };
 
+  /*This method will toggle the 
+   *On the modal visablity.
+  */
+
   setModalVisible(visible) {
     this.setState({ modalVisible: visible });
+  }
+
+  onImageSelected(imageId) {
+    this.setState({ classImageId: imageId })
+
+    setModalVisible(false);
   }
 
   addNewClass() {
@@ -43,33 +54,53 @@ export class AddClassScreen extends Component {
 
   render() {
     return (
+
       <View
         ID="addNewClass"
         style={{
-          alignItems: "center"
+          alignItems: "center",
+          justifyContent: "center",
+
         }}
       >
 
         <Modal
-          animationType="slide"
+          animationType="fade"
           transparent={false}
           visible={this.state.modalVisible}
           onRequestClose={() => {
             Alert.alert('Modal has been closed.');
+            style={
+              flex: 1
+            }
           }}>
-          <View style={{ marginTop: 22 }}>
-            <View>
-              <Text>Hello World!</Text>
 
-              <TouchableHighlight
-                onPress={() => {
-                  this.setModalVisible(!this.state.modalVisible);
-                }}>
-                <Text>Hide Modal</Text>
-              </TouchableHighlight>
-            </View>
+          <IconSelectionGrid
+            style={{
+              flex: 1,
+              width: 100,
+              height: 100
+            }}
+            images={classImages.images}
+            onImageSelected={() => this.onImageSelected.bind(this)}
+          >
+
+          </IconSelectionGrid>
+
+
+          <View style={{ margin: 150 }}>
+
+            <QcActionButton
+            style={{
+              flex: 1,
+            }}
+              text="Close Image Menu"
+              onPress={() => {
+                this.setModalVisible(!this.state.modalVisible);
+              }} />
+
           </View>
-        </Modal>
+        </Modal >
 
 
 
@@ -130,7 +161,9 @@ export class AddClassScreen extends Component {
             this.addNewClass();
           }}
         />
-      </View>
+
+
+      </View >
     );
   }
 }
