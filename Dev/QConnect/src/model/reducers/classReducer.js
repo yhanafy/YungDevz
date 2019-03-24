@@ -279,6 +279,16 @@ export const classReducer = (state = INITIAL_STATE, action) => {
       newAssignment = action.newAssignment;
       newState = update(baseState, { teachers: { [0] : { classes: { [classIndex]: { students: { [studentIndex]: { currentAssignment: { name: { $set: newAssignment } } } } } } } } });
       return newState;
+    
+    case actionTypes.ADD_NEW_ASSIGNMENT:
+      classIndex = action.classIndex;
+      studentIndex = action.studentIndex;
+      newAssignmentName = action.newAssignmentName;
+      newAssignmentDate = action.newAssignmentDate;
+      newState = update(baseState, { teachers: { [0] : { classes: { [classIndex]: { students: { [studentIndex]: { currentAssignment: { name: { $set: newAssignmentName } } } } } } } } });
+      newState = update(baseState, { teachers: { [0] : { classes: { [classIndex]: { students: { [studentIndex]: { currentAssignment: { startDate: { $set: newAssignmentDate } } } } } } } } });
+      return newState;
+      
     default:
       return state
   }
