@@ -4,12 +4,30 @@ import colors from 'config/colors';
 import QcActionButton from "components/QcActionButton"
 import { Rating } from 'react-native-elements';
 import fonts from 'config/colors';
+import DialogInput from 'react-native-dialog-input';
+import { editCurrentAssignment } from 'model/actions/editCurrentAssignment';
+import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
 class StudentProfileScreen extends Component {
 
+  state = {
+    isDialogVisible: false, 
+  }
+
   //Method retrieves the current average rating for the current student
   getAverageRating() {
+
+  }
+
+  //method updates the current assignment of the student
+  editAssignment(classIndex, studentIndex, newAssignmentName) {
+    this.props.editCurrentAssignment(classIndex, studentIndex, newAssignmentName);
+    this.setState({ isDialogVisible: false });
+  }
+
+  //method will add a new assignment for the student
+  addAssignment(newAssignmentName) {
 
   }
 
@@ -17,39 +35,50 @@ class StudentProfileScreen extends Component {
     const { navigate } = this.props.navigation;
     const { classIndex, studentIndex } = this.props.navigation.state.params;
     const currentStudent = this.props.classes[classIndex].students[studentIndex];
+    const hasCurrentAssignment = currentStudent.assignment === 'None' ? false : true;
     const rating = 5.0; //to-do: make this into a method that computes the average ratings
 
     return (
       <View style={styles.container}>
+        <DialogInput
+          isDialogVisible={this.state.isDialogVisible}
+          title="Edit Assignment"
+          hintInput="Enter assignment here..."
+          dialogStyle={{marginBottom: 100}}
+          submitInput={(inputText) => 
+            //If the student already has an existing assignment, then it will simply edit the
+            //name of the current assignment, if not, then it will create a new assignment
+            { hasCurrentAssignment ? this.editAssignment(classIndex, studentIndex, inputText) : this.addAssignment(inputText)}}
+          closeDialog={() => { this.setState({ isDialogVisible: false }) }} />
+
         <View style={styles.profileInfo}>
 
-            <View style={styles.profileInfoTop}>
-              <View style={styles.profileInfoTopLeft}>
-                <Image source={{ uri: currentStudent.avatar }}
-                  style={styles.profilePic} />
-              </View>
-              <View style={styles.profileInfoTopRight}>
-                <Text style={styles.bigText}>{currentStudent.name}</Text>
-                <Rating readonly={true} startingValue={rating} imageSize={25} />
-                <Text style={styles.subText}>{rating >= 3 ? 'Outstanding!' : 'Needs Work'}</Text>
-              </View>
+          <View style={styles.profileInfoTop}>
+            <View style={styles.profileInfoTopLeft}>
+              <Image source={{ uri: currentStudent.avatar }}
+                style={styles.profilePic} />
             </View>
+            <View style={styles.profileInfoTopRight}>
+              <Text style={styles.bigText}>{currentStudent.name}</Text>
+              <Rating readonly={true} startingValue={rating} imageSize={25} />
+              <Text style={styles.subText}>{rating >= 3 ? 'Outstanding!' : 'Needs Work'}</Text>
+            </View>
+          </View>
 
-            <View style={styles.profileInfoBottom}>
-              <Text style={styles.subText}>{'Current Assignment: ' + currentStudent.assignment}</Text>
-            </View>
+          <View style={styles.profileInfoBottom}>
+            <Text style={styles.subText}>{'Current Assignment: ' + currentStudent.assignment}</Text>
+          </View>
 
         </View>
 
         <View style={styles.buttons}>
-              <QcActionButton text='Add Assignment' onPress={() => 
-                //to-do: Make it possible to add assignment
-                {}}/>
-              <QcActionButton text='Grade Assignment' onPress={() => 
-                this.props.navigation.push("EvaluationPage", {
-                  studentIndex: studentIndex,
-                  classIndex: classIndex
-                })} />
+          <QcActionButton text={hasCurrentAssignment ? 'Edit Assignment' : 'Add Assignment'} 
+          onPress={() => { this.setState({ isDialogVisible: true }) }} />
+          <QcActionButton text='Grade Assignment' onPress={() =>
+            this.props.navigation.push("EvaluationPage", {
+              studentIndex: studentIndex,
+              classIndex: classIndex
+            })} />
         </View>
 
         <ScrollView style={styles.prevAssignments}>
@@ -115,7 +144,7 @@ const styles = StyleSheet.create({
   prevAssignments: {
     flexDirection: 'column',
     backgroundColor: colors.white,
-    marginLeft: 7, 
+    marginLeft: 7,
     marginRight: 7,
     marginTop: 10,
   }
@@ -125,5 +154,12 @@ const mapStateToProps = state => {
   const { classes } = state.data.teachers[0];
   return { classes };
 };
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      editCurrentAssignment
+    },
+    dispatch
+  );
 
-export default connect(mapStateToProps)(StudentProfileScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(StudentProfileScreen);

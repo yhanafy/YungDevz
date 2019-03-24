@@ -28,7 +28,7 @@ export class ClassEditScreen extends Component {
       studentInfo: {
         name: this.state.newStudentName,
         avatar: this.getAvatarUrl(),
-        assignment: "No assignment yet",
+        assignment: "None",
         attendanceHistory: []
       }
     });
