@@ -285,11 +285,28 @@ export const classReducer = (state = INITIAL_STATE, action) => {
       studentIndex = action.studentIndex;
       newAssignmentName = action.newAssignmentName;
       newAssignmentDate = new Date().toLocaleDateString("en-US");
+      //creates the new assignment before adding it to the persist
       newCurrentAssignment = {
         name: newAssignmentName,
         startDate: newAssignmentDate 
       }
+      //updates the current assignment
       newState = update(baseState, { teachers: { [0] : { classes: { [classIndex]: { students: { [studentIndex]: { currentAssignment: { $set: newCurrentAssignment } } } } } } } });
+      return newState;
+    
+    case actionTypes.COMPLETE_ASSIGNMENT:
+      classIndex = action.classIndex;
+      studentIndex = action.studentIndex;
+      //creates the assignment based on the given action params
+      assignment = {
+        name: action.assignmentInfo.name,
+        startDate: action.assignmentInfo.startDate,
+        completionDate: action.assignmentInfo.completionDate,
+        evaluation: action.assignmentInfo.evaluation
+      }
+      //pushes the assignment to the array of assignment history (Remember, this action does not 
+      //update the current assignment, this needs to be done using the addNewAssignment action)
+      newState = update(baseState, { teachers: { [0] : { classes: { [classIndex]: { students: { [studentIndex]: { assignmentHistory: { $push: assignment } } } } } } } });
       return newState;
 
     default:
