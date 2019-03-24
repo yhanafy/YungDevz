@@ -9,6 +9,7 @@ export const INITIAL_STATE = {
       phoneNumber: "425-246-5971",
       emailAddress: "eslam_w@hotmail.com",
       currentClassIndex: 0,
+      profileImageId: 1,
       classes: [
         {
           name: "Monday Class ICOE",
