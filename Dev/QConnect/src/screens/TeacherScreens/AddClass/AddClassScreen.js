@@ -16,16 +16,15 @@ import { bindActionCreators } from "redux";
 import { addClass } from "model/actions/addClass";
 
 export class AddClassScreen extends Component {
+  //----------------------- state -------------------------------------
   state = {
     className: "",
     classImageId: Math.floor(Math.random() * 10),
     modalVisible: false,
   };
 
-  /*This method will toggle the 
-   *On the modal visablity.
-  */
 
+  // -------- event handlers, respond to user initiated events ----------
   setModalVisible(visible) {
     this.setState({ modalVisible: visible });
   }
@@ -35,6 +34,7 @@ export class AddClassScreen extends Component {
     this.setModalVisible(false);
   }
 
+  // saves the class into redux
   addNewClass() {
     if (this.state.className) {
       let classInfo = {
@@ -49,6 +49,7 @@ export class AddClassScreen extends Component {
     }
   }
 
+  // ------------ renders the UI of the screen ---------------------------
   render() {
     return (
 
@@ -74,9 +75,10 @@ export class AddClassScreen extends Component {
               text="Edit class image"
               onPress={() => this.setModalVisible(true)} />
           </View>
+          
           <View style={styles.bottomContainer}>
             <TextInput
-              style={textInputStyle}
+              style={styles.textInputStyle}
               placeholder="Write Class Name Here"
               onChangeText={classInput =>
                 this.setState({

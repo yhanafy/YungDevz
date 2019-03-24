@@ -13,7 +13,7 @@ import colors from 'config/colors'
 export default ImageSelectionModal = (props) => {
     return (
         <Modal
-            animationType="slide"
+            animationType="fade"
             transparent={true}
             presentationStyle="overFullScreen"
             visible={props.visible}
