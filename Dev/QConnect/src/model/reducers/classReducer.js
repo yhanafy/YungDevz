@@ -17,7 +17,10 @@ export const INITIAL_STATE = {
             {
               name: "Ahmed Reducer",
               avatar: "https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg",
-              assignment: "Al-Nahl page 5",
+              currentAssignment: {
+                name: "Al-Nahl page 5",
+                startDate: "03-24-2019"
+              },
               attendanceHistory: [
                 {
                   date: "02-23-2019",
@@ -28,7 +31,10 @@ export const INITIAL_STATE = {
             {
               name: "Amina Khan",
               avatar: "https://randomuser.me/api/portraits/thumb/women/42.jpg",
-              assignment: "An-Naze'aat",
+              currentAssignment: {
+                name: "An-Naze'aat",
+                startDate: "03-24-2019"
+              },
               attendanceHistory: [
                 {
                   date: "02-23-2019",
@@ -39,7 +45,10 @@ export const INITIAL_STATE = {
             {
               name: "Ayoub Barrak",
               avatar: "https://randomuser.me/api/portraits/thumb/men/43.jpg",
-              assignment: "Aal-Imran",
+              currentAssignment: {
+                name: "Aal-Imran",
+                startDate: "03-24-2019"
+              },
               attendanceHistory: [
                 {
                   date: "02-23-2019",
@@ -50,7 +59,10 @@ export const INITIAL_STATE = {
             {
               name: "Khaled Kwick",
               avatar: "https://randomuser.me/api/portraits/thumb/men/45.jpg",
-              assignment: "Al-Toor pages 2,3",
+              currentAssignment: {
+                name: "Al-Toor pages 5, 6, 8",
+                startDate: "03-24-2019"
+              },
               attendanceHistory: [
                 {
                   date: "02-23-2019",
@@ -61,7 +73,10 @@ export const INITIAL_STATE = {
             {
               name: "Yassine Lightening",
               avatar: "https://randomuser.me/api/portraits/thumb/men/22.jpg",
-              assignment: "Al-An'aam",
+              currentAssignment: {
+                name: "Al-Baqara pages 5-8",
+                startDate: "03-24-2019"
+              },
               attendanceHistory: [
                 {
                   date: "02-23-2019",
@@ -72,7 +87,10 @@ export const INITIAL_STATE = {
             {
               name: "Yusuf Awesome",
               avatar: "https://randomuser.me/api/portraits/thumb/men/26.jpg",
-              assignment: "Huud, pages 3 and 4",
+              currentAssignment: {
+                name: "Huud pages 3, 4",
+                startDate: "03-24-2019"
+              },
               attendanceHistory: [
                 {
                   date: "02-23-2019",
@@ -150,7 +168,7 @@ export const classReducer = (state = INITIAL_STATE, action) => {
       classIndex = action.classIndex;
       studentIndex = action.studentIndex;
       newAssignment = action.newAssignment;
-      newState = update(baseState, { teachers: { [0] : { classes: { [classIndex]: { students: { [studentIndex]: { assignment: { $set: newAssignment } } } } } } } });
+      newState = update(baseState, { teachers: { [0] : { classes: { [classIndex]: { students: { [studentIndex]: { currentAssignment: { name: { $set: newAssignment } } } } } } } } });
       return newState;
     default:
       return state

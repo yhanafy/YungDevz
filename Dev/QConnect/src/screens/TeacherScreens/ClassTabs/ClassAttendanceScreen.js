@@ -136,7 +136,7 @@ export class ClassAttendanceScreen extends Component {
                         key={i}
                         studentName={student.name}
                         profilePic={{uri: student.avatar}}
-                        currentAssignment={student.assignment}
+                        currentAssignment={student.currentAssignment.name}
                         background={color}
                         onPress={() => this.onStudentSelected(i) }
                     />
