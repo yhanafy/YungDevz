@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Image, TextInput, Text, ToastAndroid, Modal, TouchableHighlight } from 'react-native';
+import { StyleSheet, View, Image, Text, ToastAndroid, KeyboardAvoidingView } from 'react-native';
 import QcActionButton from 'components/QcActionButton';
 import { saveTeacherInfo } from "model/actions/saveTeacherInfo";
 import { bindActionCreators } from 'redux';
@@ -99,7 +99,7 @@ export class TeacherWelcomeScreen extends Component {
 great honor and pleasure to serve your dedication to
 the holy book.</Text>
                 </View>
-                <View style={styles.editInfo}>
+                <KeyboardAvoidingView style={styles.editInfo} behavior="padding">
                     <TeacherInfoEntries
                         name={this.state.name}
                         phoneNumber={this.state.phoneNumber}
@@ -114,7 +114,7 @@ the holy book.</Text>
                         onShowMore={() => this.setModalVisible(true)}
                         selectedImageIndex={this.state.profileImageId}
                     /> 
-                </View>
+                </KeyboardAvoidingView>
                 <View style={styles.buttonsContainer}>
                     <QcActionButton
                         text="Save"

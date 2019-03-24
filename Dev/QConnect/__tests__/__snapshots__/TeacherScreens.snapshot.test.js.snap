@@ -892,12 +892,19 @@ exports[`Teacher screens snapshots render ClassMainScreen 1`] = `
 
 exports[`Teacher screens snapshots render TeacherProfileScreen 1`] = `
 <View
+  onLayout={[Function]}
   style={
-    Object {
-      "backgroundColor": "#F3F3F3",
-      "flex": 1,
-      "flexDirection": "column",
-    }
+    Array [
+      Object {
+        "backgroundColor": "#F3F3F3",
+        "flex": 1,
+        "flexDirection": "column",
+        "justifyContent": "flex-end",
+      },
+      Object {
+        "paddingBottom": 0,
+      },
+    ]
   }
 >
   <Modal
@@ -1408,8 +1415,10 @@ exports[`Teacher screens snapshots render TeacherProfileScreen 1`] = `
       Object {
         "alignItems": "center",
         "backgroundColor": "#fdfdff",
+        "marginBottom": 10,
+        "marginTop": 10,
         "paddingBottom": 20,
-        "paddingTop": 20,
+        "paddingTop": 25,
       }
     }
   >
@@ -2246,12 +2255,18 @@ exports[`Teacher screens snapshots render TeacherWelcomeScreen 1`] = `
     </Text>
   </View>
   <View
+    onLayout={[Function]}
     style={
-      Object {
-        "backgroundColor": "#fdfdff",
-        "color": "#6b6b6b",
-        "flexDirection": "column",
-      }
+      Array [
+        Object {
+          "backgroundColor": "#fdfdff",
+          "color": "#6b6b6b",
+          "flexDirection": "column",
+        },
+        Object {
+          "paddingBottom": 0,
+        },
+      ]
     }
   >
     <View

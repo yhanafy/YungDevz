@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Image, TextInput, Text, ToastAndroid} from 'react-native';
+import { StyleSheet, View, Image, KeyboardAvoidingView, ToastAndroid} from 'react-native';
 import QcActionButton from 'components/QcActionButton';
 import TouchableText from 'components/TouchableText'
 import teacherImages from 'config/teacherImages'
@@ -69,7 +69,8 @@ export class TeacherProfileScreen extends Component {
     //-----------renders the teacher profile UI ------------------------------------
     render() {
         return(
-            <View style={styles.container}>
+
+            <KeyboardAvoidingView style={styles.container} behavior="padding">
                 <ImageSelectionModal
                     visible={this.state.modalVisible}
                     images={teacherImages.images}
@@ -85,6 +86,7 @@ export class TeacherProfileScreen extends Component {
                         text="Update profile image"
                         onPress={() => this.editProfilePic(0)} />
                 </View>
+               
                 <TeacherInfoEntries
                         name={this.state.name}
                         phoneNumber={this.state.phoneNumber}
@@ -104,7 +106,7 @@ export class TeacherProfileScreen extends Component {
                                                             //is passed instead of 0
                     />
                 </View>
-            </View>
+            </KeyboardAvoidingView>
         )
     }
 
@@ -115,12 +117,15 @@ const styles = StyleSheet.create({
     container: {
         flexDirection:'column',
         backgroundColor: colors.lightGrey,
-        flex: 1
+        flex: 1,
+        justifyContent: "flex-end"
     },
     picContainer: {
-        paddingTop: 20,
+        paddingTop: 25,
         alignItems: 'center',
         paddingBottom: 20,
+        marginTop: 10,
+        marginBottom: 10,
         backgroundColor: colors.white,
     },
     profilePic: {
