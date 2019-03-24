@@ -143,7 +143,9 @@ export const classReducer = (state = INITIAL_STATE, action) => {
       newState = update(baseState, { teachers: { [action.teacherIndex]: { name: { $set: action.teacherInfo.name } } } });
       newState = update(newState, { teachers: { [action.teacherIndex]: { phoneNumber: { $set: action.teacherInfo.phoneNumber } } } });
       newState = update(newState, { teachers: { [action.teacherIndex]: { emailAddress: { $set: action.teacherInfo.emailAddress } } } });
-      return newState;
+      newState = update(newState, { teachers: { [action.teacherIndex]: { profileImageId: { $set: action.teacherInfo.profileImageId } } } });
+     return newState;
+    
     case actionTypes.EDIT_CURRENT_ASSIGNMENT:
       classIndex = action.classIndex;
       studentIndex = action.studentIndex;

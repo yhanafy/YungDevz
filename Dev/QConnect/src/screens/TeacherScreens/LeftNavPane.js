@@ -7,6 +7,7 @@ import { SafeAreaView } from "react-navigation";
 import { ListItem } from "react-native-elements";
 import QcAppBanner from "components/QcAppBanner";
 import QcDrawerItem from "components/QcDrawerItem";
+import teacherImages from "../../../config/teacherImages";
 
 class LeftNavPane extends React.Component {
   openClass = (i, className) => {
@@ -20,6 +21,11 @@ class LeftNavPane extends React.Component {
   //todo: change the ListItem header and tgfooter below to the shared drawer component intead
   // generalize the QcDrawerItem to accept either an image or an icon
   render() {
+    const {name, profileImageId, classes} = this.props;
+
+    const profileCaption = name + "'s profile"
+    const teacherImageId = profileImageId ? profileImageId : 0
+
     return (
       <ScrollView style={{ flex: 1, backgroundColor: colors.lightGrey }}>
         <SafeAreaView
@@ -38,8 +44,8 @@ class LeftNavPane extends React.Component {
           </View>
 
           <QcDrawerItem
-            title="Ms. Eslam's Profile"
-            icon="user"
+            title={profileCaption}
+            image={teacherImages.images[teacherImageId]}
             onPress={() => this.props.navigation.push("TeacherProfile")}
           />
 
@@ -73,8 +79,8 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  const { classes } = state.data.teachers[0];
-  return { classes };
+  const { classes, name, profileImageId } = state.data.teachers[0];
+  return { classes, name, profileImageId };
 };
 
 export default connect(mapStateToProps)(LeftNavPane);
