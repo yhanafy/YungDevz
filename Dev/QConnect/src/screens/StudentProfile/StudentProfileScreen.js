@@ -6,6 +6,7 @@ import { Rating } from 'react-native-elements';
 import fonts from 'config/colors';
 import DialogInput from 'react-native-dialog-input';
 import { editCurrentAssignment } from 'model/actions/editCurrentAssignment';
+import { addNewAssignment } from 'model/actions/addNewAssignment';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
@@ -29,6 +30,8 @@ class StudentProfileScreen extends Component {
   //method will add a new assignment for the student (only to current assignment, will not add
   //to assignment history until after completion of the assignment)
   addAssignment(classIndex, studentIndex, newAssignmentName) {
+    this.props.addNewAssignment(classIndex, studentIndex, 
+      newAssignmentName);
     this.setState({ isDialogVisible: false })
   }
 
@@ -159,7 +162,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      editCurrentAssignment
+      editCurrentAssignment,
+      addNewAssignment
     },
     dispatch
   );
