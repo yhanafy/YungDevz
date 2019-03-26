@@ -276,8 +276,13 @@ export const classReducer = (state = INITIAL_STATE, action) => {
     case actionTypes.EDIT_CURRENT_ASSIGNMENT:
       classIndex = action.classIndex;
       studentIndex = action.studentIndex;
-      newAssignment = action.newAssignment;
-      newState = update(baseState, { teachers: { [0] : { classes: { [classIndex]: { students: { [studentIndex]: { currentAssignment: { name: { $set: newAssignment } } } } } } } } });
+      
+      updatedAssignment = {
+        name: action.newAssignment,
+        startDate: new Date().toLocaleDateString("en-US")
+      }
+
+      newState = update(baseState, { teachers: { [0] : { classes: { [classIndex]: { students: { [studentIndex]: { currentAssignment: {  $set: updatedAssignment  } } } } } } } });
       return newState;
     
     case actionTypes.ADD_NEW_ASSIGNMENT:
@@ -306,7 +311,7 @@ export const classReducer = (state = INITIAL_STATE, action) => {
       }
       //pushes the assignment to the array of assignment history (Remember, this action does not 
       //update the current assignment, this needs to be done using the addNewAssignment action)
-      newState = update(baseState, { teachers: { [0] : { classes: { [classIndex]: { students: { [studentIndex]: { assignmentHistory: { $push: assignment } } } } } } } });
+      newState = update(baseState, { teachers: { [0] : { classes: { [classIndex]: { students: { [studentIndex]: { assignmentHistory: { $push: [assignment] } } } } } } } });
       return newState;
 
     default:
