@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Text, Image, FlatList } from 'react-native'
+import { StyleSheet, View, Text, TextInput, Image, FlatList, KeyboardAvoidingView } from 'react-native'
 import { Rating, AirbnbRating } from 'react-native-elements';
 import colors from 'config/colors';
 import { bindActionCreators } from 'redux';
 import { connect } from "react-redux";
+import QcActionButton from 'components/QcActionButton'
 
 class EvaluationPage extends Component {
 
@@ -11,19 +12,23 @@ class EvaluationPage extends Component {
     const subjects = ["Memorization", "Makharej", "Edgham & Ekhfae", "Rulings of Raa'", "Muduud", "Qalqalah"]
 
     return (
-      <View
-        style={styles.container}>
-        <View
-          style={styles.evaluationContainer}>
+      //----- outer view, gray background ------------------------
+      <KeyboardAvoidingView
+        style={styles.container}
+        behavior="padding">
+
+        <View style={styles.evaluationContainer}>
           <View style={styles.section}>
             <Image source={{ uri: this.props.avatar }}
               style={styles.profilePic} />
             <Text style={styles.titleText}>{this.props.name}</Text>
             <Text style={styles.subTitleText}>{this.props.currentAssignment.name}</Text>
           </View>
+
           <View style={styles.section}>
             <Text style={styles.mainQuestionText}>How was {this.props.name}'s tasmee'?</Text>
             <AirbnbRating
+              defaultRating={0}
               size={30}
               showRating={false}
             />
@@ -44,10 +49,27 @@ class EvaluationPage extends Component {
                   />
                 </View>
               )} />
+
+            <TextInput
+              style={styles.notesStyle}
+              multiline={true}
+              numberOfLines={3}
+              placeholder="Write a note."
+              placeholderColor={colors.black}
+            />
           </View>
+
         </View>
 
-      </View>
+        //--------- submit buttons -------------------
+        <View style={styles.buttonsContainer}>
+          <QcActionButton
+            text="Submit"
+            onPress={() => { }}
+          />
+        </View>
+
+      </KeyboardAvoidingView>
 
     )
   }
@@ -63,11 +85,14 @@ const styles = StyleSheet.create({
   evaluationContainer: {
     paddingTop: 25,
     alignItems: 'center',
-    paddingBottom: 20,
     marginTop: 30,
     marginBottom: 10,
+    marginHorizontal: 10,
     backgroundColor: colors.white,
-    flex: 1
+    flex: 1,
+    borderColor: colors.lightGrey,
+    borderWidth: 1,
+    justifyContent: "flex-end"
   },
   section: {
     borderBottomWidth: 1,
@@ -96,27 +121,43 @@ const styles = StyleSheet.create({
   mainQuestionText: {
     color: colors.darkGrey,
     fontSize: 16,
+    marginBottom: 10
   },
   box: {
     borderWidth: 1,
-    borderColor: colors.grey,
+    borderColor: colors.lightGrey,
     alignItems: "center",
     alignSelf: 'stretch',
     paddingHorizontal: 20,
     paddingVertical: 10,
     marginHorizontal: 10,
     marginVertical: 5,
-    shadowColor: colors.darkGrey,
-    shadowOffset: { width: 0, height: 5 },
-    shadowOpacity: 2,
-    shadowRadius: 2,
-    elevation: 3,
-
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.18,
+    shadowRadius: 1.00,
+    elevation: 1,
   },
   subCategoryText: {
     color: colors.darkGrey,
     fontSize: 16,
     paddingBottom: 7
+  },
+  buttonsContainer: {
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+    flexDirection: 'row',
+    backgroundColor: colors.white,
+  },
+  notesStyle: {
+    backgroundColor: colors.lightGrey,
+    alignSelf: 'stretch',
+    margin: 5,
+    alignItems: "flex-start",
+    justifyContent: "flex-start",
+    textAlignVertical: 'top'
   }
 });
 
