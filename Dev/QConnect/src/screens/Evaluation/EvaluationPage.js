@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from "react-redux";
 import QcActionButton from 'components/QcActionButton'
 
-class EvaluationPage extends Component {
+export class EvaluationPage extends Component {
 
   render() {
     const subjects = ["Memorization", "Makharej", "Edgham & Ekhfae", "Rulings of Raa'", "Muduud", "Qalqalah"]

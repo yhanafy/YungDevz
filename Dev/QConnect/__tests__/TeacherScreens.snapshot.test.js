@@ -7,6 +7,7 @@ import {ClassAttendanceScreen} from '../src/screens/TeacherScreens/ClassTabs/Cla
 import {AddClassScreen} from '../src/screens/TeacherScreens/AddClass/AddClassScreen';
 import {TeacherProfileScreen} from '../src/screens/TeacherScreens/TeacherProfile/TeacherProfileScreen.js'
 import { TeacherWelcomeScreen } from '../src/screens/FirstRun/TeacherWelcomeScreen';
+import { EvaluationPage } from '../src/screens/Evaluation/EvaluationPage';
 
 describe('Teacher screens snapshots', () => {
   const testRenderTeacherScreen = (screenName, Component, props) => {
@@ -38,4 +39,5 @@ describe('Teacher screens snapshots', () => {
   testRenderTeacherScreen("AddClassScreen", AddClassScreen)
   testRenderTeacherScreen("TeacherProfileScreen", TeacherProfileScreen, {name: "TestName", phoneNumber: "TestNumber", emailAddress: "TestEmail", profileImageId: 1})
   testRenderTeacherScreen("TeacherWelcomeScreen", TeacherWelcomeScreen, {name: "TestName", phoneNumber: "TestNumber", emailAddress: "TestEmail", profileImageId: 1})
+  testRenderTeacherScreen("TeacherWelcomeScreen", EvaluationPage, {name: "TestName", avatar: "https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg", currentAssignment: {name: "test assignment"}})
 })
