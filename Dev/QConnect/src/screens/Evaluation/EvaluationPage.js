@@ -8,9 +8,48 @@ import QcActionButton from 'components/QcActionButton'
 
 export class EvaluationPage extends Component {
 
-  render() {
-    const subjects = ["Memorization", "Makharej", "Edgham & Ekhfae", "Rulings of Raa'", "Muduud", "Qalqalah"]
+  // -------------  Current evaluation state ---------------------
+  state = {
+    overallGrade: 0,
+    categoriesGrades: [
+      {
+        name: "Memorization",
+        grade: 'not graded',
+      },
+      {
+        name: "Makharej",
+        grade: 'not graded',
+      },
+      {
+        name: "Edgham & Ekhfae",
+        grade: 'not graded',
+      },
+      {
+        name: "Rulings of Raa'",
+        grade: 'not graded',
+      },
+      {
+        name: "Muduud",
+        grade: 'not graded',
+      },
+      {
+        name: "Qalqalah",
+        grade: 'not graded',
+      },
+    ], 
+    notes: ""
+  }
 
+  // --------------  Updates state to reflect a change in a category rating --------------
+  updateCategoryRating = (name, rating) => {
+    let categoriesGrades = this.state.categoriesGrades.map(cat => (
+      cat.name===name? {...cat, grade: rating}: cat
+    ))
+    this.setState({ categoriesGrades })
+  }
+
+  // --------------  Renders Evaluation scree UI --------------
+  render() {
     return (
       //----- outer view, gray background ------------------------
       <KeyboardAvoidingView
@@ -31,21 +70,22 @@ export class EvaluationPage extends Component {
               defaultRating={0}
               size={30}
               showRating={false}
+              onFinishRating={(value) => this.setState({overallGrade: value})}
             />
 
             <FlatList
               numColumns={2}
-              data={subjects}
+              data={this.state.categoriesGrades}
               keyExtractor={(item, index) => index} // fix, should be item.id (add id to classes)
               renderItem={({ item, index }) => (
-                <View style={styles.box}>
-                  <Text style={styles.subCategoryText}>{item}</Text>
+                <View style={styles.box} key={index}>
+                  <Text style={styles.subCategoryText}>{item.name}</Text>
                   <Rating
                     startingValue={0}
                     type="custom"
                     imageSize={25}
-                    ratingColor={colors.primaryLight}
                     showRating={false}
+                    onFinishRating={(value) => this.updateCategoryRating(item.name, value)}
                   />
                 </View>
               )} />
@@ -54,26 +94,26 @@ export class EvaluationPage extends Component {
               style={styles.notesStyle}
               multiline={true}
               numberOfLines={3}
+              onChangeText={(notes) => this.setState({notes})}
               placeholder="Write a note."
               placeholderColor={colors.black}
             />
           </View>
-
         </View>
 
         <View style={styles.buttonsContainer}>
           <QcActionButton
             text="Submit"
-            onPress={() => { }}
+            onPress={() => { alert(JSON.stringify(this.state))}}
           />
         </View>
-
       </KeyboardAvoidingView>
 
     )
   }
 }
 
+//--------------- Styles used on this screen -------------------
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
@@ -159,6 +199,8 @@ const styles = StyleSheet.create({
     textAlignVertical: 'top'
   }
 });
+
+// ------------ Redux hook up --------------------------------
 
 const mapStateToProps = (state, ownProps) => {
   const { classIndex, studentIndex } = ownProps.navigation.state.params;
