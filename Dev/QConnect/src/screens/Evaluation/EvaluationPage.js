@@ -61,7 +61,6 @@ class EvaluationPage extends Component {
 
         </View>
 
-        //--------- submit buttons -------------------
         <View style={styles.buttonsContainer}>
           <QcActionButton
             text="Submit"
