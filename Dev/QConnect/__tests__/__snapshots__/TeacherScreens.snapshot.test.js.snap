@@ -3389,8 +3389,6 @@ exports[`Teacher screens snapshots render TeacherWelcomeScreen 2`] = `
         Object {
           "alignItems": "center",
           "alignSelf": "stretch",
-          "borderBottomColor": "#dadada",
-          "borderBottomWidth": 1,
           "padding": 10,
         }
       }
@@ -3439,8 +3437,6 @@ exports[`Teacher screens snapshots render TeacherWelcomeScreen 2`] = `
         Object {
           "alignItems": "center",
           "alignSelf": "stretch",
-          "borderBottomColor": "#dadada",
-          "borderBottomWidth": 1,
           "padding": 10,
         }
       }
@@ -3642,12 +3638,30 @@ exports[`Teacher screens snapshots render TeacherWelcomeScreen 2`] = `
       <RCTScrollView
         data={
           Array [
-            "Memorization",
-            "Makharej",
-            "Edgham & Ekhfae",
-            "Rulings of Raa'",
-            "Muduud",
-            "Qalqalah",
+            Object {
+              "grade": "not graded",
+              "name": "Memorization",
+            },
+            Object {
+              "grade": "not graded",
+              "name": "Makharej",
+            },
+            Object {
+              "grade": "not graded",
+              "name": "Edgham & Ekhfae",
+            },
+            Object {
+              "grade": "not graded",
+              "name": "Rulings of Raa'",
+            },
+            Object {
+              "grade": "not graded",
+              "name": "Muduud",
+            },
+            Object {
+              "grade": "not graded",
+              "name": "Qalqalah",
+            },
           ]
         }
         disableVirtualization={false}
@@ -3916,6 +3930,7 @@ exports[`Teacher screens snapshots render TeacherWelcomeScreen 2`] = `
         allowFontScaling={true}
         multiline={true}
         numberOfLines={3}
+        onChangeText={[Function]}
         placeholder="Write a note."
         placeholderColor="#101011"
         style={
