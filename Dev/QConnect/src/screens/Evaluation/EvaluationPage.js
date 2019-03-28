@@ -5,6 +5,7 @@ import colors from 'config/colors';
 import { bindActionCreators } from 'redux';
 import { connect } from "react-redux";
 import QcActionButton from 'components/QcActionButton'
+import {completeCurrentAssignment} from 'model/actions/completeCurrentAssignment'
 
 export class EvaluationPage extends Component {
 
@@ -50,6 +51,8 @@ export class EvaluationPage extends Component {
 
   // --------------  Renders Evaluation scree UI --------------
   render() {
+    const { classIndex, studentIndex } = this.props.navigation.state.params;
+
     return (
       //----- outer view, gray background ------------------------
       <KeyboardAvoidingView
@@ -99,12 +102,13 @@ export class EvaluationPage extends Component {
               placeholderColor={colors.black}
             />
           </View>
+
         </View>
 
         <View style={styles.buttonsContainer}>
           <QcActionButton
             text="Submit"
-            onPress={() => { alert(JSON.stringify(this.state))}}
+            onPress={() => { this.props.completeCurrentAssignment(classIndex, studentIndex, this.state) }}
           />
         </View>
       </KeyboardAvoidingView>
@@ -208,6 +212,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => (
   bindActionCreators({
+    completeCurrentAssignment
   }, dispatch)
 );
 

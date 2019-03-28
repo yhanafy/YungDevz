@@ -3,8 +3,7 @@ import { addStudent } from "model/actions/addStudent";
 import { deleteStudent } from "model/actions/deleteStudent";
 import { addAttendance } from "model/actions/addAttendance";
 import { addNewAssignment } from "../../src/model/actions/addNewAssignment";
-import { completeAssignment } from "../../src/model/actions/completeAssignment";
-import {saveEvaluationPage} from "../../src/model/actions/saveEvaluation"
+import { completeCurrentAssignment } from "../../src/model/actions/completeCurrentAssignment";
 import {saveTeacherInfo} from "../../src/model/actions/saveTeacherInfo"
 import { editCurrentAssignment } from "../../src/model/actions/editCurrentAssignment"; 
 import actionTypes from "model/actions/actionTypes";
@@ -153,19 +152,24 @@ it("should create an action to complete a student's assignment", () => {
 
   classIndex = 0;
   studentIndex = 3;
-  assignmentInfo = {
-    name: "test name",
-    startDate: new Date(),
-    completionDate: new Date()
+  evaluation = {
+    mainGrade: 4,
+    categoriesGrades: [
+      {
+        name: "Memorization",
+        grade: 'not graded',
+      }
+    ],
+    notes: "good job"
   }
 
   const expectedAction = {
-    type: actionTypes.COMPLETE_ASSIGNMENT,
+    type: actionTypes.COMPLETE_CURRENT_ASSIGNMENT,
     classIndex,
     studentIndex, 
-    assignmentInfo
+    evaluation
   }
-  expect(completeAssignment(classIndex, studentIndex, assignmentInfo)).toEqual(expectedAction)
+  expect(completeCurrentAssignment(classIndex, studentIndex, evaluation)).toEqual(expectedAction)
 })
 
 })

@@ -111,11 +111,22 @@ const teacher_one_class_one_student_updated_assignment = {
     ]
 };
 
+const evaluation = {
+    mainGrade: 4,
+    categoriesGrades: [
+      {
+        name: "Memorization",
+        grade: 'not graded',
+      }
+    ],
+    notes: "good job"
+  }
+
 const studentAssignmentHistory =  [{
-        completionDate: date,
-        evaluation: "good job",
-        name: "Updated assignment",
-        startDate: date,
+        name: "Test new assignment",
+        startDate: "1/1/2019",
+        evaluation: evaluation,
+        completionDate: "1/1/2019"
     }]
 
     const teacher_one_class_one_student_completed_assignment = {
@@ -163,8 +174,6 @@ const teacher_one_class_one_student_with_attendance = {
     ]
 };
 
-
-const evaluation_text = "good job"
 
 describe('teacher reducer', () => {
     //------------ Initial state test ---------------------
@@ -219,27 +228,10 @@ describe('teacher reducer', () => {
             })
         ).toEqual(teacher_one_class_one_student_with_attendance);
     })
-
-    //------------ EditCurrentAssignment test ---------------------
-    it('should handle COMPLETE_ASSIGNMENT', () => {
-        const classIndex = 0;
-
-        expect(
-            classReducer(teacher_one_class_one_student_with_new_assignment, {
-                type: actionTypes.COMPLETE_ASSIGNMENT,
-                classIndex: classIndex,
-                studentIndex: 0,
-                assignmentInfo: {
-                    name: updated_assignment_text,
-                    startDate: date,
-                    completionDate: date,
-                    evaluation: evaluation_text
-                }
-            })
-        ).toEqual(teacher_one_class_one_student_completed_assignment);
-    })
 })
 
+
+//-------------- set of tests that depend on mocking the Date class to get consistent results ----------------
 describe('teacher reducer with mock dates', () => {
 
     const RealDate = Date
@@ -281,5 +273,18 @@ describe('teacher reducer with mock dates', () => {
             })
         ).toEqual(teacher_one_class_one_student_updated_assignment);
     })
-    
+
+    //------------ CompleteCurrentAssignment test ---------------------
+    it('should handle COMPLETE_CURRENT_ASSIGNMENT', () => {
+        const classIndex = 0;
+
+        expect(
+            classReducer(teacher_one_class_one_student_with_new_assignment, {
+                type: actionTypes.COMPLETE_CURRENT_ASSIGNMENT,
+                classIndex: classIndex,
+                studentIndex: 0,
+                evaluation: evaluation
+            })
+        ).toEqual(teacher_one_class_one_student_completed_assignment);
+    })
 })
