@@ -134,8 +134,6 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end"
   },
   section: {
-    borderBottomWidth: 1,
-    borderBottomColor: colors.grey,
     alignItems: "center",
     alignSelf: 'stretch',
     padding: 10
