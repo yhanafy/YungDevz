@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Text, TextInput, Image, FlatList, KeyboardAvoidingView, ScrollView } from 'react-native'
+import { StyleSheet, View, Text, TextInput, Image, FlatList, KeyboardAvoidingView } from 'react-native'
 import { Rating, AirbnbRating } from 'react-native-elements';
 import colors from 'config/colors';
 import { bindActionCreators } from 'redux';
@@ -10,7 +10,7 @@ export class EvaluationPage extends Component {
 
   // -------------  Current evaluation state ---------------------
   state = {
-    mainGrade: 0,
+    overallGrade: 0,
     categoriesGrades: [
       {
         name: "Memorization",
@@ -36,14 +36,14 @@ export class EvaluationPage extends Component {
         name: "Qalqalah",
         grade: 'not graded',
       },
-    ],
+    ], 
     notes: ""
   }
 
   // --------------  Updates state to reflect a change in a category rating --------------
   updateCategoryRating = (name, rating) => {
     let categoriesGrades = this.state.categoriesGrades.map(cat => (
-      cat.name === name ? { ...cat, grade: rating } : cat
+      cat.name===name? {...cat, grade: rating}: cat
     ))
     this.setState({ categoriesGrades })
   }
@@ -62,15 +62,17 @@ export class EvaluationPage extends Component {
               style={styles.profilePic} />
             <Text style={styles.titleText}>{this.props.name}</Text>
             <Text style={styles.subTitleText}>{this.props.currentAssignment.name}</Text>
+          </View>
+
+          <View style={styles.section}>
             <Text style={styles.mainQuestionText}>How was {this.props.name}'s tasmee'?</Text>
             <AirbnbRating
               defaultRating={0}
               size={30}
               showRating={false}
-              onFinishRating={(value) => this.setState({ mainGrade: value })}
+              onFinishRating={(value) => this.setState({overallGrade: value})}
             />
 
-            <ScrollView style={styles.detailsSection}>
             <FlatList
               numColumns={2}
               data={this.state.categoriesGrades}
@@ -92,18 +94,17 @@ export class EvaluationPage extends Component {
               style={styles.notesStyle}
               multiline={true}
               numberOfLines={3}
-              onChangeText={(notes) => this.setState({ notes })}
+              onChangeText={(notes) => this.setState({notes})}
               placeholder="Write a note."
               placeholderColor={colors.black}
             />
-            </ScrollView>
           </View>
         </View>
 
         <View style={styles.buttonsContainer}>
           <QcActionButton
             text="Submit"
-            onPress={() => { alert(JSON.stringify(this.state)) }}
+            onPress={() => { alert(JSON.stringify(this.state))}}
           />
         </View>
       </KeyboardAvoidingView>
@@ -154,16 +155,12 @@ const styles = StyleSheet.create({
   },
   subTitleText: {
     color: colors.primaryDark,
-    fontSize: 18,
-    marginBottom: 15
+    fontSize: 18
   },
   mainQuestionText: {
     color: colors.darkGrey,
     fontSize: 16,
     marginBottom: 10
-  },
-  detailsSection: {
-    marginTop: 10
   },
   box: {
     borderWidth: 1,
