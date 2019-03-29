@@ -226,18 +226,23 @@ export const classReducer = (state = INITIAL_STATE, action) => {
 
   switch (action.type) {
     case actionTypes.ADD_STUDENT:
-      classIndex = action.studentInfo.classIndex
+    {
+      let classIndex = action.studentInfo.classIndex
       newState = update(baseState, { teachers: { [0]: { classes: { [classIndex]: { students: { $push: [action.studentInfo.studentInfo] } } } } } });
       return newState;
-
+    }
     case actionTypes.DELETE_STUDENT:
+    {
       newState = update(baseState, { teachers: { [0]: { classes: { [action.classIndex]: { students: { $splice: [[action.studentIndex, 1]] } } } } } });
       return newState;
-
+    }
     case actionTypes.ADD_CLASS:
+    {
       newState = update(baseState, { teachers: { [0]: { classes: { $push: [action.classInfo] } } } });
       return newState
+    }
     case actionTypes.ADD_ATTENDANCE:
+    {
       //Fetches the current list of students
       studentslist = state.teachers[0].classes[action.classIndex].students;
 
@@ -265,50 +270,58 @@ export const classReducer = (state = INITIAL_STATE, action) => {
 
       newState = update(baseState, { teachers: { [0]: { classes: { [action.classIndex]: { students: { $set: studentslist } } } } } });
       return newState;
+    }
     case actionTypes.SAVE_TEACHER_INFO:
+    {
       //fetches current teacher info
       newState = update(baseState, { teachers: { [action.teacherIndex]: { name: { $set: action.teacherInfo.name } } } });
       newState = update(newState, { teachers: { [action.teacherIndex]: { phoneNumber: { $set: action.teacherInfo.phoneNumber } } } });
       newState = update(newState, { teachers: { [action.teacherIndex]: { emailAddress: { $set: action.teacherInfo.emailAddress } } } });
       newState = update(newState, { teachers: { [action.teacherIndex]: { profileImageId: { $set: action.teacherInfo.profileImageId } } } });
      return newState;
-    
+    }
     case actionTypes.EDIT_CURRENT_ASSIGNMENT:
-      classIndex = action.classIndex;
-      studentIndex = action.studentIndex;
-      newAssignment = action.newAssignment;
-      newState = update(baseState, { teachers: { [0] : { classes: { [classIndex]: { students: { [studentIndex]: { currentAssignment: { name: { $set: newAssignment } } } } } } } } });
+    {
+      let {classIndex, studentIndex} = action;
+      let updatedAssignment = {
+        name: action.newAssignment,
+        startDate: new Date().toLocaleDateString("en-US")
+      }
+
+      let newState = update(baseState, { teachers: { [0] : { classes: { [classIndex]: { students: { [studentIndex]: { currentAssignment: {  $set: updatedAssignment  } } } } } } } });
       return newState;
-    
+    }
     case actionTypes.ADD_NEW_ASSIGNMENT:
-      classIndex = action.classIndex;
-      studentIndex = action.studentIndex;
-      newAssignmentName = action.newAssignmentName;
-      newAssignmentDate = new Date().toLocaleDateString("en-US");
+    {
+      let {classIndex, studentIndex, newAssignmentName} = action;
+      let newAssignmentDate = new Date().toLocaleDateString("en-US");
+
       //creates the new assignment before adding it to the persist
-      newCurrentAssignment = {
+      let newCurrentAssignment = {
         name: newAssignmentName,
         startDate: newAssignmentDate 
       }
+
       //updates the current assignment
-      newState = update(baseState, { teachers: { [0] : { classes: { [classIndex]: { students: { [studentIndex]: { currentAssignment: { $set: newCurrentAssignment } } } } } } } });
+      let newState = update(baseState, { teachers: { [0] : { classes: { [classIndex]: { students: { [studentIndex]: { currentAssignment: { $set: newCurrentAssignment } } } } } } } });
       return newState;
-    
-    case actionTypes.COMPLETE_ASSIGNMENT:
-      classIndex = action.classIndex;
-      studentIndex = action.studentIndex;
-      //creates the assignment based on the given action params
-      assignment = {
-        name: action.assignmentInfo.name,
-        startDate: action.assignmentInfo.startDate,
-        completionDate: action.assignmentInfo.completionDate,
-        evaluation: action.assignmentInfo.evaluation
+    }
+    case actionTypes.COMPLETE_CURRENT_ASSIGNMENT:
+    {
+      let {classIndex, studentIndex, evaluation} = action;
+
+      //updates the evaluation of the current assignment
+      let assignment = {
+        ...baseState.teachers[0].classes[classIndex].students[studentIndex].currentAssignment,
+        completionDate: new Date().toLocaleDateString("en-US"),
+        evaluation
       }
+
       //pushes the assignment to the array of assignment history (Remember, this action does not 
       //update the current assignment, this needs to be done using the addNewAssignment action)
-      newState = update(baseState, { teachers: { [0] : { classes: { [classIndex]: { students: { [studentIndex]: { assignmentHistory: { $push: assignment } } } } } } } });
+      let newState = update(baseState, { teachers: { [0] : { classes: { [classIndex]: { students: { [studentIndex]: { assignmentHistory: { $push: [assignment] } } } } } } } });
       return newState;
-
+    }
     default:
       return state
   }

@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
         fontSize: 16
     },
     buttonsContainer: {
-        paddingTop: 20,
+        paddingVertical: 10,
         alignItems: 'center',
         justifyContent: 'space-evenly',
         flexDirection: 'row',
