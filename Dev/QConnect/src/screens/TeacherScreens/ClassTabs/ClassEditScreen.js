@@ -8,7 +8,7 @@ import { bindActionCreators } from "redux";
 import { deleteStudent } from "model/actions/deleteStudent";
 import { addStudent } from "model/actions/addStudent";
 import QcActionButton from "components/QcActionButton";
-import { ToastAndroid } from "react-native";
+import studentImages from "config/studentImages";
 
 export class ClassEditScreen extends Component {
   state = {
@@ -16,10 +16,15 @@ export class ClassEditScreen extends Component {
   };
 
   getAvatarUrl() {
-    let photoNum = Math.floor(Math.random() * Math.floor(90));
+    let photoNum = Math.floor(Math.random() * Math.floor(99));
     let url =
       "https://randomuser.me/api/portraits/thumb/men/" + photoNum + ".jpg";
     return url;
+  }
+
+  getImageId() {
+    let photoNum = Math.floor(Math.random() * Math.floor(30));
+    return photoNum;
   }
 
   addNewStudent(classIndex) {
@@ -29,6 +34,7 @@ export class ClassEditScreen extends Component {
       studentInfo: {
         name: this.state.newStudentName,
         avatar: this.getAvatarUrl(),
+        imageId: this.getImageId(),
         currentAssignment: {
           name: "None",
           startDate: ""
@@ -42,6 +48,11 @@ export class ClassEditScreen extends Component {
     ;} else {
       alert("Please input a Name!")
     }
+  }
+
+  getStudentImage(imageId, avatar) {
+    console.log(imageId, avatar)
+    return imageId? studentImages.images[imageId] : { uri: avatar };
   }
 
   render() {
@@ -70,7 +81,7 @@ export class ClassEditScreen extends Component {
             <StudentCard
               key={index}
               studentName={item.name}
-              profilePic={{ uri: item.avatar }}
+              profilePic={ this.getStudentImage(item.imageId, item.avatar)}
               background={colors.white}
               onPress={() =>
                 deleteStudent(
