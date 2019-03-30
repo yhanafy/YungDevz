@@ -49,7 +49,7 @@ class StudentProfileScreen extends Component {
     const { classIndex, studentIndex } = this.props.navigation.state.params;
     const currentStudent = this.props.classes[classIndex].students[studentIndex];
     const hasCurrentAssignment = currentStudent.currentAssignment.name === 'None' ? false : true;
-    const rating = 5.0; //to-do: make this into a method that computes the average ratings
+    const rating = getAverageRating(); //to-do: make this into a method that computes the average ratings
 
     return (
       <View style={styles.container}>
