@@ -96,9 +96,17 @@ class StudentProfileScreen extends Component {
             keyExtractor={(item, index) => item.name}
             renderItem={({ item, index }) => (
               <View style={styles.prevAssignmentCard} key={index}>
-                <Text style={styles.subText}>{item.completionDate}</Text>
-                <Text style={styles.subText}>{item.name}</Text>
-                <Rating readonly={true} startingValue={item.evaluation.overallGrade} imageSize={17} />
+                <View style={{alignItems: 'center', paddingTop: 10}}>
+                  <Text style={styles.prevAssignmentTitleText}>{item.name}</Text>
+                </View>
+                <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                  <Text style={[styles.subText, {paddingLeft: 10}]}>{item.completionDate}</Text>
+                  <Rating style={{paddingRight: 10}} readonly={true} 
+                  startingValue={item.evaluation.overallGrade} imageSize={17} />
+                </View> 
+                <View style={{padding: 10}}>
+                  <Text style={styles.subText}>{"Notes: " + item.evaluation.notes}</Text>
+                </View> 
               </View>
             )}
             />
@@ -117,6 +125,10 @@ const styles = StyleSheet.create({
   subText: {
     fontSize: 14,
     fontFamily: fonts.regular
+  },
+  prevAssignmentTitleText: {
+    fontFamily: fonts.regular,
+    fontSize: 19
   },
   container: {
     flexDirection: "column",
@@ -168,12 +180,11 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   prevAssignmentCard: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     borderColor: colors.lightGrey,
     borderWidth: 0.5,
-    height: 50,
-    alignItems: 'center',
-    justifyContent: 'space-evenly'
+    height: 100,
+    justifyContent: 'space-between'
   },
 });
 
