@@ -37,8 +37,10 @@ class StudentProfileScreen extends Component {
     const currentStudent = this.props.classes[classIndex].students[studentIndex];
     const hasCurrentAssignment = currentStudent.currentAssignment.name === 'None' ? false : true;
 
-    //retrieves the student's average rating
-    averageRating = (currentStudent.totalGrade / currentStudent.totalAssignments);
+    //retrieves the student's average rating. If the student hasn't had any assignments, then 
+    //the rating will default to 0.
+    averageRating = currentStudent.totalAssignments === 0 ? 0.0 : 
+    (currentStudent.totalGrade / currentStudent.totalAssignments);
 
     return (
       <View style={styles.container}>

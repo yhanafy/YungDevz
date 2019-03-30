@@ -794,7 +794,7 @@ exports[`Teacher screens snapshots render ClassAttendanceScreen 1`] = `
                       >
                         <RCTDatePicker
                           date={1552719600000}
-                          maximumDate={1553842800000}
+                          maximumDate={1553929200000}
                           mode="date"
                           onChange={[Function]}
                           onResponderTerminationRequest={[Function]}
@@ -1066,7 +1066,7 @@ exports[`Teacher screens snapshots render ClassEditScreen 1`] = `
                     },
                   ],
                   "notes": "",
-                  "overallGrade": 0,
+                  "overallGrade": 2,
                 },
                 "name": "Al-Baqara 5-9",
                 "startDate": "03-17-2019",
@@ -1088,6 +1088,8 @@ exports[`Teacher screens snapshots render ClassEditScreen 1`] = `
               "startDate": "03-24-2019",
             },
             "name": "Ahmed Reducer",
+            "totalAssignments": 1,
+            "totalGrade": 2,
           },
           Object {
             "assignmentHistory": Array [
@@ -1121,7 +1123,7 @@ exports[`Teacher screens snapshots render ClassEditScreen 1`] = `
                     },
                   ],
                   "notes": "",
-                  "overallGrade": 0,
+                  "overallGrade": 4,
                 },
                 "name": "Al-Baqara 5-9",
                 "startDate": "03-17-2019",
@@ -1139,6 +1141,8 @@ exports[`Teacher screens snapshots render ClassEditScreen 1`] = `
               "startDate": "03-24-2019",
             },
             "name": "Amina Khan",
+            "totalAssignments": 1,
+            "totalGrade": 4,
           },
           Object {
             "assignmentHistory": Array [
@@ -1172,7 +1176,7 @@ exports[`Teacher screens snapshots render ClassEditScreen 1`] = `
                     },
                   ],
                   "notes": "",
-                  "overallGrade": 0,
+                  "overallGrade": 1,
                 },
                 "name": "Al-Baqara 5-9",
                 "startDate": "03-17-2019",
@@ -1190,6 +1194,8 @@ exports[`Teacher screens snapshots render ClassEditScreen 1`] = `
               "startDate": "03-24-2019",
             },
             "name": "Ayoub Barrak",
+            "totalAssignments": 1,
+            "totalGrade": 1,
           },
           Object {
             "assignmentHistory": Array [
@@ -1223,7 +1229,7 @@ exports[`Teacher screens snapshots render ClassEditScreen 1`] = `
                     },
                   ],
                   "notes": "",
-                  "overallGrade": 0,
+                  "overallGrade": 5,
                 },
                 "name": "Al-Baqara 5-9",
                 "startDate": "03-17-2019",
@@ -1241,6 +1247,8 @@ exports[`Teacher screens snapshots render ClassEditScreen 1`] = `
               "startDate": "03-24-2019",
             },
             "name": "Khaled Kwick",
+            "totalAssignments": 1,
+            "totalGrade": 5,
           },
           Object {
             "assignmentHistory": Array [
@@ -1274,7 +1282,7 @@ exports[`Teacher screens snapshots render ClassEditScreen 1`] = `
                     },
                   ],
                   "notes": "",
-                  "overallGrade": 0,
+                  "overallGrade": 2,
                 },
                 "name": "Al-Baqara 5-9",
                 "startDate": "03-17-2019",
@@ -1292,11 +1300,13 @@ exports[`Teacher screens snapshots render ClassEditScreen 1`] = `
               "startDate": "03-24-2019",
             },
             "name": "Yassine Lightening",
+            "totalAssignments": 1,
+            "totalGrade": 2,
           },
           Object {
             "assignmentHistory": Array [
               Object {
-                "completionDate": "03-20-2019",
+                "completionDate": "03-22-2019",
                 "evaluation": Object {
                   "categoriesGrades": Array [
                     Object {
@@ -1362,7 +1372,7 @@ exports[`Teacher screens snapshots render ClassEditScreen 1`] = `
                   "notes": "",
                   "overallGrade": 5,
                 },
-                "name": "Al-Baqara 5-9",
+                "name": "Al-Baqara 9-15",
                 "startDate": "03-17-2019",
               },
             ],
@@ -1374,10 +1384,12 @@ exports[`Teacher screens snapshots render ClassEditScreen 1`] = `
             ],
             "avatar": "https://randomuser.me/api/portraits/thumb/men/26.jpg",
             "currentAssignment": Object {
-              "name": "Huud pages 3, 4",
-              "startDate": "03-24-2019",
+              "name": "None",
+              "startDate": "",
             },
             "name": "Yusuf Awesome",
+            "totalAssignments": 2,
+            "totalGrade": 8,
           },
         ]
       }
@@ -1504,7 +1516,7 @@ exports[`Teacher screens snapshots render ClassMainScreen 1`] = `
                     },
                   ],
                   "notes": "",
-                  "overallGrade": 0,
+                  "overallGrade": 2,
                 },
                 "name": "Al-Baqara 5-9",
                 "startDate": "03-17-2019",
@@ -1526,6 +1538,8 @@ exports[`Teacher screens snapshots render ClassMainScreen 1`] = `
               "startDate": "03-24-2019",
             },
             "name": "Ahmed Reducer",
+            "totalAssignments": 1,
+            "totalGrade": 2,
           },
           Object {
             "assignmentHistory": Array [
@@ -1559,7 +1573,7 @@ exports[`Teacher screens snapshots render ClassMainScreen 1`] = `
                     },
                   ],
                   "notes": "",
-                  "overallGrade": 0,
+                  "overallGrade": 4,
                 },
                 "name": "Al-Baqara 5-9",
                 "startDate": "03-17-2019",
@@ -1577,6 +1591,8 @@ exports[`Teacher screens snapshots render ClassMainScreen 1`] = `
               "startDate": "03-24-2019",
             },
             "name": "Amina Khan",
+            "totalAssignments": 1,
+            "totalGrade": 4,
           },
           Object {
             "assignmentHistory": Array [
@@ -1610,7 +1626,7 @@ exports[`Teacher screens snapshots render ClassMainScreen 1`] = `
                     },
                   ],
                   "notes": "",
-                  "overallGrade": 0,
+                  "overallGrade": 1,
                 },
                 "name": "Al-Baqara 5-9",
                 "startDate": "03-17-2019",
@@ -1628,6 +1644,8 @@ exports[`Teacher screens snapshots render ClassMainScreen 1`] = `
               "startDate": "03-24-2019",
             },
             "name": "Ayoub Barrak",
+            "totalAssignments": 1,
+            "totalGrade": 1,
           },
           Object {
             "assignmentHistory": Array [
@@ -1661,7 +1679,7 @@ exports[`Teacher screens snapshots render ClassMainScreen 1`] = `
                     },
                   ],
                   "notes": "",
-                  "overallGrade": 0,
+                  "overallGrade": 5,
                 },
                 "name": "Al-Baqara 5-9",
                 "startDate": "03-17-2019",
@@ -1679,6 +1697,8 @@ exports[`Teacher screens snapshots render ClassMainScreen 1`] = `
               "startDate": "03-24-2019",
             },
             "name": "Khaled Kwick",
+            "totalAssignments": 1,
+            "totalGrade": 5,
           },
           Object {
             "assignmentHistory": Array [
@@ -1712,7 +1732,7 @@ exports[`Teacher screens snapshots render ClassMainScreen 1`] = `
                     },
                   ],
                   "notes": "",
-                  "overallGrade": 0,
+                  "overallGrade": 2,
                 },
                 "name": "Al-Baqara 5-9",
                 "startDate": "03-17-2019",
@@ -1730,11 +1750,13 @@ exports[`Teacher screens snapshots render ClassMainScreen 1`] = `
               "startDate": "03-24-2019",
             },
             "name": "Yassine Lightening",
+            "totalAssignments": 1,
+            "totalGrade": 2,
           },
           Object {
             "assignmentHistory": Array [
               Object {
-                "completionDate": "03-20-2019",
+                "completionDate": "03-22-2019",
                 "evaluation": Object {
                   "categoriesGrades": Array [
                     Object {
@@ -1800,7 +1822,7 @@ exports[`Teacher screens snapshots render ClassMainScreen 1`] = `
                   "notes": "",
                   "overallGrade": 5,
                 },
-                "name": "Al-Baqara 5-9",
+                "name": "Al-Baqara 9-15",
                 "startDate": "03-17-2019",
               },
             ],
@@ -1812,10 +1834,12 @@ exports[`Teacher screens snapshots render ClassMainScreen 1`] = `
             ],
             "avatar": "https://randomuser.me/api/portraits/thumb/men/26.jpg",
             "currentAssignment": Object {
-              "name": "Huud pages 3, 4",
-              "startDate": "03-24-2019",
+              "name": "None",
+              "startDate": "",
             },
             "name": "Yusuf Awesome",
+            "totalAssignments": 2,
+            "totalGrade": 8,
           },
         ]
       }
@@ -3659,7 +3683,13 @@ exports[`Teacher screens snapshots render TeacherWelcomeScreen 1`] = `
 
 exports[`Teacher screens snapshots render TeacherWelcomeScreen 2`] = `
 <View
-  onLayout={[Function]}
+  accessible={false}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
   style={
     Array [
       Object {
