@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from "react-redux";
 import QcActionButton from 'components/QcActionButton'
 import {completeCurrentAssignment} from 'model/actions/completeCurrentAssignment'
+import { editCurrentAssignment } from 'model/actions/editCurrentAssignment';
 
 export class EvaluationPage extends Component {
 
@@ -55,6 +56,7 @@ export class EvaluationPage extends Component {
   //------------  Saves the rating to db and pops to previous view
   submitRating(classIndex, studentIndex){
     this.props.completeCurrentAssignment(classIndex, studentIndex, this.state);
+    this.props.editCurrentAssignment(classIndex, studentIndex, {name: "None", startDate: ""});
     this.props.navigation.pop();
   }
 
@@ -223,7 +225,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => (
   bindActionCreators({
-    completeCurrentAssignment
+    completeCurrentAssignment,
+    editCurrentAssignment
   }, dispatch)
 );
 

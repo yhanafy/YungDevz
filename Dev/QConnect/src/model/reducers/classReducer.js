@@ -277,14 +277,14 @@ export const INITIAL_STATE = {
               name: "Yusuf Awesome",
               avatar: "https://randomuser.me/api/portraits/thumb/men/26.jpg",
               currentAssignment: {
-                name: "Huud pages 3, 4",
-                startDate: "03-24-2019"
+                name: "None",
+                startDate: ""
               },
               assignmentHistory: [
                 {
                   name: "Al-Baqara 5-9",
                   startDate: "03-17-2019",
-                  completionDate: "03-20-2019",
+                  completionDate: "03-22-2019",
                   evaluation: {
                     overallGrade: 3,
                     categoriesGrades: [
@@ -317,7 +317,7 @@ export const INITIAL_STATE = {
                   }
                 },
                 {
-                  name: "Al-Baqara 5-9",
+                  name: "Al-Baqara 9-15",
                   startDate: "03-17-2019",
                   completionDate: "03-20-2019",
                   evaluation: {
@@ -436,8 +436,8 @@ export const classReducer = (state = INITIAL_STATE, action) => {
       {
         let { classIndex, studentIndex } = action;
         let updatedAssignment = {
-          name: action.newAssignment,
-          startDate: new Date().toLocaleDateString("en-US")
+          name: action.newAssignment.name,
+          startDate: action.newAssignment.startDate
         }
 
         let newState = update(baseState, { teachers: { [0]: { classes: { [classIndex]: { students: { [studentIndex]: { currentAssignment: { $set: updatedAssignment } } } } } } } });

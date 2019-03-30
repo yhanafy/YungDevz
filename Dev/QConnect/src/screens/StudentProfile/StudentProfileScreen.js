@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Image, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Image, Text, StyleSheet, ScrollView, FlatList } from 'react-native';
 import colors from 'config/colors';
 import QcActionButton from "components/QcActionButton"
 import { Rating } from 'react-native-elements';
@@ -16,22 +16,6 @@ class StudentProfileScreen extends Component {
     isDialogVisible: false,
     averageGrade: 0 
   }
-
-  //Method retrieves the current average rating for the current student
-  /*
-  getAverageRating() {
-    const { classIndex, studentIndex } = this.props.navigation.state.params;
-    const currentStudent = this.props.classes[classIndex].students[studentIndex];
-    const assignmentHistory = currentStudent.assignmentHistory;
-    let averageGrade = 0;
-    for(let i = 0; i < assignmentHistory.length; i++){
-      averageGrade += assignmentHistory[i].overallGrade;
-    }
-    averageGrade = averageGrade / assignmentHistory.length;
-
-    this.setState({ isDialogVisible: false, averageGrade: averageGrade });
-  }
-  */
 
   //method updates the current assignment of the student
   editAssignment(classIndex, studentIndex, newAssignmentName) {
@@ -71,7 +55,8 @@ class StudentProfileScreen extends Component {
           submitInput={(inputText) => 
             //If the student already has an existing assignment, then it will simply edit the
             //name of the current assignment, if not, then it will create a new assignment
-            { hasCurrentAssignment ? this.editAssignment(classIndex, studentIndex, inputText)
+            { hasCurrentAssignment ? this.editAssignment(classIndex, studentIndex, 
+              {name: inputText, startDate: new Date().toLocaleDateString("en-US")})
                : this.addAssignment(classIndex, studentIndex, inputText)}}
           closeDialog={() => { this.setState({ isDialogVisible: false }) }} />
 
@@ -106,7 +91,17 @@ class StudentProfileScreen extends Component {
         </View>
 
         <ScrollView style={styles.prevAssignments}>
-          <Text>Placeholder for past assignments</Text>
+          <FlatList
+            data={assignmentHistory}
+            keyExtractor={(item, index) => item.name}
+            renderItem={({ item, index }) => (
+              <View style={styles.prevAssignmentCard} key={index}>
+                <Text style={styles.subText}>{item.completionDate}</Text>
+                <Text style={styles.subText}>{item.name}</Text>
+                <Rating readonly={true} startingValue={item.evaluation.overallGrade} imageSize={17} />
+              </View>
+            )}
+            />
         </ScrollView>
       </View>
     );
@@ -171,7 +166,15 @@ const styles = StyleSheet.create({
     marginLeft: 7,
     marginRight: 7,
     marginTop: 10,
-  }
+  },
+  prevAssignmentCard: {
+    flexDirection: 'row',
+    borderColor: colors.lightGrey,
+    borderWidth: 0.5,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'space-evenly'
+  },
 });
 
 const mapStateToProps = state => {
