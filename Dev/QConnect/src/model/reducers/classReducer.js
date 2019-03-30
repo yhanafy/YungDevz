@@ -24,20 +24,63 @@ export const INITIAL_STATE = {
               },
               assignmentHistory: [
                 {
-                  name: "Aal-Imran Pages 1-5",
-                  startDate: "03-20-2019",
-                  completionDate: "03-23-2019",
-                  evaluation: {
-                    finalGrade: 3.6
-                  }
-                },
-                {
-                  name: "Al-Baqara 5-9",
-                  startDate: "03-17-2019",
-                  completionDate: "03-20-2019",
-                  evaluation: {
-                    finalGrade: 4.5
-                  }
+                  overallGrade: 5,
+                  categoriesGrades: [
+                    {
+                      name: "Memorization",
+                      grade: 'not graded',
+                    },
+                    {
+                      name: "Makharej",
+                      grade: 'not graded',
+                    },
+                    {
+                      name: "Edgham & Ekhfae",
+                      grade: 'not graded',
+                    },
+                    {
+                      name: "Rulings of Raa'",
+                      grade: 'not graded',
+                    },
+                    {
+                      name: "Muduud",
+                      grade: 'not graded',
+                    },
+                    {
+                      name: "Qalqalah",
+                      grade: 'not graded',
+                    },
+                  ],
+                  notes: ""
+                }, {
+                  overallGrade: 0,
+                  categoriesGrades: [
+                    {
+                      name: "Memorization",
+                      grade: 'not graded',
+                    },
+                    {
+                      name: "Makharej",
+                      grade: 'not graded',
+                    },
+                    {
+                      name: "Edgham & Ekhfae",
+                      grade: 'not graded',
+                    },
+                    {
+                      name: "Rulings of Raa'",
+                      grade: 'not graded',
+                    },
+                    {
+                      name: "Muduud",
+                      grade: 'not graded',
+                    },
+                    {
+                      name: "Qalqalah",
+                      grade: 'not graded',
+                    },
+                  ],
+                  notes: ""
                 }
               ],
               attendanceHistory: [
@@ -71,7 +114,34 @@ export const INITIAL_STATE = {
                   startDate: "03-17-2019",
                   completionDate: "03-20-2019",
                   evaluation: {
-                    finalGrade: 4.5
+                    overallGrade: 0,
+                    categoriesGrades: [
+                      {
+                        name: "Memorization",
+                        grade: 'not graded',
+                      },
+                      {
+                        name: "Makharej",
+                        grade: 'not graded',
+                      },
+                      {
+                        name: "Edgham & Ekhfae",
+                        grade: 'not graded',
+                      },
+                      {
+                        name: "Rulings of Raa'",
+                        grade: 'not graded',
+                      },
+                      {
+                        name: "Muduud",
+                        grade: 'not graded',
+                      },
+                      {
+                        name: "Qalqalah",
+                        grade: 'not graded',
+                      },
+                    ],
+                    notes: ""
                   }
                 }
               ],
@@ -95,17 +165,36 @@ export const INITIAL_STATE = {
                   startDate: "03-20-2019",
                   completionDate: "03-23-2019",
                   evaluation: {
-                    finalGrade: 3.6
+                    overallGrade: 0,
+                    categoriesGrades: [
+                      {
+                        name: "Memorization",
+                        grade: 'not graded',
+                      },
+                      {
+                        name: "Makharej",
+                        grade: 'not graded',
+                      },
+                      {
+                        name: "Edgham & Ekhfae",
+                        grade: 'not graded',
+                      },
+                      {
+                        name: "Rulings of Raa'",
+                        grade: 'not graded',
+                      },
+                      {
+                        name: "Muduud",
+                        grade: 'not graded',
+                      },
+                      {
+                        name: "Qalqalah",
+                        grade: 'not graded',
+                      },
+                    ],
+                    notes: ""
                   }
                 },
-                {
-                  name: "Al-Baqara 5-9",
-                  startDate: "03-17-2019",
-                  completionDate: "03-20-2019",
-                  evaluation: {
-                    finalGrade: 4.5
-                  }
-                }
               ],
               attendanceHistory: [
                 {
@@ -127,17 +216,36 @@ export const INITIAL_STATE = {
                   startDate: "03-20-2019",
                   completionDate: "03-23-2019",
                   evaluation: {
-                    finalGrade: 3.6
+                    overallGrade: 0,
+                    categoriesGrades: [
+                      {
+                        name: "Memorization",
+                        grade: 'not graded',
+                      },
+                      {
+                        name: "Makharej",
+                        grade: 'not graded',
+                      },
+                      {
+                        name: "Edgham & Ekhfae",
+                        grade: 'not graded',
+                      },
+                      {
+                        name: "Rulings of Raa'",
+                        grade: 'not graded',
+                      },
+                      {
+                        name: "Muduud",
+                        grade: 'not graded',
+                      },
+                      {
+                        name: "Qalqalah",
+                        grade: 'not graded',
+                      },
+                    ],
+                    notes: ""
                   }
                 },
-                {
-                  name: "Al-Baqara 5-9",
-                  startDate: "03-17-2019",
-                  completionDate: "03-20-2019",
-                  evaluation: {
-                    finalGrade: 4.5
-                  }
-                }
               ],
               attendanceHistory: [
                 {
@@ -159,17 +267,36 @@ export const INITIAL_STATE = {
                   startDate: "03-20-2019",
                   completionDate: "03-23-2019",
                   evaluation: {
-                    finalGrade: 3.6
+                    overallGrade: 0,
+                    categoriesGrades: [
+                      {
+                        name: "Memorization",
+                        grade: 'not graded',
+                      },
+                      {
+                        name: "Makharej",
+                        grade: 'not graded',
+                      },
+                      {
+                        name: "Edgham & Ekhfae",
+                        grade: 'not graded',
+                      },
+                      {
+                        name: "Rulings of Raa'",
+                        grade: 'not graded',
+                      },
+                      {
+                        name: "Muduud",
+                        grade: 'not graded',
+                      },
+                      {
+                        name: "Qalqalah",
+                        grade: 'not graded',
+                      },
+                    ],
+                    notes: ""
                   }
                 },
-                {
-                  name: "Al-Baqara 5-9",
-                  startDate: "03-17-2019",
-                  completionDate: "03-20-2019",
-                  evaluation: {
-                    finalGrade: 4.5
-                  }
-                }
               ],
               attendanceHistory: [
                 {
@@ -191,17 +318,36 @@ export const INITIAL_STATE = {
                   startDate: "03-20-2019",
                   completionDate: "03-23-2019",
                   evaluation: {
-                    finalGrade: 3.6
+                    overallGrade: 0,
+                    categoriesGrades: [
+                      {
+                        name: "Memorization",
+                        grade: 'not graded',
+                      },
+                      {
+                        name: "Makharej",
+                        grade: 'not graded',
+                      },
+                      {
+                        name: "Edgham & Ekhfae",
+                        grade: 'not graded',
+                      },
+                      {
+                        name: "Rulings of Raa'",
+                        grade: 'not graded',
+                      },
+                      {
+                        name: "Muduud",
+                        grade: 'not graded',
+                      },
+                      {
+                        name: "Qalqalah",
+                        grade: 'not graded',
+                      },
+                    ],
+                    notes: ""
                   }
                 },
-                {
-                  name: "Al-Baqara 5-9",
-                  startDate: "03-17-2019",
-                  completionDate: "03-20-2019",
-                  evaluation: {
-                    finalGrade: 4.5
-                  }
-                }
               ],
               attendanceHistory: [
                 {
@@ -229,102 +375,102 @@ export const classReducer = (state = INITIAL_STATE, action) => {
 
   switch (action.type) {
     case actionTypes.ADD_STUDENT:
-    {
-      let classIndex = action.studentInfo.classIndex
-      newState = update(baseState, { teachers: { [0]: { classes: { [classIndex]: { students: { $push: [action.studentInfo.studentInfo] } } } } } });
-      return newState;
-    }
+      {
+        let classIndex = action.studentInfo.classIndex
+        newState = update(baseState, { teachers: { [0]: { classes: { [classIndex]: { students: { $push: [action.studentInfo.studentInfo] } } } } } });
+        return newState;
+      }
     case actionTypes.DELETE_STUDENT:
-    {
-      newState = update(baseState, { teachers: { [0]: { classes: { [action.classIndex]: { students: { $splice: [[action.studentIndex, 1]] } } } } } });
-      return newState;
-    }
+      {
+        newState = update(baseState, { teachers: { [0]: { classes: { [action.classIndex]: { students: { $splice: [[action.studentIndex, 1]] } } } } } });
+        return newState;
+      }
     case actionTypes.ADD_CLASS:
-    {
-      newState = update(baseState, { teachers: { [0]: { classes: { $push: [action.classInfo] } } } });
-      return newState
-    }
+      {
+        newState = update(baseState, { teachers: { [0]: { classes: { $push: [action.classInfo] } } } });
+        return newState
+      }
     case actionTypes.ADD_ATTENDANCE:
-    {
-      //Fetches the current list of students
-      studentslist = state.teachers[0].classes[action.classIndex].students;
+      {
+        //Fetches the current list of students
+        studentslist = state.teachers[0].classes[action.classIndex].students;
 
-      //First checks if the student already has a recorded date with an attendance saved.
-      //If he does, it will overwrite the old information with the new information. If he doesn't,
-      //it will write the new information 
-      for (i = 0; i < studentslist.length; i++) {
-        let attHistory = studentslist[i].attendanceHistory;
-        let addingDate = action.attendanceInfo[i].date;
-        let isDatePreviouslySaved = false;
-        let counter = 0;
-        for (counter = 0; counter < attHistory.length; counter++) {
-          if (attHistory[counter].date === addingDate) {
-            isDatePreviouslySaved = true;
-            break;
+        //First checks if the student already has a recorded date with an attendance saved.
+        //If he does, it will overwrite the old information with the new information. If he doesn't,
+        //it will write the new information 
+        for (i = 0; i < studentslist.length; i++) {
+          let attHistory = studentslist[i].attendanceHistory;
+          let addingDate = action.attendanceInfo[i].date;
+          let isDatePreviouslySaved = false;
+          let counter = 0;
+          for (counter = 0; counter < attHistory.length; counter++) {
+            if (attHistory[counter].date === addingDate) {
+              isDatePreviouslySaved = true;
+              break;
+            }
           }
-        }
-        if (isDatePreviouslySaved) {
-          studentslist[i].attendanceHistory.splice(counter, 1, action.attendanceInfo[i])
-        } else {
-          studentslist[i].attendanceHistory.push(action.attendanceInfo[i]);
+          if (isDatePreviouslySaved) {
+            studentslist[i].attendanceHistory.splice(counter, 1, action.attendanceInfo[i])
+          } else {
+            studentslist[i].attendanceHistory.push(action.attendanceInfo[i]);
+          }
+
         }
 
+        newState = update(baseState, { teachers: { [0]: { classes: { [action.classIndex]: { students: { $set: studentslist } } } } } });
+        return newState;
       }
-
-      newState = update(baseState, { teachers: { [0]: { classes: { [action.classIndex]: { students: { $set: studentslist } } } } } });
-      return newState;
-    }
     case actionTypes.SAVE_TEACHER_INFO:
-    {
-      //fetches current teacher info
-      newState = update(baseState, { teachers: { [action.teacherIndex]: { name: { $set: action.teacherInfo.name } } } });
-      newState = update(newState, { teachers: { [action.teacherIndex]: { phoneNumber: { $set: action.teacherInfo.phoneNumber } } } });
-      newState = update(newState, { teachers: { [action.teacherIndex]: { emailAddress: { $set: action.teacherInfo.emailAddress } } } });
-      newState = update(newState, { teachers: { [action.teacherIndex]: { profileImageId: { $set: action.teacherInfo.profileImageId } } } });
-     return newState;
-    }
+      {
+        //fetches current teacher info
+        newState = update(baseState, { teachers: { [action.teacherIndex]: { name: { $set: action.teacherInfo.name } } } });
+        newState = update(newState, { teachers: { [action.teacherIndex]: { phoneNumber: { $set: action.teacherInfo.phoneNumber } } } });
+        newState = update(newState, { teachers: { [action.teacherIndex]: { emailAddress: { $set: action.teacherInfo.emailAddress } } } });
+        newState = update(newState, { teachers: { [action.teacherIndex]: { profileImageId: { $set: action.teacherInfo.profileImageId } } } });
+        return newState;
+      }
     case actionTypes.EDIT_CURRENT_ASSIGNMENT:
-    {
-      let {classIndex, studentIndex} = action;
-      let updatedAssignment = {
-        name: action.newAssignment,
-        startDate: new Date().toLocaleDateString("en-US")
-      }
+      {
+        let { classIndex, studentIndex } = action;
+        let updatedAssignment = {
+          name: action.newAssignment,
+          startDate: new Date().toLocaleDateString("en-US")
+        }
 
-      let newState = update(baseState, { teachers: { [0] : { classes: { [classIndex]: { students: { [studentIndex]: { currentAssignment: {  $set: updatedAssignment  } } } } } } } });
-      return newState;
-    }
+        let newState = update(baseState, { teachers: { [0]: { classes: { [classIndex]: { students: { [studentIndex]: { currentAssignment: { $set: updatedAssignment } } } } } } } });
+        return newState;
+      }
     case actionTypes.ADD_NEW_ASSIGNMENT:
-    {
-      let {classIndex, studentIndex, newAssignmentName} = action;
-      let newAssignmentDate = new Date().toLocaleDateString("en-US");
+      {
+        let { classIndex, studentIndex, newAssignmentName } = action;
+        let newAssignmentDate = new Date().toLocaleDateString("en-US");
 
-      //creates the new assignment before adding it to the persist
-      let newCurrentAssignment = {
-        name: newAssignmentName,
-        startDate: newAssignmentDate 
+        //creates the new assignment before adding it to the persist
+        let newCurrentAssignment = {
+          name: newAssignmentName,
+          startDate: newAssignmentDate
+        }
+
+        //updates the current assignment
+        let newState = update(baseState, { teachers: { [0]: { classes: { [classIndex]: { students: { [studentIndex]: { currentAssignment: { $set: newCurrentAssignment } } } } } } } });
+        return newState;
       }
-
-      //updates the current assignment
-      let newState = update(baseState, { teachers: { [0] : { classes: { [classIndex]: { students: { [studentIndex]: { currentAssignment: { $set: newCurrentAssignment } } } } } } } });
-      return newState;
-    }
     case actionTypes.COMPLETE_CURRENT_ASSIGNMENT:
-    {
-      let {classIndex, studentIndex, evaluation} = action;
+      {
+        let { classIndex, studentIndex, evaluation } = action;
 
-      //updates the evaluation of the current assignment
-      let assignment = {
-        ...baseState.teachers[0].classes[classIndex].students[studentIndex].currentAssignment,
-        completionDate: new Date().toLocaleDateString("en-US"),
-        evaluation
+        //updates the evaluation of the current assignment
+        let assignment = {
+          ...baseState.teachers[0].classes[classIndex].students[studentIndex].currentAssignment,
+          completionDate: new Date().toLocaleDateString("en-US"),
+          evaluation
+        }
+
+        //pushes the assignment to the array of assignment history (Remember, this action does not 
+        //update the current assignment, this needs to be done using the addNewAssignment action)
+        let newState = update(baseState, { teachers: { [0]: { classes: { [classIndex]: { students: { [studentIndex]: { assignmentHistory: { $push: [assignment] } } } } } } } });
+        return newState;
       }
-
-      //pushes the assignment to the array of assignment history (Remember, this action does not 
-      //update the current assignment, this needs to be done using the addNewAssignment action)
-      let newState = update(baseState, { teachers: { [0] : { classes: { [classIndex]: { students: { [studentIndex]: { assignmentHistory: { $push: [assignment] } } } } } } } });
-      return newState;
-    }
     default:
       return state
   }
