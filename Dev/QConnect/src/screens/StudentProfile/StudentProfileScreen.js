@@ -37,13 +37,8 @@ class StudentProfileScreen extends Component {
     const currentStudent = this.props.classes[classIndex].students[studentIndex];
     const hasCurrentAssignment = currentStudent.currentAssignment.name === 'None' ? false : true;
 
-    //Retrieves the student's average rating
-    const assignmentHistory = currentStudent.assignmentHistory;
-    let rating = 0;
-    for(let i = 0; i < assignmentHistory.length; i++){
-      rating += assignmentHistory[i].evaluation.overallGrade;
-    }
-    rating = rating / assignmentHistory.length;
+    //retrieves the student's average rating
+    averageRating = (currentStudent.totalGrade / currentStudent.totalAssignments);
 
     return (
       <View style={styles.container}>
@@ -69,8 +64,8 @@ class StudentProfileScreen extends Component {
             </View>
             <View style={styles.profileInfoTopRight}>
               <Text style={styles.bigText}>{currentStudent.name}</Text>
-              <Rating readonly={true} startingValue={rating} imageSize={25} />
-              <Text style={styles.subText}>{rating >= 3 ? 'Outstanding!' : 'Needs Work'}</Text>
+              <Rating readonly={true} startingValue={averageRating} imageSize={25} />
+              <Text style={styles.subText}>{averageRating >= 3 ? 'Outstanding!' : 'Needs Work'}</Text>
             </View>
           </View>
 
@@ -92,7 +87,7 @@ class StudentProfileScreen extends Component {
 
         <ScrollView style={styles.prevAssignments}>
           <FlatList
-            data={assignmentHistory}
+            data={currentStudent.assignmentHistory}
             keyExtractor={(item, index) => item.name}
             renderItem={({ item, index }) => (
               <View style={styles.prevAssignmentCard} key={index}>
