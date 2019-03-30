@@ -70,7 +70,7 @@ export class ClassAttendanceScreen extends Component {
     //This method will set the state of the attendance screen based on the isHere property
     //from each student's attendance history based on the corresponding date
     getAttendance = (classIndex, date) => {
-        let studentList = this.props.teacher.classes[classIndex].students;
+        let studentList = this.props.classes[classIndex].students;
         let selected = [];
         //Maps out the list of students
         studentList.map((student, i) => {
@@ -105,7 +105,7 @@ export class ClassAttendanceScreen extends Component {
 
         const { params } = this.props.navigation.state;
 
-        classIndex = params && params.classIndex? params.classIndex : 0;
+        classIndex = params && params.classIndex ? params.classIndex : 0;
     
         return (
         //The scroll view will have at the top a date picker which will be defaulted to the current
