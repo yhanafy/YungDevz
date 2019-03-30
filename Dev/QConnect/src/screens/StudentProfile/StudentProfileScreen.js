@@ -18,7 +18,16 @@ class StudentProfileScreen extends Component {
 
   //Method retrieves the current average rating for the current student
   getAverageRating() {
+    const { classIndex, studentIndex } = this.props.navigation.state.params;
+    const currentStudent = this.props.classes[classIndex].students[studentIndex];
+    const assignmentHistory = currentStudent.assignmentHistory;
+    let avargeGrade = 0;
+    for(let i = 0; i < assignmentHistory.length; i++){
+      avargeGrade += assignmentHistory[i].overallGrade;
+    }
+    avargeGrade = avargeGrade / assignmentHistory.length;
 
+    return avargeGrade;
   }
 
   //method updates the current assignment of the student
@@ -40,7 +49,7 @@ class StudentProfileScreen extends Component {
     const { classIndex, studentIndex } = this.props.navigation.state.params;
     const currentStudent = this.props.classes[classIndex].students[studentIndex];
     const hasCurrentAssignment = currentStudent.currentAssignment.name === 'None' ? false : true;
-    const rating = 5.0; //to-do: make this into a method that computes the average ratings
+    const rating = getAverageRating(); //to-do: make this into a method that computes the average ratings
 
     return (
       <View style={styles.container}>
