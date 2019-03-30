@@ -3,6 +3,7 @@ import { ScrollView, StyleSheet, FlatList } from "react-native";
 import { connect } from "react-redux";
 import StudentCard from "components/StudentCard";
 import colors from "config/colors";
+import studentImages from "config/studentImages"
 
 export class ClassMainScreen extends Component {
   render() {
@@ -20,7 +21,7 @@ export class ClassMainScreen extends Component {
               key={index}
               studentName={item.name}
               background={colors.white}
-              profilePic={{ uri: item.avatar }}
+              profilePic={studentImages.images[item.imageId]}
               currentAssignment={item.currentAssignment.name}
               onPress={() =>
                 this.props.navigation.push("StudentProfile", {

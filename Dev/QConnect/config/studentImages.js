@@ -2,6 +2,9 @@ export default {
     images: [
         require('assets/images/student-icons/book.png'), 
         require('assets/images/student-icons/icon.png'), 
+        require('assets/images/teacher-icons/kaabah1.png'),
+        require('assets/images/teacher-icons/book1.png'),
+        require('assets/images/teacher-icons/moon.png'), 
         require('assets/images/student-icons/sloth.png'), 
         require('assets/images/student-icons/bear.png'), 
         require('assets/images/student-icons/et.png'), 
