@@ -794,7 +794,7 @@ exports[`Teacher screens snapshots render ClassAttendanceScreen 1`] = `
                       >
                         <RCTDatePicker
                           date={1552719600000}
-                          maximumDate={1552719600000}
+                          maximumDate={1553842800000}
                           mode="date"
                           onChange={[Function]}
                           onResponderTerminationRequest={[Function]}
@@ -1037,17 +1037,36 @@ exports[`Teacher screens snapshots render ClassEditScreen 1`] = `
           Object {
             "assignmentHistory": Array [
               Object {
-                "completionDate": "03-23-2019",
-                "evaluation": Object {
-                  "finalGrade": 3.6,
-                },
-                "name": "Aal-Imran Pages 1-5",
-                "startDate": "03-20-2019",
-              },
-              Object {
                 "completionDate": "03-20-2019",
                 "evaluation": Object {
-                  "finalGrade": 4.5,
+                  "categoriesGrades": Array [
+                    Object {
+                      "grade": "not graded",
+                      "name": "Memorization",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Makharej",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Edgham & Ekhfae",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Rulings of Raa'",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Muduud",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Qalqalah",
+                    },
+                  ],
+                  "notes": "",
+                  "overallGrade": 0,
                 },
                 "name": "Al-Baqara 5-9",
                 "startDate": "03-17-2019",
@@ -1057,6 +1076,10 @@ exports[`Teacher screens snapshots render ClassEditScreen 1`] = `
               Object {
                 "date": "02-23-2019",
                 "isHere": true,
+              },
+              Object {
+                "date": "03-25-2019",
+                "isHere": false,
               },
             ],
             "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg",
@@ -1069,17 +1092,36 @@ exports[`Teacher screens snapshots render ClassEditScreen 1`] = `
           Object {
             "assignmentHistory": Array [
               Object {
-                "completionDate": "03-23-2019",
-                "evaluation": Object {
-                  "finalGrade": 3.6,
-                },
-                "name": "Aal-Imran Pages 1-5",
-                "startDate": "03-20-2019",
-              },
-              Object {
                 "completionDate": "03-20-2019",
                 "evaluation": Object {
-                  "finalGrade": 4.5,
+                  "categoriesGrades": Array [
+                    Object {
+                      "grade": "not graded",
+                      "name": "Memorization",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Makharej",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Edgham & Ekhfae",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Rulings of Raa'",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Muduud",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Qalqalah",
+                    },
+                  ],
+                  "notes": "",
+                  "overallGrade": 0,
                 },
                 "name": "Al-Baqara 5-9",
                 "startDate": "03-17-2019",
@@ -1101,17 +1143,36 @@ exports[`Teacher screens snapshots render ClassEditScreen 1`] = `
           Object {
             "assignmentHistory": Array [
               Object {
-                "completionDate": "03-23-2019",
-                "evaluation": Object {
-                  "finalGrade": 3.6,
-                },
-                "name": "Aal-Imran Pages 1-5",
-                "startDate": "03-20-2019",
-              },
-              Object {
                 "completionDate": "03-20-2019",
                 "evaluation": Object {
-                  "finalGrade": 4.5,
+                  "categoriesGrades": Array [
+                    Object {
+                      "grade": "not graded",
+                      "name": "Memorization",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Makharej",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Edgham & Ekhfae",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Rulings of Raa'",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Muduud",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Qalqalah",
+                    },
+                  ],
+                  "notes": "",
+                  "overallGrade": 0,
                 },
                 "name": "Al-Baqara 5-9",
                 "startDate": "03-17-2019",
@@ -1133,17 +1194,36 @@ exports[`Teacher screens snapshots render ClassEditScreen 1`] = `
           Object {
             "assignmentHistory": Array [
               Object {
-                "completionDate": "03-23-2019",
-                "evaluation": Object {
-                  "finalGrade": 3.6,
-                },
-                "name": "Aal-Imran Pages 1-5",
-                "startDate": "03-20-2019",
-              },
-              Object {
                 "completionDate": "03-20-2019",
                 "evaluation": Object {
-                  "finalGrade": 4.5,
+                  "categoriesGrades": Array [
+                    Object {
+                      "grade": "not graded",
+                      "name": "Memorization",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Makharej",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Edgham & Ekhfae",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Rulings of Raa'",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Muduud",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Qalqalah",
+                    },
+                  ],
+                  "notes": "",
+                  "overallGrade": 0,
                 },
                 "name": "Al-Baqara 5-9",
                 "startDate": "03-17-2019",
@@ -1165,17 +1245,36 @@ exports[`Teacher screens snapshots render ClassEditScreen 1`] = `
           Object {
             "assignmentHistory": Array [
               Object {
-                "completionDate": "03-23-2019",
-                "evaluation": Object {
-                  "finalGrade": 3.6,
-                },
-                "name": "Aal-Imran Pages 1-5",
-                "startDate": "03-20-2019",
-              },
-              Object {
                 "completionDate": "03-20-2019",
                 "evaluation": Object {
-                  "finalGrade": 4.5,
+                  "categoriesGrades": Array [
+                    Object {
+                      "grade": "not graded",
+                      "name": "Memorization",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Makharej",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Edgham & Ekhfae",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Rulings of Raa'",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Muduud",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Qalqalah",
+                    },
+                  ],
+                  "notes": "",
+                  "overallGrade": 0,
                 },
                 "name": "Al-Baqara 5-9",
                 "startDate": "03-17-2019",
@@ -1197,17 +1296,71 @@ exports[`Teacher screens snapshots render ClassEditScreen 1`] = `
           Object {
             "assignmentHistory": Array [
               Object {
-                "completionDate": "03-23-2019",
+                "completionDate": "03-20-2019",
                 "evaluation": Object {
-                  "finalGrade": 3.6,
+                  "categoriesGrades": Array [
+                    Object {
+                      "grade": "not graded",
+                      "name": "Memorization",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Makharej",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Edgham & Ekhfae",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Rulings of Raa'",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Muduud",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Qalqalah",
+                    },
+                  ],
+                  "notes": "",
+                  "overallGrade": 3,
                 },
-                "name": "Aal-Imran Pages 1-5",
-                "startDate": "03-20-2019",
+                "name": "Al-Baqara 5-9",
+                "startDate": "03-17-2019",
               },
               Object {
                 "completionDate": "03-20-2019",
                 "evaluation": Object {
-                  "finalGrade": 4.5,
+                  "categoriesGrades": Array [
+                    Object {
+                      "grade": "not graded",
+                      "name": "Memorization",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Makharej",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Edgham & Ekhfae",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Rulings of Raa'",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Muduud",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Qalqalah",
+                    },
+                  ],
+                  "notes": "",
+                  "overallGrade": 5,
                 },
                 "name": "Al-Baqara 5-9",
                 "startDate": "03-17-2019",
@@ -1322,17 +1475,36 @@ exports[`Teacher screens snapshots render ClassMainScreen 1`] = `
           Object {
             "assignmentHistory": Array [
               Object {
-                "completionDate": "03-23-2019",
-                "evaluation": Object {
-                  "finalGrade": 3.6,
-                },
-                "name": "Aal-Imran Pages 1-5",
-                "startDate": "03-20-2019",
-              },
-              Object {
                 "completionDate": "03-20-2019",
                 "evaluation": Object {
-                  "finalGrade": 4.5,
+                  "categoriesGrades": Array [
+                    Object {
+                      "grade": "not graded",
+                      "name": "Memorization",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Makharej",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Edgham & Ekhfae",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Rulings of Raa'",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Muduud",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Qalqalah",
+                    },
+                  ],
+                  "notes": "",
+                  "overallGrade": 0,
                 },
                 "name": "Al-Baqara 5-9",
                 "startDate": "03-17-2019",
@@ -1342,6 +1514,10 @@ exports[`Teacher screens snapshots render ClassMainScreen 1`] = `
               Object {
                 "date": "02-23-2019",
                 "isHere": true,
+              },
+              Object {
+                "date": "03-25-2019",
+                "isHere": false,
               },
             ],
             "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg",
@@ -1354,17 +1530,36 @@ exports[`Teacher screens snapshots render ClassMainScreen 1`] = `
           Object {
             "assignmentHistory": Array [
               Object {
-                "completionDate": "03-23-2019",
-                "evaluation": Object {
-                  "finalGrade": 3.6,
-                },
-                "name": "Aal-Imran Pages 1-5",
-                "startDate": "03-20-2019",
-              },
-              Object {
                 "completionDate": "03-20-2019",
                 "evaluation": Object {
-                  "finalGrade": 4.5,
+                  "categoriesGrades": Array [
+                    Object {
+                      "grade": "not graded",
+                      "name": "Memorization",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Makharej",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Edgham & Ekhfae",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Rulings of Raa'",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Muduud",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Qalqalah",
+                    },
+                  ],
+                  "notes": "",
+                  "overallGrade": 0,
                 },
                 "name": "Al-Baqara 5-9",
                 "startDate": "03-17-2019",
@@ -1386,17 +1581,36 @@ exports[`Teacher screens snapshots render ClassMainScreen 1`] = `
           Object {
             "assignmentHistory": Array [
               Object {
-                "completionDate": "03-23-2019",
-                "evaluation": Object {
-                  "finalGrade": 3.6,
-                },
-                "name": "Aal-Imran Pages 1-5",
-                "startDate": "03-20-2019",
-              },
-              Object {
                 "completionDate": "03-20-2019",
                 "evaluation": Object {
-                  "finalGrade": 4.5,
+                  "categoriesGrades": Array [
+                    Object {
+                      "grade": "not graded",
+                      "name": "Memorization",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Makharej",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Edgham & Ekhfae",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Rulings of Raa'",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Muduud",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Qalqalah",
+                    },
+                  ],
+                  "notes": "",
+                  "overallGrade": 0,
                 },
                 "name": "Al-Baqara 5-9",
                 "startDate": "03-17-2019",
@@ -1418,17 +1632,36 @@ exports[`Teacher screens snapshots render ClassMainScreen 1`] = `
           Object {
             "assignmentHistory": Array [
               Object {
-                "completionDate": "03-23-2019",
-                "evaluation": Object {
-                  "finalGrade": 3.6,
-                },
-                "name": "Aal-Imran Pages 1-5",
-                "startDate": "03-20-2019",
-              },
-              Object {
                 "completionDate": "03-20-2019",
                 "evaluation": Object {
-                  "finalGrade": 4.5,
+                  "categoriesGrades": Array [
+                    Object {
+                      "grade": "not graded",
+                      "name": "Memorization",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Makharej",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Edgham & Ekhfae",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Rulings of Raa'",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Muduud",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Qalqalah",
+                    },
+                  ],
+                  "notes": "",
+                  "overallGrade": 0,
                 },
                 "name": "Al-Baqara 5-9",
                 "startDate": "03-17-2019",
@@ -1450,17 +1683,36 @@ exports[`Teacher screens snapshots render ClassMainScreen 1`] = `
           Object {
             "assignmentHistory": Array [
               Object {
-                "completionDate": "03-23-2019",
-                "evaluation": Object {
-                  "finalGrade": 3.6,
-                },
-                "name": "Aal-Imran Pages 1-5",
-                "startDate": "03-20-2019",
-              },
-              Object {
                 "completionDate": "03-20-2019",
                 "evaluation": Object {
-                  "finalGrade": 4.5,
+                  "categoriesGrades": Array [
+                    Object {
+                      "grade": "not graded",
+                      "name": "Memorization",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Makharej",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Edgham & Ekhfae",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Rulings of Raa'",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Muduud",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Qalqalah",
+                    },
+                  ],
+                  "notes": "",
+                  "overallGrade": 0,
                 },
                 "name": "Al-Baqara 5-9",
                 "startDate": "03-17-2019",
@@ -1482,17 +1734,71 @@ exports[`Teacher screens snapshots render ClassMainScreen 1`] = `
           Object {
             "assignmentHistory": Array [
               Object {
-                "completionDate": "03-23-2019",
+                "completionDate": "03-20-2019",
                 "evaluation": Object {
-                  "finalGrade": 3.6,
+                  "categoriesGrades": Array [
+                    Object {
+                      "grade": "not graded",
+                      "name": "Memorization",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Makharej",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Edgham & Ekhfae",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Rulings of Raa'",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Muduud",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Qalqalah",
+                    },
+                  ],
+                  "notes": "",
+                  "overallGrade": 3,
                 },
-                "name": "Aal-Imran Pages 1-5",
-                "startDate": "03-20-2019",
+                "name": "Al-Baqara 5-9",
+                "startDate": "03-17-2019",
               },
               Object {
                 "completionDate": "03-20-2019",
                 "evaluation": Object {
-                  "finalGrade": 4.5,
+                  "categoriesGrades": Array [
+                    Object {
+                      "grade": "not graded",
+                      "name": "Memorization",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Makharej",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Edgham & Ekhfae",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Rulings of Raa'",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Muduud",
+                    },
+                    Object {
+                      "grade": "not graded",
+                      "name": "Qalqalah",
+                    },
+                  ],
+                  "notes": "",
+                  "overallGrade": 5,
                 },
                 "name": "Al-Baqara 5-9",
                 "startDate": "03-17-2019",

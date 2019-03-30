@@ -44,9 +44,12 @@ export class EvaluationPage extends Component {
   // --------------  Updates state to reflect a change in a category rating --------------
   updateCategoryRating = (name, rating) => {
     let categoriesGrades = this.state.categoriesGrades.map(cat => (
-      cat.name===name? {...cat, grade: rating}: cat
+      cat.name===name ? {...cat, grade: rating} : cat
     ))
-    this.setState({ categoriesGrades })
+    this.setState({ 
+      overallGrade: this.state.overallGrade,
+      overcategoriesGrades: categoriesGrades,
+      notes: this.state.notes })
   }
 
   // --------------  Renders Evaluation scree UI --------------
@@ -73,7 +76,10 @@ export class EvaluationPage extends Component {
               defaultRating={0}
               size={30}
               showRating={false}
-              onFinishRating={(value) => this.setState({overallGrade: value, categoriesGrades: this.state.categoriesGrades})}
+              onFinishRating={(value) => this.setState({
+                overallGrade: value, 
+                categoriesGrades: this.state.categoriesGrades,
+                notes: this.state.notes})}
             />
 
             <FlatList
@@ -97,7 +103,10 @@ export class EvaluationPage extends Component {
               style={styles.notesStyle}
               multiline={true}
               numberOfLines={3}
-              onChangeText={(notes) => this.setState({notes})}
+              onChangeText={(notes) => this.setState({
+                overallGrade: value, 
+                categoriesGrades: this.state.categoriesGrades,
+                notes: notes})}
               placeholder="Write a note."
               placeholderColor={colors.black}
             />
