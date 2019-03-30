@@ -44,6 +44,9 @@ export const INITIAL_STATE = {
                 {
                   date: "02-23-2019",
                   isHere: true
+                }, {
+                  date: '03-25-2019',
+                  isHere: false
                 }
               ]
             },
