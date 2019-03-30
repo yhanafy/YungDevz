@@ -73,7 +73,7 @@ export class EvaluationPage extends Component {
               defaultRating={0}
               size={30}
               showRating={false}
-              onFinishRating={(value) => this.setState({overallGrade: value})}
+              onFinishRating={(value) => this.setState({overallGrade: value, categoriesGrades: this.state.categoriesGrades})}
             />
 
             <FlatList
