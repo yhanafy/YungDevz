@@ -13,22 +13,25 @@ import { connect } from "react-redux";
 class StudentProfileScreen extends Component {
 
   state = {
-    isDialogVisible: false, 
+    isDialogVisible: false,
+    averageGrade: 0 
   }
 
   //Method retrieves the current average rating for the current student
+  /*
   getAverageRating() {
     const { classIndex, studentIndex } = this.props.navigation.state.params;
     const currentStudent = this.props.classes[classIndex].students[studentIndex];
     const assignmentHistory = currentStudent.assignmentHistory;
-    let avargeGrade = 0;
+    let averageGrade = 0;
     for(let i = 0; i < assignmentHistory.length; i++){
-      avargeGrade += assignmentHistory[i].overallGrade;
+      averageGrade += assignmentHistory[i].overallGrade;
     }
-    avargeGrade = avargeGrade / assignmentHistory.length;
+    averageGrade = averageGrade / assignmentHistory.length;
 
-    return avargeGrade;
+    this.setState({ isDialogVisible: false, averageGrade: averageGrade });
   }
+  */
 
   //method updates the current assignment of the student
   editAssignment(classIndex, studentIndex, newAssignmentName) {
@@ -49,7 +52,14 @@ class StudentProfileScreen extends Component {
     const { classIndex, studentIndex } = this.props.navigation.state.params;
     const currentStudent = this.props.classes[classIndex].students[studentIndex];
     const hasCurrentAssignment = currentStudent.currentAssignment.name === 'None' ? false : true;
-    const rating = getAverageRating(); //to-do: make this into a method that computes the average ratings
+
+    //Retrieves the student's average rating
+    const assignmentHistory = currentStudent.assignmentHistory;
+    let rating = 0;
+    for(let i = 0; i < assignmentHistory.length; i++){
+      rating += assignmentHistory[i].evaluation.overallGrade;
+    }
+    rating = rating / assignmentHistory.length;
 
     return (
       <View style={styles.container}>

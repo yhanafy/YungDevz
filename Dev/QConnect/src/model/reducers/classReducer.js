@@ -24,63 +24,39 @@ export const INITIAL_STATE = {
               },
               assignmentHistory: [
                 {
-                  overallGrade: 5,
-                  categoriesGrades: [
-                    {
-                      name: "Memorization",
-                      grade: 'not graded',
-                    },
-                    {
-                      name: "Makharej",
-                      grade: 'not graded',
-                    },
-                    {
-                      name: "Edgham & Ekhfae",
-                      grade: 'not graded',
-                    },
-                    {
-                      name: "Rulings of Raa'",
-                      grade: 'not graded',
-                    },
-                    {
-                      name: "Muduud",
-                      grade: 'not graded',
-                    },
-                    {
-                      name: "Qalqalah",
-                      grade: 'not graded',
-                    },
-                  ],
-                  notes: ""
-                }, {
-                  overallGrade: 0,
-                  categoriesGrades: [
-                    {
-                      name: "Memorization",
-                      grade: 'not graded',
-                    },
-                    {
-                      name: "Makharej",
-                      grade: 'not graded',
-                    },
-                    {
-                      name: "Edgham & Ekhfae",
-                      grade: 'not graded',
-                    },
-                    {
-                      name: "Rulings of Raa'",
-                      grade: 'not graded',
-                    },
-                    {
-                      name: "Muduud",
-                      grade: 'not graded',
-                    },
-                    {
-                      name: "Qalqalah",
-                      grade: 'not graded',
-                    },
-                  ],
-                  notes: ""
+                  name: "Al-Baqara 5-9",
+                  startDate: "03-17-2019",
+                  completionDate: "03-20-2019",
+                  evaluation: {
+                    overallGrade: 0,
+                    categoriesGrades: [
+                      {
+                        name: "Memorization",
+                        grade: 'not graded',
+                      },
+                      {
+                        name: "Makharej",
+                        grade: 'not graded',
+                      },
+                      {
+                        name: "Edgham & Ekhfae",
+                        grade: 'not graded',
+                      },
+                      {
+                        name: "Rulings of Raa'",
+                        grade: 'not graded',
+                      },
+                      {
+                        name: "Muduud",
+                        grade: 'not graded',
+                      },
+                      {
+                        name: "Qalqalah",
+                        grade: 'not graded',
+                      },
+                    ],
+                    notes: ""
+                  }
                 }
               ],
               attendanceHistory: [
@@ -101,14 +77,6 @@ export const INITIAL_STATE = {
                 startDate: "03-24-2019"
               },
               assignmentHistory: [
-                {
-                  name: "Aal-Imran Pages 1-5",
-                  startDate: "03-20-2019",
-                  completionDate: "03-23-2019",
-                  evaluation: {
-                    finalGrade: 3.6
-                  }
-                },
                 {
                   name: "Al-Baqara 5-9",
                   startDate: "03-17-2019",
@@ -161,9 +129,9 @@ export const INITIAL_STATE = {
               },
               assignmentHistory: [
                 {
-                  name: "Aal-Imran Pages 1-5",
-                  startDate: "03-20-2019",
-                  completionDate: "03-23-2019",
+                  name: "Al-Baqara 5-9",
+                  startDate: "03-17-2019",
+                  completionDate: "03-20-2019",
                   evaluation: {
                     overallGrade: 0,
                     categoriesGrades: [
@@ -194,7 +162,7 @@ export const INITIAL_STATE = {
                     ],
                     notes: ""
                   }
-                },
+                }
               ],
               attendanceHistory: [
                 {
@@ -212,9 +180,9 @@ export const INITIAL_STATE = {
               },
               assignmentHistory: [
                 {
-                  name: "Aal-Imran Pages 1-5",
-                  startDate: "03-20-2019",
-                  completionDate: "03-23-2019",
+                  name: "Al-Baqara 5-9",
+                  startDate: "03-17-2019",
+                  completionDate: "03-20-2019",
                   evaluation: {
                     overallGrade: 0,
                     categoriesGrades: [
@@ -245,7 +213,7 @@ export const INITIAL_STATE = {
                     ],
                     notes: ""
                   }
-                },
+                }
               ],
               attendanceHistory: [
                 {
@@ -263,9 +231,9 @@ export const INITIAL_STATE = {
               },
               assignmentHistory: [
                 {
-                  name: "Aal-Imran Pages 1-5",
-                  startDate: "03-20-2019",
-                  completionDate: "03-23-2019",
+                  name: "Al-Baqara 5-9",
+                  startDate: "03-17-2019",
+                  completionDate: "03-20-2019",
                   evaluation: {
                     overallGrade: 0,
                     categoriesGrades: [
@@ -296,7 +264,7 @@ export const INITIAL_STATE = {
                     ],
                     notes: ""
                   }
-                },
+                }
               ],
               attendanceHistory: [
                 {
@@ -314,11 +282,11 @@ export const INITIAL_STATE = {
               },
               assignmentHistory: [
                 {
-                  name: "Aal-Imran Pages 1-5",
-                  startDate: "03-20-2019",
-                  completionDate: "03-23-2019",
+                  name: "Al-Baqara 5-9",
+                  startDate: "03-17-2019",
+                  completionDate: "03-20-2019",
                   evaluation: {
-                    overallGrade: 0,
+                    overallGrade: 3,
                     categoriesGrades: [
                       {
                         name: "Memorization",
@@ -348,6 +316,41 @@ export const INITIAL_STATE = {
                     notes: ""
                   }
                 },
+                {
+                  name: "Al-Baqara 5-9",
+                  startDate: "03-17-2019",
+                  completionDate: "03-20-2019",
+                  evaluation: {
+                    overallGrade: 5,
+                    categoriesGrades: [
+                      {
+                        name: "Memorization",
+                        grade: 'not graded',
+                      },
+                      {
+                        name: "Makharej",
+                        grade: 'not graded',
+                      },
+                      {
+                        name: "Edgham & Ekhfae",
+                        grade: 'not graded',
+                      },
+                      {
+                        name: "Rulings of Raa'",
+                        grade: 'not graded',
+                      },
+                      {
+                        name: "Muduud",
+                        grade: 'not graded',
+                      },
+                      {
+                        name: "Qalqalah",
+                        grade: 'not graded',
+                      },
+                    ],
+                    notes: ""
+                  }
+                }
               ],
               attendanceHistory: [
                 {
