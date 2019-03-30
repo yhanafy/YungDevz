@@ -120,7 +120,7 @@ export class ClassAttendanceScreen extends Component {
                     format="MM-DD-YYYY"
                     duration={300}
                     style={{paddingLeft: 15}}
-                    maxDate={this.state.selectedDate}
+                    maxDate={new Date().toLocaleDateString("en-US")}
                     customStyles={{dateInput: {borderColor: colors.lightGrey}}}
                     onDateChange={(date) => this.getAttendance(classIndex, date)}
                     />
