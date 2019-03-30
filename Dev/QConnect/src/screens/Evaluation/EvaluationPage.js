@@ -48,8 +48,14 @@ export class EvaluationPage extends Component {
     ))
     this.setState({ 
       overallGrade: this.state.overallGrade,
-      overcategoriesGrades: categoriesGrades,
+      overCategoriesGrades: categoriesGrades,
       notes: this.state.notes })
+  }
+
+  //------------  Saves the rating to db and pops to previous view
+  submitRating(classIndex, studentIndex){
+    this.props.completeCurrentAssignment(classIndex, studentIndex, this.state);
+    this.props.navigation.pop();
   }
 
   // --------------  Renders Evaluation scree UI --------------
@@ -77,9 +83,7 @@ export class EvaluationPage extends Component {
               size={30}
               showRating={false}
               onFinishRating={(value) => this.setState({
-                overallGrade: value, 
-                categoriesGrades: this.state.categoriesGrades,
-                notes: this.state.notes})}
+                overallGrade: value})}
             />
 
             <FlatList
@@ -104,8 +108,6 @@ export class EvaluationPage extends Component {
               multiline={true}
               numberOfLines={3}
               onChangeText={(notes) => this.setState({
-                overallGrade: value, 
-                categoriesGrades: this.state.categoriesGrades,
                 notes: notes})}
               placeholder="Write a note."
               placeholderColor={colors.black}
@@ -117,7 +119,7 @@ export class EvaluationPage extends Component {
         <View style={styles.buttonsContainer}>
           <QcActionButton
             text="Submit"
-            onPress={() => { this.props.completeCurrentAssignment(classIndex, studentIndex, this.state) }}
+            onPress={() => { this.submitRating(classIndex, studentIndex) }}
           />
         </View>
       </KeyboardAvoidingView>
