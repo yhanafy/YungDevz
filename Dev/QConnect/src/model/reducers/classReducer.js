@@ -17,7 +17,7 @@ export const INITIAL_STATE = {
           students: [
             {
               name: "Ahmed Reducer",
-              avatar: "https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg",
+              imageId: 5,
               currentAssignment: {
                 name: "Al-Nahl page 5",
                 startDate: "03-24-2019"
@@ -71,7 +71,7 @@ export const INITIAL_STATE = {
             },
             {
               name: "Amina Khan",
-              avatar: "https://randomuser.me/api/portraits/thumb/women/42.jpg",
+              imageId: 25,
               currentAssignment: {
                 name: "An-Naze'aat",
                 startDate: "03-24-2019"
@@ -122,7 +122,7 @@ export const INITIAL_STATE = {
             },
             {
               name: "Ayoub Barrak",
-              avatar: "https://randomuser.me/api/portraits/thumb/men/43.jpg",
+              imageId: 19,
               currentAssignment: {
                 name: "Aal-Imran",
                 startDate: "03-24-2019"
@@ -172,8 +172,8 @@ export const INITIAL_STATE = {
               ]
             },
             {
-              name: "Khaled Kwick",
-              avatar: "https://randomuser.me/api/portraits/thumb/men/45.jpg",
+              name: "Nouha Yacoubi",
+              imageId: 21,
               currentAssignment: {
                 name: "Al-Toor pages 5, 6, 8",
                 startDate: "03-24-2019"
@@ -224,7 +224,7 @@ export const INITIAL_STATE = {
             },
             {
               name: "Yassine Lightening",
-              avatar: "https://randomuser.me/api/portraits/thumb/men/22.jpg",
+              imageId: 15,
               currentAssignment: {
                 name: "Al-Baqara pages 5-8",
                 startDate: "03-24-2019"
@@ -274,8 +274,8 @@ export const INITIAL_STATE = {
               ]
             },
             {
-              name: "Yusuf Awesome",
-              avatar: "https://randomuser.me/api/portraits/thumb/men/26.jpg",
+              name: "Ayah Sulaiman",
+              imageId: 27,
               currentAssignment: {
                 name: "Huud pages 3, 4",
                 startDate: "03-24-2019"
@@ -317,7 +317,7 @@ export const INITIAL_STATE = {
                   }
                 },
                 {
-                  name: "Al-Baqara 5-9",
+                  name: "Al-Baqara 1-5",
                   startDate: "03-17-2019",
                   completionDate: "03-20-2019",
                   evaluation: {

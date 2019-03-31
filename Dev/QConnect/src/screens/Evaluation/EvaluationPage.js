@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from "react-redux";
 import QcActionButton from 'components/QcActionButton'
 import {completeCurrentAssignment} from 'model/actions/completeCurrentAssignment'
+import studentImages from 'config/studentImages';
 
 export class EvaluationPage extends Component {
 
@@ -61,7 +62,8 @@ export class EvaluationPage extends Component {
   // --------------  Renders Evaluation scree UI --------------
   render() {
     const { classIndex, studentIndex } = this.props.navigation.state.params;
-
+    const { imageId } = this.props; 
+    
     return (
       //----- outer view, gray background ------------------------
       <KeyboardAvoidingView
@@ -70,7 +72,7 @@ export class EvaluationPage extends Component {
 
         <View style={styles.evaluationContainer}>
           <View style={styles.section}>
-            <Image source={{ uri: this.props.avatar }}
+            <Image source={studentImages.images[imageId]}
               style={styles.profilePic} />
             <Text style={styles.titleText}>{this.props.name}</Text>
             <Text style={styles.subTitleText}>{this.props.currentAssignment.name}</Text>

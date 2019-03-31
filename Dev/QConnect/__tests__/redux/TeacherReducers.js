@@ -37,7 +37,7 @@ const teacher_one_class_no_students = {
 
 const studentInfo = {
     name: "Test Student 1",
-    avatar: "http://test.avatar.url",
+    imageId: 8,
     attendanceHistory: [],
     assignmentHistory: [],
 };

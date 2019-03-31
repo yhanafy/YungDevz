@@ -15,13 +15,6 @@ export class ClassEditScreen extends Component {
     newStudentName: ""
   };
 
-  getAvatarUrl() {
-    let photoNum = Math.floor(Math.random() * Math.floor(99));
-    let url =
-      "https://randomuser.me/api/portraits/thumb/men/" + photoNum + ".jpg";
-    return url;
-  }
-
   getImageId() {
     let photoNum = Math.floor(Math.random() * Math.floor(30));
     return photoNum;
@@ -33,7 +26,6 @@ export class ClassEditScreen extends Component {
       classIndex: classIndex,
       studentInfo: {
         name: this.state.newStudentName,
-        avatar: this.getAvatarUrl(),
         imageId: this.getImageId(),
         currentAssignment: {
           name: "None",
@@ -50,9 +42,8 @@ export class ClassEditScreen extends Component {
     }
   }
 
-  getStudentImage(imageId, avatar) {
-    console.log(imageId, avatar)
-    return imageId? studentImages.images[imageId] : { uri: avatar };
+  getStudentImage(imageId) {
+    return studentImages.images[imageId];
   }
 
   render() {
@@ -81,7 +72,7 @@ export class ClassEditScreen extends Component {
             <StudentCard
               key={index}
               studentName={item.name}
-              profilePic={ this.getStudentImage(item.imageId, item.avatar)}
+              profilePic={ this.getStudentImage(item.imageId)}
               background={colors.white}
               onPress={() =>
                 deleteStudent(

@@ -9,6 +9,7 @@ import { editCurrentAssignment } from 'model/actions/editCurrentAssignment';
 import { addNewAssignment } from 'model/actions/addNewAssignment';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+import studentImages from 'config/studentImages';
 
 class StudentProfileScreen extends Component {
 
@@ -79,7 +80,7 @@ class StudentProfileScreen extends Component {
 
           <View style={styles.profileInfoTop}>
             <View style={styles.profileInfoTopLeft}>
-              <Image source={{ uri: currentStudent.avatar }}
+              <Image source={studentImages.images[currentStudent.imageId]}
                 style={styles.profilePic} />
             </View>
             <View style={styles.profileInfoTopRight}>
