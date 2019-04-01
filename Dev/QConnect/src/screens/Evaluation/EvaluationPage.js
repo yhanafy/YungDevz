@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Text, TextInput, Image, FlatList, KeyboardAvoidingView } from 'react-native'
+import { StyleSheet, View, Text, TextInput, Image, FlatList, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard } from 'react-native'
 import { Rating, AirbnbRating } from 'react-native-elements';
 import colors from 'config/colors';
 import { bindActionCreators } from 'redux';
 import { connect } from "react-redux";
 import QcActionButton from 'components/QcActionButton'
-import {completeCurrentAssignment} from 'model/actions/completeCurrentAssignment'
+import { completeCurrentAssignment } from 'model/actions/completeCurrentAssignment'
+import { editCurrentAssignment } from 'model/actions/editCurrentAssignment';
 
 export class EvaluationPage extends Component {
 
@@ -37,24 +38,26 @@ export class EvaluationPage extends Component {
         name: "Qalqalah",
         grade: 'not graded',
       },
-    ], 
+    ],
     notes: ""
   }
 
   // --------------  Updates state to reflect a change in a category rating --------------
   updateCategoryRating = (name, rating) => {
     let categoriesGrades = this.state.categoriesGrades.map(cat => (
-      cat.name===name ? {...cat, grade: rating} : cat
+      cat.name === name ? { ...cat, grade: rating } : cat
     ))
-    this.setState({ 
+    this.setState({
       overallGrade: this.state.overallGrade,
       overCategoriesGrades: categoriesGrades,
-      notes: this.state.notes })
+      notes: this.state.notes
+    })
   }
 
   //------------  Saves the rating to db and pops to previous view
-  submitRating(classIndex, studentIndex){
+  submitRating(classIndex, studentIndex) {
     this.props.completeCurrentAssignment(classIndex, studentIndex, this.state);
+    this.props.editCurrentAssignment(classIndex, studentIndex, { name: "None", startDate: "" });
     this.props.navigation.pop();
   }
 
@@ -64,65 +67,70 @@ export class EvaluationPage extends Component {
 
     return (
       //----- outer view, gray background ------------------------
-      <KeyboardAvoidingView
-        style={styles.container}
-        behavior="padding">
+      //Makes it so keyboard is dismissed when clicked somewhere else
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+        <KeyboardAvoidingView
+          style={styles.container}
+          behavior="padding">
 
-        <View style={styles.evaluationContainer}>
-          <View style={styles.section}>
-            <Image source={{ uri: this.props.avatar }}
-              style={styles.profilePic} />
-            <Text style={styles.titleText}>{this.props.name}</Text>
-            <Text style={styles.subTitleText}>{this.props.currentAssignment.name}</Text>
+          <View style={styles.evaluationContainer}>
+            <View style={styles.section}>
+              <Image source={{ uri: this.props.avatar }}
+                style={styles.profilePic} />
+              <Text style={styles.titleText}>{this.props.name}</Text>
+              <Text style={styles.subTitleText}>{this.props.currentAssignment.name}</Text>
+            </View>
+
+            <View style={styles.section}>
+              <Text style={styles.mainQuestionText}>How was {this.props.name}'s tasmee'?</Text>
+              <AirbnbRating
+                defaultRating={0}
+                size={30}
+                showRating={false}
+                onFinishRating={(value) => this.setState({
+                  overallGrade: value
+                })}
+              />
+
+              <FlatList
+                numColumns={2}
+                data={this.state.categoriesGrades}
+                keyExtractor={(item, index) => index} // fix, should be item.id (add id to classes)
+                renderItem={({ item, index }) => (
+                  <View style={styles.box} key={index}>
+                    <Text style={styles.subCategoryText}>{item.name}</Text>
+                    <Rating
+                      startingValue={0}
+                      type="custom"
+                      imageSize={25}
+                      showRating={false}
+                      onFinishRating={(value) => this.updateCategoryRating(item.name, value)}
+                    />
+                  </View>
+                )} />
+
+              <TextInput
+                style={styles.notesStyle}
+                multiline={true}
+                numberOfLines={3}
+                onChangeText={(notes) => this.setState({
+                  notes: notes
+                })}
+                placeholder="Write a note."
+                placeholderColor={colors.black}
+              />
+            </View>
+
           </View>
 
-          <View style={styles.section}>
-            <Text style={styles.mainQuestionText}>How was {this.props.name}'s tasmee'?</Text>
-            <AirbnbRating
-              defaultRating={0}
-              size={30}
-              showRating={false}
-              onFinishRating={(value) => this.setState({
-                overallGrade: value})}
-            />
-
-            <FlatList
-              numColumns={2}
-              data={this.state.categoriesGrades}
-              keyExtractor={(item, index) => index} // fix, should be item.id (add id to classes)
-              renderItem={({ item, index }) => (
-                <View style={styles.box} key={index}>
-                  <Text style={styles.subCategoryText}>{item.name}</Text>
-                  <Rating
-                    startingValue={0}
-                    type="custom"
-                    imageSize={25}
-                    showRating={false}
-                    onFinishRating={(value) => this.updateCategoryRating(item.name, value)}
-                  />
-                </View>
-              )} />
-
-            <TextInput
-              style={styles.notesStyle}
-              multiline={true}
-              numberOfLines={3}
-              onChangeText={(notes) => this.setState({
-                notes: notes})}
-              placeholder="Write a note."
-              placeholderColor={colors.black}
+          <View style={styles.buttonsContainer}>
+            <QcActionButton
+              text="Submit"
+              onPress={() => { this.submitRating(classIndex, studentIndex) }}
             />
           </View>
-
-        </View>
-
-        <View style={styles.buttonsContainer}>
-          <QcActionButton
-            text="Submit"
-            onPress={() => { this.submitRating(classIndex, studentIndex) }}
-          />
-        </View>
-      </KeyboardAvoidingView>
+        </KeyboardAvoidingView>
+      </TouchableWithoutFeedback>
 
     )
   }
@@ -223,7 +231,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => (
   bindActionCreators({
-    completeCurrentAssignment
+    completeCurrentAssignment,
+    editCurrentAssignment
   }, dispatch)
 );
 

@@ -34,6 +34,8 @@ export class ClassEditScreen extends Component {
       studentInfo: {
         name: this.state.newStudentName,
         avatar: this.getAvatarUrl(),
+        totalAssignments: 0,
+        totalGrade: 0,
         imageId: this.getImageId(),
         currentAssignment: {
           name: "None",
