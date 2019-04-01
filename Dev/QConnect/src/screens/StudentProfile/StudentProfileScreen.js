@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Image, Text, StyleSheet, ScrollView, TouchableHighlight} from 'react-native';
+import { View, Image, Text, StyleSheet, ScrollView, FlatList } from 'react-native';
 import colors from 'config/colors';
 import QcActionButton from "components/QcActionButton"
 import { Rating } from 'react-native-elements';
@@ -19,22 +19,6 @@ class StudentProfileScreen extends Component {
     averageGrade: 0,
     isModalVisible: false
   }
-
-  //Method retrieves the current average rating for the current student
-  /*
-  getAverageRating() {
-    const { classIndex, studentIndex } = this.props.navigation.state.params;
-    const currentStudent = this.props.classes[classIndex].students[studentIndex];
-    const assignmentHistory = currentStudent.assignmentHistory;
-    let averageGrade = 0;
-    for(let i = 0; i < assignmentHistory.length; i++){
-      averageGrade += assignmentHistory[i].overallGrade;
-    }
-    averageGrade = averageGrade / assignmentHistory.length;
-
-    this.setState({ isDialogVisible: false, averageGrade: averageGrade });
-  }
-  */
 
   //method updates the current assignment of the student
   editAssignment(classIndex, studentIndex, newAssignmentName) {
@@ -73,13 +57,10 @@ class StudentProfileScreen extends Component {
     const currentStudent = this.props.classes[classIndex].students[studentIndex];
     const hasCurrentAssignment = currentStudent.currentAssignment.name === 'None' ? false : true;
 
-    //Retrieves the student's average rating
-    const assignmentHistory = currentStudent.assignmentHistory;
-    let rating = 0;
-    for (let i = 0; i < assignmentHistory.length; i++) {
-      rating += assignmentHistory[i].evaluation.overallGrade;
-    }
-    rating = rating / assignmentHistory.length;
+    //retrieves the student's average rating. If the student hasn't had any assignments, then 
+    //the rating will default to 0.
+    averageRating = currentStudent.totalAssignments === 0 ? 0.0 : 
+    (currentStudent.totalGrade / currentStudent.totalAssignments);
 
     return (
       <View style={styles.container}>
@@ -87,14 +68,13 @@ class StudentProfileScreen extends Component {
           isDialogVisible={this.state.isDialogVisible}
           title="Edit Assignment"
           hintInput="Enter assignment here..."
-          dialogStyle={{ marginBottom: 100 }}
-          submitInput={(inputText) =>
-          //If the student already has an existing assignment, then it will simply edit the
-          //name of the current assignment, if not, then it will create a new assignment
-          {
-            hasCurrentAssignment ? this.editAssignment(classIndex, studentIndex, inputText)
-              : this.addAssignment(classIndex, studentIndex, inputText)
-          }}
+          dialogStyle={{marginBottom: 100}}
+          submitInput={(inputText) => 
+            //If the student already has an existing assignment, then it will simply edit the
+            //name of the current assignment, if not, then it will create a new assignment
+            { hasCurrentAssignment ? this.editAssignment(classIndex, studentIndex, 
+              {name: inputText, startDate: new Date().toLocaleDateString("en-US")})
+               : this.addAssignment(classIndex, studentIndex, inputText)}}
           closeDialog={() => { this.setState({ isDialogVisible: false }) }} />
 
         <ImageSelectionModal
@@ -119,8 +99,8 @@ class StudentProfileScreen extends Component {
             </View>
             <View style={styles.profileInfoTopRight}>
               <Text style={styles.bigText}>{currentStudent.name}</Text>
-              <Rating readonly={true} startingValue={rating} imageSize={25} />
-              <Text style={styles.subText}>{rating >= 3 ? 'Outstanding!' : 'Needs Work'}</Text>
+              <Rating readonly={true} startingValue={averageRating} imageSize={25} />
+              <Text style={styles.subText}>{averageRating >= 3 ? 'Outstanding!' : 'Needs Work'}</Text>
             </View>
           </View>
 
@@ -141,7 +121,25 @@ class StudentProfileScreen extends Component {
         </View>
 
         <ScrollView style={styles.prevAssignments}>
-          <Text>Placeholder for past assignments</Text>
+          <FlatList
+            data={currentStudent.assignmentHistory}
+            keyExtractor={(item, index) => item.name}
+            renderItem={({ item, index }) => (
+              <View style={styles.prevAssignmentCard} key={index}>
+                <View style={{alignItems: 'center', paddingTop: 10}}>
+                  <Text style={styles.prevAssignmentTitleText}>{item.name}</Text>
+                </View>
+                <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                  <Text style={[styles.subText, {paddingLeft: 10}]}>{item.completionDate}</Text>
+                  <Rating style={{paddingRight: 10}} readonly={true} 
+                  startingValue={item.evaluation.overallGrade} imageSize={17} />
+                </View> 
+                <View style={{padding: 10}}>
+                  <Text style={styles.subText}>{"Notes: " + item.evaluation.notes}</Text>
+                </View> 
+              </View>
+            )}
+            />
         </ScrollView>
       </View>
     );
@@ -157,6 +155,10 @@ const styles = StyleSheet.create({
   subText: {
     fontSize: 14,
     fontFamily: fonts.regular
+  },
+  prevAssignmentTitleText: {
+    fontFamily: fonts.regular,
+    fontSize: 19
   },
   container: {
     flexDirection: "column",
@@ -207,7 +209,14 @@ const styles = StyleSheet.create({
     marginLeft: 7,
     marginRight: 7,
     marginTop: 10,
-  }
+  },
+  prevAssignmentCard: {
+    flexDirection: 'column',
+    borderColor: colors.lightGrey,
+    borderWidth: 0.5,
+    height: 100,
+    justifyContent: 'space-between'
+  },
 });
 
 const mapStateToProps = state => {

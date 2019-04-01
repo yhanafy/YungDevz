@@ -18,6 +18,8 @@ export const INITIAL_STATE = {
             {
               name: "Ahmed Reducer",
               imageId: 5,
+              totalAssignments: 1,
+              totalGrade: 2,
               currentAssignment: {
                 name: "Al-Nahl page 5",
                 startDate: "03-24-2019"
@@ -28,7 +30,7 @@ export const INITIAL_STATE = {
                   startDate: "03-17-2019",
                   completionDate: "03-20-2019",
                   evaluation: {
-                    overallGrade: 0,
+                    overallGrade: 2,
                     categoriesGrades: [
                       {
                         name: "Memorization",
@@ -72,6 +74,8 @@ export const INITIAL_STATE = {
             {
               name: "Amina Khan",
               imageId: 25,
+              totalAssignments: 1,
+              totalGrade: 4,
               currentAssignment: {
                 name: "An-Naze'aat",
                 startDate: "03-24-2019"
@@ -82,7 +86,7 @@ export const INITIAL_STATE = {
                   startDate: "03-17-2019",
                   completionDate: "03-20-2019",
                   evaluation: {
-                    overallGrade: 0,
+                    overallGrade: 4,
                     categoriesGrades: [
                       {
                         name: "Memorization",
@@ -122,7 +126,10 @@ export const INITIAL_STATE = {
             },
             {
               name: "Ayoub Barrak",
+
               imageId: 19,
+              totalAssignments: 1,
+              totalGrade: 1,
               currentAssignment: {
                 name: "Aal-Imran",
                 startDate: "03-24-2019"
@@ -133,7 +140,7 @@ export const INITIAL_STATE = {
                   startDate: "03-17-2019",
                   completionDate: "03-20-2019",
                   evaluation: {
-                    overallGrade: 0,
+                    overallGrade: 1,
                     categoriesGrades: [
                       {
                         name: "Memorization",
@@ -174,6 +181,8 @@ export const INITIAL_STATE = {
             {
               name: "Nouha Yacoubi",
               imageId: 21,
+              totalAssignments: 1,
+              totalGrade: 5,
               currentAssignment: {
                 name: "Al-Toor pages 5, 6, 8",
                 startDate: "03-24-2019"
@@ -184,7 +193,7 @@ export const INITIAL_STATE = {
                   startDate: "03-17-2019",
                   completionDate: "03-20-2019",
                   evaluation: {
-                    overallGrade: 0,
+                    overallGrade: 5,
                     categoriesGrades: [
                       {
                         name: "Memorization",
@@ -225,6 +234,8 @@ export const INITIAL_STATE = {
             {
               name: "Yassine Lightening",
               imageId: 15,
+              totalAssignments: 1,
+              totalGrade: 2,
               currentAssignment: {
                 name: "Al-Baqara pages 5-8",
                 startDate: "03-24-2019"
@@ -235,7 +246,7 @@ export const INITIAL_STATE = {
                   startDate: "03-17-2019",
                   completionDate: "03-20-2019",
                   evaluation: {
-                    overallGrade: 0,
+                    overallGrade: 2,
                     categoriesGrades: [
                       {
                         name: "Memorization",
@@ -276,15 +287,17 @@ export const INITIAL_STATE = {
             {
               name: "Ayah Sulaiman",
               imageId: 27,
+              totalAssignments: 2,
+              totalGrade: 8,
               currentAssignment: {
-                name: "Huud pages 3, 4",
-                startDate: "03-24-2019"
+                name: "None",
+                startDate: ""
               },
               assignmentHistory: [
                 {
                   name: "Al-Baqara 5-9",
                   startDate: "03-17-2019",
-                  completionDate: "03-20-2019",
+                  completionDate: "03-22-2019",
                   evaluation: {
                     overallGrade: 3,
                     categoriesGrades: [
@@ -317,7 +330,7 @@ export const INITIAL_STATE = {
                   }
                 },
                 {
-                  name: "Al-Baqara 1-5",
+                  name: "Al-Baqara 9-15",
                   startDate: "03-17-2019",
                   completionDate: "03-20-2019",
                   evaluation: {
@@ -436,8 +449,8 @@ export const classReducer = (state = INITIAL_STATE, action) => {
       {
         let { classIndex, studentIndex } = action;
         let updatedAssignment = {
-          name: action.newAssignment,
-          startDate: new Date().toLocaleDateString("en-US")
+          name: action.newAssignment.name,
+          startDate: action.newAssignment.startDate
         }
 
         let newState = update(baseState, { teachers: { [0]: { classes: { [classIndex]: { students: { [studentIndex]: { currentAssignment: { $set: updatedAssignment } } } } } } } });
@@ -472,6 +485,10 @@ export const classReducer = (state = INITIAL_STATE, action) => {
         //pushes the assignment to the array of assignment history (Remember, this action does not 
         //update the current assignment, this needs to be done using the addNewAssignment action)
         let newState = update(baseState, { teachers: { [0]: { classes: { [classIndex]: { students: { [studentIndex]: { assignmentHistory: { $push: [assignment] } } } } } } } });
+        let totalAssignments = baseState.teachers[0].classes[classIndex].students[studentIndex].totalAssignments;
+        let totalGrade = baseState.teachers[0].classes[classIndex].students[studentIndex].totalGrade;
+        newState =  update(newState, { teachers: { [0]: { classes: { [classIndex]: { students: { [studentIndex]: { totalAssignments: { $set: (totalAssignments + 1) } } } } } } } });
+        newState =  update(newState, { teachers: { [0]: { classes: { [classIndex]: { students: { [studentIndex]: { totalGrade: { $set: (totalGrade + assignment.evaluation.overallGrade) } } } } } } } });
         return newState;
       }
     default:
