@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Image, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Image, Text, StyleSheet, ScrollView, TouchableHighlight} from 'react-native';
 import colors from 'config/colors';
 import QcActionButton from "components/QcActionButton"
 import { Rating } from 'react-native-elements';
@@ -10,12 +10,14 @@ import { addNewAssignment } from 'model/actions/addNewAssignment';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import studentImages from 'config/studentImages';
+import TouchableText from 'components/TouchableText'
 
 class StudentProfileScreen extends Component {
 
   state = {
     isDialogVisible: false,
-    averageGrade: 0 
+    averageGrade: 0,
+    isModalVisible: false
   }
 
   //Method retrieves the current average rating for the current student
@@ -43,11 +45,28 @@ class StudentProfileScreen extends Component {
   //method will add a new assignment for the student (only to current assignment, will not add
   //to assignment history until after completion of the assignment)
   addAssignment(classIndex, studentIndex, newAssignmentName) {
-    this.props.addNewAssignment(classIndex, studentIndex, 
+    this.props.addNewAssignment(classIndex, studentIndex,
       newAssignmentName);
     this.setState({ isDialogVisible: false })
   }
 
+  //---------- profile image views handlers --------------
+  setModalVisible(visible) {
+    this.setState({ isModalVisible: visible });
+  }
+
+  //this method saves the new profile information to the redux database
+  saveProfileInfo = (teacherID) => {
+    
+    this.refs.toast.show("Your profile has been saved", DURATION.LENGTH_SHORT);
+  }
+
+  onImageSelected(index) {
+    this.setState({profileImageId: index,})
+    this.setModalVisible(false);
+  }
+
+  //---------- main UI render ===============================
   render() {
     const { navigate } = this.props.navigation;
     const { classIndex, studentIndex } = this.props.navigation.state.params;
@@ -57,7 +76,7 @@ class StudentProfileScreen extends Component {
     //Retrieves the student's average rating
     const assignmentHistory = currentStudent.assignmentHistory;
     let rating = 0;
-    for(let i = 0; i < assignmentHistory.length; i++){
+    for (let i = 0; i < assignmentHistory.length; i++) {
       rating += assignmentHistory[i].evaluation.overallGrade;
     }
     rating = rating / assignmentHistory.length;
@@ -68,20 +87,35 @@ class StudentProfileScreen extends Component {
           isDialogVisible={this.state.isDialogVisible}
           title="Edit Assignment"
           hintInput="Enter assignment here..."
-          dialogStyle={{marginBottom: 100}}
-          submitInput={(inputText) => 
-            //If the student already has an existing assignment, then it will simply edit the
-            //name of the current assignment, if not, then it will create a new assignment
-            { hasCurrentAssignment ? this.editAssignment(classIndex, studentIndex, inputText)
-               : this.addAssignment(classIndex, studentIndex, inputText)}}
+          dialogStyle={{ marginBottom: 100 }}
+          submitInput={(inputText) =>
+          //If the student already has an existing assignment, then it will simply edit the
+          //name of the current assignment, if not, then it will create a new assignment
+          {
+            hasCurrentAssignment ? this.editAssignment(classIndex, studentIndex, inputText)
+              : this.addAssignment(classIndex, studentIndex, inputText)
+          }}
           closeDialog={() => { this.setState({ isDialogVisible: false }) }} />
+
+        <ImageSelectionModal
+          visible={this.state.isModalVisible}
+          images={studentImages.images}
+          cancelText="Cancel"
+          setModalVisible={this.setModalVisible.bind(this)}
+          onImageSelected={this.onImageSelected.bind(this)}
+        />
 
         <View style={styles.profileInfo}>
 
           <View style={styles.profileInfoTop}>
             <View style={styles.profileInfoTopLeft}>
-              <Image source={studentImages.images[currentStudent.imageId]}
-                style={styles.profilePic} />
+              <Image
+                style={styles.profilePic}
+                source={studentImages.images[currentStudent.imageId]} />
+                <TouchableText
+                text= "update image"
+                onPress={() => this.setModalVisible(true)}
+                />
             </View>
             <View style={styles.profileInfoTopRight}>
               <Text style={styles.bigText}>{currentStudent.name}</Text>
@@ -97,8 +131,8 @@ class StudentProfileScreen extends Component {
         </View>
 
         <View style={styles.buttons}>
-          <QcActionButton text={hasCurrentAssignment ? 'Edit Assignment' : 'Add Assignment'} 
-          onPress={() => { this.setState({ isDialogVisible: true }) }} />
+          <QcActionButton text={hasCurrentAssignment ? 'Edit Assignment' : 'Add Assignment'}
+            onPress={() => { this.setState({ isDialogVisible: true }) }} />
           <QcActionButton text='Grade Assignment' onPress={() =>
             this.props.navigation.push("EvaluationPage", {
               studentIndex: studentIndex,
@@ -143,7 +177,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   profileInfoTopLeft: {
-    flexDirection: 'column'
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginTop: 10,
+    marginLeft: 10
   },
   profileInfoTopRight: {
     flexDirection: 'column',
@@ -158,8 +195,6 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 30,
-    marginTop: 10,
-    marginLeft: 10
   },
   buttons: {
     flexDirection: 'row',
