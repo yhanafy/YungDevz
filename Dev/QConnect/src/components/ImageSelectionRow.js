@@ -9,7 +9,7 @@ import PropTypes from 'prop-types'
 //---------------------------------------------------------
 // Renders set of passed in images in a single row, and adds 
 //  an "expand more" ellipsis in the end that calls back to passed in function
-//  to show more images
+//  to show more images.
 //--------------------------------------------------------------
 export default ImageSelectionRow = (props) => {
     const {highlightedImagesIndices, onImageSelected, onShowMore, selectedImageIndex} = props;
