@@ -9,6 +9,7 @@ import { deleteStudent } from "model/actions/deleteStudent";
 import { addStudent } from "model/actions/addStudent";
 import QcActionButton from "components/QcActionButton";
 import studentImages from "config/studentImages";
+import strings from "../../../../config/strings";
 
 export class ClassEditScreen extends Component {
   state = {
@@ -45,10 +46,10 @@ export class ClassEditScreen extends Component {
         attendanceHistory: []
       }
     });
-    this.refs.toast.show(this.state.newStudentName + " is now added to the class", 
+    this.refs.toast.show(this.state.newStudentName + strings.IsNowAddedToTheClass, 
     DURATION.LENGTH_SHORT);
     ;} else {
-      alert("Please input a Name!")
+      alert(strings.PleaseInputAName)
     }
   }
 
@@ -67,12 +68,12 @@ export class ClassEditScreen extends Component {
       <ScrollView style={styles.container}>
         <View ID={classIndex} style={styles.inputContainer}>
           <TextInput
-            placeholder="Enter new student's name"
+            placeholder={strings.EnterNewStudentsName}
             onChangeText={newStudentName => this.setState({ newStudentName })}
             value={this.state.newStudentName}
           />
           <QcActionButton
-            text="Add student"
+            text={strings.AddStudent}
             onPress={() => this.addNewStudent(classIndex)}
           />
         </View>

@@ -5,6 +5,7 @@ import ClassTabsNavigator from './ClassTabsNavigator';
 import StudentProfileScreen from 'screens/StudentProfile/StudentProfileScreen';
 import ClassEditScreen from 'screens/TeacherScreens/ClassTabs/ClassEditScreen';
 import EvaluationPage from 'screens/Evaluation/EvaluationPage';
+import strings from '../../../../config/strings';
 
 const ClassHeaderNavigator = createStackNavigator({
   CurrentClass: {
@@ -28,7 +29,7 @@ const ClassHeaderNavigator = createStackNavigator({
         <TopBanner
           LeftIconName="angle-left"
           LeftOnPress={() => navigation.goBack()}
-          Title="Student Profile"
+          Title={strings.StudentProfile}
           RightOnPress={() => {}}
         />
       )

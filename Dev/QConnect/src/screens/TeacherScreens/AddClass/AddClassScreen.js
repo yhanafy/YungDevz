@@ -14,6 +14,7 @@ import ImageSelectionModal from "components/ImageSelectionModal"
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { addClass } from "model/actions/addClass";
+import strings from '../../../../config/strings';
 
 export class AddClassScreen extends Component {
   //----------------------- state -------------------------------------
@@ -45,7 +46,7 @@ export class AddClassScreen extends Component {
 
       this.props.addClass(classInfo);
     } else {
-      alert("Please make sure to have an input!")
+      alert(strings.PleaseMakeSureToHaveAnInput);
     }
   }
 
@@ -61,7 +62,7 @@ export class AddClassScreen extends Component {
           <ImageSelectionModal
             visible={this.state.modalVisible}
             images={classImages.images}
-            cancelText="Cancel"
+            cancelText={strings.Cancel}
             setModalVisible={this.setModalVisible.bind(this)}
             onImageSelected={this.onImageSelected.bind(this)}
           />
@@ -72,14 +73,14 @@ export class AddClassScreen extends Component {
               source={classImages.images[this.state.classImageId]}
               ResizeMode="contain" />
             <TouchableText
-              text="Edit class image"
+              text={strings.EditClassImage}
               onPress={() => this.setModalVisible(true)} />
           </View>
           
           <View style={styles.bottomContainer}>
             <TextInput
               style={styles.textInputStyle}
-              placeholder="Write Class Name Here"
+              placeholder={strings.WriteClassNameHere}
               onChangeText={classInput =>
                 this.setState({
                   className: classInput
@@ -90,10 +91,10 @@ export class AddClassScreen extends Component {
             <Text style={{
               fontSize: 15,
               marginTop: 5
-            }}>Your Class name is {this.state.className}</Text>
+            }}>{strings.YourClassNameIs} + {this.state.className}</Text>
 
             <QcActionButton
-              text="Add Class"
+              text={strings.AddClass}
               onPress={() => {
                 this.addNewClass();
               }}

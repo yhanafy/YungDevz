@@ -9,6 +9,7 @@ import { editCurrentAssignment } from 'model/actions/editCurrentAssignment';
 import { addNewAssignment } from 'model/actions/addNewAssignment';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+import strings from '../../../config/strings';
 
 class StudentProfileScreen extends Component {
 
@@ -46,8 +47,8 @@ class StudentProfileScreen extends Component {
       <View style={styles.container}>
         <DialogInput
           isDialogVisible={this.state.isDialogVisible}
-          title="Edit Assignment"
-          hintInput="Enter assignment here..."
+          title={strings.EditAssignment}
+          hintInput={strings.EnterAssignmentHere}
           dialogStyle={{marginBottom: 100}}
           submitInput={(inputText) => 
             //If the student already has an existing assignment, then it will simply edit the
@@ -67,20 +68,20 @@ class StudentProfileScreen extends Component {
             <View style={styles.profileInfoTopRight}>
               <Text style={styles.bigText}>{currentStudent.name}</Text>
               <Rating readonly={true} startingValue={averageRating} imageSize={25} />
-              <Text style={styles.subText}>{averageRating >= 3 ? 'Outstanding!' : 'Needs Work'}</Text>
+              <Text style={styles.subText}>{averageRating >= 3 ? strings.OutStanding : strings.NeedsWork}</Text>
             </View>
           </View>
 
           <View style={styles.profileInfoBottom}>
-            <Text style={styles.subText}>{'Current Assignment: ' + currentStudent.currentAssignment.name}</Text>
+            <Text style={styles.subText}>{strings.CurrentAssignment + currentStudent.currentAssignment.name}</Text>
           </View>
 
         </View>
 
         <View style={styles.buttons}>
-          <QcActionButton text={hasCurrentAssignment ? 'Edit Assignment' : 'Add Assignment'} 
+          <QcActionButton text={hasCurrentAssignment ? strings.EditAssignment : strings.AddAssignment} 
           onPress={() => { this.setState({ isDialogVisible: true }) }} />
-          <QcActionButton text='Grade Assignment' onPress={() =>
+          <QcActionButton text={strings.GradeAssignment} onPress={() =>
             this.props.navigation.push("EvaluationPage", {
               studentIndex: studentIndex,
               classIndex: classIndex

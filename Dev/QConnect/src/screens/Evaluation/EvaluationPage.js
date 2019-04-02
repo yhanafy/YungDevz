@@ -4,9 +4,10 @@ import { Rating, AirbnbRating } from 'react-native-elements';
 import colors from 'config/colors';
 import { bindActionCreators } from 'redux';
 import { connect } from "react-redux";
-import QcActionButton from 'components/QcActionButton'
-import { completeCurrentAssignment } from 'model/actions/completeCurrentAssignment'
+import QcActionButton from 'components/QcActionButton';
+import { completeCurrentAssignment } from 'model/actions/completeCurrentAssignment';
 import { editCurrentAssignment } from 'model/actions/editCurrentAssignment';
+import strings from '../../../config/strings';
 
 export class EvaluationPage extends Component {
 
@@ -57,7 +58,7 @@ export class EvaluationPage extends Component {
   //------------  Saves the rating to db and pops to previous view
   submitRating(classIndex, studentIndex) {
     this.props.completeCurrentAssignment(classIndex, studentIndex, this.state);
-    this.props.editCurrentAssignment(classIndex, studentIndex, { name: "None", startDate: "" });
+    this.props.editCurrentAssignment(classIndex, studentIndex, { name: strings.None, startDate: "" });
     this.props.navigation.pop();
   }
 
@@ -82,7 +83,7 @@ export class EvaluationPage extends Component {
             </View>
 
             <View style={styles.section}>
-              <Text style={styles.mainQuestionText}>How was {this.props.name}'s tasmee'?</Text>
+              <Text style={styles.mainQuestionText}>{strings.HowWas} + {this.props.name} + {strings.sTasmee3}</Text>
               <AirbnbRating
                 defaultRating={0}
                 size={30}
@@ -116,7 +117,7 @@ export class EvaluationPage extends Component {
                 onChangeText={(notes) => this.setState({
                   notes: notes
                 })}
-                placeholder="Write a note."
+                placeholder={strings.WriteANote}
                 placeholderColor={colors.black}
               />
             </View>
@@ -125,7 +126,7 @@ export class EvaluationPage extends Component {
 
           <View style={styles.buttonsContainer}>
             <QcActionButton
-              text="Submit"
+              text={strings.Submit}
               onPress={() => { this.submitRating(classIndex, studentIndex) }}
             />
           </View>
