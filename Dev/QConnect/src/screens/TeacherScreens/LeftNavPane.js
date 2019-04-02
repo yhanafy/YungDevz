@@ -8,6 +8,7 @@ import { ListItem } from "react-native-elements";
 import QcAppBanner from "components/QcAppBanner";
 import QcDrawerItem from "components/QcDrawerItem";
 import teacherImages from "../../../config/teacherImages";
+import strings from '../../../config/strings';
 
 class LeftNavPane extends React.Component {
   openClass = (i, className) => {
@@ -23,7 +24,7 @@ class LeftNavPane extends React.Component {
   render() {
     const {name, profileImageId, classes} = this.props;
 
-    const profileCaption = name + "'s profile"
+    const profileCaption = name + strings.sProfile
     const teacherImageId = profileImageId ? profileImageId : 0
 
     return (
@@ -62,7 +63,7 @@ class LeftNavPane extends React.Component {
           />
 
           <QcDrawerItem
-            title="Add a new class"
+            title={strings.AddNewClass}
             icon="plus"
             onPress={() => this.props.navigation.push("AddClass")}
           />

@@ -9,7 +9,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from "react-redux";
 import colors from 'config/colors';
 import ImageSelectionModal from 'components/ImageSelectionModal'
-import TeacherInfoEntries from 'components/TeacherInfoEntries'
+import TeacherInfoEntries from 'components/TeacherInfoEntries',
+import strings from '../../../../config/strings';
 
 //To-Do: All info in this class is static, still needs to be hooked up to data base in order
 //to function dynamically
@@ -46,7 +47,7 @@ export class TeacherProfileScreen extends Component {
             teacherID,
             this.state
         );
-        this.refs.toast.show("Your profile has been saved", DURATION.LENGTH_SHORT);
+        this.refs.toast.show(strings.YourProfileHasBeenSaved, DURATION.LENGTH_SHORT);
     }
 
     //------ event handlers to capture user input into state as user modifies the entries -----
@@ -75,7 +76,7 @@ export class TeacherProfileScreen extends Component {
                 <ImageSelectionModal
                     visible={this.state.modalVisible}
                     images={teacherImages.images}
-                    cancelText="Cancel"
+                    cancelText={strings.Cancel}
                     setModalVisible={this.setModalVisible.bind(this)}
                     onImageSelected={this.onImageSelected.bind(this)}
                 />
@@ -84,7 +85,7 @@ export class TeacherProfileScreen extends Component {
                         style={styles.profilePic} 
                         source={teacherImages.images[this.state.profileImageId]} />
                     <TouchableText
-                        text="Update profile image"
+                        text={strings.UpdateProfileImage}
                         onPress={() => this.editProfilePic(0)} />
                 </View>
                
@@ -98,11 +99,11 @@ export class TeacherProfileScreen extends Component {
                     />
                 <View style={styles.buttonsContainer}>
                     <QcActionButton
-                    text="Cancel"
+                    text={strings.Cancel}
                     onPress={() => this.resetProfileInfo()}
                     />
                     <QcActionButton
-                    text="Save"
+                    text={strings.Save}
                     onPress={() => this.saveProfileInfo(0)} //to-do: Make sure that teacher ID 
                                                             //is passed instead of 0
                     />

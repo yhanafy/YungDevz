@@ -3,6 +3,7 @@ import { createStackNavigator, DrawerActions } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 import AddClassScreen from './AddClassScreen';
 import TopBanner from 'components/TopBanner';
+import strings from '../../../../config/strings';
 
 const AddClassNavigator = createStackNavigator({
   AddClass: {
@@ -12,14 +13,14 @@ const AddClassNavigator = createStackNavigator({
         <TopBanner
           LeftIconName="navicon"
           LeftOnPress={() => navigation.openDrawer()}
-          Title="Add a new class"
+          Title={strings.AddNewClass}
         />
       )
     }),
   },
 },
 {
-    drawerLabel: 'Add new class',
+    drawerLabel: strings.AddNewClass
     drawerIcon: ({ tintColor }) => (
       <Icon
         name="plus"

@@ -33,6 +33,9 @@ export default {
     YourClassNameIs: 'Your class name is ',
     AddClass: 'Add Class',
 
+    //--------------------- Add Class Navigator ---------------------
+    AddNewClass: 'Add New Class',
+
     //--------------------- Class Attendance Screen ---------------------
     AttendanceFor: 'Attendance for ',
     HasBeenSaved: ' has been saved',
@@ -47,5 +50,20 @@ export default {
 
     //--------------------- Class Header Navigator ---------------------
     StudentProfile: 'Student Profile',
+    EditClass: 'Edit Class',
+    StudentEvaluation: 'Student Evaluation',
+
+    //--------------------- Class Tabs Navigator ---------------------
+    Attendance: 'Attendance',
+    Class: 'Class',
+
+    //--------------------- Teacher Profile Navigator ---------------------
+    MyProfile: 'My Profile',
+
+    //--------------------- Teacher Profile Screen ---------------------
+    UpdateProfileImage: 'Update profile image',
+
+    //--------------------- Left Nav Pane ---------------------
+    sProfile: '\'s profile',
 
 }

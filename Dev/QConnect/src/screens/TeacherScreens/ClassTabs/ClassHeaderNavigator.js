@@ -43,10 +43,10 @@ const ClassHeaderNavigator = createStackNavigator({
     navigationOptions: ({navigation}) => ({
       header: (
         <TopBanner
-          LeftTextName="Cancel"
+          LeftTextName={strings.Cancel}
           LeftOnPress={() => navigation.goBack()}
-          Title="Edit Class"
-          RightTextName="Save"
+          Title={strings.EditClass}
+          RightTextName={strings.Save}
           RightOnPress={() => navigation.goBack()}
         />
       )
@@ -59,7 +59,7 @@ const ClassHeaderNavigator = createStackNavigator({
         <TopBanner
           LeftIconName="angle-left"
           LeftOnPress={() => navigation.goBack()}
-          Title="Student Evaluation"
+          Title={strings.StudentEvaluation}
           RightIconName="edit"
           RightOnPress={() => {}}
         />
