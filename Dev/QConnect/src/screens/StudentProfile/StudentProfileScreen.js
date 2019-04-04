@@ -118,7 +118,7 @@ class StudentProfileScreen extends FontLoadingComponent {
                 />
               </View>
 
-              <View style={{ flexDirection: 'column', borderBottomColor: colors.lightGrey, borderBottomWidth: 1 }}>
+              <View style={{ flexDirection: 'column'}}>
               <Text style={styles.assignmentTextLarge}>{currentStudent.currentAssignment.name.toUpperCase()}</Text>
                 <View style={{ flexDirection: 'row'}}>
                   <TouchableHighlight
@@ -135,21 +135,6 @@ class StudentProfileScreen extends FontLoadingComponent {
               </TouchableHighlight> : <View />}
                 </View>
               </View>
-              {/* <Text style={styles.assignmentTextLarge}>{currentStudent.currentAssignment.name.toUpperCase()}</Text>
-
-              <TouchableHighlight
-                onPress={() => { this.setState({ isDialogVisible: true }) }} >
-                <Text style={styles.assignmentActionText}>Edit</Text>
-
-              </TouchableHighlight>
-              {hasCurrentAssignment ? <TouchableHighlight onPress={() =>
-                this.props.navigation.push("EvaluationPage", {
-                  studentIndex: studentIndex,
-                  classIndex: classIndex
-                })} >
-                <Text style={styles.assignmentActionText}>Grade</Text>
-              </TouchableHighlight> : <View />} */}
-
             </View>
 
           </View>
@@ -269,7 +254,7 @@ const styles = StyleSheet.create({
   profileInfoTopLeft: {
     flexDirection: 'column',
     marginLeft: 3,
-    marginTop: -63,
+    marginTop: -66,
     alignItems: 'center',
     width: 100
   },
@@ -282,11 +267,14 @@ const styles = StyleSheet.create({
   profileInfoBottom: {
     flexDirection: 'row',
     paddingHorizontal: 10,
+    borderBottomColor: colors.grey, 
+    borderBottomWidth: 1 
   },
   profilePic: {
     width: 100,
     height: 100,
     borderRadius: 50,
+    paddingBottom: 10
   },
   buttons: {
     flexDirection: 'row',

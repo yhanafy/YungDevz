@@ -6,7 +6,7 @@ import QcAppBanner from 'components/QcAppBanner'
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 
-const BG_IMAGE = require('assets/images/read_child_bg.jpg');
+const BG_IMAGE = require('assets/images/splash.png'); //todo: read_child_bg.jpg
 
 class FirstRunScreen extends React.Component {
 

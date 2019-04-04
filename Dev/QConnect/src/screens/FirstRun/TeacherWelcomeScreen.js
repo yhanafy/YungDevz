@@ -95,7 +95,7 @@ export class TeacherWelcomeScreen extends Component {
                 <View style={styles.picContainer}>
                     <Image
                         style={styles.welcomeImage}
-                        source={require('assets/images/salam.jpg')} />
+                        source={require('assets/images/salam.png')} />
                     <Text style={styles.quote}>Quran teachers are very dear to our hearts.  It is our
 great honor and pleasure to serve your dedication to
 the holy book.</Text>
@@ -123,6 +123,7 @@ the holy book.</Text>
                     //is passed instead of 0
                     />
                 </View>
+                <View style={styles.filler}></View>
                 <Toast ref="toast"/>
             </View>
         )
@@ -140,23 +141,20 @@ const styles = StyleSheet.create({
     picContainer: {
         paddingTop: 10,
         alignItems: 'center',
-        paddingBottom: 10,
         marginTop: 15,
         marginBottom: 10,
         backgroundColor: colors.white,
-        flex: 1
     },
     quote: {
         fontSize: 16,
         paddingLeft: 20,
         fontStyle: 'italic',
-        paddingBottom: 15,
+        paddingBottom: 10,
         color: colors.darkGrey
     },
     welcomeImage: {
-        marginTop: 25,
+        marginTop: 15,
         width: 180,
-        height: 111,
         resizeMode: 'contain',
     },
     editInfo: {
@@ -169,6 +167,9 @@ const styles = StyleSheet.create({
         marginTop: 10,
         backgroundColor: colors.white,
         justifyContent: 'center',
+    },
+    filler: {
+        flexDirection: 'column'
     }
 })
 
