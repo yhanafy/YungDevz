@@ -10,7 +10,7 @@ export default TouchableText = (props) => {
     return (
         <TouchableHighlight
             onPress={props.onPress}>
-            <Text style={styles.container}>{props.text}</Text>
+            <Text style={[styles.container, props.style]}>{props.text}</Text>
         </TouchableHighlight>
     );
 }
@@ -34,4 +34,5 @@ const styles = StyleSheet.create({
 TouchableText.propTypes = {
     text: PropTypes.string.isRequired,
     onPress: PropTypes.func.isRequired,
+    style: PropTypes.object, 
 }

@@ -6,7 +6,7 @@ import FontLoadingComponent from './FontLoadingComponent';
 
 /*Class represents the student card that will show up in the list of students
 *from the teachers view.
-*Each card will have a student name, a profile picure for the student, and the student's
+*Each card will have a student name, a profile picture for the student, and the student's
 *current assignment.
 *The card will also be able to be pressed which controls the color of the card (Student Status)
 */
