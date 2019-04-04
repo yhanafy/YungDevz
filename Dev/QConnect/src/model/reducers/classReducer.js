@@ -31,32 +31,6 @@ export const INITIAL_STATE = {
                   completionDate: "03-20-2019",
                   evaluation: {
                     overallGrade: 2,
-                    categoriesGrades: [
-                      {
-                        name: "Memorization",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Makharej",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Edgham & Ekhfae",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Rulings of Raa'",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Muduud",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Qalqalah",
-                        grade: 'not graded',
-                      },
-                    ],
                     notes: ""
                   }
                 }
@@ -87,32 +61,6 @@ export const INITIAL_STATE = {
                   completionDate: "03-20-2019",
                   evaluation: {
                     overallGrade: 4,
-                    categoriesGrades: [
-                      {
-                        name: "Memorization",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Makharej",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Edgham & Ekhfae",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Rulings of Raa'",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Muduud",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Qalqalah",
-                        grade: 'not graded',
-                      },
-                    ],
                     notes: ""
                   }
                 }
@@ -141,32 +89,6 @@ export const INITIAL_STATE = {
                   completionDate: "03-20-2019",
                   evaluation: {
                     overallGrade: 1,
-                    categoriesGrades: [
-                      {
-                        name: "Memorization",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Makharej",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Edgham & Ekhfae",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Rulings of Raa'",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Muduud",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Qalqalah",
-                        grade: 'not graded',
-                      },
-                    ],
                     notes: ""
                   }
                 }
@@ -194,32 +116,6 @@ export const INITIAL_STATE = {
                   completionDate: "03-20-2019",
                   evaluation: {
                     overallGrade: 5,
-                    categoriesGrades: [
-                      {
-                        name: "Memorization",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Makharej",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Edgham & Ekhfae",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Rulings of Raa'",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Muduud",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Qalqalah",
-                        grade: 'not graded',
-                      },
-                    ],
                     notes: ""
                   }
                 }
@@ -247,32 +143,6 @@ export const INITIAL_STATE = {
                   completionDate: "03-20-2019",
                   evaluation: {
                     overallGrade: 2,
-                    categoriesGrades: [
-                      {
-                        name: "Memorization",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Makharej",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Edgham & Ekhfae",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Rulings of Raa'",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Muduud",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Qalqalah",
-                        grade: 'not graded',
-                      },
-                    ],
                     notes: ""
                   }
                 }
@@ -300,32 +170,6 @@ export const INITIAL_STATE = {
                   completionDate: "03-22-2019",
                   evaluation: {
                     overallGrade: 3,
-                    categoriesGrades: [
-                      {
-                        name: "Memorization",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Makharej",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Edgham & Ekhfae",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Rulings of Raa'",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Muduud",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Qalqalah",
-                        grade: 'not graded',
-                      },
-                    ],
                     notes: ""
                   }
                 },
@@ -335,32 +179,6 @@ export const INITIAL_STATE = {
                   completionDate: "03-20-2019",
                   evaluation: {
                     overallGrade: 5,
-                    categoriesGrades: [
-                      {
-                        name: "Memorization",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Makharej",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Edgham & Ekhfae",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Rulings of Raa'",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Muduud",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Qalqalah",
-                        grade: 'not graded',
-                      },
-                    ],
                     notes: ""
                   }
                 }

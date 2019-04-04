@@ -2,15 +2,21 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 import colors from 'config/colors'
+import FontLoadingComponent from 'components/FontLoadingComponent'
 
-class customButton extends Component {
+class customButton extends FontLoadingComponent {
 	render() {
 		const { text, onPress} = this.props;
 		return (
 		  <TouchableOpacity style={styles.buttonStyle}
 			onPress={() => onPress()}
 		  >
+      {this.state.fontLoaded ? (  
 			 <Text style={styles.textStyle}>{text}</Text>
+       ) : (
+        <Text style={styles.textStyle}>{text}</Text>
+                )
+            }
 		  </TouchableOpacity>
 		);
 	}

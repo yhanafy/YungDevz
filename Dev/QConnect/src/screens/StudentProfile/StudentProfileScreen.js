@@ -3,7 +3,6 @@ import { View, Image, Text, StyleSheet, ScrollView, FlatList, TouchableHighlight
 import colors from 'config/colors';
 import QcActionButton from "components/QcActionButton"
 import { Rating, Icon } from 'react-native-elements';
-import fonts from 'config/colors';
 import DialogInput from 'react-native-dialog-input';
 import { editCurrentAssignment } from 'model/actions/editCurrentAssignment';
 import { addNewAssignment } from 'model/actions/addNewAssignment';
@@ -65,7 +64,7 @@ class StudentProfileScreen extends FontLoadingComponent {
 
     return (
       <View style={styles.container}>
-        <DialogInput
+      <DialogInput
           isDialogVisible={this.state.isDialogVisible}
           title="Edit Assignment"
           hintInput="Enter assignment here..."
@@ -88,7 +87,8 @@ class StudentProfileScreen extends FontLoadingComponent {
           onImageSelected={this.onImageSelected.bind(this)}
         />
 
-        <View style={styles.studentInfoContainer}>
+      {this.state.fontLoaded ? (  
+         <View style={styles.studentInfoContainer}>
 
           <View style={styles.profileInfo}>
 
@@ -98,9 +98,11 @@ class StudentProfileScreen extends FontLoadingComponent {
               </View>
               <View style={styles.profileInfoTopRight}>
                 <Text style={styles.bigText}>{currentStudent.name.toUpperCase()}</Text>
-                <View style={{ flexDirection: 'row' }}>
+                <View style={{ flexDirection: 'row', height: 25 }}>
                   <Rating readonly={true} startingValue={averageRating} imageSize={25} />
+                  <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center'}}>
                   <Text style={styles.ratingText}>{averageRating.toLocaleString("EN-US", { minimumFractionDigits: 0 })}</Text>
+                  </View>
                 </View>
                 <Text style={styles.ratingDescText}>{averageRating >= 3 ? 'Outstanding!' : 'Needs Work'}</Text>
               </View>
@@ -165,6 +167,10 @@ class StudentProfileScreen extends FontLoadingComponent {
             />
           </ScrollView>
         </View>
+        ) : (
+        <Text style={styles.textStyle}>Loading...</Text>
+                )
+            }
       </View>
     );
   }
@@ -174,52 +180,52 @@ class StudentProfileScreen extends FontLoadingComponent {
 const styles = StyleSheet.create({
   bigText: {
     fontSize: 24,
-    fontFamily: fonts.regular
+    fontFamily: 'regular',
   },
   subText: {
     fontSize: 16,
-    fontFamily: fonts.regular,
+    fontFamily: 'regular',
     color: colors.primaryDark
   },
   ratingDescText: {
-    fontSize: 20,
-    fontFamily: fonts.light,
+    fontSize: 18,
+    fontFamily: 'light',
     color: colors.primaryDark
   },
   assignmentTextSmall: {
     fontSize: 14,
-    fontFamily: fonts.regular,
+    fontFamily: 'regular',
     color: colors.black,
     paddingTop: 2
   },
   assignmentTextLarge: {
     fontSize: 20,
-    fontFamily: fonts.regular,
+    fontFamily: 'regular',
     color: colors.darkGrey,
     paddingLeft: 10,
     paddingTop: 5
   },
   ratingText: {
     fontSize: 24,
-    fontFamily: fonts.regular,
+    fontFamily: 'regular',
     color: colors.darkGrey,
     marginLeft: 10,
   },
   notesText: {
     fontSize: 14,
-    fontFamily: fonts.regular,
+    fontFamily: 'regular',
     color: colors.black
   },
   assignmentActionText: {
     fontSize: 16,
-    fontFamily: fonts.regular,
+    fontFamily: 'regular',
     color: colors.primaryDark,
     paddingLeft: 10,
     paddingRight: 10,
     paddingTop: 10
   },
   prevAssignmentTitleText: {
-    fontFamily: fonts.regular,
+    fontFamily: 'regular',
     fontSize: 19
   },
   container: {
