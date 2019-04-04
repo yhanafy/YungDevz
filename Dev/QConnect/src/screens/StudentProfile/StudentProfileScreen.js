@@ -64,7 +64,7 @@ class StudentProfileScreen extends FontLoadingComponent {
 
     return (
       <View style={styles.container}>
-      <DialogInput
+        <DialogInput
           isDialogVisible={this.state.isDialogVisible}
           title="Edit Assignment"
           hintInput="Enter assignment here..."
@@ -87,90 +87,90 @@ class StudentProfileScreen extends FontLoadingComponent {
           onImageSelected={this.onImageSelected.bind(this)}
         />
 
-      {this.state.fontLoaded ? (  
-         <View style={styles.studentInfoContainer}>
+        {this.state.fontLoaded ? (
+          <View style={styles.studentInfoContainer}>
 
-          <View style={styles.profileInfo}>
+            <View style={styles.profileInfo}>
 
-            <View style={styles.profileInfoTop}>
-              <View style={{ width: 100 }}>
+              <View style={styles.profileInfoTop}>
+                <View style={{ width: 100 }}>
 
+                </View>
+                <View style={styles.profileInfoTopRight}>
+                  <Text style={styles.bigText}>{currentStudent.name.toUpperCase()}</Text>
+                  <View style={{ flexDirection: 'row', height: 25 }}>
+                    <Rating readonly={true} startingValue={averageRating} imageSize={25} />
+                    <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center' }}>
+                      <Text style={styles.ratingText}>{averageRating.toLocaleString("EN-US", { minimumFractionDigits: 0 })}</Text>
+                    </View>
+                  </View>
+                  <Text style={styles.ratingDescText}>{averageRating >= 3 ? 'Outstanding!' : 'Needs Work'}</Text>
+                </View>
               </View>
-              <View style={styles.profileInfoTopRight}>
-                <Text style={styles.bigText}>{currentStudent.name.toUpperCase()}</Text>
-                <View style={{ flexDirection: 'row', height: 25 }}>
-                  <Rating readonly={true} startingValue={averageRating} imageSize={25} />
-                  <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center'}}>
-                  <Text style={styles.ratingText}>{averageRating.toLocaleString("EN-US", { minimumFractionDigits: 0 })}</Text>
+
+              <View style={styles.profileInfoBottom}>
+                <View style={styles.profileInfoTopLeft}>
+                  <Image
+                    style={styles.profilePic}
+                    source={studentImages.images[currentStudent.imageId]} />
+                  <TouchableText
+                    text="update image"
+                    onPress={() => this.setModalVisible(true)}
+                    style={{ paddingRight: 0, paddingLeft: 0, marginLeft: 0, fontSize: 14 }}
+                  />
+                </View>
+
+                <View style={{ flexDirection: 'column' }}>
+                  <Text style={styles.assignmentTextLarge}>{currentStudent.currentAssignment.name.toUpperCase()}</Text>
+                  <View style={{ flexDirection: 'row' }}>
+                    <TouchableHighlight
+                      onPress={() => { this.setState({ isDialogVisible: true }) }} >
+                      <Text style={styles.assignmentActionText}>Edit</Text>
+                    </TouchableHighlight>
+
+                    {hasCurrentAssignment ? <TouchableHighlight onPress={() =>
+                      this.props.navigation.push("EvaluationPage", {
+                        studentIndex: studentIndex,
+                        classIndex: classIndex
+                      })} >
+                      <Text style={styles.assignmentActionText}>Grade</Text>
+                    </TouchableHighlight> : <View />}
                   </View>
                 </View>
-                <Text style={styles.ratingDescText}>{averageRating >= 3 ? 'Outstanding!' : 'Needs Work'}</Text>
               </View>
+
             </View>
 
-            <View style={styles.profileInfoBottom}>
-              <View style={styles.profileInfoTopLeft}>
-                <Image
-                  style={styles.profilePic}
-                  source={studentImages.images[currentStudent.imageId]} />
-                <TouchableText
-                  text="update image"
-                  onPress={() => this.setModalVisible(true)}
-                  style={{ paddingRight: 0, paddingLeft: 0, marginLeft: 0, fontSize: 14 }}
-                />
-              </View>
+            <ScrollView style={styles.prevAssignments}>
+              <FlatList
+                data={currentStudent.assignmentHistory}
+                keyExtractor={(item, index) => item.name}
+                renderItem={({ item, index }) => (
+                  <View style={styles.prevAssignmentCard} key={index}>
 
-              <View style={{ flexDirection: 'column'}}>
-              <Text style={styles.assignmentTextLarge}>{currentStudent.currentAssignment.name.toUpperCase()}</Text>
-                <View style={{ flexDirection: 'row'}}>
-                  <TouchableHighlight
-                    onPress={() => { this.setState({ isDialogVisible: true }) }} >
-                    <Text style={styles.assignmentActionText}>Edit</Text>
-                  </TouchableHighlight>
-
-                  {hasCurrentAssignment ? <TouchableHighlight onPress={() =>
-                  this.props.navigation.push("EvaluationPage", {
-                  studentIndex: studentIndex,
-                  classIndex: classIndex
-                })} >
-                <Text style={styles.assignmentActionText}>Grade</Text>
-              </TouchableHighlight> : <View />}
-                </View>
-              </View>
-            </View>
-
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                      <Text style={[styles.subText, { paddingLeft: 10, paddingTop: 3 }]}>{item.completionDate}</Text>
+                      <View style={{ alignItems: 'center' }}>
+                        <Text style={styles.prevAssignmentTitleText}>{item.name}</Text>
+                      </View>
+                      <Rating style={{ paddingRight: 10, paddingTop: 3 }} readonly={true}
+                        startingValue={item.evaluation.overallGrade} imageSize={17} />
+                    </View>
+                    {item.evaluation.notes ?
+                      <View style={{ padding: 10 }}>
+                        <Text style={styles.notesText}>{"Notes: " + item.evaluation.notes}</Text>
+                      </View>
+                      : <View />
+                    }
+                  </View>
+                )}
+              />
+            </ScrollView>
           </View>
-
-          <ScrollView style={styles.prevAssignments}>
-            <FlatList
-              data={currentStudent.assignmentHistory}
-              keyExtractor={(item, index) => item.name}
-              renderItem={({ item, index }) => (
-                <View style={styles.prevAssignmentCard} key={index}>
-
-                  <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                    <Text style={[styles.subText, { paddingLeft: 10, paddingTop: 3 }]}>{item.completionDate}</Text>
-                    <View style={{ alignItems: 'center' }}>
-                      <Text style={styles.prevAssignmentTitleText}>{item.name}</Text>
-                    </View>
-                    <Rating style={{ paddingRight: 10, paddingTop: 3 }} readonly={true}
-                      startingValue={item.evaluation.overallGrade} imageSize={17} />
-                  </View>
-                  {item.evaluation.notes ?
-                    <View style={{ padding: 10 }}>
-                      <Text style={styles.notesText}>{"Notes: " + item.evaluation.notes}</Text>
-                    </View>
-                    : <View />
-                  }
-                </View>
-              )}
-            />
-          </ScrollView>
-        </View>
         ) : (
-        <Text style={styles.textStyle}>Loading...</Text>
-                )
-            }
+            <Text style={styles.textStyle}>Loading...</Text>
+          )
+        }
       </View>
     );
   }
@@ -273,8 +273,8 @@ const styles = StyleSheet.create({
   profileInfoBottom: {
     flexDirection: 'row',
     paddingHorizontal: 10,
-    borderBottomColor: colors.grey, 
-    borderBottomWidth: 1 
+    borderBottomColor: colors.grey,
+    borderBottomWidth: 1
   },
   profilePic: {
     width: 100,
