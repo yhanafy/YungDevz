@@ -20,7 +20,7 @@ const AddClassNavigator = createStackNavigator({
   },
 },
 {
-    drawerLabel: strings.AddNewClass
+    drawerLabel: strings.AddNewClass,
     drawerIcon: ({ tintColor }) => (
       <Icon
         name="plus"

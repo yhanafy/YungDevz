@@ -9,7 +9,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from "react-redux";
 import colors from 'config/colors';
 import ImageSelectionModal from 'components/ImageSelectionModal'
-import TeacherInfoEntries from 'components/TeacherInfoEntries',
+import TeacherInfoEntries from 'components/TeacherInfoEntries';
 import strings from '../../../../config/strings';
 
 //To-Do: All info in this class is static, still needs to be hooked up to data base in order
