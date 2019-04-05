@@ -3,6 +3,7 @@ import { StyleSheet, View, Image, Text, ToastAndroid, KeyboardAvoidingView } fro
 import QcActionButton from 'components/QcActionButton';
 import Toast, {DURATION} from 'react-native-easy-toast'
 import { saveTeacherInfo } from "model/actions/saveTeacherInfo";
+import { setFirstRunCompleted} from "model/actions/setFirstRunCompleted"
 import { bindActionCreators } from 'redux';
 import { connect } from "react-redux";
 import colors from 'config/colors';
@@ -58,6 +59,9 @@ export class TeacherWelcomeScreen extends Component {
             teacherID,
             this.state
         );
+
+        this.props.setFirstRunCompleted(true);
+
         this.refs.toast.show(strings.YourProfileHasBeenSaved, DURATION.LENGTH_SHORT);
         this.onTeacherFlow();
     }
@@ -181,7 +185,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => (
     bindActionCreators({
-        saveTeacherInfo
+        saveTeacherInfo,
+        setFirstRunCompleted
     }, dispatch)
 );
 

@@ -20,7 +20,7 @@ const routeConfig = {
     screen: ClassHeaderNavigator,
     path: 'teacher/class/tabs', //todo: the path should have class id as a param to be unique
     navigationOptions: ({ navigation }) => ({
-        title: 'Monday Class',
+        title: 'Class',
       }),
  },
  AddClass: {

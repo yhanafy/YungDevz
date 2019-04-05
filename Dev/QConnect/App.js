@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import FirstRunNavigator from 'screens/FirstRun/FirstRunNavigator'
+import FirstScreenNavigator from 'screens/FirstScreenLoader/FirstScreenNavigator'
 import { View, ActivityIndicator } from 'react-native';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -10,7 +10,7 @@ import { AsyncStorage } from 'react-native';
 
 
 const persistConfig = {
-  key: 'qcstorealpha23',
+  key: 'qcstorealpha26',
   storage: AsyncStorage,
   version: 0,
 }
@@ -35,10 +35,11 @@ export default class App extends Component {
     return (
       <Provider store= { store} >
       <PersistGate persistor={persistor} loading={this.renderLoading()}>
-        <FirstRunNavigator />
+        <FirstScreenNavigator />
       </PersistGate>
       </Provider>
     );
   }
 }
+
 
