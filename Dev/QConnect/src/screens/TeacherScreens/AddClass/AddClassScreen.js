@@ -6,6 +6,8 @@ import {
   Image,
   KeyboardAvoidingView,
   StyleSheet,
+  Keyboard,
+  TouchableWithoutFeedback
 } from "react-native";
 import colors from "config/colors";
 import classImages from "config/classImages";
@@ -45,6 +47,12 @@ export class AddClassScreen extends Component {
       };
 
       this.props.addClass(classInfo);
+
+      //Navigates to the class
+      this.props.navigation.push("CurrentClass", {
+        classIndex: this.props.classes.length,
+        classTitle: this.state.className
+      });
     } else {
       alert(strings.PleaseMakeSureToHaveAnInput);
     }
@@ -53,55 +61,56 @@ export class AddClassScreen extends Component {
   // ------------ renders the UI of the screen ---------------------------
   render() {
     return (
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+        <KeyboardAvoidingView style={styles.container} behavior="padding">
+          <View
+            style={styles.container}
+          >
 
-      <KeyboardAvoidingView style={styles.container} behavior="padding">
-        <View
-          style={styles.container}
-        >
-
-          <ImageSelectionModal
-            visible={this.state.modalVisible}
-            images={classImages.images}
-            cancelText={strings.Cancel}
-            setModalVisible={this.setModalVisible.bind(this)}
-            onImageSelected={this.onImageSelected.bind(this)}
-          />
-
-          <View style={styles.picContainer}>
-            <Image
-              style={styles.profilePic}
-              source={classImages.images[this.state.classImageId]}
-              ResizeMode="contain" />
-            <TouchableText
-              text={strings.EditClassImage}
-              onPress={() => this.setModalVisible(true)} />
-          </View>
-          
-          <View style={styles.bottomContainer}>
-            <TextInput
-              style={styles.textInputStyle}
-              placeholder={strings.WriteClassNameHere}
-              onChangeText={classInput =>
-                this.setState({
-                  className: classInput
-                })
-              }
+            <ImageSelectionModal
+              visible={this.state.modalVisible}
+              images={classImages.images}
+              cancelText={strings.Cancel}
+              setModalVisible={this.setModalVisible.bind(this)}
+              onImageSelected={this.onImageSelected.bind(this)}
             />
 
-            <Text style={{
-              fontSize: 15,
-              marginTop: 5
-            }}>{strings.YourClassNameIs} + {this.state.className}</Text>
+            <View style={styles.picContainer}>
+              <Image
+                style={styles.profilePic}
+                source={classImages.images[this.state.classImageId]}
+                ResizeMode="contain" />
+              <TouchableText
+                text={strings.EditClassImage}
+                onPress={() => this.setModalVisible(true)} />
+            </View>
 
-            <QcActionButton
-              text={strings.AddClass}
-              onPress={() => {
-                this.addNewClass();
-              }}
-            />
+            <View style={styles.bottomContainer}>
+              <TextInput
+                style={styles.textInputStyle}
+                placeholder={strings.WriteClassNameHere}
+                onChangeText={classInput =>
+                  this.setState({
+                    className: classInput
+                  })
+                }
+              />
+
+              <Text style={{
+                fontSize: 15,
+                marginTop: 5
+              }}>{strings.YourClassNameIs}{this.state.className}</Text>
+
+              <QcActionButton
+                text={strings.AddClass}
+                onPress={() => {
+                  this.addNewClass();
+                }}
+              />
+            </View>
           </View>
-        </View>
-      </KeyboardAvoidingView>
+        </KeyboardAvoidingView>
+      </TouchableWithoutFeedback>
     );
   }
 }

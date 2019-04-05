@@ -10,7 +10,7 @@ import { AsyncStorage } from 'react-native';
 
 
 const persistConfig = {
-  key: 'qcstorealpha22',
+  key: 'qcstorealpha23',
   storage: AsyncStorage,
   version: 0,
 }
