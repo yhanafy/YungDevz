@@ -59,7 +59,7 @@ export class EvaluationPage extends Component {
             </View>
 
             <View style={styles.section}>
-              <Text style={styles.mainQuestionText}>{strings.HowWas} + {this.props.name} + {strings.sTasmee3}</Text>
+              <Text style={styles.mainQuestionText}>{strings.HowWas}{this.props.name}{strings.sTasmee3}</Text>
               <View style={{ paddingVertical: 15 }}>
                 <AirbnbRating
                   defaultRating={0}

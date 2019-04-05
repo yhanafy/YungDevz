@@ -8,6 +8,7 @@ import StudentCard from 'components/StudentCard';
 import QcActionButton from 'components/QcActionButton';
 import { addAttendance } from 'model/actions/addAttendance';
 import colors from 'config/colors';
+import studentImages from 'config/studentImages'
 import strings from 'config/strings';
 
 //const { directions: { SWIPE_UP, SWIPE_LEFT, SWIPE_DOWN, SWIPE_RIGHT } } = swipeable;
