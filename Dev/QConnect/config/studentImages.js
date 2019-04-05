@@ -32,5 +32,8 @@ export default {
         require('assets/images/student-icons/girlc7.png'), 
         require('assets/images/student-icons/girlc8.png'), 
         require('assets/images/student-icons/girlc9.png'), 
-    ]
+    ],
+    genderNeutralImages: [0, 1, 2, 3, 4, 5, 6, 7],
+    maleImages: [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,20],
+    femaleImages: [21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
 }

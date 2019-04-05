@@ -110,6 +110,7 @@ the holy book.</Text>
                         onEmailAddressChanged={this.onEmailAddressChanged}
                     />
                     <ImageSelectionRow
+                        images={teacherImages.images}
                         highlightedImagesIndices={this.state.highlightedImagesIndices}
                         onImageSelected={this.onImageSelected.bind(this)}
                         onShowMore={() => this.setModalVisible(true)}
