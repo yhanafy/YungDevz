@@ -11,7 +11,7 @@ const routeConfig = {
   TeacherProfile: {
     screen: TeacherProfileNavigator,
     navigationOptions: ({ navigation }) => ({
-      title: 'Mrs. Eslam',
+      title: 'Teacher',
     })
   },
   //Todo: The drawer must be dynamic and must map out all of the classes and display them in
@@ -20,7 +20,7 @@ const routeConfig = {
     screen: ClassHeaderNavigator,
     path: 'teacher/class/tabs', //todo: the path should have class id as a param to be unique
     navigationOptions: ({ navigation }) => ({
-        title: 'Monday Class',
+        title: 'Quran Class',
       }),
  },
  AddClass: {

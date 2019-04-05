@@ -3,6 +3,7 @@ import { StyleSheet, View, Image, Text, ToastAndroid, KeyboardAvoidingView } fro
 import QcActionButton from 'components/QcActionButton';
 import Toast, {DURATION} from 'react-native-easy-toast'
 import { saveTeacherInfo } from "model/actions/saveTeacherInfo";
+import { setFirstRunCompleted} from "model/actions/setFirstRunCompleted"
 import { bindActionCreators } from 'redux';
 import { connect } from "react-redux";
 import colors from 'config/colors';
@@ -58,6 +59,9 @@ export class TeacherWelcomeScreen extends Component {
             teacherID,
             this.state
         );
+
+        this.props.setFirstRunCompleted(true);
+
         this.refs.toast.show(strings.YourProfileHasBeenSaved, DURATION.LENGTH_SHORT);
         this.onTeacherFlow();
     }
@@ -84,7 +88,7 @@ export class TeacherWelcomeScreen extends Component {
     render() {
         return (
             //Random image appears, still need to hook up database, see to-do above
-            <View style={styles.container}>
+            <KeyboardAvoidingView style={styles.container} behavior="padding">
                 <ImageSelectionModal
                     visible={this.state.modalVisible}
                     images={teacherImages.images}
@@ -99,7 +103,7 @@ export class TeacherWelcomeScreen extends Component {
                         source={require('assets/images/salam.png')} />
                     <Text style={styles.quote}>{strings.TeacherWelcomeMessage}</Text>
                 </View>
-                <KeyboardAvoidingView style={styles.editInfo} behavior="padding">
+                <View style={styles.editInfo} behavior="padding">
                     <TeacherInfoEntries
                         name={this.state.name}
                         phoneNumber={this.state.phoneNumber}
@@ -115,7 +119,7 @@ export class TeacherWelcomeScreen extends Component {
                         onShowMore={() => this.setModalVisible(true)}
                         selectedImageIndex={this.state.profileImageId}
                     /> 
-                </KeyboardAvoidingView>
+                </View>
                 <View style={styles.buttonsContainer}>
                     <QcActionButton
                         text={strings.Save}
@@ -125,7 +129,7 @@ export class TeacherWelcomeScreen extends Component {
                 </View>
                 <View style={styles.filler}></View>
                 <Toast ref="toast"/>
-            </View>
+            </KeyboardAvoidingView>
         )
     }
 
@@ -136,7 +140,8 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'column',
         backgroundColor: colors.lightGrey,
-        flex: 1
+        flex: 1,
+        justifyContent: "flex-end"
     },
     picContainer: {
         paddingTop: 10,
@@ -169,7 +174,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     filler: {
-        flexDirection: 'column'
+        flexDirection: 'column',
+        flex: 1,
     }
 })
 
@@ -181,7 +187,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => (
     bindActionCreators({
-        saveTeacherInfo
+        saveTeacherInfo,
+        setFirstRunCompleted
     }, dispatch)
 );
 

@@ -3,16 +3,17 @@ import update from 'immutability-helper';
 import actionTypes from '../actions/actionTypes';
 
 export const INITIAL_STATE = {
+  firstRunCompleted: false,
   teachers: [
     {
-      name: "Eslam Abdo",
-      phoneNumber: "425-246-5971",
-      emailAddress: "eslam_w@hotmail.com",
+      name: "",
+      phoneNumber: "",
+      emailAddress: "",
       currentClassIndex: 0,
       profileImageId: 1,
       classes: [
         {
-          name: "Monday Class ICOE",
+          name: "Demo Class",
           imageId: 1,
           students: [
             {
@@ -274,10 +275,10 @@ export const classReducer = (state = INITIAL_STATE, action) => {
         let newState = update(baseState, { teachers: { [0]: { classes: { [classIndex]: { students: { [studentIndex]: { currentAssignment: { $set: updatedAssignment } } } } } } } });
         return newState;
       }
-      case actionTypes.UPDATE_STUDENT_IMAGE:
+    case actionTypes.UPDATE_STUDENT_IMAGE:
       {
         let { classIndex, studentIndex, imageId } = action;
-        let newState = update(baseState, { teachers: { [0]: { classes: { [classIndex]: { students: { [studentIndex]: { imageId: {$set: imageId} }  } } } } } });
+        let newState = update(baseState, { teachers: { [0]: { classes: { [classIndex]: { students: { [studentIndex]: { imageId: { $set: imageId } } } } } } } });
         return newState;
       }
     case actionTypes.ADD_NEW_ASSIGNMENT:
@@ -311,10 +312,17 @@ export const classReducer = (state = INITIAL_STATE, action) => {
         let newState = update(baseState, { teachers: { [0]: { classes: { [classIndex]: { students: { [studentIndex]: { assignmentHistory: { $push: [assignment] } } } } } } } });
         let totalAssignments = baseState.teachers[0].classes[classIndex].students[studentIndex].totalAssignments;
         let totalGrade = baseState.teachers[0].classes[classIndex].students[studentIndex].totalGrade;
-        newState =  update(newState, { teachers: { [0]: { classes: { [classIndex]: { students: { [studentIndex]: { totalAssignments: { $set: (totalAssignments + 1) } } } } } } } });
-        newState =  update(newState, { teachers: { [0]: { classes: { [classIndex]: { students: { [studentIndex]: { totalGrade: { $set: (totalGrade + assignment.evaluation.overallGrade) } } } } } } } });
+        newState = update(newState, { teachers: { [0]: { classes: { [classIndex]: { students: { [studentIndex]: { totalAssignments: { $set: (totalAssignments + 1) } } } } } } } });
+        newState = update(newState, { teachers: { [0]: { classes: { [classIndex]: { students: { [studentIndex]: { totalGrade: { $set: (totalGrade + assignment.evaluation.overallGrade) } } } } } } } });
         return newState;
       }
+    case actionTypes.SET_FIRST_RUN_COMPLETED:
+    {
+      let { completed } = action;
+      let newState = update(baseState, { firstRunCompleted: { $set: completed } });
+      console.log(JSON.stringify(newState))
+      return newState;
+    }
     default:
       return state
   }
