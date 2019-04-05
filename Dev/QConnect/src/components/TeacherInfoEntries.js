@@ -69,7 +69,10 @@ const styles = StyleSheet.create({
     infoTextInput: {
         paddingRight: 20,
         fontSize: 14,
-        color: colors.darkGrey
+        color: colors.darkGrey,
+        flex: 1,
+        alignSelf: 'stretch',
+        textAlign: 'right'
     },
     infoTitle: {
         paddingLeft: 20,

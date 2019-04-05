@@ -11,7 +11,7 @@ const routeConfig = {
   TeacherProfile: {
     screen: TeacherProfileNavigator,
     navigationOptions: ({ navigation }) => ({
-      title: 'Mrs. Eslam',
+      title: 'Teacher',
     })
   },
   //Todo: The drawer must be dynamic and must map out all of the classes and display them in
