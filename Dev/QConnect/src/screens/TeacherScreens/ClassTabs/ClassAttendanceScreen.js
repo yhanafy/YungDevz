@@ -8,7 +8,7 @@ import StudentCard from 'components/StudentCard';
 import QcActionButton from 'components/QcActionButton';
 import { addAttendance } from 'model/actions/addAttendance';
 import colors from 'config/colors';
-import studentImages from 'config/studentImages';
+import strings from 'config/strings';
 
 //const { directions: { SWIPE_UP, SWIPE_LEFT, SWIPE_DOWN, SWIPE_RIGHT } } = swipeable;
 
@@ -16,7 +16,7 @@ export class ClassAttendanceScreen extends Component {
 
     state = {
         selectedStudents: [],
-        selectedDate: this.props.defaultDate? this.props.defaultDate : new Date().toLocaleDateString("en-US")
+        selectedDate: this.props.defaultDate ? this.props.defaultDate : new Date().toLocaleDateString("en-US")
     }
 
     //This method will set the student selected property to the opposite of whatever it was
@@ -65,7 +65,7 @@ export class ClassAttendanceScreen extends Component {
             this.props.navigation.state.params.classIndex,
             attendanceInfo
         );
-        this.refs.toast.show("Attendance for " + date + " has been saved", DURATION.LENGTH_SHORT);
+        this.refs.toast.show(strings.AttendanceFor + date + strings.HasBeenSaved, DURATION.LENGTH_SHORT);
     }
 
     //This method will set the state of the attendance screen based on the isHere property
@@ -114,8 +114,8 @@ export class ClassAttendanceScreen extends Component {
             <View style={styles.saveAttendance}>
                 <DatePicker
                     date={this.state.selectedDate}
-                    confirmBtnText="Confirm"
-                    cancelBtnText="Cancel"
+                    confirmBtnText={strings.Confirm}
+                    cancelBtnText={strings.Cancel}
                     format="MM-DD-YYYY"
                     duration={300}
                     style={{paddingLeft: 15}}
@@ -124,7 +124,7 @@ export class ClassAttendanceScreen extends Component {
                     onDateChange={(date) => this.getAttendance(date)}
                     />
                 <QcActionButton
-                    text="Save Attendance"
+                    text={strings.SaveAttendance}
                     onPress={() => this.saveAttendance()}
                     style={{paddingRight: 30}}
                 />

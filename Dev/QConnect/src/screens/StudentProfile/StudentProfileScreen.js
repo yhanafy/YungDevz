@@ -8,6 +8,7 @@ import { addNewAssignment } from 'model/actions/addNewAssignment';
 import { updateStudentImage } from 'model/actions/updateStudentImage';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+import strings from 'config/strings';
 import studentImages from 'config/studentImages';
 import TouchableText from 'components/TouchableText'
 import FontLoadingComponent from 'components/FontLoadingComponent'
@@ -67,8 +68,8 @@ class StudentProfileScreen extends FontLoadingComponent {
       <View style={styles.container}>
         <DialogInput
           isDialogVisible={this.state.isDialogVisible}
-          title="Edit Assignment"
-          hintInput="Enter assignment here..."
+          title={strings.EditAssignment}
+          hintInput={strings.EnterAssignmentHere}
           dialogStyle={{ marginBottom: 100 }}
           submitInput={(inputText) =>
           //If the student already has an existing assignment, then it will simply edit the
@@ -105,7 +106,7 @@ class StudentProfileScreen extends FontLoadingComponent {
                       <Text style={styles.ratingText}>{averageRating.toLocaleString("EN-US", { minimumFractionDigits: 0 })}</Text>
                     </View>
                   </View>
-                  <Text style={styles.ratingDescText}>{averageRating >= 3 ? 'Outstanding!' : 'Needs Work'}</Text>
+                  <Text style={styles.ratingDescText}>{averageRating >= 3 ? strings.OutStanding : strings.NeedsWork}</Text>
                 </View>
               </View>
 

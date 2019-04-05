@@ -5,6 +5,7 @@ import AddClassNavigator from './AddClass/AddClassNavigator';
 import ClassHeaderNavigator from './ClassTabs/ClassHeaderNavigator';
 import LeftNavPane from './LeftNavPane';
 import TeacherProfileNavigator from './TeacherProfile/TeacherProfileNavigator';
+import strings from '../../../config/strings'
 
 const routeConfig = {
   TeacherProfile: {
@@ -26,7 +27,7 @@ const routeConfig = {
   screen: AddClassNavigator,
   path: 'teacher/class/new',
   navigationOptions: ({ navigation }) => ({
-     title: 'Add new class',
+     title: strings.AddNewClass,
    }),
 }
 };

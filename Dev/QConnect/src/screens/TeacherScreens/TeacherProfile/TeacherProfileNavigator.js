@@ -3,6 +3,7 @@ import { createStackNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 import TeacherProfileScreen from './TeacherProfileScreen';
 import TopBanner from 'components/TopBanner';
+import strings from '../../../../config/strings';
 
 const TeacherProfileNavigator = createStackNavigator({
     TeacherProfile: {
@@ -12,14 +13,14 @@ const TeacherProfileNavigator = createStackNavigator({
                 <TopBanner
                   LeftIconName="navicon"
                   LeftOnPress={() => navigation.openDrawer()}
-                  Title="My Profile"
+                  Title={strings.MyProfile}
                 />
             )
         })
     }
 },
 {
-    drawerLabel: 'My Profile',
+    drawerLabel: strings.MyProfile,
     drawerIcon: ({ tintColor }) => (
         <Icon
           name="plus"

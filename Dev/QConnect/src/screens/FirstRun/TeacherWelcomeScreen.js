@@ -9,7 +9,8 @@ import colors from 'config/colors';
 import ImageSelectionRow from 'components/ImageSelectionRow'
 import ImageSelectionModal from 'components/ImageSelectionModal'
 import TeacherInfoEntries from 'components/TeacherInfoEntries'
-import teacherImages from 'config/teacherImages'
+import teacherImages from 'config/teacherImages';
+import strings from '../../../config/strings';
 
 //To-Do: All info in this class is static, still needs to be hooked up to data base in order
 //to function dynamically
@@ -48,7 +49,7 @@ export class TeacherWelcomeScreen extends Component {
 
     onTeacherFlow = () => {
         //todo: get the first class to show from redux persist (current class)
-        this.props.navigation.push('TeacherScreens', { classIndex: 0, classTitle: "Quran Clas" });
+        this.props.navigation.push('TeacherScreens', { classIndex: 0, classTitle: "Quran Class" });
     }
 
     //this method saves the new profile information to the redux database
@@ -57,7 +58,7 @@ export class TeacherWelcomeScreen extends Component {
             teacherID,
             this.state
         );
-        this.refs.toast.show('Your profile has been saved', DURATION.LENGTH_SHORT);
+        this.refs.toast.show(strings.YourProfileHasBeenSaved, DURATION.LENGTH_SHORT);
         this.onTeacherFlow();
     }
 
@@ -87,7 +88,7 @@ export class TeacherWelcomeScreen extends Component {
                 <ImageSelectionModal
                     visible={this.state.modalVisible}
                     images={teacherImages.images}
-                    cancelText="Cancel"
+                    cancelText={strings.Cancel}
                     setModalVisible={this.setModalVisible.bind(this)}
                     onImageSelected={this.onImageSelected.bind(this)}
                 />
@@ -96,9 +97,7 @@ export class TeacherWelcomeScreen extends Component {
                     <Image
                         style={styles.welcomeImage}
                         source={require('assets/images/salam.png')} />
-                    <Text style={styles.quote}>Quran teachers are very dear to our hearts.  It is our
-great honor and pleasure to serve your dedication to
-the holy book.</Text>
+                    <Text style={styles.quote}>{strings.TeacherWelcomeMessage}</Text>
                 </View>
                 <KeyboardAvoidingView style={styles.editInfo} behavior="padding">
                     <TeacherInfoEntries
@@ -119,7 +118,7 @@ the holy book.</Text>
                 </KeyboardAvoidingView>
                 <View style={styles.buttonsContainer}>
                     <QcActionButton
-                        text="Save"
+                        text={strings.Save}
                         onPress={() => this.saveProfileInfo(0)} //to-do: Make sure that teacher ID 
                     //is passed instead of 0
                     />
