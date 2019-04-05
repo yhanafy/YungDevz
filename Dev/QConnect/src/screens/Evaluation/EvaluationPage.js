@@ -7,38 +7,13 @@ import { connect } from "react-redux";
 import QcActionButton from 'components/QcActionButton'
 import { completeCurrentAssignment } from 'model/actions/completeCurrentAssignment'
 import { editCurrentAssignment } from 'model/actions/editCurrentAssignment';
+import studentImages from 'config/studentImages';
 
 export class EvaluationPage extends Component {
 
   // -------------  Current evaluation state ---------------------
   state = {
     overallGrade: 0,
-    categoriesGrades: [
-      {
-        name: "Memorization",
-        grade: 'not graded',
-      },
-      {
-        name: "Makharej",
-        grade: 'not graded',
-      },
-      {
-        name: "Edgham & Ekhfae",
-        grade: 'not graded',
-      },
-      {
-        name: "Rulings of Raa'",
-        grade: 'not graded',
-      },
-      {
-        name: "Muduud",
-        grade: 'not graded',
-      },
-      {
-        name: "Qalqalah",
-        grade: 'not graded',
-      },
-    ],
     notes: ""
   }
 
@@ -64,6 +39,7 @@ export class EvaluationPage extends Component {
   // --------------  Renders Evaluation scree UI --------------
   render() {
     const { classIndex, studentIndex } = this.props.navigation.state.params;
+    const { imageId } = this.props;
 
     return (
       //----- outer view, gray background ------------------------
@@ -75,7 +51,7 @@ export class EvaluationPage extends Component {
 
           <View style={styles.evaluationContainer}>
             <View style={styles.section}>
-              <Image source={{ uri: this.props.avatar }}
+              <Image source={studentImages.images[imageId]}
                 style={styles.profilePic} />
               <Text style={styles.titleText}>{this.props.name}</Text>
               <Text style={styles.subTitleText}>{this.props.currentAssignment.name}</Text>
@@ -83,36 +59,21 @@ export class EvaluationPage extends Component {
 
             <View style={styles.section}>
               <Text style={styles.mainQuestionText}>How was {this.props.name}'s tasmee'?</Text>
-              <AirbnbRating
-                defaultRating={0}
-                size={30}
-                showRating={false}
-                onFinishRating={(value) => this.setState({
-                  overallGrade: value
-                })}
-              />
-
-              <FlatList
-                numColumns={2}
-                data={this.state.categoriesGrades}
-                keyExtractor={(item, index) => index} // fix, should be item.id (add id to classes)
-                renderItem={({ item, index }) => (
-                  <View style={styles.box} key={index}>
-                    <Text style={styles.subCategoryText}>{item.name}</Text>
-                    <Rating
-                      startingValue={0}
-                      type="custom"
-                      imageSize={25}
-                      showRating={false}
-                      onFinishRating={(value) => this.updateCategoryRating(item.name, value)}
-                    />
-                  </View>
-                )} />
+              <View style={{ paddingVertical: 15 }}>
+                <AirbnbRating
+                  defaultRating={0}
+                  size={30}
+                  showRating={false}
+                  onFinishRating={(value) => this.setState({
+                    overallGrade: value
+                  })}
+                />
+              </View>
 
               <TextInput
                 style={styles.notesStyle}
                 multiline={true}
-                numberOfLines={3}
+                height={100}
                 onChangeText={(notes) => this.setState({
                   notes: notes
                 })}
@@ -120,7 +81,6 @@ export class EvaluationPage extends Component {
                 placeholderColor={colors.black}
               />
             </View>
-
           </View>
 
           <View style={styles.buttonsContainer}>
@@ -129,6 +89,7 @@ export class EvaluationPage extends Component {
               onPress={() => { this.submitRating(classIndex, studentIndex) }}
             />
           </View>
+          <View style={styles.filler}></View>
         </KeyboardAvoidingView>
       </TouchableWithoutFeedback>
 
@@ -145,16 +106,16 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end"
   },
   evaluationContainer: {
+    flexDirection: 'column',
     paddingTop: 25,
+    paddingBottom: 25,
     alignItems: 'center',
     marginTop: 30,
     marginBottom: 10,
     marginHorizontal: 10,
     backgroundColor: colors.white,
-    flex: 1,
     borderColor: colors.lightGrey,
     borderWidth: 1,
-    justifyContent: "flex-end"
   },
   section: {
     alignItems: "center",
@@ -215,9 +176,11 @@ const styles = StyleSheet.create({
     backgroundColor: colors.lightGrey,
     alignSelf: 'stretch',
     margin: 5,
-    alignItems: "flex-start",
-    justifyContent: "flex-start",
     textAlignVertical: 'top'
+  },
+  filler: {
+    flexDirection: 'column',
+    flex: 1
   }
 });
 

@@ -10,7 +10,7 @@ export default TouchableText = (props) => {
     return (
         <TouchableHighlight
             onPress={props.onPress}>
-            <Text style={styles.container}>{props.text}</Text>
+            <Text style={[styles.container, props.style]}>{props.text}</Text>
         </TouchableHighlight>
     );
 }
@@ -18,20 +18,19 @@ export default TouchableText = (props) => {
 const styles = StyleSheet.create({
     container: {
         color: colors.primaryDark,
-        marginLeft:10,
-        marginTop:10,
         marginBottom:10,
         paddingTop:7,
         paddingBottom:7,
-        paddingRight:21,
-        paddingLeft:21,
+        fontSize: 11,
         justifyContent: 'center',
         alignItems: 'center',
         textAlign: 'center',
+        fontFamily: 'regular',
     }
 });
 
 TouchableText.propTypes = {
     text: PropTypes.string.isRequired,
     onPress: PropTypes.func.isRequired,
+    style: PropTypes.object, 
 }

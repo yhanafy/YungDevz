@@ -29,7 +29,7 @@ describe('actions', () => {
         classIndex: 0,
         studentInfo: {
           name: "Tester Student 1",
-          avatar: "http://test.avatar.url",
+          imageId: 6,
           currentAssignment: "Test assignment",
           assignmentHistory: [],
           attendanceHistory: []

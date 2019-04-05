@@ -2,6 +2,9 @@ export default {
     images: [
         require('assets/images/student-icons/book.png'), 
         require('assets/images/student-icons/icon.png'), 
+        require('assets/images/teacher-icons/kaabah1.png'),
+        require('assets/images/teacher-icons/book1.png'),
+        require('assets/images/teacher-icons/moon.png'), 
         require('assets/images/student-icons/sloth.png'), 
         require('assets/images/student-icons/bear.png'), 
         require('assets/images/student-icons/et.png'), 
@@ -10,11 +13,14 @@ export default {
         require('assets/images/student-icons/boyc3.png'),
         require('assets/images/student-icons/boy1.png'), 
         require('assets/images/student-icons/boy2.png'), 
-        require('assets/images/student-icons/youth1.png'),  
         require('assets/images/student-icons/boyc4.png'), 
         require('assets/images/student-icons/boyc5.png'), 
         require('assets/images/student-icons/boyc6.png'), 
         require('assets/images/student-icons/boyc7.png'), 
+        require('assets/images/student-icons/man1.png'), 
+        require('assets/images/student-icons/youth2.png'), 
+        require('assets/images/student-icons/youth1.png'),  
+        require('assets/images/student-icons/youth3.png'), 
         require('assets/images/student-icons/girlc1.png'), 
         require('assets/images/student-icons/girlc2.png'), 
         require('assets/images/student-icons/girlc3.png'), 
@@ -26,8 +32,8 @@ export default {
         require('assets/images/student-icons/girlc7.png'), 
         require('assets/images/student-icons/girlc8.png'), 
         require('assets/images/student-icons/girlc9.png'), 
-        require('assets/images/student-icons/man1.png'), 
-        require('assets/images/student-icons/youth1.png'), 
-        require('assets/images/student-icons/youth2.png'), 
-    ]
+    ],
+    genderNeutralImages: [0, 1, 2, 3, 4, 5, 6, 7],
+    maleImages: [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,20],
+    femaleImages: [21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
 }

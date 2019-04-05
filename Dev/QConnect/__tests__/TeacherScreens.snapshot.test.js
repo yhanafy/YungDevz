@@ -22,10 +22,12 @@ describe('Teacher screens snapshots', () => {
 
         const {teachers} = INITIAL_STATE;
         const teacher = teachers[0];
-        
+        const students = teacher.classes[0].students
+
         const tree = renderer.create(<Component 
           classes = {teacher.classes}
           navigation = {navigation}
+          students = {students}
           {...props} 
         />).toJSON();
 
@@ -39,5 +41,5 @@ describe('Teacher screens snapshots', () => {
   testRenderTeacherScreen("AddClassScreen", AddClassScreen)
   testRenderTeacherScreen("TeacherProfileScreen", TeacherProfileScreen, {name: "TestName", phoneNumber: "TestNumber", emailAddress: "TestEmail", profileImageId: 1})
   testRenderTeacherScreen("TeacherWelcomeScreen", TeacherWelcomeScreen, {name: "TestName", phoneNumber: "TestNumber", emailAddress: "TestEmail", profileImageId: 1})
-  testRenderTeacherScreen("TeacherWelcomeScreen", EvaluationPage, {name: "TestName", avatar: "https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg", currentAssignment: {name: "test assignment"}})
+  testRenderTeacherScreen("TeacherWelcomeScreen", EvaluationPage, {name: "TestName", imageId:  6, currentAssignment: {name: "test assignment"}})
 })
