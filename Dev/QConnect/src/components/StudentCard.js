@@ -6,7 +6,7 @@ import FontLoadingComponent from './FontLoadingComponent';
 
 /*Class represents the student card that will show up in the list of students
 *from the teachers view.
-*Each card will have a student name, a profile picure for the student, and the student's
+*Each card will have a student name, a profile picture for the student, and the student's
 *current assignment.
 *The card will also be able to be pressed which controls the color of the card (Student Status)
 */
@@ -51,7 +51,7 @@ export default class StudentCard extends FontLoadingComponent {
 */
 StudentCard.propTypes = {
     studentName: PropTypes.string.isRequired,
-    profilePic: PropTypes.object.isRequired,
+    profilePic: PropTypes.number.isRequired,
     currentAssignment: PropTypes.string,
     onPress: PropTypes.func.isRequired
 }

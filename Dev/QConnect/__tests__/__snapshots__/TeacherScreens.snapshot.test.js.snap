@@ -95,7 +95,7 @@ exports[`Teacher screens snapshots render AddClassScreen 1`] = `
                   initialNumToRender={10}
                   keyExtractor={[Function]}
                   maxToRenderPerBatch={10}
-                  numColumns={3}
+                  numColumns={4}
                   onContentSizeChange={[Function]}
                   onEndReachedThreshold={2}
                   onLayout={[Function]}
@@ -203,73 +203,6 @@ exports[`Teacher screens snapshots render AddClassScreen 1`] = `
                             }
                           />
                         </View>
-                      </View>
-                    </View>
-                    <View
-                      onLayout={[Function]}
-                      style={null}
-                    >
-                      <View
-                        style={
-                          Object {
-                            "flexDirection": "row",
-                          }
-                        }
-                      >
-                        <View
-                          accessible={true}
-                          isTVSelectable={true}
-                          onResponderGrant={[Function]}
-                          onResponderMove={[Function]}
-                          onResponderRelease={[Function]}
-                          onResponderTerminate={[Function]}
-                          onResponderTerminationRequest={[Function]}
-                          onStartShouldSetResponder={[Function]}
-                          style={null}
-                        >
-                          <Image
-                            borderRadius={30}
-                            resizeMode="contain"
-                            source={1}
-                            style={
-                              Object {
-                                "borderRadius": 30,
-                                "height": 60,
-                                "marginLeft": 15,
-                                "marginTop": 15,
-                                "padding": 15,
-                                "width": 60,
-                              }
-                            }
-                          />
-                        </View>
-                        <View
-                          accessible={true}
-                          isTVSelectable={true}
-                          onResponderGrant={[Function]}
-                          onResponderMove={[Function]}
-                          onResponderRelease={[Function]}
-                          onResponderTerminate={[Function]}
-                          onResponderTerminationRequest={[Function]}
-                          onStartShouldSetResponder={[Function]}
-                          style={null}
-                        >
-                          <Image
-                            borderRadius={30}
-                            resizeMode="contain"
-                            source={1}
-                            style={
-                              Object {
-                                "borderRadius": 30,
-                                "height": 60,
-                                "marginLeft": 15,
-                                "marginTop": 15,
-                                "padding": 15,
-                                "width": 60,
-                              }
-                            }
-                          />
-                        </View>
                         <View
                           accessible={true}
                           isTVSelectable={true}
@@ -391,6 +324,33 @@ exports[`Teacher screens snapshots render AddClassScreen 1`] = `
                             }
                           />
                         </View>
+                        <View
+                          accessible={true}
+                          isTVSelectable={true}
+                          onResponderGrant={[Function]}
+                          onResponderMove={[Function]}
+                          onResponderRelease={[Function]}
+                          onResponderTerminate={[Function]}
+                          onResponderTerminationRequest={[Function]}
+                          onStartShouldSetResponder={[Function]}
+                          style={null}
+                        >
+                          <Image
+                            borderRadius={30}
+                            resizeMode="contain"
+                            source={1}
+                            style={
+                              Object {
+                                "borderRadius": 30,
+                                "height": 60,
+                                "marginLeft": 15,
+                                "marginTop": 15,
+                                "padding": 15,
+                                "width": 60,
+                              }
+                            }
+                          />
+                        </View>
                       </View>
                     </View>
                     <View
@@ -404,6 +364,33 @@ exports[`Teacher screens snapshots render AddClassScreen 1`] = `
                           }
                         }
                       >
+                        <View
+                          accessible={true}
+                          isTVSelectable={true}
+                          onResponderGrant={[Function]}
+                          onResponderMove={[Function]}
+                          onResponderRelease={[Function]}
+                          onResponderTerminate={[Function]}
+                          onResponderTerminationRequest={[Function]}
+                          onStartShouldSetResponder={[Function]}
+                          style={null}
+                        >
+                          <Image
+                            borderRadius={30}
+                            resizeMode="contain"
+                            source={1}
+                            style={
+                              Object {
+                                "borderRadius": 30,
+                                "height": 60,
+                                "marginLeft": 15,
+                                "marginTop": 15,
+                                "padding": 15,
+                                "width": 60,
+                              }
+                            }
+                          />
+                        </View>
                         <View
                           accessible={true}
                           isTVSelectable={true}
@@ -451,19 +438,22 @@ exports[`Teacher screens snapshots render AddClassScreen 1`] = `
           >
             <Text
               style={
-                Object {
-                  "alignItems": "center",
-                  "color": "#937f6b",
-                  "justifyContent": "center",
-                  "marginBottom": 10,
-                  "marginLeft": 10,
-                  "marginTop": 10,
-                  "paddingBottom": 7,
-                  "paddingLeft": 21,
-                  "paddingRight": 21,
-                  "paddingTop": 7,
-                  "textAlign": "center",
-                }
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "color": "#937f6b",
+                    "fontSize": 11,
+                    "justifyContent": "center",
+                    "marginBottom": 10,
+                    "marginLeft": 10,
+                    "paddingBottom": 7,
+                    "paddingLeft": 21,
+                    "paddingRight": 21,
+                    "paddingTop": 7,
+                    "textAlign": "center",
+                  },
+                  undefined,
+                ]
               }
             >
               Cancel
@@ -508,19 +498,22 @@ exports[`Teacher screens snapshots render AddClassScreen 1`] = `
       >
         <Text
           style={
-            Object {
-              "alignItems": "center",
-              "color": "#937f6b",
-              "justifyContent": "center",
-              "marginBottom": 10,
-              "marginLeft": 10,
-              "marginTop": 10,
-              "paddingBottom": 7,
-              "paddingLeft": 21,
-              "paddingRight": 21,
-              "paddingTop": 7,
-              "textAlign": "center",
-            }
+            Array [
+              Object {
+                "alignItems": "center",
+                "color": "#937f6b",
+                "fontSize": 11,
+                "justifyContent": "center",
+                "marginBottom": 10,
+                "marginLeft": 10,
+                "paddingBottom": 7,
+                "paddingLeft": 21,
+                "paddingRight": 21,
+                "paddingTop": 7,
+                "textAlign": "center",
+              },
+              undefined,
+            ]
           }
         >
           Edit class image
@@ -794,7 +787,7 @@ exports[`Teacher screens snapshots render ClassAttendanceScreen 1`] = `
                       >
                         <RCTDatePicker
                           date={1552719600000}
-                          maximumDate={1553929200000}
+                          maximumDate={1554361200000}
                           mode="date"
                           onChange={[Function]}
                           onResponderTerminationRequest={[Function]}
@@ -1039,32 +1032,6 @@ exports[`Teacher screens snapshots render ClassEditScreen 1`] = `
               Object {
                 "completionDate": "03-20-2019",
                 "evaluation": Object {
-                  "categoriesGrades": Array [
-                    Object {
-                      "grade": "not graded",
-                      "name": "Memorization",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Makharej",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Edgham & Ekhfae",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Rulings of Raa'",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Muduud",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Qalqalah",
-                    },
-                  ],
                   "notes": "",
                   "overallGrade": 2,
                 },
@@ -1082,11 +1049,11 @@ exports[`Teacher screens snapshots render ClassEditScreen 1`] = `
                 "isHere": false,
               },
             ],
-            "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg",
             "currentAssignment": Object {
               "name": "Al-Nahl page 5",
               "startDate": "03-24-2019",
             },
+            "imageId": 5,
             "name": "Ahmed Reducer",
             "totalAssignments": 1,
             "totalGrade": 2,
@@ -1096,32 +1063,6 @@ exports[`Teacher screens snapshots render ClassEditScreen 1`] = `
               Object {
                 "completionDate": "03-20-2019",
                 "evaluation": Object {
-                  "categoriesGrades": Array [
-                    Object {
-                      "grade": "not graded",
-                      "name": "Memorization",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Makharej",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Edgham & Ekhfae",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Rulings of Raa'",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Muduud",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Qalqalah",
-                    },
-                  ],
                   "notes": "",
                   "overallGrade": 4,
                 },
@@ -1135,11 +1076,11 @@ exports[`Teacher screens snapshots render ClassEditScreen 1`] = `
                 "isHere": true,
               },
             ],
-            "avatar": "https://randomuser.me/api/portraits/thumb/women/42.jpg",
             "currentAssignment": Object {
               "name": "An-Naze'aat",
               "startDate": "03-24-2019",
             },
+            "imageId": 25,
             "name": "Amina Khan",
             "totalAssignments": 1,
             "totalGrade": 4,
@@ -1149,32 +1090,6 @@ exports[`Teacher screens snapshots render ClassEditScreen 1`] = `
               Object {
                 "completionDate": "03-20-2019",
                 "evaluation": Object {
-                  "categoriesGrades": Array [
-                    Object {
-                      "grade": "not graded",
-                      "name": "Memorization",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Makharej",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Edgham & Ekhfae",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Rulings of Raa'",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Muduud",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Qalqalah",
-                    },
-                  ],
                   "notes": "",
                   "overallGrade": 1,
                 },
@@ -1188,11 +1103,11 @@ exports[`Teacher screens snapshots render ClassEditScreen 1`] = `
                 "isHere": true,
               },
             ],
-            "avatar": "https://randomuser.me/api/portraits/thumb/men/43.jpg",
             "currentAssignment": Object {
               "name": "Aal-Imran",
               "startDate": "03-24-2019",
             },
+            "imageId": 19,
             "name": "Ayoub Barrak",
             "totalAssignments": 1,
             "totalGrade": 1,
@@ -1202,32 +1117,6 @@ exports[`Teacher screens snapshots render ClassEditScreen 1`] = `
               Object {
                 "completionDate": "03-20-2019",
                 "evaluation": Object {
-                  "categoriesGrades": Array [
-                    Object {
-                      "grade": "not graded",
-                      "name": "Memorization",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Makharej",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Edgham & Ekhfae",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Rulings of Raa'",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Muduud",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Qalqalah",
-                    },
-                  ],
                   "notes": "",
                   "overallGrade": 5,
                 },
@@ -1241,12 +1130,12 @@ exports[`Teacher screens snapshots render ClassEditScreen 1`] = `
                 "isHere": true,
               },
             ],
-            "avatar": "https://randomuser.me/api/portraits/thumb/men/45.jpg",
             "currentAssignment": Object {
               "name": "Al-Toor pages 5, 6, 8",
               "startDate": "03-24-2019",
             },
-            "name": "Khaled Kwick",
+            "imageId": 21,
+            "name": "Nouha Yacoubi",
             "totalAssignments": 1,
             "totalGrade": 5,
           },
@@ -1255,32 +1144,6 @@ exports[`Teacher screens snapshots render ClassEditScreen 1`] = `
               Object {
                 "completionDate": "03-20-2019",
                 "evaluation": Object {
-                  "categoriesGrades": Array [
-                    Object {
-                      "grade": "not graded",
-                      "name": "Memorization",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Makharej",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Edgham & Ekhfae",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Rulings of Raa'",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Muduud",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Qalqalah",
-                    },
-                  ],
                   "notes": "",
                   "overallGrade": 2,
                 },
@@ -1294,11 +1157,11 @@ exports[`Teacher screens snapshots render ClassEditScreen 1`] = `
                 "isHere": true,
               },
             ],
-            "avatar": "https://randomuser.me/api/portraits/thumb/men/22.jpg",
             "currentAssignment": Object {
               "name": "Al-Baqara pages 5-8",
               "startDate": "03-24-2019",
             },
+            "imageId": 15,
             "name": "Yassine Lightening",
             "totalAssignments": 1,
             "totalGrade": 2,
@@ -1308,32 +1171,6 @@ exports[`Teacher screens snapshots render ClassEditScreen 1`] = `
               Object {
                 "completionDate": "03-22-2019",
                 "evaluation": Object {
-                  "categoriesGrades": Array [
-                    Object {
-                      "grade": "not graded",
-                      "name": "Memorization",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Makharej",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Edgham & Ekhfae",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Rulings of Raa'",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Muduud",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Qalqalah",
-                    },
-                  ],
                   "notes": "",
                   "overallGrade": 3,
                 },
@@ -1343,32 +1180,6 @@ exports[`Teacher screens snapshots render ClassEditScreen 1`] = `
               Object {
                 "completionDate": "03-20-2019",
                 "evaluation": Object {
-                  "categoriesGrades": Array [
-                    Object {
-                      "grade": "not graded",
-                      "name": "Memorization",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Makharej",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Edgham & Ekhfae",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Rulings of Raa'",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Muduud",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Qalqalah",
-                    },
-                  ],
                   "notes": "",
                   "overallGrade": 5,
                 },
@@ -1382,12 +1193,12 @@ exports[`Teacher screens snapshots render ClassEditScreen 1`] = `
                 "isHere": true,
               },
             ],
-            "avatar": "https://randomuser.me/api/portraits/thumb/men/26.jpg",
             "currentAssignment": Object {
               "name": "None",
               "startDate": "",
             },
-            "name": "Yusuf Awesome",
+            "imageId": 27,
+            "name": "Ayah Sulaiman",
             "totalAssignments": 2,
             "totalGrade": 8,
           },
@@ -1489,32 +1300,6 @@ exports[`Teacher screens snapshots render ClassMainScreen 1`] = `
               Object {
                 "completionDate": "03-20-2019",
                 "evaluation": Object {
-                  "categoriesGrades": Array [
-                    Object {
-                      "grade": "not graded",
-                      "name": "Memorization",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Makharej",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Edgham & Ekhfae",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Rulings of Raa'",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Muduud",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Qalqalah",
-                    },
-                  ],
                   "notes": "",
                   "overallGrade": 2,
                 },
@@ -1532,11 +1317,11 @@ exports[`Teacher screens snapshots render ClassMainScreen 1`] = `
                 "isHere": false,
               },
             ],
-            "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg",
             "currentAssignment": Object {
               "name": "Al-Nahl page 5",
               "startDate": "03-24-2019",
             },
+            "imageId": 5,
             "name": "Ahmed Reducer",
             "totalAssignments": 1,
             "totalGrade": 2,
@@ -1546,32 +1331,6 @@ exports[`Teacher screens snapshots render ClassMainScreen 1`] = `
               Object {
                 "completionDate": "03-20-2019",
                 "evaluation": Object {
-                  "categoriesGrades": Array [
-                    Object {
-                      "grade": "not graded",
-                      "name": "Memorization",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Makharej",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Edgham & Ekhfae",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Rulings of Raa'",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Muduud",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Qalqalah",
-                    },
-                  ],
                   "notes": "",
                   "overallGrade": 4,
                 },
@@ -1585,11 +1344,11 @@ exports[`Teacher screens snapshots render ClassMainScreen 1`] = `
                 "isHere": true,
               },
             ],
-            "avatar": "https://randomuser.me/api/portraits/thumb/women/42.jpg",
             "currentAssignment": Object {
               "name": "An-Naze'aat",
               "startDate": "03-24-2019",
             },
+            "imageId": 25,
             "name": "Amina Khan",
             "totalAssignments": 1,
             "totalGrade": 4,
@@ -1599,32 +1358,6 @@ exports[`Teacher screens snapshots render ClassMainScreen 1`] = `
               Object {
                 "completionDate": "03-20-2019",
                 "evaluation": Object {
-                  "categoriesGrades": Array [
-                    Object {
-                      "grade": "not graded",
-                      "name": "Memorization",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Makharej",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Edgham & Ekhfae",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Rulings of Raa'",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Muduud",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Qalqalah",
-                    },
-                  ],
                   "notes": "",
                   "overallGrade": 1,
                 },
@@ -1638,11 +1371,11 @@ exports[`Teacher screens snapshots render ClassMainScreen 1`] = `
                 "isHere": true,
               },
             ],
-            "avatar": "https://randomuser.me/api/portraits/thumb/men/43.jpg",
             "currentAssignment": Object {
               "name": "Aal-Imran",
               "startDate": "03-24-2019",
             },
+            "imageId": 19,
             "name": "Ayoub Barrak",
             "totalAssignments": 1,
             "totalGrade": 1,
@@ -1652,32 +1385,6 @@ exports[`Teacher screens snapshots render ClassMainScreen 1`] = `
               Object {
                 "completionDate": "03-20-2019",
                 "evaluation": Object {
-                  "categoriesGrades": Array [
-                    Object {
-                      "grade": "not graded",
-                      "name": "Memorization",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Makharej",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Edgham & Ekhfae",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Rulings of Raa'",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Muduud",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Qalqalah",
-                    },
-                  ],
                   "notes": "",
                   "overallGrade": 5,
                 },
@@ -1691,12 +1398,12 @@ exports[`Teacher screens snapshots render ClassMainScreen 1`] = `
                 "isHere": true,
               },
             ],
-            "avatar": "https://randomuser.me/api/portraits/thumb/men/45.jpg",
             "currentAssignment": Object {
               "name": "Al-Toor pages 5, 6, 8",
               "startDate": "03-24-2019",
             },
-            "name": "Khaled Kwick",
+            "imageId": 21,
+            "name": "Nouha Yacoubi",
             "totalAssignments": 1,
             "totalGrade": 5,
           },
@@ -1705,32 +1412,6 @@ exports[`Teacher screens snapshots render ClassMainScreen 1`] = `
               Object {
                 "completionDate": "03-20-2019",
                 "evaluation": Object {
-                  "categoriesGrades": Array [
-                    Object {
-                      "grade": "not graded",
-                      "name": "Memorization",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Makharej",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Edgham & Ekhfae",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Rulings of Raa'",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Muduud",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Qalqalah",
-                    },
-                  ],
                   "notes": "",
                   "overallGrade": 2,
                 },
@@ -1744,11 +1425,11 @@ exports[`Teacher screens snapshots render ClassMainScreen 1`] = `
                 "isHere": true,
               },
             ],
-            "avatar": "https://randomuser.me/api/portraits/thumb/men/22.jpg",
             "currentAssignment": Object {
               "name": "Al-Baqara pages 5-8",
               "startDate": "03-24-2019",
             },
+            "imageId": 15,
             "name": "Yassine Lightening",
             "totalAssignments": 1,
             "totalGrade": 2,
@@ -1758,32 +1439,6 @@ exports[`Teacher screens snapshots render ClassMainScreen 1`] = `
               Object {
                 "completionDate": "03-22-2019",
                 "evaluation": Object {
-                  "categoriesGrades": Array [
-                    Object {
-                      "grade": "not graded",
-                      "name": "Memorization",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Makharej",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Edgham & Ekhfae",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Rulings of Raa'",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Muduud",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Qalqalah",
-                    },
-                  ],
                   "notes": "",
                   "overallGrade": 3,
                 },
@@ -1793,32 +1448,6 @@ exports[`Teacher screens snapshots render ClassMainScreen 1`] = `
               Object {
                 "completionDate": "03-20-2019",
                 "evaluation": Object {
-                  "categoriesGrades": Array [
-                    Object {
-                      "grade": "not graded",
-                      "name": "Memorization",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Makharej",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Edgham & Ekhfae",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Rulings of Raa'",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Muduud",
-                    },
-                    Object {
-                      "grade": "not graded",
-                      "name": "Qalqalah",
-                    },
-                  ],
                   "notes": "",
                   "overallGrade": 5,
                 },
@@ -1832,12 +1461,12 @@ exports[`Teacher screens snapshots render ClassMainScreen 1`] = `
                 "isHere": true,
               },
             ],
-            "avatar": "https://randomuser.me/api/portraits/thumb/men/26.jpg",
             "currentAssignment": Object {
               "name": "None",
               "startDate": "",
             },
-            "name": "Yusuf Awesome",
+            "imageId": 27,
+            "name": "Ayah Sulaiman",
             "totalAssignments": 2,
             "totalGrade": 8,
           },
@@ -2009,7 +1638,7 @@ exports[`Teacher screens snapshots render TeacherProfileScreen 1`] = `
                 initialNumToRender={10}
                 keyExtractor={[Function]}
                 maxToRenderPerBatch={10}
-                numColumns={3}
+                numColumns={4}
                 onContentSizeChange={[Function]}
                 onEndReachedThreshold={2}
                 onLayout={[Function]}
@@ -2117,73 +1746,6 @@ exports[`Teacher screens snapshots render TeacherProfileScreen 1`] = `
                           }
                         />
                       </View>
-                    </View>
-                  </View>
-                  <View
-                    onLayout={[Function]}
-                    style={null}
-                  >
-                    <View
-                      style={
-                        Object {
-                          "flexDirection": "row",
-                        }
-                      }
-                    >
-                      <View
-                        accessible={true}
-                        isTVSelectable={true}
-                        onResponderGrant={[Function]}
-                        onResponderMove={[Function]}
-                        onResponderRelease={[Function]}
-                        onResponderTerminate={[Function]}
-                        onResponderTerminationRequest={[Function]}
-                        onStartShouldSetResponder={[Function]}
-                        style={null}
-                      >
-                        <Image
-                          borderRadius={30}
-                          resizeMode="contain"
-                          source={1}
-                          style={
-                            Object {
-                              "borderRadius": 30,
-                              "height": 60,
-                              "marginLeft": 15,
-                              "marginTop": 15,
-                              "padding": 15,
-                              "width": 60,
-                            }
-                          }
-                        />
-                      </View>
-                      <View
-                        accessible={true}
-                        isTVSelectable={true}
-                        onResponderGrant={[Function]}
-                        onResponderMove={[Function]}
-                        onResponderRelease={[Function]}
-                        onResponderTerminate={[Function]}
-                        onResponderTerminationRequest={[Function]}
-                        onStartShouldSetResponder={[Function]}
-                        style={null}
-                      >
-                        <Image
-                          borderRadius={30}
-                          resizeMode="contain"
-                          source={1}
-                          style={
-                            Object {
-                              "borderRadius": 30,
-                              "height": 60,
-                              "marginLeft": 15,
-                              "marginTop": 15,
-                              "padding": 15,
-                              "width": 60,
-                            }
-                          }
-                        />
-                      </View>
                       <View
                         accessible={true}
                         isTVSelectable={true}
@@ -2305,6 +1867,33 @@ exports[`Teacher screens snapshots render TeacherProfileScreen 1`] = `
                           }
                         />
                       </View>
+                      <View
+                        accessible={true}
+                        isTVSelectable={true}
+                        onResponderGrant={[Function]}
+                        onResponderMove={[Function]}
+                        onResponderRelease={[Function]}
+                        onResponderTerminate={[Function]}
+                        onResponderTerminationRequest={[Function]}
+                        onStartShouldSetResponder={[Function]}
+                        style={null}
+                      >
+                        <Image
+                          borderRadius={30}
+                          resizeMode="contain"
+                          source={1}
+                          style={
+                            Object {
+                              "borderRadius": 30,
+                              "height": 60,
+                              "marginLeft": 15,
+                              "marginTop": 15,
+                              "padding": 15,
+                              "width": 60,
+                            }
+                          }
+                        />
+                      </View>
                     </View>
                   </View>
                   <View
@@ -2318,6 +1907,33 @@ exports[`Teacher screens snapshots render TeacherProfileScreen 1`] = `
                         }
                       }
                     >
+                      <View
+                        accessible={true}
+                        isTVSelectable={true}
+                        onResponderGrant={[Function]}
+                        onResponderMove={[Function]}
+                        onResponderRelease={[Function]}
+                        onResponderTerminate={[Function]}
+                        onResponderTerminationRequest={[Function]}
+                        onStartShouldSetResponder={[Function]}
+                        style={null}
+                      >
+                        <Image
+                          borderRadius={30}
+                          resizeMode="contain"
+                          source={1}
+                          style={
+                            Object {
+                              "borderRadius": 30,
+                              "height": 60,
+                              "marginLeft": 15,
+                              "marginTop": 15,
+                              "padding": 15,
+                              "width": 60,
+                            }
+                          }
+                        />
+                      </View>
                       <View
                         accessible={true}
                         isTVSelectable={true}
@@ -2419,19 +2035,22 @@ exports[`Teacher screens snapshots render TeacherProfileScreen 1`] = `
         >
           <Text
             style={
-              Object {
-                "alignItems": "center",
-                "color": "#937f6b",
-                "justifyContent": "center",
-                "marginBottom": 10,
-                "marginLeft": 10,
-                "marginTop": 10,
-                "paddingBottom": 7,
-                "paddingLeft": 21,
-                "paddingRight": 21,
-                "paddingTop": 7,
-                "textAlign": "center",
-              }
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "color": "#937f6b",
+                  "fontSize": 11,
+                  "justifyContent": "center",
+                  "marginBottom": 10,
+                  "marginLeft": 10,
+                  "paddingBottom": 7,
+                  "paddingLeft": 21,
+                  "paddingRight": 21,
+                  "paddingTop": 7,
+                  "textAlign": "center",
+                },
+                undefined,
+              ]
             }
           >
             Cancel
@@ -2475,19 +2094,22 @@ exports[`Teacher screens snapshots render TeacherProfileScreen 1`] = `
     >
       <Text
         style={
-          Object {
-            "alignItems": "center",
-            "color": "#937f6b",
-            "justifyContent": "center",
-            "marginBottom": 10,
-            "marginLeft": 10,
-            "marginTop": 10,
-            "paddingBottom": 7,
-            "paddingLeft": 21,
-            "paddingRight": 21,
-            "paddingTop": 7,
-            "textAlign": "center",
-          }
+          Array [
+            Object {
+              "alignItems": "center",
+              "color": "#937f6b",
+              "fontSize": 11,
+              "justifyContent": "center",
+              "marginBottom": 10,
+              "marginLeft": 10,
+              "paddingBottom": 7,
+              "paddingLeft": 21,
+              "paddingRight": 21,
+              "paddingTop": 7,
+              "textAlign": "center",
+            },
+            undefined,
+          ]
         }
       >
         Update profile image
@@ -2730,6 +2352,14 @@ exports[`Teacher screens snapshots render TeacherProfileScreen 1`] = `
       </Text>
     </View>
   </View>
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "flexDirection": "column",
+      }
+    }
+  />
 </View>
 `;
 
@@ -2815,7 +2445,7 @@ exports[`Teacher screens snapshots render TeacherWelcomeScreen 1`] = `
                 initialNumToRender={10}
                 keyExtractor={[Function]}
                 maxToRenderPerBatch={10}
-                numColumns={3}
+                numColumns={4}
                 onContentSizeChange={[Function]}
                 onEndReachedThreshold={2}
                 onLayout={[Function]}
@@ -2923,73 +2553,6 @@ exports[`Teacher screens snapshots render TeacherWelcomeScreen 1`] = `
                           }
                         />
                       </View>
-                    </View>
-                  </View>
-                  <View
-                    onLayout={[Function]}
-                    style={null}
-                  >
-                    <View
-                      style={
-                        Object {
-                          "flexDirection": "row",
-                        }
-                      }
-                    >
-                      <View
-                        accessible={true}
-                        isTVSelectable={true}
-                        onResponderGrant={[Function]}
-                        onResponderMove={[Function]}
-                        onResponderRelease={[Function]}
-                        onResponderTerminate={[Function]}
-                        onResponderTerminationRequest={[Function]}
-                        onStartShouldSetResponder={[Function]}
-                        style={null}
-                      >
-                        <Image
-                          borderRadius={30}
-                          resizeMode="contain"
-                          source={1}
-                          style={
-                            Object {
-                              "borderRadius": 30,
-                              "height": 60,
-                              "marginLeft": 15,
-                              "marginTop": 15,
-                              "padding": 15,
-                              "width": 60,
-                            }
-                          }
-                        />
-                      </View>
-                      <View
-                        accessible={true}
-                        isTVSelectable={true}
-                        onResponderGrant={[Function]}
-                        onResponderMove={[Function]}
-                        onResponderRelease={[Function]}
-                        onResponderTerminate={[Function]}
-                        onResponderTerminationRequest={[Function]}
-                        onStartShouldSetResponder={[Function]}
-                        style={null}
-                      >
-                        <Image
-                          borderRadius={30}
-                          resizeMode="contain"
-                          source={1}
-                          style={
-                            Object {
-                              "borderRadius": 30,
-                              "height": 60,
-                              "marginLeft": 15,
-                              "marginTop": 15,
-                              "padding": 15,
-                              "width": 60,
-                            }
-                          }
-                        />
-                      </View>
                       <View
                         accessible={true}
                         isTVSelectable={true}
@@ -3111,6 +2674,33 @@ exports[`Teacher screens snapshots render TeacherWelcomeScreen 1`] = `
                           }
                         />
                       </View>
+                      <View
+                        accessible={true}
+                        isTVSelectable={true}
+                        onResponderGrant={[Function]}
+                        onResponderMove={[Function]}
+                        onResponderRelease={[Function]}
+                        onResponderTerminate={[Function]}
+                        onResponderTerminationRequest={[Function]}
+                        onStartShouldSetResponder={[Function]}
+                        style={null}
+                      >
+                        <Image
+                          borderRadius={30}
+                          resizeMode="contain"
+                          source={1}
+                          style={
+                            Object {
+                              "borderRadius": 30,
+                              "height": 60,
+                              "marginLeft": 15,
+                              "marginTop": 15,
+                              "padding": 15,
+                              "width": 60,
+                            }
+                          }
+                        />
+                      </View>
                     </View>
                   </View>
                   <View
@@ -3124,6 +2714,33 @@ exports[`Teacher screens snapshots render TeacherWelcomeScreen 1`] = `
                         }
                       }
                     >
+                      <View
+                        accessible={true}
+                        isTVSelectable={true}
+                        onResponderGrant={[Function]}
+                        onResponderMove={[Function]}
+                        onResponderRelease={[Function]}
+                        onResponderTerminate={[Function]}
+                        onResponderTerminationRequest={[Function]}
+                        onStartShouldSetResponder={[Function]}
+                        style={null}
+                      >
+                        <Image
+                          borderRadius={30}
+                          resizeMode="contain"
+                          source={1}
+                          style={
+                            Object {
+                              "borderRadius": 30,
+                              "height": 60,
+                              "marginLeft": 15,
+                              "marginTop": 15,
+                              "padding": 15,
+                              "width": 60,
+                            }
+                          }
+                        />
+                      </View>
                       <View
                         accessible={true}
                         isTVSelectable={true}
@@ -3225,19 +2842,22 @@ exports[`Teacher screens snapshots render TeacherWelcomeScreen 1`] = `
         >
           <Text
             style={
-              Object {
-                "alignItems": "center",
-                "color": "#937f6b",
-                "justifyContent": "center",
-                "marginBottom": 10,
-                "marginLeft": 10,
-                "marginTop": 10,
-                "paddingBottom": 7,
-                "paddingLeft": 21,
-                "paddingRight": 21,
-                "paddingTop": 7,
-                "textAlign": "center",
-              }
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "color": "#937f6b",
+                  "fontSize": 11,
+                  "justifyContent": "center",
+                  "marginBottom": 10,
+                  "marginLeft": 10,
+                  "paddingBottom": 7,
+                  "paddingLeft": 21,
+                  "paddingRight": 21,
+                  "paddingTop": 7,
+                  "textAlign": "center",
+                },
+                undefined,
+              ]
             }
           >
             Cancel
@@ -3251,10 +2871,8 @@ exports[`Teacher screens snapshots render TeacherWelcomeScreen 1`] = `
       Object {
         "alignItems": "center",
         "backgroundColor": "#fdfdff",
-        "flex": 1,
         "marginBottom": 10,
         "marginTop": 15,
-        "paddingBottom": 10,
         "paddingTop": 10,
       }
     }
@@ -3263,8 +2881,7 @@ exports[`Teacher screens snapshots render TeacherWelcomeScreen 1`] = `
       source={1}
       style={
         Object {
-          "height": 111,
-          "marginTop": 25,
+          "marginTop": 15,
           "resizeMode": "contain",
           "width": 180,
         }
@@ -3276,7 +2893,7 @@ exports[`Teacher screens snapshots render TeacherWelcomeScreen 1`] = `
           "color": "#6b6b6b",
           "fontSize": 16,
           "fontStyle": "italic",
-          "paddingBottom": 15,
+          "paddingBottom": 10,
           "paddingLeft": 20,
         }
       }
@@ -3678,6 +3295,13 @@ exports[`Teacher screens snapshots render TeacherWelcomeScreen 1`] = `
       </Text>
     </View>
   </View>
+  <View
+    style={
+      Object {
+        "flexDirection": "column",
+      }
+    }
+  />
 </View>
 `;
 
@@ -3711,11 +3335,11 @@ exports[`Teacher screens snapshots render TeacherWelcomeScreen 2`] = `
         "backgroundColor": "#fdfdff",
         "borderColor": "#F3F3F3",
         "borderWidth": 1,
-        "flex": 1,
-        "justifyContent": "flex-end",
+        "flexDirection": "column",
         "marginBottom": 10,
         "marginHorizontal": 10,
         "marginTop": 30,
+        "paddingBottom": 25,
         "paddingTop": 25,
       }
     }
@@ -3730,11 +3354,7 @@ exports[`Teacher screens snapshots render TeacherWelcomeScreen 2`] = `
       }
     >
       <Image
-        source={
-          Object {
-            "uri": "https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg",
-          }
-        }
+        source={1}
         style={
           Object {
             "borderColor": "#fdfdff",
@@ -3793,10 +3413,7 @@ exports[`Teacher screens snapshots render TeacherWelcomeScreen 2`] = `
       <View
         style={
           Object {
-            "alignItems": "center",
-            "backgroundColor": "transparent",
-            "flexDirection": "column",
-            "justifyContent": "center",
+            "paddingVertical": 15,
           }
         }
       >
@@ -3804,477 +3421,195 @@ exports[`Teacher screens snapshots render TeacherWelcomeScreen 2`] = `
           style={
             Object {
               "alignItems": "center",
-              "flexDirection": "row",
+              "backgroundColor": "transparent",
+              "flexDirection": "column",
               "justifyContent": "center",
             }
           }
         >
           <View
-            accessible={true}
-            isTVSelectable={true}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
             style={
               Object {
-                "opacity": 1,
+                "alignItems": "center",
+                "flexDirection": "row",
+                "justifyContent": "center",
               }
             }
           >
-            <Image
-              source={1}
+            <View
+              accessible={true}
+              isTVSelectable={true}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
               style={
                 Object {
-                  "height": 30,
-                  "margin": 3,
-                  "tintColor": undefined,
-                  "transform": Array [
-                    Object {
-                      "scale": 1,
-                    },
-                  ],
-                  "width": 30,
+                  "opacity": 1,
                 }
               }
-            />
-          </View>
-          <View
-            accessible={true}
-            isTVSelectable={true}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
-              Object {
-                "opacity": 1,
-              }
-            }
-          >
-            <Image
-              source={1}
+            >
+              <Image
+                source={1}
+                style={
+                  Object {
+                    "height": 30,
+                    "margin": 3,
+                    "tintColor": undefined,
+                    "transform": Array [
+                      Object {
+                        "scale": 1,
+                      },
+                    ],
+                    "width": 30,
+                  }
+                }
+              />
+            </View>
+            <View
+              accessible={true}
+              isTVSelectable={true}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
               style={
                 Object {
-                  "height": 30,
-                  "margin": 3,
-                  "tintColor": undefined,
-                  "transform": Array [
-                    Object {
-                      "scale": 1,
-                    },
-                  ],
-                  "width": 30,
+                  "opacity": 1,
                 }
               }
-            />
-          </View>
-          <View
-            accessible={true}
-            isTVSelectable={true}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
-              Object {
-                "opacity": 1,
-              }
-            }
-          >
-            <Image
-              source={1}
+            >
+              <Image
+                source={1}
+                style={
+                  Object {
+                    "height": 30,
+                    "margin": 3,
+                    "tintColor": undefined,
+                    "transform": Array [
+                      Object {
+                        "scale": 1,
+                      },
+                    ],
+                    "width": 30,
+                  }
+                }
+              />
+            </View>
+            <View
+              accessible={true}
+              isTVSelectable={true}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
               style={
                 Object {
-                  "height": 30,
-                  "margin": 3,
-                  "tintColor": undefined,
-                  "transform": Array [
-                    Object {
-                      "scale": 1,
-                    },
-                  ],
-                  "width": 30,
+                  "opacity": 1,
                 }
               }
-            />
-          </View>
-          <View
-            accessible={true}
-            isTVSelectable={true}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
-              Object {
-                "opacity": 1,
-              }
-            }
-          >
-            <Image
-              source={1}
+            >
+              <Image
+                source={1}
+                style={
+                  Object {
+                    "height": 30,
+                    "margin": 3,
+                    "tintColor": undefined,
+                    "transform": Array [
+                      Object {
+                        "scale": 1,
+                      },
+                    ],
+                    "width": 30,
+                  }
+                }
+              />
+            </View>
+            <View
+              accessible={true}
+              isTVSelectable={true}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
               style={
                 Object {
-                  "height": 30,
-                  "margin": 3,
-                  "tintColor": undefined,
-                  "transform": Array [
-                    Object {
-                      "scale": 1,
-                    },
-                  ],
-                  "width": 30,
+                  "opacity": 1,
                 }
               }
-            />
-          </View>
-          <View
-            accessible={true}
-            isTVSelectable={true}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
-              Object {
-                "opacity": 1,
-              }
-            }
-          >
-            <Image
-              source={1}
+            >
+              <Image
+                source={1}
+                style={
+                  Object {
+                    "height": 30,
+                    "margin": 3,
+                    "tintColor": undefined,
+                    "transform": Array [
+                      Object {
+                        "scale": 1,
+                      },
+                    ],
+                    "width": 30,
+                  }
+                }
+              />
+            </View>
+            <View
+              accessible={true}
+              isTVSelectable={true}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
               style={
                 Object {
-                  "height": 30,
-                  "margin": 3,
-                  "tintColor": undefined,
-                  "transform": Array [
-                    Object {
-                      "scale": 1,
-                    },
-                  ],
-                  "width": 30,
+                  "opacity": 1,
                 }
               }
-            />
+            >
+              <Image
+                source={1}
+                style={
+                  Object {
+                    "height": 30,
+                    "margin": 3,
+                    "tintColor": undefined,
+                    "transform": Array [
+                      Object {
+                        "scale": 1,
+                      },
+                    ],
+                    "width": 30,
+                  }
+                }
+              />
+            </View>
           </View>
         </View>
       </View>
-      <RCTScrollView
-        data={
-          Array [
-            Object {
-              "grade": "not graded",
-              "name": "Memorization",
-            },
-            Object {
-              "grade": "not graded",
-              "name": "Makharej",
-            },
-            Object {
-              "grade": "not graded",
-              "name": "Edgham & Ekhfae",
-            },
-            Object {
-              "grade": "not graded",
-              "name": "Rulings of Raa'",
-            },
-            Object {
-              "grade": "not graded",
-              "name": "Muduud",
-            },
-            Object {
-              "grade": "not graded",
-              "name": "Qalqalah",
-            },
-          ]
-        }
-        disableVirtualization={false}
-        getItem={[Function]}
-        getItemCount={[Function]}
-        horizontal={false}
-        initialNumToRender={10}
-        keyExtractor={[Function]}
-        maxToRenderPerBatch={10}
-        numColumns={2}
-        onContentSizeChange={[Function]}
-        onEndReachedThreshold={2}
-        onLayout={[Function]}
-        onMomentumScrollEnd={[Function]}
-        onScroll={[Function]}
-        onScrollBeginDrag={[Function]}
-        onScrollEndDrag={[Function]}
-        renderItem={[Function]}
-        scrollEventThrottle={50}
-        stickyHeaderIndices={Array []}
-        updateCellsBatchingPeriod={50}
-        viewabilityConfigCallbackPairs={Array []}
-        windowSize={21}
-      >
-        <View>
-          <View
-            onLayout={[Function]}
-            style={null}
-          >
-            <View
-              style={
-                Object {
-                  "flexDirection": "row",
-                }
-              }
-            >
-              <View
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "alignSelf": "stretch",
-                    "borderColor": "#F3F3F3",
-                    "borderWidth": 1,
-                    "elevation": 1,
-                    "marginHorizontal": 10,
-                    "marginVertical": 5,
-                    "paddingHorizontal": 20,
-                    "paddingVertical": 10,
-                    "shadowOffset": Object {
-                      "height": 1,
-                      "width": 0,
-                    },
-                    "shadowOpacity": 0.18,
-                    "shadowRadius": 1,
-                  }
-                }
-              >
-                <Text
-                  style={
-                    Object {
-                      "color": "#6b6b6b",
-                      "fontSize": 16,
-                      "paddingBottom": 7,
-                    }
-                  }
-                >
-                  Memorization
-                </Text>
-              </View>
-              <View
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "alignSelf": "stretch",
-                    "borderColor": "#F3F3F3",
-                    "borderWidth": 1,
-                    "elevation": 1,
-                    "marginHorizontal": 10,
-                    "marginVertical": 5,
-                    "paddingHorizontal": 20,
-                    "paddingVertical": 10,
-                    "shadowOffset": Object {
-                      "height": 1,
-                      "width": 0,
-                    },
-                    "shadowOpacity": 0.18,
-                    "shadowRadius": 1,
-                  }
-                }
-              >
-                <Text
-                  style={
-                    Object {
-                      "color": "#6b6b6b",
-                      "fontSize": 16,
-                      "paddingBottom": 7,
-                    }
-                  }
-                >
-                  Makharej
-                </Text>
-              </View>
-            </View>
-          </View>
-          <View
-            onLayout={[Function]}
-            style={null}
-          >
-            <View
-              style={
-                Object {
-                  "flexDirection": "row",
-                }
-              }
-            >
-              <View
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "alignSelf": "stretch",
-                    "borderColor": "#F3F3F3",
-                    "borderWidth": 1,
-                    "elevation": 1,
-                    "marginHorizontal": 10,
-                    "marginVertical": 5,
-                    "paddingHorizontal": 20,
-                    "paddingVertical": 10,
-                    "shadowOffset": Object {
-                      "height": 1,
-                      "width": 0,
-                    },
-                    "shadowOpacity": 0.18,
-                    "shadowRadius": 1,
-                  }
-                }
-              >
-                <Text
-                  style={
-                    Object {
-                      "color": "#6b6b6b",
-                      "fontSize": 16,
-                      "paddingBottom": 7,
-                    }
-                  }
-                >
-                  Edgham & Ekhfae
-                </Text>
-              </View>
-              <View
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "alignSelf": "stretch",
-                    "borderColor": "#F3F3F3",
-                    "borderWidth": 1,
-                    "elevation": 1,
-                    "marginHorizontal": 10,
-                    "marginVertical": 5,
-                    "paddingHorizontal": 20,
-                    "paddingVertical": 10,
-                    "shadowOffset": Object {
-                      "height": 1,
-                      "width": 0,
-                    },
-                    "shadowOpacity": 0.18,
-                    "shadowRadius": 1,
-                  }
-                }
-              >
-                <Text
-                  style={
-                    Object {
-                      "color": "#6b6b6b",
-                      "fontSize": 16,
-                      "paddingBottom": 7,
-                    }
-                  }
-                >
-                  Rulings of Raa'
-                </Text>
-              </View>
-            </View>
-          </View>
-          <View
-            onLayout={[Function]}
-            style={null}
-          >
-            <View
-              style={
-                Object {
-                  "flexDirection": "row",
-                }
-              }
-            >
-              <View
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "alignSelf": "stretch",
-                    "borderColor": "#F3F3F3",
-                    "borderWidth": 1,
-                    "elevation": 1,
-                    "marginHorizontal": 10,
-                    "marginVertical": 5,
-                    "paddingHorizontal": 20,
-                    "paddingVertical": 10,
-                    "shadowOffset": Object {
-                      "height": 1,
-                      "width": 0,
-                    },
-                    "shadowOpacity": 0.18,
-                    "shadowRadius": 1,
-                  }
-                }
-              >
-                <Text
-                  style={
-                    Object {
-                      "color": "#6b6b6b",
-                      "fontSize": 16,
-                      "paddingBottom": 7,
-                    }
-                  }
-                >
-                  Muduud
-                </Text>
-              </View>
-              <View
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "alignSelf": "stretch",
-                    "borderColor": "#F3F3F3",
-                    "borderWidth": 1,
-                    "elevation": 1,
-                    "marginHorizontal": 10,
-                    "marginVertical": 5,
-                    "paddingHorizontal": 20,
-                    "paddingVertical": 10,
-                    "shadowOffset": Object {
-                      "height": 1,
-                      "width": 0,
-                    },
-                    "shadowOpacity": 0.18,
-                    "shadowRadius": 1,
-                  }
-                }
-              >
-                <Text
-                  style={
-                    Object {
-                      "color": "#6b6b6b",
-                      "fontSize": 16,
-                      "paddingBottom": 7,
-                    }
-                  }
-                >
-                  Qalqalah
-                </Text>
-              </View>
-            </View>
-          </View>
-        </View>
-      </RCTScrollView>
       <TextInput
         allowFontScaling={true}
+        height={100}
         multiline={true}
-        numberOfLines={3}
         onChangeText={[Function]}
         placeholder="Write a note."
         placeholderColor="#101011"
         style={
           Object {
-            "alignItems": "flex-start",
             "alignSelf": "stretch",
             "backgroundColor": "#F3F3F3",
-            "justifyContent": "flex-start",
             "margin": 5,
             "textAlignVertical": "top",
           }
@@ -4332,5 +3667,13 @@ exports[`Teacher screens snapshots render TeacherWelcomeScreen 2`] = `
       </Text>
     </View>
   </View>
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "flexDirection": "column",
+      }
+    }
+  />
 </View>
 `;

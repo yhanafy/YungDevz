@@ -12,7 +12,7 @@ import PropTypes from 'prop-types'
 //  to show more images
 //--------------------------------------------------------------
 export default ImageSelectionRow = (props) => {
-    const {highlightedImagesIndices, onImageSelected, onShowMore, selectedImageIndex} = props;
+    const {highlightedImagesIndices, onImageSelected, onShowMore, selectedImageIndex, images} = props;
 
     return (
         <View style={styles.rowContainer}>
@@ -22,7 +22,7 @@ export default ImageSelectionRow = (props) => {
                     key={index}>
                     <TouchableAvatar
                         index={index}
-                        image={teacherImages.images[index]}
+                        image={images[index]}
                         selected={selectedImageIndex === index}
                         onPress={() => onImageSelected(index)} />
                     </View>
@@ -44,7 +44,8 @@ ImageSelectionRow.propTypes = {
     highlightedImagesIndices: PropTypes.array.isRequired,
     onImageSelected: PropTypes.func.isRequired,
     onShowMore: PropTypes.func.isRequired,
-    selectedImageIndex: PropTypes.number.isRequired
+    selectedImageIndex: PropTypes.number.isRequired,
+    images: PropTypes.array.isRequired,
 }
 
 //Styles for the Teacher profile class

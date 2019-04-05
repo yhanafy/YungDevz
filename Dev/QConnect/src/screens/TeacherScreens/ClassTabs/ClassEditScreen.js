@@ -12,32 +12,59 @@ import studentImages from "config/studentImages";
 import strings from "../../../../config/strings";
 
 export class ClassEditScreen extends Component {
+  // ---------- Helpers to initialize random suggested student images --------------
+  //  2 gender neutral images, one female, and one male
+  // -------------------------------------------------------------------------------
+  getRandomGenderNeutralImage = () => {
+    index =  Math.floor(Math.random() * Math.floor(studentImages.genderNeutralImages.length));
+    imageIndex = studentImages.genderNeutralImages[index];
+    return imageIndex;
+  }
+
+  getRandomMaleImage = () => {
+    index =  Math.floor(Math.random() * Math.floor(studentImages.maleImages.length));
+    imageIndex = studentImages.maleImages[index];
+    return imageIndex;
+  }
+
+  getRandomFemaleImage = () => {
+    index =  Math.floor(Math.random() * Math.floor(studentImages.femaleImages.length));
+    imageIndex = studentImages.femaleImages[index];
+    return imageIndex;
+  }
+
+  initialDefaultImageId = this.getRandomGenderNeutralImage()
+  
+  getHighlightedImages = () => {
+    defaultImageId = this.initialDefaultImageId;
+
+    // get a second gender neutral image, make sure it is different than the first one
+    do {
+      secondGenericImageId = this.getRandomGenderNeutralImage();
+    } while(secondGenericImageId === defaultImageId)
+    
+    //initialize the array of suggested images
+    let proposedImages = [defaultImageId, secondGenericImageId, this.getRandomFemaleImage(), this.getRandomMaleImage()]
+    return proposedImages;
+  }
+
   state = {
-    newStudentName: ""
-  };
-
-  getAvatarUrl() {
-    let photoNum = Math.floor(Math.random() * Math.floor(99));
-    let url =
-      "https://randomuser.me/api/portraits/thumb/men/" + photoNum + ".jpg";
-    return url;
+    newStudentName: "",
+    modalVisible: false,
+    profileImageId: this.initialDefaultImageId,
+    highlightedImagesIndices: this.getHighlightedImages(),
   }
-
-  getImageId() {
-    let photoNum = Math.floor(Math.random() * Math.floor(30));
-    return photoNum;
-  }
-
+  
+  // ----------- Redux function to persist the added student ------------------------
   addNewStudent(classIndex) {
     if (this.state.newStudentName) {
     this.props.addStudent({
       classIndex: classIndex,
       studentInfo: {
         name: this.state.newStudentName,
-        avatar: this.getAvatarUrl(),
         totalAssignments: 0,
         totalGrade: 0,
-        imageId: this.getImageId(),
+        imageId: this.state.profileImageId,
         currentAssignment: {
           name: "None",
           startDate: ""
@@ -53,10 +80,28 @@ export class ClassEditScreen extends Component {
     }
   }
 
-  getStudentImage(imageId, avatar) {
-    console.log(imageId, avatar)
-    return imageId? studentImages.images[imageId] : { uri: avatar };
+  // ------- event handlers of when images are selected or being selected ---------
+  onImageSelected(index) {
+    let candidateImages = this.state.highlightedImagesIndices;
+
+    if (!this.state.highlightedImagesIndices.includes(index)) {
+        candidateImages.splice(0, 1);
+        candidateImages.splice(0, 0, index);
+    }
+
+    this.setState({
+        profileImageId: index,
+        highlightedImagesIndices: candidateImages
+    })
+
+    this.setModalVisible(false);
   }
+  
+  setModalVisible(visible) {
+    this.setState({ modalVisible: visible });
+  } 
+
+  // ------- Render method: Main entry to render the screen's UI ------------------
 
   render() {
     const { params } = this.props.navigation.state;
@@ -64,14 +109,33 @@ export class ClassEditScreen extends Component {
     
     classIndex = params && params.classIndex? params.classIndex : 0;
 
+    if(this.state.highlightedImagesIndices.length == 0){
+      return false;
+    }
+
     return (
       <ScrollView style={styles.container}>
+        <ImageSelectionModal
+          visible={this.state.modalVisible}
+          images={studentImages.images}
+          cancelText="Cancel"
+          setModalVisible={this.setModalVisible.bind(this)}
+          onImageSelected={this.onImageSelected.bind(this)}
+        />
+        
         <View ID={classIndex} style={styles.inputContainer}>
           <TextInput
             placeholder={strings.EnterNewStudentsName}
             onChangeText={newStudentName => this.setState({ newStudentName })}
             value={this.state.newStudentName}
           />
+          <ImageSelectionRow
+              images={studentImages.images}
+              highlightedImagesIndices={this.state.highlightedImagesIndices}
+              onImageSelected={this.onImageSelected.bind(this)}
+              onShowMore={() => this.setModalVisible(true)}
+              selectedImageIndex={this.state.profileImageId}
+          /> 
           <QcActionButton
             text={strings.AddStudent}
             onPress={() => this.addNewStudent(classIndex)}
@@ -84,7 +148,7 @@ export class ClassEditScreen extends Component {
             <StudentCard
               key={index}
               studentName={item.name}
-              profilePic={ this.getStudentImage(item.imageId, item.avatar)}
+              profilePic={ studentImages.images[item.imageId] }
               background={colors.white}
               onPress={() =>
                 deleteStudent(
@@ -112,6 +176,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     backgroundColor: colors.white,
     padding: 10,
+    paddingTop: 20,
     flex: 1
   },
   classTitle: {

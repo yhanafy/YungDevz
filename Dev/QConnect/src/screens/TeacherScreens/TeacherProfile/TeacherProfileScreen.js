@@ -108,6 +108,7 @@ export class TeacherProfileScreen extends Component {
                                                             //is passed instead of 0
                     />
                 </View>
+                <View style={styles.filler}></View>
                 <Toast ref="toast"/>
             </KeyboardAvoidingView>
         )
@@ -172,6 +173,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         marginTop: 10,
         backgroundColor: colors.white,
+    },
+    filler: {
+        flexDirection: 'column',
+        flex: 1
     }
 })
 

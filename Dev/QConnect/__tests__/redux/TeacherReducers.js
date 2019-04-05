@@ -37,9 +37,11 @@ const teacher_one_class_no_students = {
 
 const studentInfo = {
     name: "Test Student 1",
-    avatar: "http://test.avatar.url",
+    imageId: 8,
     attendanceHistory: [],
     assignmentHistory: [],
+    totalAssignments: 0,
+    totalGrade: 0,
 };
 
 const teacher_one_class_one_student = {
@@ -78,7 +80,7 @@ const teacher_one_class_one_student_with_new_assignment = {
                             ...studentInfo,
                             currentAssignment: {
                                 name: new_assignment_text,
-                                startDate: "1/1/2019"
+                                startDate: "12/31/2018"
                             }
                         }
                     ]
@@ -89,6 +91,7 @@ const teacher_one_class_one_student_with_new_assignment = {
 };
 
 const updated_assignment_text = "Updated assignment";
+
 const teacher_one_class_one_student_updated_assignment = {
     teachers: [
         {
@@ -101,7 +104,7 @@ const teacher_one_class_one_student_updated_assignment = {
                             ...studentInfo,
                             currentAssignment: {
                                 name: updated_assignment_text,
-                                startDate: "1/1/2019"
+                                startDate: "12/31/2018"
                             }
                         }
                     ]
@@ -119,14 +122,15 @@ const evaluation = {
         grade: 'not graded',
       }
     ],
-    notes: "good job"
+    notes: "good job",
+    overallGrade: 0,
   }
 
 const studentAssignmentHistory =  [{
         name: "Test new assignment",
-        startDate: "1/1/2019",
+        startDate: "12/31/2018",
         evaluation: evaluation,
-        completionDate: "1/1/2019"
+        completionDate: "12/31/2018"
     }]
 
     const teacher_one_class_one_student_completed_assignment = {
@@ -139,9 +143,10 @@ const studentAssignmentHistory =  [{
                         students: [
                             {
                                 ...studentInfo,
+                                totalAssignments: 1,
                                 currentAssignment: {
                                     name: new_assignment_text,
-                                    startDate: "1/1/2019"
+                                    startDate: "12/31/2018"
                                 },
                                 assignmentHistory: studentAssignmentHistory
                             }
@@ -151,7 +156,6 @@ const studentAssignmentHistory =  [{
             }
         ]
     };
-
     
 const teacher_one_class_one_student_with_attendance = {
     teachers: [
@@ -264,12 +268,13 @@ describe('teacher reducer with mock dates', () => {
     it('should handle EDIT_CURRENT_ASSIGNMENT', () => {
         const classIndex = 0;
 
+        updated_assignment = { name: updated_assignment_text, startDate: new Date().toLocaleDateString("EN-US") }
         expect(
             classReducer(teacher_one_class_one_student_with_new_assignment, {
                 type: actionTypes.EDIT_CURRENT_ASSIGNMENT,
                 classIndex: classIndex,
                 studentIndex: 0,
-                newAssignment: updated_assignment_text
+                newAssignment: updated_assignment
             })
         ).toEqual(teacher_one_class_one_student_updated_assignment);
     })
