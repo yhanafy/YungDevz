@@ -117,7 +117,7 @@ class StudentProfileScreen extends FontLoadingComponent {
                   <TouchableText
                     text="update image"
                     onPress={() => this.setModalVisible(true)}
-                    style={{ paddingRight: 0, paddingLeft: 0, marginLeft: 0, fontSize: 14 }}
+                    style={{ paddingRight: 0, paddingLeft: 0, marginLeft: 0, fontSize: 12 }}
                   />
                 </View>
 

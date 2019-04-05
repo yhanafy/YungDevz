@@ -18,16 +18,14 @@ export default TouchableText = (props) => {
 const styles = StyleSheet.create({
     container: {
         color: colors.primaryDark,
-        marginLeft:10,
         marginBottom:10,
         paddingTop:7,
         paddingBottom:7,
-        paddingRight:21,
         fontSize: 11,
-        paddingLeft:21,
         justifyContent: 'center',
         alignItems: 'center',
         textAlign: 'center',
+        fontFamily: 'regular',
     }
 });
 
