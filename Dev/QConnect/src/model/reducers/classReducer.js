@@ -274,6 +274,12 @@ export const classReducer = (state = INITIAL_STATE, action) => {
         let newState = update(baseState, { teachers: { [0]: { classes: { [classIndex]: { students: { [studentIndex]: { currentAssignment: { $set: updatedAssignment } } } } } } } });
         return newState;
       }
+      case actionTypes.UPDATE_STUDENT_IMAGE:
+      {
+        let { classIndex, studentIndex, imageId } = action;
+        let newState = update(baseState, { teachers: { [0]: { classes: { [classIndex]: { students: { [studentIndex]: { imageId: {$set: imageId} }  } } } } } });
+        return newState;
+      }
     case actionTypes.ADD_NEW_ASSIGNMENT:
       {
         let { classIndex, studentIndex, newAssignmentName } = action;

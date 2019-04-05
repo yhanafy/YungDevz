@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { View, Image, Text, StyleSheet, ScrollView, FlatList, TouchableHighlight } from 'react-native';
 import colors from 'config/colors';
-import QcActionButton from "components/QcActionButton"
 import { Rating, Icon } from 'react-native-elements';
 import DialogInput from 'react-native-dialog-input';
 import { editCurrentAssignment } from 'model/actions/editCurrentAssignment';
 import { addNewAssignment } from 'model/actions/addNewAssignment';
+import { updateStudentImage } from 'model/actions/updateStudentImage';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import studentImages from 'config/studentImages';
@@ -46,13 +46,14 @@ class StudentProfileScreen extends FontLoadingComponent {
   }
 
   onImageSelected(index) {
-    this.setState({ profileImageId: index, })
+    this.setState({ profileImageId: index })
+    let { classIndex, studentIndex } = this.props.navigation.state.params;
+    this.props.updateStudentImage(classIndex, studentIndex, index)
     this.setModalVisible(false);
   }
 
   //---------- main UI render ===============================
   render() {
-    const { navigate } = this.props.navigation;
     const { classIndex, studentIndex } = this.props.navigation.state.params;
     const currentStudent = this.props.classes[classIndex].students[studentIndex];
     const hasCurrentAssignment = currentStudent.currentAssignment.name === 'None' ? false : true;
@@ -112,7 +113,7 @@ class StudentProfileScreen extends FontLoadingComponent {
                 <View style={styles.profileInfoTopLeft}>
                   <Image
                     style={styles.profilePic}
-                    source={studentImages.images[currentStudent.imageId]} />
+                    source={studentImages.images[this.state.profileImageId >= 0? this.state.profileImageId : currentStudent.imageId]} />
                   <TouchableText
                     text="update image"
                     onPress={() => this.setModalVisible(true)}
@@ -312,7 +313,8 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       editCurrentAssignment,
-      addNewAssignment
+      addNewAssignment,
+      updateStudentImage
     },
     dispatch
   );

@@ -32,7 +32,7 @@ export class ClassEditScreen extends Component {
     return imageIndex;
   }
 
-  initialDefaultImageId = this.getRandomGenderNeutralImage();
+  initialDefaultImageId = this.getRandomGenderNeutralImage()
   
   getHighlightedImages = () => {
     defaultImageId = this.initialDefaultImageId;
