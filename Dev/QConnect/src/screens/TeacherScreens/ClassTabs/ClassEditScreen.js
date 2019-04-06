@@ -75,7 +75,7 @@ export class ClassEditScreen extends Component {
       });
       this.refs.toast.show(this.state.newStudentName + strings.IsNowAddedToTheClass,
         DURATION.LENGTH_SHORT);
-      this.setState({ newStudentName: "" })
+      this.setState({ newStudentName: "" });
     } else {
       alert(strings.PleaseInputAName)
     }
