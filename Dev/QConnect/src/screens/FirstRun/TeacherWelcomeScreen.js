@@ -50,7 +50,7 @@ export class TeacherWelcomeScreen extends Component {
 
     onTeacherFlow = () => {
         //todo: get the first class to show from redux persist (current class)
-        this.props.navigation.push('AddClassScreenFirstRun', { classIndex: 0, classTitle: "Quran Class" });
+        this.props.navigation.push('TeacherScreens', { classIndex: 0, classTitle: "Quran Class" });
     }
 
     //this method saves the new profile information to the redux database
