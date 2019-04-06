@@ -17,7 +17,7 @@ export default class ImageSelectionGrid extends Component {
             <ScrollView >
             <View>
                 <FlatList
-                    numColumns={3}
+                    numColumns={4}
                     data={images}
                     keyExtractor={(item, index) => index} // fix, should be item.id (add id to classes)
                     renderItem={({ item, index }) => (

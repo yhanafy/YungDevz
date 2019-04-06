@@ -8,6 +8,8 @@ import StudentCard from 'components/StudentCard';
 import QcActionButton from 'components/QcActionButton';
 import { addAttendance } from 'model/actions/addAttendance';
 import colors from 'config/colors';
+import studentImages from 'config/studentImages'
+import strings from 'config/strings';
 
 //const { directions: { SWIPE_UP, SWIPE_LEFT, SWIPE_DOWN, SWIPE_RIGHT } } = swipeable;
 
@@ -15,7 +17,7 @@ export class ClassAttendanceScreen extends Component {
 
     state = {
         selectedStudents: [],
-        selectedDate: this.props.defaultDate? this.props.defaultDate : new Date().toLocaleDateString("en-US")
+        selectedDate: this.props.defaultDate ? this.props.defaultDate : new Date().toLocaleDateString("en-US")
     }
 
     //This method will set the student selected property to the opposite of whatever it was
@@ -39,10 +41,10 @@ export class ClassAttendanceScreen extends Component {
 
     //fetches the current selected students and the current selected date and adds the current
     //attendance to the database
-    saveAttendance = (classIndex) => {
+    saveAttendance = () => {
         let selected = this.state.selectedStudents;
         let date = this.state.selectedDate;
-        let studentList = this.props.classes[classIndex].students;
+        let studentList = this.props.students;
         let attendanceInfo =[];
         for(let i = 0; i < studentList.length; i++) {
             //If the current state of selected students includes the current student being
@@ -61,16 +63,16 @@ export class ClassAttendanceScreen extends Component {
             }
         }
         this.props.addAttendance(
-            classIndex,
+            this.props.navigation.state.params.classIndex,
             attendanceInfo
         );
-        this.refs.toast.show("Attendance for " + date + " has been saved", DURATION.LENGTH_SHORT);
+        this.refs.toast.show(strings.AttendanceFor + date + strings.HasBeenSaved, DURATION.LENGTH_SHORT);
     }
 
     //This method will set the state of the attendance screen based on the isHere property
     //from each student's attendance history based on the corresponding date
-    getAttendance = (classIndex, date) => {
-        let studentList = this.props.classes[classIndex].students;
+    getAttendance = (date) => {
+        let studentList = this.props.students;
         let selected = [];
         //Maps out the list of students
         studentList.map((student, i) => {
@@ -103,9 +105,7 @@ export class ClassAttendanceScreen extends Component {
     
     render() {
 
-        const { params } = this.props.navigation.state;
-
-        classIndex = params && params.classIndex ? params.classIndex : 0;
+        const { classIndex } = this.props.navigation.state.params.classIndex;
     
         return (
         //The scroll view will have at the top a date picker which will be defaulted to the current
@@ -115,28 +115,28 @@ export class ClassAttendanceScreen extends Component {
             <View style={styles.saveAttendance}>
                 <DatePicker
                     date={this.state.selectedDate}
-                    confirmBtnText="Confirm"
-                    cancelBtnText="Cancel"
+                    confirmBtnText={strings.Confirm}
+                    cancelBtnText={strings.Cancel}
                     format="MM-DD-YYYY"
                     duration={300}
                     style={{paddingLeft: 15}}
                     maxDate={new Date().toLocaleDateString("en-US")}
                     customStyles={{dateInput: {borderColor: colors.lightGrey}}}
-                    onDateChange={(date) => this.getAttendance(classIndex, date)}
+                    onDateChange={(date) => this.getAttendance(date)}
                     />
                 <QcActionButton
-                    text="Save Attendance"
-                    onPress={() => this.saveAttendance(classIndex)}
+                    text={strings.SaveAttendance}
+                    onPress={() => this.saveAttendance()}
                     style={{paddingRight: 30}}
                 />
             </View>
-            {this.props.classes[classIndex].students.map((student, i) => {
+            {this.props.students.map((student, i) => {
                 let color = this.state.selectedStudents.includes(i) ? colors.red : colors.green;
                 return (
                     <StudentCard
                         key={i}
                         studentName={student.name}
-                        profilePic={{uri: student.avatar}}
+                        profilePic={studentImages.images[student.imageId]}
                         currentAssignment={student.currentAssignment.name}
                         background={color}
                         onPress={() => this.onStudentSelected(i) }
@@ -166,9 +166,10 @@ const styles = StyleSheet.create({
     }
 });
 
-const mapStateToProps = state => {
-    const { classes } = state.data.teachers[0];
-    return { classes };
+const mapStateToProps = (state, ownProps) => {
+    const { classIndex } = ownProps.navigation.state.params;
+    state = state.data.teachers[0].classes[classIndex];
+    return state;
   };
 
 const mapDispatchToProps = dispatch => (

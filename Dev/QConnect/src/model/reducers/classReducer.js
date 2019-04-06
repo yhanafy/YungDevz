@@ -3,21 +3,22 @@ import update from 'immutability-helper';
 import actionTypes from '../actions/actionTypes';
 
 export const INITIAL_STATE = {
+  firstRunCompleted: false,
   teachers: [
     {
-      name: "Eslam Abdo",
-      phoneNumber: "425-246-5971",
-      emailAddress: "eslam_w@hotmail.com",
+      name: "",
+      phoneNumber: "",
+      emailAddress: "",
       currentClassIndex: 0,
       profileImageId: 1,
       classes: [
         {
-          name: "Monday Class ICOE",
+          name: "Demo Class",
           imageId: 1,
           students: [
             {
               name: "Ahmed Reducer",
-              avatar: "https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg",
+              imageId: 5,
               totalAssignments: 1,
               totalGrade: 2,
               currentAssignment: {
@@ -31,32 +32,6 @@ export const INITIAL_STATE = {
                   completionDate: "03-20-2019",
                   evaluation: {
                     overallGrade: 2,
-                    categoriesGrades: [
-                      {
-                        name: "Memorization",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Makharej",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Edgham & Ekhfae",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Rulings of Raa'",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Muduud",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Qalqalah",
-                        grade: 'not graded',
-                      },
-                    ],
                     notes: ""
                   }
                 }
@@ -73,7 +48,7 @@ export const INITIAL_STATE = {
             },
             {
               name: "Amina Khan",
-              avatar: "https://randomuser.me/api/portraits/thumb/women/42.jpg",
+              imageId: 25,
               totalAssignments: 1,
               totalGrade: 4,
               currentAssignment: {
@@ -87,32 +62,6 @@ export const INITIAL_STATE = {
                   completionDate: "03-20-2019",
                   evaluation: {
                     overallGrade: 4,
-                    categoriesGrades: [
-                      {
-                        name: "Memorization",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Makharej",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Edgham & Ekhfae",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Rulings of Raa'",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Muduud",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Qalqalah",
-                        grade: 'not graded',
-                      },
-                    ],
                     notes: ""
                   }
                 }
@@ -126,7 +75,8 @@ export const INITIAL_STATE = {
             },
             {
               name: "Ayoub Barrak",
-              avatar: "https://randomuser.me/api/portraits/thumb/men/43.jpg",
+
+              imageId: 19,
               totalAssignments: 1,
               totalGrade: 1,
               currentAssignment: {
@@ -140,32 +90,6 @@ export const INITIAL_STATE = {
                   completionDate: "03-20-2019",
                   evaluation: {
                     overallGrade: 1,
-                    categoriesGrades: [
-                      {
-                        name: "Memorization",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Makharej",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Edgham & Ekhfae",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Rulings of Raa'",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Muduud",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Qalqalah",
-                        grade: 'not graded',
-                      },
-                    ],
                     notes: ""
                   }
                 }
@@ -178,8 +102,8 @@ export const INITIAL_STATE = {
               ]
             },
             {
-              name: "Khaled Kwick",
-              avatar: "https://randomuser.me/api/portraits/thumb/men/45.jpg",
+              name: "Nouha Yacoubi",
+              imageId: 21,
               totalAssignments: 1,
               totalGrade: 5,
               currentAssignment: {
@@ -193,32 +117,6 @@ export const INITIAL_STATE = {
                   completionDate: "03-20-2019",
                   evaluation: {
                     overallGrade: 5,
-                    categoriesGrades: [
-                      {
-                        name: "Memorization",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Makharej",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Edgham & Ekhfae",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Rulings of Raa'",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Muduud",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Qalqalah",
-                        grade: 'not graded',
-                      },
-                    ],
                     notes: ""
                   }
                 }
@@ -232,7 +130,7 @@ export const INITIAL_STATE = {
             },
             {
               name: "Yassine Lightening",
-              avatar: "https://randomuser.me/api/portraits/thumb/men/22.jpg",
+              imageId: 15,
               totalAssignments: 1,
               totalGrade: 2,
               currentAssignment: {
@@ -246,32 +144,6 @@ export const INITIAL_STATE = {
                   completionDate: "03-20-2019",
                   evaluation: {
                     overallGrade: 2,
-                    categoriesGrades: [
-                      {
-                        name: "Memorization",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Makharej",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Edgham & Ekhfae",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Rulings of Raa'",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Muduud",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Qalqalah",
-                        grade: 'not graded',
-                      },
-                    ],
                     notes: ""
                   }
                 }
@@ -284,8 +156,8 @@ export const INITIAL_STATE = {
               ]
             },
             {
-              name: "Yusuf Awesome",
-              avatar: "https://randomuser.me/api/portraits/thumb/men/26.jpg",
+              name: "Ayah Sulaiman",
+              imageId: 27,
               totalAssignments: 2,
               totalGrade: 8,
               currentAssignment: {
@@ -299,32 +171,6 @@ export const INITIAL_STATE = {
                   completionDate: "03-22-2019",
                   evaluation: {
                     overallGrade: 3,
-                    categoriesGrades: [
-                      {
-                        name: "Memorization",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Makharej",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Edgham & Ekhfae",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Rulings of Raa'",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Muduud",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Qalqalah",
-                        grade: 'not graded',
-                      },
-                    ],
                     notes: ""
                   }
                 },
@@ -334,32 +180,6 @@ export const INITIAL_STATE = {
                   completionDate: "03-20-2019",
                   evaluation: {
                     overallGrade: 5,
-                    categoriesGrades: [
-                      {
-                        name: "Memorization",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Makharej",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Edgham & Ekhfae",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Rulings of Raa'",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Muduud",
-                        grade: 'not graded',
-                      },
-                      {
-                        name: "Qalqalah",
-                        grade: 'not graded',
-                      },
-                    ],
                     notes: ""
                   }
                 }
@@ -455,6 +275,12 @@ export const classReducer = (state = INITIAL_STATE, action) => {
         let newState = update(baseState, { teachers: { [0]: { classes: { [classIndex]: { students: { [studentIndex]: { currentAssignment: { $set: updatedAssignment } } } } } } } });
         return newState;
       }
+    case actionTypes.UPDATE_STUDENT_IMAGE:
+      {
+        let { classIndex, studentIndex, imageId } = action;
+        let newState = update(baseState, { teachers: { [0]: { classes: { [classIndex]: { students: { [studentIndex]: { imageId: { $set: imageId } } } } } } } });
+        return newState;
+      }
     case actionTypes.ADD_NEW_ASSIGNMENT:
       {
         let { classIndex, studentIndex, newAssignmentName } = action;
@@ -486,10 +312,17 @@ export const classReducer = (state = INITIAL_STATE, action) => {
         let newState = update(baseState, { teachers: { [0]: { classes: { [classIndex]: { students: { [studentIndex]: { assignmentHistory: { $push: [assignment] } } } } } } } });
         let totalAssignments = baseState.teachers[0].classes[classIndex].students[studentIndex].totalAssignments;
         let totalGrade = baseState.teachers[0].classes[classIndex].students[studentIndex].totalGrade;
-        newState =  update(newState, { teachers: { [0]: { classes: { [classIndex]: { students: { [studentIndex]: { totalAssignments: { $set: (totalAssignments + 1) } } } } } } } });
-        newState =  update(newState, { teachers: { [0]: { classes: { [classIndex]: { students: { [studentIndex]: { totalGrade: { $set: (totalGrade + assignment.evaluation.overallGrade) } } } } } } } });
+        newState = update(newState, { teachers: { [0]: { classes: { [classIndex]: { students: { [studentIndex]: { totalAssignments: { $set: (totalAssignments + 1) } } } } } } } });
+        newState = update(newState, { teachers: { [0]: { classes: { [classIndex]: { students: { [studentIndex]: { totalGrade: { $set: (totalGrade + assignment.evaluation.overallGrade) } } } } } } } });
         return newState;
       }
+    case actionTypes.SET_FIRST_RUN_COMPLETED:
+    {
+      let { completed } = action;
+      let newState = update(baseState, { firstRunCompleted: { $set: completed } });
+      console.log(JSON.stringify(newState))
+      return newState;
+    }
     default:
       return state
   }

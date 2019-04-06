@@ -20,7 +20,7 @@ export default ImageSelectionModal = (props) => {
             onRequestClose={() => {
             }}>
 
-            <View style={{ flexDirection: 'row', flexWap: 'wrap', justifyContent: 'center', alignItems: 'center' }}>
+            <View style={{ flexDirection: 'row', flexWap: 'wrap', justifyContent: 'center', alignItems: 'center', marginBottom: 10 }}>
                 <View style={styles.container}>
                     <ImageSelectionGrid
                         images={props.images}
@@ -28,6 +28,7 @@ export default ImageSelectionModal = (props) => {
                     />
                     <TouchableText
                         text={props.cancelText}
+                        style={{fontSize: 14, marginTop: 10 }}
                         onPress={() => {
                             props.setModalVisible(false);
                         }} />

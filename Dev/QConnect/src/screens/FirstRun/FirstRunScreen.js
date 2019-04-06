@@ -1,7 +1,8 @@
 import React from 'react';
 import { View, StyleSheet, Dimensions, ImageBackground} from 'react-native';
-import QcActionButton from 'components/QcActionButton'
-import QcAppBanner from 'components/QcAppBanner'
+import QcActionButton from 'components/QcActionButton';
+import QcAppBanner from 'components/QcAppBanner';
+import strings from '../../../config/strings';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
@@ -12,7 +13,7 @@ class FirstRunScreen extends React.Component {
 
     onTeacherFlow = () => {
       //todo: get the first class to show from redux persist (current class)
-        this.props.navigation.push('TeacherWelcomeScreen', { classIndex: 0, classTitle: "Quran Clas"});
+        this.props.navigation.push('TeacherWelcomeScreen', { classIndex: 0, classTitle: "Quran Class"});
     }
 
     render() {
@@ -24,7 +25,7 @@ class FirstRunScreen extends React.Component {
                     <View style={styles.spacer}></View>
                     <QcActionButton
                         navigation={navigation}
-                        text="I am a teacher"
+                        text={strings.IAmATeacher}
                         onPress={this.onTeacherFlow} />
                 </ImageBackground>
             </View>  

@@ -3,13 +3,15 @@ import { StyleSheet, View, Image, Text, ToastAndroid, KeyboardAvoidingView } fro
 import QcActionButton from 'components/QcActionButton';
 import Toast, {DURATION} from 'react-native-easy-toast'
 import { saveTeacherInfo } from "model/actions/saveTeacherInfo";
+import { setFirstRunCompleted} from "model/actions/setFirstRunCompleted"
 import { bindActionCreators } from 'redux';
 import { connect } from "react-redux";
 import colors from 'config/colors';
 import ImageSelectionRow from 'components/ImageSelectionRow'
 import ImageSelectionModal from 'components/ImageSelectionModal'
 import TeacherInfoEntries from 'components/TeacherInfoEntries'
-import teacherImages from 'config/teacherImages'
+import teacherImages from 'config/teacherImages';
+import strings from '../../../config/strings';
 
 //To-Do: All info in this class is static, still needs to be hooked up to data base in order
 //to function dynamically
@@ -48,7 +50,7 @@ export class TeacherWelcomeScreen extends Component {
 
     onTeacherFlow = () => {
         //todo: get the first class to show from redux persist (current class)
-        this.props.navigation.push('TeacherScreens', { classIndex: 0, classTitle: "Quran Clas" });
+        this.props.navigation.push('TeacherScreens', { classIndex: 0, classTitle: "Quran Class" });
     }
 
     //this method saves the new profile information to the redux database
@@ -57,7 +59,10 @@ export class TeacherWelcomeScreen extends Component {
             teacherID,
             this.state
         );
-        this.refs.toast.show('Your profile has been saved', DURATION.LENGTH_SHORT);
+
+        this.props.setFirstRunCompleted(true);
+
+        this.refs.toast.show(strings.YourProfileHasBeenSaved, DURATION.LENGTH_SHORT);
         this.onTeacherFlow();
     }
 
@@ -83,11 +88,11 @@ export class TeacherWelcomeScreen extends Component {
     render() {
         return (
             //Random image appears, still need to hook up database, see to-do above
-            <View style={styles.container}>
+            <KeyboardAvoidingView style={styles.container} behavior="padding">
                 <ImageSelectionModal
                     visible={this.state.modalVisible}
                     images={teacherImages.images}
-                    cancelText="Cancel"
+                    cancelText={strings.Cancel}
                     setModalVisible={this.setModalVisible.bind(this)}
                     onImageSelected={this.onImageSelected.bind(this)}
                 />
@@ -95,12 +100,10 @@ export class TeacherWelcomeScreen extends Component {
                 <View style={styles.picContainer}>
                     <Image
                         style={styles.welcomeImage}
-                        source={require('assets/images/salam.jpg')} />
-                    <Text style={styles.quote}>Quran teachers are very dear to our hearts.  It is our
-great honor and pleasure to serve your dedication to
-the holy book.</Text>
+                        source={require('assets/images/salam.png')} />
+                    <Text style={styles.quote}>{strings.TeacherWelcomeMessage}</Text>
                 </View>
-                <KeyboardAvoidingView style={styles.editInfo} behavior="padding">
+                <View style={styles.editInfo} behavior="padding">
                     <TeacherInfoEntries
                         name={this.state.name}
                         phoneNumber={this.state.phoneNumber}
@@ -110,21 +113,23 @@ the holy book.</Text>
                         onEmailAddressChanged={this.onEmailAddressChanged}
                     />
                     <ImageSelectionRow
+                        images={teacherImages.images}
                         highlightedImagesIndices={this.state.highlightedImagesIndices}
                         onImageSelected={this.onImageSelected.bind(this)}
                         onShowMore={() => this.setModalVisible(true)}
                         selectedImageIndex={this.state.profileImageId}
                     /> 
-                </KeyboardAvoidingView>
+                </View>
                 <View style={styles.buttonsContainer}>
                     <QcActionButton
-                        text="Save"
+                        text={strings.Save}
                         onPress={() => this.saveProfileInfo(0)} //to-do: Make sure that teacher ID 
                     //is passed instead of 0
                     />
                 </View>
+                <View style={styles.filler}></View>
                 <Toast ref="toast"/>
-            </View>
+            </KeyboardAvoidingView>
         )
     }
 
@@ -135,28 +140,26 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'column',
         backgroundColor: colors.lightGrey,
-        flex: 1
+        flex: 1,
+        justifyContent: "flex-end"
     },
     picContainer: {
         paddingTop: 10,
         alignItems: 'center',
-        paddingBottom: 10,
         marginTop: 15,
         marginBottom: 10,
         backgroundColor: colors.white,
-        flex: 1
     },
     quote: {
         fontSize: 16,
         paddingLeft: 20,
         fontStyle: 'italic',
-        paddingBottom: 15,
+        paddingBottom: 10,
         color: colors.darkGrey
     },
     welcomeImage: {
-        marginTop: 25,
+        marginTop: 15,
         width: 180,
-        height: 111,
         resizeMode: 'contain',
     },
     editInfo: {
@@ -169,6 +172,10 @@ const styles = StyleSheet.create({
         marginTop: 10,
         backgroundColor: colors.white,
         justifyContent: 'center',
+    },
+    filler: {
+        flexDirection: 'column',
+        flex: 1,
     }
 })
 
@@ -180,7 +187,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => (
     bindActionCreators({
-        saveTeacherInfo
+        saveTeacherInfo,
+        setFirstRunCompleted
     }, dispatch)
 );
 

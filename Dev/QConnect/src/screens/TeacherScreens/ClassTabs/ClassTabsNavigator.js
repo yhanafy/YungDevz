@@ -4,13 +4,14 @@ import colors from 'config/colors';
 import { Icon } from 'react-native-elements';
 import ClassMainScreen from './ClassMainScreen';
 import ClassAttendanceScreen from './ClassAttendanceScreen';
+import strings from '../../../../config/strings';
 
   const routeConfig = {
     AttendanceTab: {
         screen: ClassAttendanceScreen,
         path: '/first_run',
         navigationOptions: {
-        tabBarLabel: 'Attendance',
+        tabBarLabel: strings.Attendance,
         tabBarIcon: ({ tintColor, focused }) => (
             <Icon
                 name="calendar-check-o"
@@ -24,7 +25,7 @@ import ClassAttendanceScreen from './ClassAttendanceScreen';
         screen: ClassMainScreen,
         path: '/class',
         navigationOptions: {
-        tabBarLabel: 'Class',
+        tabBarLabel: strings.Class,
         tabBarIcon: ({ tintColor, focused }) => (
             <Icon
                 name="group"
