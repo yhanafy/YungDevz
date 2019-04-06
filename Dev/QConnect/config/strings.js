@@ -47,6 +47,7 @@ export default {
     PleaseInputAName: 'Please input a name!',
     EnterNewStudentsName: 'Enter new student\'s name',
     AddStudent: 'Add Student',
+    Done: 'Done',
 
     //--------------------- Class Header Navigator ---------------------
     StudentProfile: 'Student Profile',
