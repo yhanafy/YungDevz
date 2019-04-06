@@ -1,7 +1,11 @@
 import { createStackNavigator, createAppContainer, DrawerActions } from 'react-navigation';
+import React from 'react';
 import FirstRunScreen from './FirstRunScreen';
 import TeacherMenu from '../TeacherScreens/TeacherMenu';
-import TeacherWelcomeScreen from './TeacherWelcomeScreen'
+import TeacherWelcomeScreen from './TeacherWelcomeScreen';
+import AddClassScreen from '../TeacherScreens/AddClass/AddClassScreen';
+import TopBanner from 'components/TopBanner';
+import strings from 'config/strings';
 
 const routeConfig = {
     FirstRunScreen: {
@@ -12,6 +16,16 @@ const routeConfig = {
     },
     TeacherScreens: {
         screen: TeacherMenu
+    },
+    AddClassScreenFirstRun: {
+        screen: AddClassScreen,
+        navigationOptions: ({ navigation }) => ({
+            header: (
+                <TopBanner
+                    Title={strings.AddNewClass}
+                />
+            )
+        }),
     }
 }
 

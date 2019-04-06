@@ -49,10 +49,7 @@ export class AddClassScreen extends Component {
       this.props.addClass(classInfo);
 
       //Navigates to the class
-      this.props.navigation.push("CurrentClass", {
-        classIndex: this.props.classes.length,
-        classTitle: this.state.className
-      });
+      this.props.navigation.push("TeacherScreens", { classIndex: this.props.classes.length, classTitle: this.state.name });
     } else {
       alert(strings.PleaseMakeSureToHaveAnInput);
     }
