@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Image, KeyboardAvoidingView, ToastAndroid} from 'react-native';
-import Toast, {DURATION} from 'react-native-easy-toast'
+import { StyleSheet, View, Image, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import Toast, { DURATION } from 'react-native-easy-toast'
 import QcActionButton from 'components/QcActionButton';
 import TouchableText from 'components/TouchableText'
 import teacherImages from 'config/teacherImages'
@@ -52,44 +52,44 @@ export class TeacherProfileScreen extends Component {
 
     //------ event handlers to capture user input into state as user modifies the entries -----
     onNameChanged = (value) => {
-        this.setState({name: value})
+        this.setState({ name: value })
     }
 
     onPhoneNumberChanged = (value) => {
-        this.setState({phoneNumber: value})
+        this.setState({ phoneNumber: value })
     }
 
     onEmailAddressChanged = (value) => {
-        this.setState({emailAddress: value})
+        this.setState({ emailAddress: value })
     }
 
     onImageSelected(index) {
-        this.setState({profileImageId: index,})
+        this.setState({ profileImageId: index, })
         this.setModalVisible(false);
     }
 
     //-----------renders the teacher profile UI ------------------------------------
     render() {
-        return(
+        return (
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+                <KeyboardAvoidingView style={styles.container} behavior="padding">
+                    <ImageSelectionModal
+                        visible={this.state.modalVisible}
+                        images={teacherImages.images}
+                        cancelText={strings.Cancel}
+                        setModalVisible={this.setModalVisible.bind(this)}
+                        onImageSelected={this.onImageSelected.bind(this)}
+                    />
+                    <View style={styles.picContainer}>
+                        <Image
+                            style={styles.profilePic}
+                            source={teacherImages.images[this.state.profileImageId]} />
+                        <TouchableText
+                            text={strings.UpdateProfileImage}
+                            onPress={() => this.editProfilePic(0)} />
+                    </View>
 
-            <KeyboardAvoidingView style={styles.container} behavior="padding">
-                <ImageSelectionModal
-                    visible={this.state.modalVisible}
-                    images={teacherImages.images}
-                    cancelText={strings.Cancel}
-                    setModalVisible={this.setModalVisible.bind(this)}
-                    onImageSelected={this.onImageSelected.bind(this)}
-                />
-                <View style={styles.picContainer}>
-                    <Image 
-                        style={styles.profilePic} 
-                        source={teacherImages.images[this.state.profileImageId]} />
-                    <TouchableText
-                        text={strings.UpdateProfileImage}
-                        onPress={() => this.editProfilePic(0)} />
-                </View>
-               
-                <TeacherInfoEntries
+                    <TeacherInfoEntries
                         name={this.state.name}
                         phoneNumber={this.state.phoneNumber}
                         emailAddress={this.state.emailAddress}
@@ -97,20 +97,21 @@ export class TeacherProfileScreen extends Component {
                         onPhoneNumberChanged={this.onPhoneNumberChanged}
                         onEmailAddressChanged={this.onEmailAddressChanged}
                     />
-                <View style={styles.buttonsContainer}>
-                    <QcActionButton
-                    text={strings.Cancel}
-                    onPress={() => this.resetProfileInfo()}
-                    />
-                    <QcActionButton
-                    text={strings.Save}
-                    onPress={() => this.saveProfileInfo(0)} //to-do: Make sure that teacher ID 
-                                                            //is passed instead of 0
-                    />
-                </View>
-                <View style={styles.filler}></View>
-                <Toast ref="toast"/>
-            </KeyboardAvoidingView>
+                    <View style={styles.buttonsContainer}>
+                        <QcActionButton
+                            text={strings.Cancel}
+                            onPress={() => this.resetProfileInfo()}
+                        />
+                        <QcActionButton
+                            text={strings.Save}
+                            onPress={() => this.saveProfileInfo(0)} //to-do: Make sure that teacher ID 
+                        //is passed instead of 0
+                        />
+                    </View>
+                    <View style={styles.filler}></View>
+                    <Toast ref="toast" />
+                </KeyboardAvoidingView>
+            </TouchableWithoutFeedback>
         )
     }
 
@@ -119,7 +120,7 @@ export class TeacherProfileScreen extends Component {
 //Styles for the Teacher profile class
 const styles = StyleSheet.create({
     container: {
-        flexDirection:'column',
+        flexDirection: 'column',
         backgroundColor: colors.lightGrey,
         flex: 1,
         justifyContent: "flex-end"
@@ -140,7 +141,7 @@ const styles = StyleSheet.create({
     editInfo: {
         flexDirection: 'column',
         backgroundColor: colors.white
-    }, 
+    },
     infoRow: {
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -159,11 +160,11 @@ const styles = StyleSheet.create({
         paddingBottom: 20,
     },
     infoTextInput: {
-        paddingRight: 20, 
+        paddingRight: 20,
         fontSize: 16
     },
     infoTitle: {
-        paddingLeft: 20, 
+        paddingLeft: 20,
         fontSize: 16
     },
     buttonsContainer: {
