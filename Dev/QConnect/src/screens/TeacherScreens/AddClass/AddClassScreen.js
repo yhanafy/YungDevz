@@ -42,7 +42,7 @@ export class AddClassScreen extends Component {
   classNameAlreadyExists() {
     let { classes } = this.props;
     for (let i = 0; i < classes.length; i++) {
-      if (classes[i].name === this.state.className) {
+      if (classes[i].name.toLowerCase() === this.state.className.toLowerCase()) {
         return true;
       }
     }
