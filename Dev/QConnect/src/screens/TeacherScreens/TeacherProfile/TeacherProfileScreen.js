@@ -45,13 +45,18 @@ export class TeacherProfileScreen extends Component {
 
     //this method saves the new profile information to the redux database
     saveProfileInfo = (teacherID) => {
-        this.props.saveTeacherInfo(
-            teacherID,
-            this.state
-        );
-        this.refs.toast.show(strings.YourProfileHasBeenSaved, DURATION.LENGTH_SHORT);
-        //Just goes to the first class
-        this.props.navigation.push('CurrentClass');
+        const { name, phoneNumber, emailAddress } = this.state;
+        if (name.trim() === "" || phoneNumber.trim() === "" || emailAddress.trim() === "") {
+            alert(strings.PleaseMakeSureAllFieldsAreFilledOut);
+        } else {
+            this.props.saveTeacherInfo(
+                teacherID,
+                this.state
+            );
+            this.refs.toast.show(strings.YourProfileHasBeenSaved, DURATION.LENGTH_SHORT);
+            //Just goes to the first class
+            this.props.navigation.push('CurrentClass');
+        }
     }
 
     //------ event handlers to capture user input into state as user modifies the entries -----

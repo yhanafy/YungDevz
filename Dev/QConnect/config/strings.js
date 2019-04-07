@@ -64,6 +64,7 @@ export default {
 
     //--------------------- Teacher Profile Screen ---------------------
     UpdateProfileImage: 'Update profile image',
+    PleaseMakeSureAllFieldsAreFilledOut: 'Please make sure all fields are filled out',
 
     //--------------------- Left Nav Pane ---------------------
     sProfile: '\'s profile',
