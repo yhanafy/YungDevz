@@ -106,7 +106,7 @@ export class ClassAttendanceScreen extends Component {
     render() {
 
         const { classIndex } = this.props;
-    
+            
         return (
         //The scroll view will have at the top a date picker which will be defaulted to the current
         //date and it will allow the user to view previous day's attendance along with setting
@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state, ownProps) => {
-    const  classIndex  = ownProps.navigation.state.params ? ownProps.navigation.state.params : state.data.teachers[0].currentClassIndex;
+    const  classIndex  = ownProps.navigation.state.params ? ownProps.navigation.state.params.classIndex : state.data.teachers[0].currentClassIndex;
     state = state.data.teachers[0].classes[classIndex];
     return {...state,
         classIndex: classIndex

@@ -7,16 +7,14 @@ import studentImages from "config/studentImages"
 
 export class ClassMainScreen extends Component {
   render() {
-    classIndex = this.props.navigation.state.params
-      ? this.props.navigation.state.params.classIndex
-      : 0;
+    
 
     return (
-      this.props.classes.length === 0 ? this.props.navigation.push('AddClass') :
-      this.props.classes[classIndex].students.length === 0 ? this.props.navigation.push('ClassEdit') :
+      // this.props.classes.length === 0 ? this.props.navigation.push('AddClass') :
+      // this.props.classes[classIndex].students.length === 0 ? this.props.navigation.push('ClassEdit') :
       <ScrollView style={styles.container}>
         <FlatList
-          data={this.props.classes[classIndex].students}
+          data={this.props.students}
           keyExtractor={(item, index) => item.name} // fix, should be item.id (add id to classes)
           renderItem={({ item, index }) => (
             <StudentCard
@@ -52,9 +50,13 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = state => {
-  const { classes } = state.data.teachers[0];
-  return { classes };
+const mapStateToProps = (state, ownProps) => {
+  let classIndex = ownProps.navigation.state.params
+      ? ownProps.navigation.state.params.classIndex
+      : state.data.teachers[0].currentClassIndex;
+
+  let currentClass  = state.data.teachers[0].classes[classIndex];
+  return { classIndex, ...currentClass };
 };
 
 export default connect(mapStateToProps)(ClassMainScreen);

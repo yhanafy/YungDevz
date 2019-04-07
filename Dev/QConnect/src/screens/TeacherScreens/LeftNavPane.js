@@ -12,17 +12,17 @@ import strings from '../../../config/strings';
 
 class LeftNavPane extends React.Component {
   openClass = (i, className) => {
-    this.props.navigation.push("CurrentClass", {
-      classIndex: i,
-      classTitle: className
-    });
+     this.props.navigation.push("CurrentClass", {
+       classIndex: i,
+       classTitle: className
+     });
     this.props.navigation.closeDrawer();
   };
 
-  //todo: change the ListItem header and tgfooter below to the shared drawer component intead
+  //todo: change the ListItem header and footer below to the shared drawer component intead
   // generalize the QcDrawerItem to accept either an image or an icon
   render() {
-    const {name, profileImageId, classes} = this.props;
+    const {name, profileImageId, currentClassIndex} = this.props;
 
     const profileCaption = name + strings.sProfile
     const teacherImageId = profileImageId ? profileImageId : 0
@@ -80,8 +80,8 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  const { classes, name, profileImageId } = state.data.teachers[0];
-  return { classes, name, profileImageId };
+  const { classes, name, profileImageId, currentClassIndex } = state.data.teachers[0];
+  return { classes, name, profileImageId, currentClassIndex };
 };
 
 export default connect(mapStateToProps)(LeftNavPane);
