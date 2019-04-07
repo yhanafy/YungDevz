@@ -12,6 +12,8 @@ import studentImages from "config/studentImages";
 import strings from "../../../../config/strings";
 
 export class ClassEditScreen extends Component {
+
+
   // ---------- Helpers to initialize random suggested student images --------------
   //  2 gender neutral images, one female, and one male
   // -------------------------------------------------------------------------------
@@ -55,9 +57,28 @@ export class ClassEditScreen extends Component {
     highlightedImagesIndices: this.getHighlightedImages(),
   }
 
+  //Tests whether the entered input is already a student that exists in the given class
+  studentNameExists() {
+    const { params } = this.props.navigation.state;
+    const students = this.props.classes[params && params.classIndex ? params.classIndex : 0].students;
+    const input = this.state.newStudentName.trim();
+
+    //Will search if there is a student with the same name or not, if there is, it will return the 
+    //index, if there is not, it will return -1.
+    const studentIndex = students.findIndex((student) => {
+      return student.name === input;
+    });
+
+    return studentIndex !== -1;
+  }
+
   // ----------- Redux function to persist the added student ------------------------
   addNewStudent(classIndex) {
-    if (this.state.newStudentName) {
+    if (!this.state.newStudentName) {
+      alert(strings.PleaseInputAName);
+    } else if (this.studentNameExists()) {
+      alert(strings.ThereIsAlreadyAStudentWithThatName);
+    } else {
       this.props.addStudent({
         classIndex: classIndex,
         studentInfo: {
@@ -76,8 +97,6 @@ export class ClassEditScreen extends Component {
       this.refs.toast.show(this.state.newStudentName + strings.IsNowAddedToTheClass,
         DURATION.LENGTH_SHORT);
       this.setState({ newStudentName: "" });
-    } else {
-      alert(strings.PleaseInputAName)
     }
   }
 

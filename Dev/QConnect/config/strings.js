@@ -48,6 +48,7 @@ export default {
     EnterNewStudentsName: 'Enter new student\'s name...',
     AddStudent: 'Add Student',
     Done: 'Done',
+    ThereIsAlreadyAStudentWithThatName: 'There is already a student with that name',
 
     //--------------------- Class Header Navigator ---------------------
     StudentProfile: 'Student Profile',

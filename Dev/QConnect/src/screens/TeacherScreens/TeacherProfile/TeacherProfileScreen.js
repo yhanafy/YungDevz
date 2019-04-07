@@ -29,7 +29,9 @@ export class TeacherProfileScreen extends Component {
             phoneNumber: this.props.phoneNumber,
             emailAddress: this.props.emailAddress,
             profileImageId: this.props.profileImageId,
-        })
+        });
+        //Just goes to the first class
+        this.props.navigation.push('CurrentClass');
     }
 
     setModalVisible(visible) {
@@ -48,6 +50,8 @@ export class TeacherProfileScreen extends Component {
             this.state
         );
         this.refs.toast.show(strings.YourProfileHasBeenSaved, DURATION.LENGTH_SHORT);
+        //Just goes to the first class
+        this.props.navigation.push('CurrentClass');
     }
 
     //------ event handlers to capture user input into state as user modifies the entries -----
