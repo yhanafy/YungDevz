@@ -14,8 +14,6 @@ const routeConfig = {
       title: 'Teacher',
     })
   },
-  //Todo: The drawer must be dynamic and must map out all of the classes and display them in
-  //the drawer options
   CurrentClass: {
     screen: ClassHeaderNavigator,
     path: 'teacher/class/tabs', //todo: the path should have class id as a param to be unique

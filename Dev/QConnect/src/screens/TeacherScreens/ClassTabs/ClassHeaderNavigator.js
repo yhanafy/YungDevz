@@ -15,11 +15,11 @@ const ClassHeaderNavigator = createStackNavigator({
         <TopBanner
           LeftIconName="navicon"
           LeftOnPress={() => navigation.openDrawer()}
-          Title={(navigation.state.params && navigation.state.params.classTitle)? navigation.state.params.classTitle : 'Quran Class'}
+          Title={(navigation.state.params && navigation.state.params.classTitle) ? navigation.state.params.classTitle : 'Quran Class'}
           RightIconName="edit"
           RightOnPress={() => navigation.push('ClassEdit', navigation.state.params)}
         />
-      ),  
+      ),
     }),
   },
   StudentProfile: {
@@ -30,7 +30,7 @@ const ClassHeaderNavigator = createStackNavigator({
           LeftIconName="angle-left"
           LeftOnPress={() => navigation.goBack()}
           Title={strings.StudentProfile}
-          RightOnPress={() => {}}
+          RightOnPress={() => { }}
         />
       )
     })
@@ -40,13 +40,11 @@ const ClassHeaderNavigator = createStackNavigator({
   //the class will be changed. (That still needs to be coded in)
   ClassEdit: {
     screen: ClassEditScreen,
-    navigationOptions: ({navigation}) => ({
+    navigationOptions: ({ navigation }) => ({
       header: (
         <TopBanner
-          LeftTextName={strings.Cancel}
-          LeftOnPress={() => navigation.goBack()}
           Title={strings.EditClass}
-          RightTextName={strings.Save}
+          RightTextName={strings.Done}
           RightOnPress={() => navigation.goBack()}
         />
       )
@@ -61,7 +59,7 @@ const ClassHeaderNavigator = createStackNavigator({
           LeftOnPress={() => navigation.goBack()}
           Title={strings.StudentEvaluation}
           RightIconName="edit"
-          RightOnPress={() => {}}
+          RightOnPress={() => { }}
         />
       )
     })
