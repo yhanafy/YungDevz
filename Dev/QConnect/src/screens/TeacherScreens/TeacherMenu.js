@@ -1,5 +1,5 @@
 import React from 'react';
-import {createDrawerNavigator, createAppContainer, createStackNavigator} from 'react-navigation';
+import {createDrawerNavigator, createStackNavigator, createAppContainer} from 'react-navigation';
 import { Icon } from 'react-native-elements';
 import AddClassNavigator from './AddClass/AddClassNavigator';
 import ClassHeaderNavigator from './ClassTabs/ClassHeaderNavigator';
@@ -14,8 +14,6 @@ const routeConfig = {
       title: 'Teacher',
     })
   },
-  //Todo: The drawer must be dynamic and must map out all of the classes and display them in
-  //the drawer options
   CurrentClass: {
     screen: ClassHeaderNavigator,
     path: 'teacher/class/tabs', //todo: the path should have class id as a param to be unique
@@ -44,6 +42,8 @@ const navigationConfig = {
 
 
 const drawer = createDrawerNavigator(routeConfig, navigationConfig);
-const teacherClasses = createStackNavigator({Home: drawer}, {headerMode: 'none'});
+const teacherClasses = createStackNavigator({ Home: drawer }, {
+  headerMode: 'none',
+})
 
 export default createAppContainer(teacherClasses);
