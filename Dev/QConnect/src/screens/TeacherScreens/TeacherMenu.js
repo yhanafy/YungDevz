@@ -1,5 +1,5 @@
 import React from 'react';
-import {createDrawerNavigator, createAppContainer} from 'react-navigation';
+import {createDrawerNavigator, createAppContainer, createStackNavigator} from 'react-navigation';
 import { Icon } from 'react-native-elements';
 import AddClassNavigator from './AddClass/AddClassNavigator';
 import ClassHeaderNavigator from './ClassTabs/ClassHeaderNavigator';
@@ -44,5 +44,6 @@ const navigationConfig = {
 
 
 const drawer = createDrawerNavigator(routeConfig, navigationConfig);
+const teacherClasses = createStackNavigator({Home: drawer}, {headerMode: 'none'});
 
-export default createAppContainer(drawer);
+export default createAppContainer(teacherClasses);

@@ -793,7 +793,7 @@ exports[`Teacher screens snapshots render ClassAttendanceScreen 1`] = `
                       >
                         <RCTDatePicker
                           date={1552719600000}
-                          maximumDate={1554447600000}
+                          maximumDate={1554620400000}
                           mode="date"
                           onChange={[Function]}
                           onResponderTerminationRequest={[Function]}
@@ -3493,9 +3493,12 @@ exports[`Teacher screens snapshots render TeacherProfileScreen 1`] = `
         onChangeText={[Function]}
         style={
           Object {
+            "alignSelf": "stretch",
             "color": "#6b6b6b",
+            "flex": 1,
             "fontSize": 14,
             "paddingRight": 20,
+            "textAlign": "right",
           }
         }
         underlineColorAndroid="transparent"
@@ -3531,9 +3534,12 @@ exports[`Teacher screens snapshots render TeacherProfileScreen 1`] = `
         onChangeText={[Function]}
         style={
           Object {
+            "alignSelf": "stretch",
             "color": "#6b6b6b",
+            "flex": 1,
             "fontSize": 14,
             "paddingRight": 20,
+            "textAlign": "right",
           }
         }
         underlineColorAndroid="transparent"
@@ -3569,9 +3575,12 @@ exports[`Teacher screens snapshots render TeacherProfileScreen 1`] = `
         onChangeText={[Function]}
         style={
           Object {
+            "alignSelf": "stretch",
             "color": "#6b6b6b",
+            "flex": 1,
             "fontSize": 14,
             "paddingRight": 20,
+            "textAlign": "right",
           }
         }
         underlineColorAndroid="transparent"
@@ -4297,9 +4306,12 @@ exports[`Teacher screens snapshots render TeacherWelcomeScreen 1`] = `
           onChangeText={[Function]}
           style={
             Object {
+              "alignSelf": "stretch",
               "color": "#6b6b6b",
+              "flex": 1,
               "fontSize": 14,
               "paddingRight": 20,
+              "textAlign": "right",
             }
           }
           underlineColorAndroid="transparent"
@@ -4335,9 +4347,12 @@ exports[`Teacher screens snapshots render TeacherWelcomeScreen 1`] = `
           onChangeText={[Function]}
           style={
             Object {
+              "alignSelf": "stretch",
               "color": "#6b6b6b",
+              "flex": 1,
               "fontSize": 14,
               "paddingRight": 20,
+              "textAlign": "right",
             }
           }
           underlineColorAndroid="transparent"
@@ -4373,9 +4388,12 @@ exports[`Teacher screens snapshots render TeacherWelcomeScreen 1`] = `
           onChangeText={[Function]}
           style={
             Object {
+              "alignSelf": "stretch",
               "color": "#6b6b6b",
+              "flex": 1,
               "fontSize": 14,
               "paddingRight": 20,
+              "textAlign": "right",
             }
           }
           underlineColorAndroid="transparent"

@@ -12,8 +12,8 @@ export class ClassMainScreen extends Component {
       : 0;
 
     return (
-      this.props.classes.length === 0 ? this.props.navigation.push('AddClass') :
-      this.props.classes[classIndex].students.length === 0 ? this.props.navigation.push('ClassEdit') :
+      // this.props.classes.length === 0 ? this.props.navigation.push('AddClass') :
+      // this.props.classes[classIndex].students.length === 0 ? this.props.navigation.push('ClassEdit') :
       <ScrollView style={styles.container}>
         <FlatList
           data={this.props.classes[classIndex].students}
