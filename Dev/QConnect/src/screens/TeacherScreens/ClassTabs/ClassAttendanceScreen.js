@@ -63,7 +63,7 @@ export class ClassAttendanceScreen extends Component {
             }
         }
         this.props.addAttendance(
-            this.props.navigation.state.params.classIndex,
+            this.props.classIndex,
             attendanceInfo
         );
         this.refs.toast.show(strings.AttendanceFor + date + strings.HasBeenSaved, DURATION.LENGTH_SHORT);
@@ -105,8 +105,8 @@ export class ClassAttendanceScreen extends Component {
     
     render() {
 
-        const { classIndex } = this.props.navigation.state.params.classIndex;
-    
+        const { classIndex } = this.props;
+            
         return (
         //The scroll view will have at the top a date picker which will be defaulted to the current
         //date and it will allow the user to view previous day's attendance along with setting
@@ -167,9 +167,11 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state, ownProps) => {
-    const { classIndex } = ownProps.navigation.state.params;
+    const  classIndex  = ownProps.navigation.state.params ? ownProps.navigation.state.params.classIndex : state.data.teachers[0].currentClassIndex;
     state = state.data.teachers[0].classes[classIndex];
-    return state;
+    return {...state,
+        classIndex: classIndex
+        };
   };
 
 const mapDispatchToProps = dispatch => (

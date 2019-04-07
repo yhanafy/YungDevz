@@ -17,6 +17,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { addClass } from "model/actions/addClass";
 import strings from '../../../../config/strings';
+import { classReducer } from "../../../model/reducers/classReducer";
 
 export class AddClassScreen extends Component {
   //----------------------- state -------------------------------------
@@ -37,82 +38,108 @@ export class AddClassScreen extends Component {
     this.setModalVisible(false);
   }
 
+  //---- helper function to determine if the entered class name is duplicate -------
+  classNameAlreadyExists() {
+    let { classes } = this.props;
+    for (let i = 0; i < classes.length; i++) {
+      if (classes[i].name.toLowerCase() === this.state.className.toLowerCase()) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
   // saves the class into redux
   addNewClass() {
-    if (this.state.className) {
-      let classInfo = {
-        name: this.state.className,
-        imageId: this.state.classImageId,
-        students: []
-      };
+    let { classes } = this.props;
 
-      this.props.addClass(classInfo);
-
-      //Navigates to the class
-      this.props.navigation.push("CurrentClass", {
-        classIndex: this.props.classes.length,
-        classTitle: this.state.className
-      });
-    } else {
+    if (!this.state.className || this.state.className.trim().length === 0) {
       alert(strings.PleaseMakeSureToHaveAnInput);
+      return;
     }
+
+    if (this.classNameAlreadyExists()) {
+      alert(
+        /*Message to say that it is an invalid input:*/
+        "Class Name already exists!",
+        [/*Button to exit */
+          { text: "OK" }
+        ]
+      )
+      return;
+    }
+
+    let classInfo = {
+      name: this.state.className,
+      imageId: this.state.classImageId,
+      students: []
+    };
+
+    this.props.addClass(classInfo);
+
+    //Navigates to the class
+    this.props.navigation.push("CurrentClass", {
+      classIndex: this.props.classes.length,
+      classTitle: this.state.className
+    });
   }
 
-  // ------------ renders the UI of the screen ---------------------------
-  render() {
-    return (
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-        <KeyboardAvoidingView style={styles.container} behavior="padding">
-          <View
-            style={styles.container}
-          >
+// ------------ renders the UI of the screen ---------------------------
+render() {
+  return (
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+      <KeyboardAvoidingView style={styles.container} behavior="padding">
+        <View
+          style={styles.container}
+        >
 
-            <ImageSelectionModal
-              visible={this.state.modalVisible}
-              images={classImages.images}
-              cancelText={strings.Cancel}
-              setModalVisible={this.setModalVisible.bind(this)}
-              onImageSelected={this.onImageSelected.bind(this)}
+          <ImageSelectionModal
+            visible={this.state.modalVisible}
+            images={classImages.images}
+            cancelText={strings.Cancel}
+            setModalVisible={this.setModalVisible.bind(this)}
+            onImageSelected={this.onImageSelected.bind(this)}
+          />
+
+          <View style={styles.picContainer}>
+            <Image
+              style={styles.profilePic}
+              source={classImages.images[this.state.classImageId]}
+              ResizeMode="contain" />
+            <TouchableText
+              text={strings.EditClassImage}
+              onPress={() => this.setModalVisible(true)} />
+          </View>
+
+          <View style={styles.bottomContainer}>
+            <TextInput
+              style={styles.textInputStyle}
+              placeholder={strings.WriteClassNameHere}
+              onChangeText={classInput =>
+                this.setState({
+                  className: classInput
+                })
+              }
             />
 
-            <View style={styles.picContainer}>
-              <Image
-                style={styles.profilePic}
-                source={classImages.images[this.state.classImageId]}
-                ResizeMode="contain" />
-              <TouchableText
-                text={strings.EditClassImage}
-                onPress={() => this.setModalVisible(true)} />
-            </View>
+            <Text style={{
+              fontSize: 15,
+              marginTop: 5
+            }}>{strings.YourClassNameIs}{this.state.className}</Text>
 
-            <View style={styles.bottomContainer}>
-              <TextInput
-                style={styles.textInputStyle}
-                placeholder={strings.WriteClassNameHere}
-                onChangeText={classInput =>
-                  this.setState({
-                    className: classInput
-                  })
-                }
-              />
-
-              <Text style={{
-                fontSize: 15,
-                marginTop: 5
-              }}>{strings.YourClassNameIs}{this.state.className}</Text>
-
-              <QcActionButton
-                text={strings.AddClass}
-                onPress={() => {
-                  this.addNewClass();
-                }}
-              />
-            </View>
+            <QcActionButton
+              text={strings.AddClass}
+              onPress={() => {
+                this.addNewClass();
+              }}
+            />
           </View>
-        </KeyboardAvoidingView>
-      </TouchableWithoutFeedback>
-    );
-  }
+        </View>
+      </KeyboardAvoidingView>
+    </TouchableWithoutFeedback>
+  );
+}
 }
 
 //Styles for the Teacher profile class
