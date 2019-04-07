@@ -2115,7 +2115,7 @@ exports[`Teacher screens snapshots render ClassEditScreen 1`] = `
       <TextInput
         allowFontScaling={true}
         onChangeText={[Function]}
-        placeholder="Enter new student's name"
+        placeholder="Enter new student's name..."
         underlineColorAndroid="transparent"
         value=""
       />
@@ -2867,7 +2867,13 @@ exports[`Teacher screens snapshots render ClassMainScreen 1`] = `
 
 exports[`Teacher screens snapshots render TeacherProfileScreen 1`] = `
 <View
-  onLayout={[Function]}
+  accessible={false}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
   style={
     Array [
       Object {
