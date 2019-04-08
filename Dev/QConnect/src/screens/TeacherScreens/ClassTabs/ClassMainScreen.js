@@ -7,7 +7,7 @@ import studentImages from "config/studentImages"
 
 export class ClassMainScreen extends Component {
   render() {
-    
+    const classIndex = this.props.classIndex;
 
     return (
       <ScrollView style={styles.container}>
