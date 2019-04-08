@@ -24,7 +24,7 @@ export default {
     NeedsWork: 'Needs Work',
     CurrentAssignment: 'Current Assignment',
     AddAssignment: 'Add Assignment',
-    GradeAssignment: 'Grade Assignment',
+    Grade: 'Grade',
 
     //--------------------- Add Class Screen ---------------------
     PleaseMakeSureToHaveAnInput: 'Please make sure to have an input!',
