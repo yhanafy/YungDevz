@@ -14,10 +14,10 @@ import strings from 'config/strings';
 //const { directions: { SWIPE_UP, SWIPE_LEFT, SWIPE_DOWN, SWIPE_RIGHT } } = swipeable;
 
 export class ClassAttendanceScreen extends Component {
-
+    todaysDate = this.props.defaultDate ? this.props.defaultDate : new Date().toLocaleDateString("en-US")
     state = {
         selectedStudents: [],
-        selectedDate: this.props.defaultDate ? this.props.defaultDate : new Date().toLocaleDateString("en-US")
+        selectedDate: this.todaysDate
     }
 
     //This method will set the student selected property to the opposite of whatever it was
@@ -120,7 +120,7 @@ export class ClassAttendanceScreen extends Component {
                     format="MM-DD-YYYY"
                     duration={300}
                     style={{paddingLeft: 15}}
-                    maxDate={new Date().toLocaleDateString("en-US")}
+                    maxDate={this.todaysDate}
                     customStyles={{dateInput: {borderColor: colors.lightGrey}}}
                     onDateChange={(date) => this.getAttendance(date)}
                     />
