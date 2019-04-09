@@ -127,7 +127,7 @@ class StudentProfileScreen extends FontLoadingComponent {
                   <View style={{ flexDirection: 'row' }}>
                     <TouchableHighlight
                       onPress={() => { this.setState({ isDialogVisible: true }) }} >
-                      <Text style={styles.assignmentActionText}>Edit</Text>
+                      <Text style={styles.assignmentActionText}>{strings.EditAssignment}</Text>
                     </TouchableHighlight>
 
                     {hasCurrentAssignment ? <TouchableHighlight onPress={() =>
@@ -135,7 +135,7 @@ class StudentProfileScreen extends FontLoadingComponent {
                         studentIndex: studentIndex,
                         classIndex: classIndex
                       })} >
-                      <Text style={styles.assignmentActionText}>Grade</Text>
+                      <Text style={styles.assignmentActionText}>{strings.Grade}</Text>
                     </TouchableHighlight> : <View />}
                   </View>
                 </View>
