@@ -793,7 +793,7 @@ exports[`Teacher screens snapshots render ClassAttendanceScreen 1`] = `
                       >
                         <RCTDatePicker
                           date={1552719600000}
-                          maximumDate={1554620400000}
+                          maximumDate={1552719600000}
                           mode="date"
                           onChange={[Function]}
                           onResponderTerminationRequest={[Function]}
