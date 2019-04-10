@@ -147,7 +147,7 @@ class StudentProfileScreen extends FontLoadingComponent {
             <ScrollView style={styles.prevAssignments}>
               <FlatList
                 data={currentStudent.assignmentHistory}
-                keyExtractor={(item, index) => item.name}
+                keyExtractor={(item, index) => item.name + index}
                 renderItem={({ item, index }) => (
                   <View style={styles.prevAssignmentCard} key={index}>
 
