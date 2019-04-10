@@ -63,13 +63,14 @@ class StudentProfileScreen extends FontLoadingComponent {
     //the rating will default to 0.
     averageRating = currentStudent.totalAssignments === 0 ? 0.0 :
       (currentStudent.totalGrade / currentStudent.totalAssignments);
+    const dialogInitialText =  currentStudent.currentAssignment.name === 'None' ? {hintInput: strings.EnterAssignmentHere} : {initValueTextInput: currentStudent.currentAssignment.name} 
 
     return (
       <View style={styles.container}>
         <DialogInput
           isDialogVisible={this.state.isDialogVisible}
           title={strings.EditAssignment}
-          hintInput={strings.EnterAssignmentHere}
+          {...dialogInitialText}
           dialogStyle={{ marginBottom: 100 }}
           submitInput={(inputText) =>
           //If the student already has an existing assignment, then it will simply edit the
