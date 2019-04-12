@@ -135,7 +135,6 @@ export const classReducer = (state = INITIAL_STATE, action) => {
     {
       let { completed } = action;
       let newState = update(baseState, { firstRunCompleted: { $set: completed } });
-      console.log(JSON.stringify(newState))
       return newState;
     }
     default:

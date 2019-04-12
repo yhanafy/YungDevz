@@ -16,7 +16,6 @@ class TopBanner extends FontLoadingComponent {
             RightIconName, RightTextName, RightOnPress, className} = this.props;
         let headerTitle = (Title === strings.titleNotPassed)?  className : Title ;
 
-        console.log("passed in: " + Title + ". redux: " + className + ". header: " + headerTitle)
         return(
             <View>
                 {this.state.fontLoaded ? (
