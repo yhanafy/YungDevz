@@ -29,8 +29,7 @@ export default {
     //--------------------- Add Class Screen ---------------------
     PleaseMakeSureToHaveAnInput: 'Please make sure to have an input!',
     EditClassImage: 'Edit class image',
-    WriteClassNameHere: 'Write class name here',
-    YourClassNameIs: 'Your class name is ',
+    WriteClassNameHere: 'Enter the new class name',
     AddClass: 'Add Class',
 
     //--------------------- Add Class Navigator ---------------------
@@ -52,7 +51,7 @@ export default {
 
     //--------------------- Class Header Navigator ---------------------
     StudentProfile: 'Student Profile',
-    EditClass: 'Edit Class',
+    EditClass: 'Edit Students',
     StudentEvaluation: 'Student Evaluation',
 
     //--------------------- Class Tabs Navigator ---------------------
@@ -69,4 +68,6 @@ export default {
     //--------------------- Left Nav Pane ---------------------
     sProfile: '\'s profile',
 
+    //----------------------Error string codes: used to indicate errors in string params -----------
+    titleNotPassed: "no_title_code_500"
 }
