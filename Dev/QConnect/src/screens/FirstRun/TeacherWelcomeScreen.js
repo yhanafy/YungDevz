@@ -50,7 +50,7 @@ export class TeacherWelcomeScreen extends Component {
 
     onTeacherFlow = () => {
         //todo: get the first class to show from redux persist (current class)
-        this.props.navigation.push('TeacherScreens', { classIndex: 0, classTitle: "Quran Class" });
+        this.props.navigation.push('AddClass');
     }
 
     //this method saves the new profile information to the redux database
@@ -59,9 +59,13 @@ export class TeacherWelcomeScreen extends Component {
         if (name.trim() === "" || phoneNumber.trim() === "" || emailAddress.trim() === "") {
             alert(strings.PleaseMakeSureAllFieldsAreFilledOut);
         } else {
+            // trick to remove modalVisible and hilightedImagesIndices from state and pass in everything else
+            const {modalVisible, highlightedImagesIndices, ...params} = this.state;
+
+            // save the relevant teacher properties
             this.props.saveTeacherInfo(
                 teacherID,
-                this.state
+                params
             );
 
             this.props.setFirstRunCompleted(true);

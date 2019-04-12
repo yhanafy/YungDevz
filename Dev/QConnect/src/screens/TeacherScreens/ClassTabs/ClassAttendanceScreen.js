@@ -10,8 +10,7 @@ import { addAttendance } from 'model/actions/addAttendance';
 import colors from 'config/colors';
 import studentImages from 'config/studentImages'
 import strings from 'config/strings';
-
-//const { directions: { SWIPE_UP, SWIPE_LEFT, SWIPE_DOWN, SWIPE_RIGHT } } = swipeable;
+import mapStateToCurrentClassProps from 'screens/TeacherScreens/helpers/mapStateToCurrentClassProps'
 
 export class ClassAttendanceScreen extends Component {
     todaysDate = this.props.defaultDate ? this.props.defaultDate : new Date().toLocaleDateString("en-US")
@@ -166,12 +165,8 @@ const styles = StyleSheet.create({
     }
 });
 
-const mapStateToProps = (state, ownProps) => {
-    const  classIndex  = ownProps.navigation.state.params ? ownProps.navigation.state.params.classIndex : state.data.teachers[0].currentClassIndex;
-    state = state.data.teachers[0].classes[classIndex];
-    return {...state,
-        classIndex: classIndex
-        };
+const mapStateToProps = (state) => {
+    return mapStateToCurrentClassProps(state)
   };
 
 const mapDispatchToProps = dispatch => (
