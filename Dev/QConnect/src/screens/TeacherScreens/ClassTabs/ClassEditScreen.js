@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { ScrollView, View, StyleSheet, TextInput, FlatList, TouchableWithoutFeedback, Keyboard } from "react-native";
+import { ScrollView, View, StyleSheet, TextInput, FlatList, TouchableWithoutFeedback, Keyboard, Alert } from "react-native";
 import Toast, { DURATION } from 'react-native-easy-toast'
 import { connect } from "react-redux";
+import { Icon } from 'react-native-elements'
 import StudentCard from "components/StudentCard";
 import colors from "config/colors";
 import { bindActionCreators } from "redux";
@@ -17,6 +18,20 @@ export class ClassEditScreen extends Component {
   // ---------- Helpers to initialize random suggested student images --------------
   //  2 gender neutral images, one female, and one male
   // -------------------------------------------------------------------------------
+
+  deleteStudent(classIndex, studentIndex) {
+    Alert.alert(
+      'Delete Student',
+      'Are you sure you want to delete this student?',
+      [
+        { text: 'Yes', onPress: () => this.props.deleteStudent(classIndex, studentIndex) },
+        
+        { text: 'No', style: 'cancel' },
+      ]
+    );
+    ;
+  }
+
   getRandomGenderNeutralImage = () => {
     index = Math.floor(Math.random() * Math.floor(studentImages.genderNeutralImages.length));
     imageIndex = studentImages.genderNeutralImages[index];
@@ -125,7 +140,7 @@ export class ClassEditScreen extends Component {
 
   render() {
     const { params } = this.props.navigation.state;
-    const { deleteStudent, addStudent, classes } = this.props;
+    const { addStudent, classes } = this.props;
 
     classIndex = params && params.classIndex ? params.classIndex : 0;
 
@@ -171,13 +186,15 @@ export class ClassEditScreen extends Component {
                 studentName={item.name}
                 profilePic={studentImages.images[item.imageId]}
                 background={colors.white}
-                onPress={() =>
-                  deleteStudent(
-                    classIndex,
-                    index
-                  )
-                }
-              />
+                onPress={() => { }}
+                comp={
+                  <Icon
+                    name="user-times"
+                    type='font-awesome'
+                    size={20}
+                    color={colors.grey}
+                    onPress={() => { this.deleteStudent(classIndex, index) }} />
+                } />
             )}
           />
           <Toast ref="toast" />
