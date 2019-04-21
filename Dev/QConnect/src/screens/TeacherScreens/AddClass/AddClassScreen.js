@@ -16,8 +16,8 @@ import ImageSelectionModal from "components/ImageSelectionModal"
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { addClass } from "model/actions/addClass";
-import { saveTeacherInfo } from "model/actions/saveTeacherInfo";
 import strings from '../../../../config/strings';
+import { classReducer } from "../../../model/reducers/classReducer";
 
 export class AddClassScreen extends Component {
   //----------------------- state -------------------------------------
@@ -70,8 +70,6 @@ export class AddClassScreen extends Component {
       return;
     }
 
-    let newClassIndex = this.props.classes.length;
-
     let classInfo = {
       name: this.state.className,
       imageId: this.state.classImageId,
@@ -79,13 +77,12 @@ export class AddClassScreen extends Component {
     };
 
     this.props.addClass(classInfo);
-    this.props.saveTeacherInfo(
-      0, //todo: proper id here..
-      { currentClassIndex: newClassIndex }
-    );
 
     //Navigates to the class
-    this.props.navigation.push("ClassEdit");
+    this.props.navigation.push("CurrentClass", {
+      classIndex: this.props.classes.length,
+      classTitle: this.state.className
+    });
   }
 
 // ------------ renders the UI of the screen ---------------------------
@@ -125,6 +122,11 @@ render() {
                 })
               }
             />
+
+            <Text style={{
+              fontSize: 15,
+              marginTop: 5
+            }}>{strings.YourClassNameIs}{this.state.className}</Text>
 
             <QcActionButton
               text={strings.AddClass}
@@ -187,8 +189,7 @@ const mapStateToProps = state => {
 export const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      addClass,
-      saveTeacherInfo
+      addClass
     },
     dispatch
   );

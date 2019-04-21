@@ -2,10 +2,9 @@ import React from "react";
 import { View, FlatList, ScrollView, StyleSheet } from "react-native";
 import colors from "config/colors";
 import classImages from "config/classImages";
-import { saveTeacherInfo } from "model/actions/saveTeacherInfo";
 import { connect } from "react-redux";
-import { bindActionCreators } from 'redux';
 import { SafeAreaView } from "react-navigation";
+import { ListItem } from "react-native-elements";
 import QcAppBanner from "components/QcAppBanner";
 import QcDrawerItem from "components/QcDrawerItem";
 import teacherImages from "../../../config/teacherImages";
@@ -13,21 +12,17 @@ import strings from '../../../config/strings';
 
 class LeftNavPane extends React.Component {
   openClass = (i, className) => {
-    //update current class index in redux
-    this.props.saveTeacherInfo(
-      0, //todo: proper id here..
-      { currentClassIndex: i }
-    );
-
-    //navigate to the selected class
-    this.props.navigation.push("CurrentClass");
+     this.props.navigation.push("CurrentClass", {
+       classIndex: i,
+       classTitle: className
+     });
     this.props.navigation.closeDrawer();
   };
 
   //todo: change the ListItem header and footer below to the shared drawer component intead
   // generalize the QcDrawerItem to accept either an image or an icon
   render() {
-    const { name, profileImageId, currentClassIndex } = this.props;
+    const {name, profileImageId, currentClassIndex} = this.props;
 
     const profileCaption = name + strings.sProfile
     const teacherImageId = profileImageId ? profileImageId : 0
@@ -89,11 +84,4 @@ const mapStateToProps = state => {
   return { classes, name, profileImageId, currentClassIndex };
 };
 
-const mapDispatchToProps = dispatch => (
-  bindActionCreators({
-    saveTeacherInfo
-  }, dispatch)
-);
-
-export default connect(mapStateToProps, mapDispatchToProps)(LeftNavPane);
-
+export default connect(mapStateToProps)(LeftNavPane);

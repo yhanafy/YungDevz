@@ -9,9 +9,192 @@ export const INITIAL_STATE = {
       name: "",
       phoneNumber: "",
       emailAddress: "",
-      currentClassIndex: -1,
+      currentClassIndex: 0,
       profileImageId: 1,
-      classes: []
+      classes: [
+        {
+          name: "Demo Class",
+          imageId: 1,
+          students: [
+            {
+              name: "Ahmed Reducer",
+              imageId: 5,
+              totalAssignments: 1,
+              totalGrade: 2,
+              currentAssignment: {
+                name: "Al-Nahl page 5",
+                startDate: "03-24-2019"
+              },
+              assignmentHistory: [
+                {
+                  name: "Al-Baqara 5-9",
+                  startDate: "03-17-2019",
+                  completionDate: "03-20-2019",
+                  evaluation: {
+                    overallGrade: 2,
+                    notes: ""
+                  }
+                }
+              ],
+              attendanceHistory: [
+                {
+                  date: "02-23-2019",
+                  isHere: true
+                }, {
+                  date: '03-25-2019',
+                  isHere: false
+                }
+              ]
+            },
+            {
+              name: "Amina Khan",
+              imageId: 25,
+              totalAssignments: 1,
+              totalGrade: 4,
+              currentAssignment: {
+                name: "An-Naze'aat",
+                startDate: "03-24-2019"
+              },
+              assignmentHistory: [
+                {
+                  name: "Al-Baqara 5-9",
+                  startDate: "03-17-2019",
+                  completionDate: "03-20-2019",
+                  evaluation: {
+                    overallGrade: 4,
+                    notes: ""
+                  }
+                }
+              ],
+              attendanceHistory: [
+                {
+                  date: "02-23-2019",
+                  isHere: true
+                }
+              ]
+            },
+            {
+              name: "Ayoub Barrak",
+
+              imageId: 19,
+              totalAssignments: 1,
+              totalGrade: 1,
+              currentAssignment: {
+                name: "Aal-Imran",
+                startDate: "03-24-2019"
+              },
+              assignmentHistory: [
+                {
+                  name: "Al-Baqara 5-9",
+                  startDate: "03-17-2019",
+                  completionDate: "03-20-2019",
+                  evaluation: {
+                    overallGrade: 1,
+                    notes: ""
+                  }
+                }
+              ],
+              attendanceHistory: [
+                {
+                  date: "02-23-2019",
+                  isHere: true
+                }
+              ]
+            },
+            {
+              name: "Nouha Yacoubi",
+              imageId: 21,
+              totalAssignments: 1,
+              totalGrade: 5,
+              currentAssignment: {
+                name: "Al-Toor pages 5, 6, 8",
+                startDate: "03-24-2019"
+              },
+              assignmentHistory: [
+                {
+                  name: "Al-Baqara 5-9",
+                  startDate: "03-17-2019",
+                  completionDate: "03-20-2019",
+                  evaluation: {
+                    overallGrade: 5,
+                    notes: ""
+                  }
+                }
+              ],
+              attendanceHistory: [
+                {
+                  date: "02-23-2019",
+                  isHere: true
+                }
+              ]
+            },
+            {
+              name: "Yassine Lightening",
+              imageId: 15,
+              totalAssignments: 1,
+              totalGrade: 2,
+              currentAssignment: {
+                name: "Al-Baqara pages 5-8",
+                startDate: "03-24-2019"
+              },
+              assignmentHistory: [
+                {
+                  name: "Al-Baqara 5-9",
+                  startDate: "03-17-2019",
+                  completionDate: "03-20-2019",
+                  evaluation: {
+                    overallGrade: 2,
+                    notes: ""
+                  }
+                }
+              ],
+              attendanceHistory: [
+                {
+                  date: "02-23-2019",
+                  isHere: true
+                }
+              ]
+            },
+            {
+              name: "Ayah Sulaiman",
+              imageId: 27,
+              totalAssignments: 2,
+              totalGrade: 8,
+              currentAssignment: {
+                name: "None",
+                startDate: ""
+              },
+              assignmentHistory: [
+                {
+                  name: "Al-Baqara 5-9",
+                  startDate: "03-17-2019",
+                  completionDate: "03-22-2019",
+                  evaluation: {
+                    overallGrade: 3,
+                    notes: ""
+                  }
+                },
+                {
+                  name: "Al-Baqara 9-15",
+                  startDate: "03-17-2019",
+                  completionDate: "03-20-2019",
+                  evaluation: {
+                    overallGrade: 5,
+                    notes: ""
+                  }
+                }
+              ],
+              attendanceHistory: [
+                {
+                  date: "02-23-2019",
+                  isHere: true
+                }
+              ]
+            }
+          ],
+        }
+
+      ]
     }
   ]
 
@@ -40,7 +223,6 @@ export const classReducer = (state = INITIAL_STATE, action) => {
     case actionTypes.ADD_CLASS:
       {
         newState = update(baseState, { teachers: { [0]: { classes: { $push: [action.classInfo] } } } });
-        newState = update(newState, { teachers: { [0]: { currentClassIndex: { $set: newState.teachers[0].classes.length - 1 } } } });
         return newState
       }
     case actionTypes.ADD_ATTENDANCE:
@@ -76,7 +258,10 @@ export const classReducer = (state = INITIAL_STATE, action) => {
     case actionTypes.SAVE_TEACHER_INFO:
       {
         //fetches current teacher info
-        newState = update(baseState, { teachers: { [action.teacherIndex]:  { $merge: {...action.teacherInfo} } } } );
+        newState = update(baseState, { teachers: { [action.teacherIndex]: { name: { $set: action.teacherInfo.name } } } });
+        newState = update(newState, { teachers: { [action.teacherIndex]: { phoneNumber: { $set: action.teacherInfo.phoneNumber } } } });
+        newState = update(newState, { teachers: { [action.teacherIndex]: { emailAddress: { $set: action.teacherInfo.emailAddress } } } });
+        newState = update(newState, { teachers: { [action.teacherIndex]: { profileImageId: { $set: action.teacherInfo.profileImageId } } } });
         return newState;
       }
     case actionTypes.EDIT_CURRENT_ASSIGNMENT:
@@ -135,6 +320,7 @@ export const classReducer = (state = INITIAL_STATE, action) => {
     {
       let { completed } = action;
       let newState = update(baseState, { firstRunCompleted: { $set: completed } });
+      console.log(JSON.stringify(newState))
       return newState;
     }
     default:

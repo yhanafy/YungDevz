@@ -6,16 +6,12 @@ import PropTypes from 'prop-types';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import { Icon } from 'react-native-elements';
 import colors from 'config/colors'
-import { connect } from "react-redux";
-import strings from "config/strings"
 
 class TopBanner extends FontLoadingComponent {
     render() {
         //Component properties
         const {LeftIconName, LeftTextName, LeftOnPress, Title, 
-            RightIconName, RightTextName, RightOnPress, className} = this.props;
-        let headerTitle = (Title === strings.titleNotPassed)?  className : Title ;
-
+            RightIconName, RightTextName, RightOnPress} = this.props;
         return(
             <View>
                 {this.state.fontLoaded ? (
@@ -30,7 +26,7 @@ class TopBanner extends FontLoadingComponent {
                             onPress={() => {LeftOnPress()}}>{LeftTextName}</Text>
                     </View>
                     <View style={styles.topMiddleView}>
-                        <Text style={styles.titleStyle}>{headerTitle}</Text>
+                        <Text style={styles.titleStyle}>{Title}</Text>
                     </View>
                     <View style={styles.topRightView}>
                         <Icon
@@ -103,10 +99,5 @@ const styles = StyleSheet.create({
     }
 });
   
-const mapStateToProps = (state) => {
-    let classIndex = state.data.teachers[0].currentClassIndex;
-    let className = classIndex >= 0 ? state.data.teachers[0].classes[classIndex].name : "Quran Class";
-    return { className };
-};
   
-export default connect(mapStateToProps)(TopBanner);
+export default TopBanner;

@@ -539,7 +539,7 @@ exports[`Teacher screens snapshots render AddClassScreen 1`] = `
       <TextInput
         allowFontScaling={true}
         onChangeText={[Function]}
-        placeholder="Enter the new class name"
+        placeholder="Write class name here"
         style={
           Object {
             "alignItems": "center",
@@ -553,6 +553,17 @@ exports[`Teacher screens snapshots render AddClassScreen 1`] = `
         }
         underlineColorAndroid="transparent"
       />
+      <Text
+        style={
+          Object {
+            "fontSize": 15,
+            "marginTop": 5,
+          }
+        }
+      >
+        Your class name is 
+        
+      </Text>
       <View
         accessible={true}
         isTVSelectable={true}
@@ -782,7 +793,7 @@ exports[`Teacher screens snapshots render ClassAttendanceScreen 1`] = `
                       >
                         <RCTDatePicker
                           date={1552719600000}
-                          maximumDate={1552719600000}
+                          maximumDate={1554620400000}
                           mode="date"
                           onChange={[Function]}
                           onResponderTerminationRequest={[Function]}
@@ -2090,6 +2101,7 @@ exports[`Teacher screens snapshots render ClassEditScreen 1`] = `
       </View>
     </Modal>
     <View
+      ID={0}
       style={
         Object {
           "backgroundColor": "#fdfdff",
