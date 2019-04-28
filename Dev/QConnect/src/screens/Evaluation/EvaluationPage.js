@@ -33,7 +33,10 @@ export class EvaluationPage extends Component {
   //------------  Saves the rating to db and pops to previous view
   submitRating(classIndex, studentIndex) {
     this.props.completeCurrentAssignment(classIndex, studentIndex, this.state);
-    this.props.editCurrentAssignment(classIndex, studentIndex, { name: strings.None, startDate: "" });
+
+    // keep the assignment name as the last assignment to reduce retype since most of the times the next assignment would be the same surah (next portion) or a redo.
+    // todo: eventually right after grading we should have a step for the teacher to update the next assignment
+    this.props.editCurrentAssignment(classIndex, studentIndex, { name: this.props.currentAssignment.name, startDate: "" });
     this.props.navigation.pop();
   }
 

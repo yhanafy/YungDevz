@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { ScrollView, View, StyleSheet, TextInput, FlatList, TouchableWithoutFeedback, Keyboard, Alert } from "react-native";
+import { ScrollView, View, StyleSheet, TextInput, FlatList, TouchableWithoutFeedback, Keyboard } from "react-native";
 import Toast, { DURATION } from 'react-native-easy-toast'
 import { connect } from "react-redux";
-import { Icon } from 'react-native-elements'
 import StudentCard from "components/StudentCard";
 import colors from "config/colors";
 import { bindActionCreators } from "redux";
@@ -10,7 +9,8 @@ import { deleteStudent } from "model/actions/deleteStudent";
 import { addStudent } from "model/actions/addStudent";
 import QcActionButton from "components/QcActionButton";
 import studentImages from "config/studentImages";
-import strings from "../../../../config/strings";
+import strings from "config/strings";
+import mapStateToCurrentClassProps from "screens/TeacherScreens/helpers/mapStateToCurrentClassProps";
 
 export class ClassEditScreen extends Component {
 
@@ -18,20 +18,6 @@ export class ClassEditScreen extends Component {
   // ---------- Helpers to initialize random suggested student images --------------
   //  2 gender neutral images, one female, and one male
   // -------------------------------------------------------------------------------
-
-  deleteStudent(classIndex, studentIndex) {
-    Alert.alert(
-      'Delete Student',
-      'Are you sure you want to delete this student?',
-      [
-        { text: 'Yes', onPress: () => this.props.deleteStudent(classIndex, studentIndex) },
-        
-        { text: 'No', style: 'cancel' },
-      ]
-    );
-    ;
-  }
-
   getRandomGenderNeutralImage = () => {
     index = Math.floor(Math.random() * Math.floor(studentImages.genderNeutralImages.length));
     imageIndex = studentImages.genderNeutralImages[index];
@@ -74,8 +60,7 @@ export class ClassEditScreen extends Component {
 
   //Tests whether the entered input is already a student that exists in the given class
   studentNameExists() {
-    const { params } = this.props.navigation.state;
-    const students = this.props.classes[params && params.classIndex ? params.classIndex : 0].students;
+    const students = this.props.students;
     const input = this.state.newStudentName.trim();
 
     //Will search if there is a student with the same name or not, if there is, it will return the 
@@ -139,10 +124,7 @@ export class ClassEditScreen extends Component {
   // ------- Render method: Main entry to render the screen's UI ------------------
 
   render() {
-    const { params } = this.props.navigation.state;
-    const { addStudent, classes } = this.props;
-
-    classIndex = params && params.classIndex ? params.classIndex : 0;
+    const { deleteStudent, addStudent, classIndex, students} = this.props;
 
     if (this.state.highlightedImagesIndices.length == 0) {
       return false;
@@ -178,7 +160,7 @@ export class ClassEditScreen extends Component {
             />
           </View>
           <FlatList
-            data={classes[classIndex].students}
+            data={students}
             keyExtractor={(item, index) => item.name} // fix, should be item.id (add id to classes)
             renderItem={({ item, index }) => (
               <StudentCard
@@ -186,15 +168,13 @@ export class ClassEditScreen extends Component {
                 studentName={item.name}
                 profilePic={studentImages.images[item.imageId]}
                 background={colors.white}
-                onPress={() => { }}
-                comp={
-                  <Icon
-                    name="user-times"
-                    type='font-awesome'
-                    size={20}
-                    color={colors.grey}
-                    onPress={() => { this.deleteStudent(classIndex, index) }} />
-                } />
+                onPress={() =>
+                  deleteStudent(
+                    classIndex,
+                    index
+                  )
+                }
+              />
             )}
           />
           <Toast ref="toast" />
@@ -224,9 +204,8 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = state => {
-  const { classes } = state.data.teachers[0];
-  return { classes };
+const mapStateToProps = (state) => {
+  return mapStateToCurrentClassProps(state)
 };
 
 const mapDispatchToProps = dispatch =>
