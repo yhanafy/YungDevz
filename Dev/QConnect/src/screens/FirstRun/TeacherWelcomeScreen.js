@@ -28,8 +28,8 @@ export class TeacherWelcomeScreen extends Component {
     }
 
     //--- event handlers, handle user interaction ------------------
-    setModalVisible(visible) {
-        this.setState({ modalVisible: visible });
+    setModalVisible(isModalVisible) {
+        this.setState({ modalVisible: isModalVisible });
     }
 
     onImageSelected(index) {
