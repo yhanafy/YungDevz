@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ScrollView, View, StyleSheet, TextInput, FlatList, TouchableWithoutFeedback, Keyboard } from "react-native";
+import { ScrollView, View, StyleSheet, TextInput, FlatList, TouchableWithoutFeedback, Keyboard, Text, Alert } from "react-native";
 import Toast, { DURATION } from 'react-native-easy-toast'
 import { connect } from "react-redux";
 import StudentCard from "components/StudentCard";
@@ -9,6 +9,7 @@ import { deleteStudent } from "model/actions/deleteStudent";
 import { addStudent } from "model/actions/addStudent";
 import QcActionButton from "components/QcActionButton";
 import studentImages from "config/studentImages";
+import { Icon } from 'react-native-elements';
 import strings from "config/strings";
 import mapStateToCurrentClassProps from "screens/TeacherScreens/helpers/mapStateToCurrentClassProps";
 
@@ -124,7 +125,7 @@ export class ClassEditScreen extends Component {
   // ------- Render method: Main entry to render the screen's UI ------------------
 
   render() {
-    const { deleteStudent, addStudent, classIndex, students} = this.props;
+    const { deleteStudent, addStudent, classIndex, students } = this.props;
 
     if (this.state.highlightedImagesIndices.length == 0) {
       return false;
@@ -142,10 +143,12 @@ export class ClassEditScreen extends Component {
           />
 
           <View ID={classIndex} style={styles.inputContainer}>
+            <Text style={styles.inputName}>{strings.EnterYourStudentsName}</Text>
             <TextInput
-              placeholder={strings.EnterNewStudentsName}
+              placeholder={strings.StudentName}
               onChangeText={newStudentName => this.setState({ newStudentName })}
               value={this.state.newStudentName}
+              style={{ paddingBottom: 10 }}
             />
             <ImageSelectionRow
               images={studentImages.images}
@@ -168,12 +171,31 @@ export class ClassEditScreen extends Component {
                 studentName={item.name}
                 profilePic={studentImages.images[item.imageId]}
                 background={colors.white}
-                onPress={() =>
-                  deleteStudent(
-                    classIndex,
-                    index
-                  )
-                }
+                onPress={() => { }}
+                comp={<Icon
+                  name='user-times'
+                  size={30}
+                  type='font-awesome'
+                  color={colors.red}
+                  onPress={() => {
+                    Alert.alert(
+                      'Delete Student',
+                      'Are you sure you want to delete this student?',
+                      [
+                        {
+                          text: 'Delete', onPress: () => {
+                            deleteStudent(
+                              classIndex,
+                              index
+                            );
+                          }
+                        },
+
+                        { text: 'Cancel', style: 'cancel' },
+                      ]
+                    );
+                  }}
+                />}
               />
             )}
           />
@@ -201,6 +223,11 @@ const styles = StyleSheet.create({
   classTitle: {
     color: colors.primaryDark,
     fontSize: 25
+  },
+  inputName: {
+    fontFamily: "regular",
+    fontSize: 18,
+    paddingBottom: 10
   }
 });
 
