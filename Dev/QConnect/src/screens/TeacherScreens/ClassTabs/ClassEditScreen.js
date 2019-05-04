@@ -174,9 +174,9 @@ export class ClassEditScreen extends Component {
                 onPress={() => { }}
                 comp={<Icon
                   name='user-times'
-                  size={30}
+                  size={25}
                   type='font-awesome'
-                  color={colors.red}
+                  color={colors.primaryLight}
                   onPress={() => {
                     Alert.alert(
                       'Delete Student',

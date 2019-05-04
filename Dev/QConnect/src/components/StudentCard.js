@@ -31,8 +31,16 @@ export default class StudentCard extends FontLoadingComponent {
                             source={profilePic} />
                         <View
                             style={styles.infoStyle}>
-                            <Text style={styles.studentNameStyle}>{studentName}</Text>
-                            <Text style={styles.assignmentStyle}>{currentAssignment}</Text>
+                            {currentAssignment ? (
+                                <View>
+                                <Text style={styles.studentNameStyle}>{studentName}</Text>
+                                <Text style={styles.assignmentStyle}>{currentAssignment}</Text>
+                                </View>
+                            ) : (
+                                <View>
+                                <Text style={styles.studentNameStyle}>{studentName}</Text>
+                                </View>
+                            )}
                         </View>
                         <View style={styles.removeStudentStyle}>
                             {comp}
@@ -72,7 +80,7 @@ const styles = StyleSheet.create({
     },
     removeStudentStyle: {
         flex: 1,
-        flexDirection: 'row', 
+        flexDirection: 'row',
         justifyContent: 'flex-end',
         marginRight: 20
     },
