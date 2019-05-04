@@ -44,10 +44,11 @@ export default {
     //--------------------- Class Edit Screen ---------------------
     IsNowAddedToTheClass: ' is now added to the class',
     PleaseInputAName: 'Please input a name!',
-    EnterNewStudentsName: 'Enter new student\'s name...',
+    StudentName: 'Student name...',
     AddStudent: 'Add Student',
     Done: 'Done',
     ThereIsAlreadyAStudentWithThatName: 'There is already a student with that name',
+    EnterYourStudentsName: 'Enter your student\'s name',
 
     //--------------------- Class Header Navigator ---------------------
     StudentProfile: 'Student Profile',

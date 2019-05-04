@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { ScrollView, View, StyleSheet, TextInput, FlatList, TouchableWithoutFeedback, Keyboard } from "react-native";
-import Toast, { DURATION } from 'react-native-easy-toast'
+import { ScrollView, View, StyleSheet, TextInput, FlatList, TouchableWithoutFeedback, Keyboard, Text } from "react-native";
+import Toast from 'react-native-easy-toast'
 import { connect } from "react-redux";
 import StudentCard from "components/StudentCard";
 import colors from "config/colors";
@@ -142,10 +142,12 @@ export class ClassEditScreen extends Component {
           />
 
           <View ID={classIndex} style={styles.inputContainer}>
+            <Text style={styles.inputName}>{strings.EnterYourStudentsName}</Text>
             <TextInput
-              placeholder={strings.EnterNewStudentsName}
+              placeholder={strings.StudentName}
               onChangeText={newStudentName => this.setState({ newStudentName })}
               value={this.state.newStudentName}
+              style={{ paddingBottom: 10 }}
             />
             <ImageSelectionRow
               images={studentImages.images}
@@ -201,6 +203,11 @@ const styles = StyleSheet.create({
   classTitle: {
     color: colors.primaryDark,
     fontSize: 25
+  },
+  inputName: {
+    fontFamily: "regular",
+    fontSize: 18,
+    paddingBottom: 10
   }
 });
 
