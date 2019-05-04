@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { ScrollView, View, StyleSheet, TextInput, FlatList, TouchableWithoutFeedback, Keyboard, Text } from "react-native";
-import Toast from 'react-native-easy-toast'
+import Toast, { DURATION } from 'react-native-easy-toast'
 import { connect } from "react-redux";
 import StudentCard from "components/StudentCard";
 import colors from "config/colors";
