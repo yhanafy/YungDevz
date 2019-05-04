@@ -4,10 +4,31 @@ import { connect } from "react-redux";
 import StudentCard from "components/StudentCard";
 import colors from "config/colors";
 import studentImages from "config/studentImages"
+import { Font } from 'expo';
+import mapStateToCurrentClassProps from 'screens/TeacherScreens/helpers/mapStateToCurrentClassProps'
 
 export class ClassMainScreen extends Component {
+
+  async componentDidMount() {
+    //This may not be the eventual right approach here.. but this is a current mitigation to the 
+    // fact that we get an error about 'regular' font not loaded yet if we redirect to add class or edit class 
+    // pages before explicitly loading the fonts. 
+    // Todo: figure out a safer way to do this without having to hold the UI until the font is loaded.
+    await Font.loadAsync({
+      regular: require('assets/fonts/Montserrat-Regular.ttf'),
+      light: require('assets/fonts/Montserrat-Light.ttf'),
+      bold: require('assets/fonts/Montserrat-Bold.ttf'),
+    });
+
+    const { classIndex } = this.props;
+
+    if (classIndex === -1) {
+      this.props.navigation.push('AddClass');
+    }
+  }
+
   render() {
-    
+    const classIndex = this.props.classIndex;
 
     return (
       <ScrollView style={styles.container}>
@@ -48,13 +69,8 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = (state, ownProps) => {
-  let classIndex = ownProps.navigation.state.params
-      ? ownProps.navigation.state.params.classIndex
-      : state.data.teachers[0].currentClassIndex;
-
-  let currentClass  = state.data.teachers[0].classes[classIndex];
-  return { classIndex, ...currentClass };
+const mapStateToProps = (state) => {
+  return mapStateToCurrentClassProps(state)
 };
 
 export default connect(mapStateToProps)(ClassMainScreen);

@@ -24,13 +24,12 @@ export default {
     NeedsWork: 'Needs Work',
     CurrentAssignment: 'Current Assignment',
     AddAssignment: 'Add Assignment',
-    GradeAssignment: 'Grade Assignment',
+    Grade: 'Grade',
 
     //--------------------- Add Class Screen ---------------------
     PleaseMakeSureToHaveAnInput: 'Please make sure to have an input!',
     EditClassImage: 'Edit class image',
-    WriteClassNameHere: 'Write class name here',
-    YourClassNameIs: 'Your class name is ',
+    WriteClassNameHere: 'Enter the new class name',
     AddClass: 'Add Class',
 
     //--------------------- Add Class Navigator ---------------------
@@ -48,10 +47,11 @@ export default {
     EnterNewStudentsName: 'Enter new student\'s name...',
     AddStudent: 'Add Student',
     Done: 'Done',
+    ThereIsAlreadyAStudentWithThatName: 'There is already a student with that name',
 
     //--------------------- Class Header Navigator ---------------------
     StudentProfile: 'Student Profile',
-    EditClass: 'Edit Class',
+    EditClass: 'Edit Students',
     StudentEvaluation: 'Student Evaluation',
 
     //--------------------- Class Tabs Navigator ---------------------
@@ -63,8 +63,11 @@ export default {
 
     //--------------------- Teacher Profile Screen ---------------------
     UpdateProfileImage: 'Update profile image',
+    PleaseMakeSureAllFieldsAreFilledOut: 'Please make sure all fields are filled out',
 
     //--------------------- Left Nav Pane ---------------------
     sProfile: '\'s profile',
 
+    //----------------------Error string codes: used to indicate errors in string params -----------
+    titleNotPassed: "no_title_code_500"
 }

@@ -10,7 +10,7 @@ import { connect } from "react-redux";
 import colors from 'config/colors';
 import ImageSelectionModal from 'components/ImageSelectionModal'
 import TeacherInfoEntries from 'components/TeacherInfoEntries';
-import strings from '../../../../config/strings';
+import strings from 'config/strings';
 
 //To-Do: All info in this class is static, still needs to be hooked up to data base in order
 //to function dynamically
@@ -29,7 +29,9 @@ export class TeacherProfileScreen extends Component {
             phoneNumber: this.props.phoneNumber,
             emailAddress: this.props.emailAddress,
             profileImageId: this.props.profileImageId,
-        })
+        });
+        //Just goes to the first class
+        this.props.navigation.push('CurrentClass');
     }
 
     setModalVisible(visible) {
@@ -43,11 +45,19 @@ export class TeacherProfileScreen extends Component {
 
     //this method saves the new profile information to the redux database
     saveProfileInfo = (teacherID) => {
-        this.props.saveTeacherInfo(
-            teacherID,
-            this.state
-        );
-        this.refs.toast.show(strings.YourProfileHasBeenSaved, DURATION.LENGTH_SHORT);
+        const { name, phoneNumber, emailAddress } = this.state;
+        if (name.trim() === "" || phoneNumber.trim() === "" || emailAddress.trim() === "") {
+            alert(strings.PleaseMakeSureAllFieldsAreFilledOut);
+        } else {
+            const {modalVisible, ...params} = this.state; // trick to remove modalVisible from state and pass in everything else
+            this.props.saveTeacherInfo(
+                teacherID,
+                params
+            );
+            this.refs.toast.show(strings.YourProfileHasBeenSaved, DURATION.LENGTH_SHORT);
+            //Just goes to the first class
+            this.props.navigation.push('CurrentClass');
+        }
     }
 
     //------ event handlers to capture user input into state as user modifies the entries -----

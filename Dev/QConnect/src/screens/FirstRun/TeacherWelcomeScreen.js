@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Image, Text, ToastAndroid, KeyboardAvoidingView } from 'react-native';
 import QcActionButton from 'components/QcActionButton';
-import Toast, {DURATION} from 'react-native-easy-toast'
+import Toast, { DURATION } from 'react-native-easy-toast'
 import { saveTeacherInfo } from "model/actions/saveTeacherInfo";
-import { setFirstRunCompleted} from "model/actions/setFirstRunCompleted"
+import { setFirstRunCompleted } from "model/actions/setFirstRunCompleted"
 import { bindActionCreators } from 'redux';
 import { connect } from "react-redux";
 import colors from 'config/colors';
@@ -16,7 +16,7 @@ import strings from '../../../config/strings';
 //To-Do: All info in this class is static, still needs to be hooked up to data base in order
 //to function dynamically
 export class TeacherWelcomeScreen extends Component {
-    
+
     //--- state captures the inputted user info ------------------
     state = {
         name: this.props.name,
@@ -50,33 +50,42 @@ export class TeacherWelcomeScreen extends Component {
 
     onTeacherFlow = () => {
         //todo: get the first class to show from redux persist (current class)
-        this.props.navigation.push('TeacherScreens', { classIndex: 0, classTitle: "Quran Class" });
+        this.props.navigation.push('AddClass');
     }
 
     //this method saves the new profile information to the redux database
     saveProfileInfo = (teacherID) => {
-        this.props.saveTeacherInfo(
-            teacherID,
-            this.state
-        );
+        const { name, phoneNumber, emailAddress } = this.state;
+        if (name.trim() === "" || phoneNumber.trim() === "" || emailAddress.trim() === "") {
+            alert(strings.PleaseMakeSureAllFieldsAreFilledOut);
+        } else {
+            // trick to remove modalVisible and hilightedImagesIndices from state and pass in everything else
+            const {modalVisible, highlightedImagesIndices, ...params} = this.state;
 
-        this.props.setFirstRunCompleted(true);
+            // save the relevant teacher properties
+            this.props.saveTeacherInfo(
+                teacherID,
+                params
+            );
 
-        this.refs.toast.show(strings.YourProfileHasBeenSaved, DURATION.LENGTH_SHORT);
-        this.onTeacherFlow();
+            this.props.setFirstRunCompleted(true);
+
+            this.refs.toast.show(strings.YourProfileHasBeenSaved, DURATION.LENGTH_SHORT);
+            this.onTeacherFlow();
+        }
     }
 
     //------ event handlers to capture user input into state as user modifies the entries -----
     onNameChanged = (value) => {
-        this.setState({name: value})
+        this.setState({ name: value })
     }
 
     onPhoneNumberChanged = (value) => {
-        this.setState({phoneNumber: value})
+        this.setState({ phoneNumber: value })
     }
 
     onEmailAddressChanged = (value) => {
-        this.setState({emailAddress: value})
+        this.setState({ emailAddress: value })
     }
 
     //---------- render method ---------------------------------
@@ -118,7 +127,7 @@ export class TeacherWelcomeScreen extends Component {
                         onImageSelected={this.onImageSelected.bind(this)}
                         onShowMore={() => this.setModalVisible(true)}
                         selectedImageIndex={this.state.profileImageId}
-                    /> 
+                    />
                 </View>
                 <View style={styles.buttonsContainer}>
                     <QcActionButton
@@ -128,7 +137,7 @@ export class TeacherWelcomeScreen extends Component {
                     />
                 </View>
                 <View style={styles.filler}></View>
-                <Toast ref="toast"/>
+                <Toast ref="toast" />
             </KeyboardAvoidingView>
         )
     }

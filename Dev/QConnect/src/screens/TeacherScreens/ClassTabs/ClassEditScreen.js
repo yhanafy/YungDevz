@@ -9,9 +9,12 @@ import { deleteStudent } from "model/actions/deleteStudent";
 import { addStudent } from "model/actions/addStudent";
 import QcActionButton from "components/QcActionButton";
 import studentImages from "config/studentImages";
-import strings from "../../../../config/strings";
+import strings from "config/strings";
+import mapStateToCurrentClassProps from "screens/TeacherScreens/helpers/mapStateToCurrentClassProps";
 
 export class ClassEditScreen extends Component {
+
+
   // ---------- Helpers to initialize random suggested student images --------------
   //  2 gender neutral images, one female, and one male
   // -------------------------------------------------------------------------------
@@ -55,9 +58,27 @@ export class ClassEditScreen extends Component {
     highlightedImagesIndices: this.getHighlightedImages(),
   }
 
+  //Tests whether the entered input is already a student that exists in the given class
+  studentNameExists() {
+    const students = this.props.students;
+    const input = this.state.newStudentName.trim();
+
+    //Will search if there is a student with the same name or not, if there is, it will return the 
+    //index, if there is not, it will return -1.
+    const studentIndex = students.findIndex((student) => {
+      return student.name === input;
+    });
+
+    return studentIndex !== -1;
+  }
+
   // ----------- Redux function to persist the added student ------------------------
   addNewStudent(classIndex) {
-    if (this.state.newStudentName) {
+    if (!this.state.newStudentName) {
+      alert(strings.PleaseInputAName);
+    } else if (this.studentNameExists()) {
+      alert(strings.ThereIsAlreadyAStudentWithThatName);
+    } else {
       this.props.addStudent({
         classIndex: classIndex,
         studentInfo: {
@@ -76,8 +97,6 @@ export class ClassEditScreen extends Component {
       this.refs.toast.show(this.state.newStudentName + strings.IsNowAddedToTheClass,
         DURATION.LENGTH_SHORT);
       this.setState({ newStudentName: "" });
-    } else {
-      alert(strings.PleaseInputAName)
     }
   }
 
@@ -105,10 +124,7 @@ export class ClassEditScreen extends Component {
   // ------- Render method: Main entry to render the screen's UI ------------------
 
   render() {
-    const { params } = this.props.navigation.state;
-    const { deleteStudent, addStudent, classes } = this.props;
-
-    classIndex = params && params.classIndex ? params.classIndex : 0;
+    const { deleteStudent, addStudent, classIndex, students} = this.props;
 
     if (this.state.highlightedImagesIndices.length == 0) {
       return false;
@@ -144,7 +160,7 @@ export class ClassEditScreen extends Component {
             />
           </View>
           <FlatList
-            data={classes[classIndex].students}
+            data={students}
             keyExtractor={(item, index) => item.name} // fix, should be item.id (add id to classes)
             renderItem={({ item, index }) => (
               <StudentCard
@@ -188,9 +204,8 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = state => {
-  const { classes } = state.data.teachers[0];
-  return { classes };
+const mapStateToProps = (state) => {
+  return mapStateToCurrentClassProps(state)
 };
 
 const mapDispatchToProps = dispatch =>

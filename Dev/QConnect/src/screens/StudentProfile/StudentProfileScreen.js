@@ -63,13 +63,14 @@ class StudentProfileScreen extends FontLoadingComponent {
     //the rating will default to 0.
     averageRating = currentStudent.totalAssignments === 0 ? 0.0 :
       (currentStudent.totalGrade / currentStudent.totalAssignments);
+    const dialogInitialText =  currentStudent.currentAssignment.name === 'None' ? {hintInput: strings.EnterAssignmentHere} : {initValueTextInput: currentStudent.currentAssignment.name} 
 
     return (
       <View style={styles.container}>
         <DialogInput
           isDialogVisible={this.state.isDialogVisible}
           title={strings.EditAssignment}
-          hintInput={strings.EnterAssignmentHere}
+          {...dialogInitialText}
           dialogStyle={{ marginBottom: 100 }}
           submitInput={(inputText) =>
           //If the student already has an existing assignment, then it will simply edit the
@@ -127,7 +128,7 @@ class StudentProfileScreen extends FontLoadingComponent {
                   <View style={{ flexDirection: 'row' }}>
                     <TouchableHighlight
                       onPress={() => { this.setState({ isDialogVisible: true }) }} >
-                      <Text style={styles.assignmentActionText}>Edit</Text>
+                      <Text style={styles.assignmentActionText}>{strings.EditAssignment}</Text>
                     </TouchableHighlight>
 
                     {hasCurrentAssignment ? <TouchableHighlight onPress={() =>
@@ -135,7 +136,7 @@ class StudentProfileScreen extends FontLoadingComponent {
                         studentIndex: studentIndex,
                         classIndex: classIndex
                       })} >
-                      <Text style={styles.assignmentActionText}>Grade</Text>
+                      <Text style={styles.assignmentActionText}>{strings.Grade}</Text>
                     </TouchableHighlight> : <View />}
                   </View>
                 </View>
@@ -146,7 +147,7 @@ class StudentProfileScreen extends FontLoadingComponent {
             <ScrollView style={styles.prevAssignments}>
               <FlatList
                 data={currentStudent.assignmentHistory}
-                keyExtractor={(item, index) => item.name}
+                keyExtractor={(item, index) => item.name + index}
                 renderItem={({ item, index }) => (
                   <View style={styles.prevAssignmentCard} key={index}>
 
