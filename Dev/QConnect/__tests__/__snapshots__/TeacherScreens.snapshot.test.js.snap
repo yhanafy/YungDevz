@@ -3477,6 +3477,7 @@ exports[`Teacher screens snapshots render TeacherProfileScreen 1`] = `
             "color": "#6b6b6b",
             "fontSize": 14,
             "paddingLeft": 20,
+            "width": 115,
           }
         }
       >
@@ -3491,8 +3492,7 @@ exports[`Teacher screens snapshots render TeacherProfileScreen 1`] = `
             "color": "#6b6b6b",
             "flex": 1,
             "fontSize": 14,
-            "paddingRight": 20,
-            "textAlign": "right",
+            "paddingLeft": 20,
           }
         }
         underlineColorAndroid="transparent"
@@ -3518,6 +3518,7 @@ exports[`Teacher screens snapshots render TeacherProfileScreen 1`] = `
             "color": "#6b6b6b",
             "fontSize": 14,
             "paddingLeft": 20,
+            "width": 115,
           }
         }
       >
@@ -3532,8 +3533,7 @@ exports[`Teacher screens snapshots render TeacherProfileScreen 1`] = `
             "color": "#6b6b6b",
             "flex": 1,
             "fontSize": 14,
-            "paddingRight": 20,
-            "textAlign": "right",
+            "paddingLeft": 20,
           }
         }
         underlineColorAndroid="transparent"
@@ -3559,10 +3559,11 @@ exports[`Teacher screens snapshots render TeacherProfileScreen 1`] = `
             "color": "#6b6b6b",
             "fontSize": 14,
             "paddingLeft": 20,
+            "width": 115,
           }
         }
       >
-        Email Address
+        Email
       </Text>
       <TextInput
         allowFontScaling={true}
@@ -3573,8 +3574,7 @@ exports[`Teacher screens snapshots render TeacherProfileScreen 1`] = `
             "color": "#6b6b6b",
             "flex": 1,
             "fontSize": 14,
-            "paddingRight": 20,
-            "textAlign": "right",
+            "paddingLeft": 20,
           }
         }
         underlineColorAndroid="transparent"
@@ -4290,6 +4290,7 @@ exports[`Teacher screens snapshots render TeacherWelcomeScreen 1`] = `
               "color": "#6b6b6b",
               "fontSize": 14,
               "paddingLeft": 20,
+              "width": 115,
             }
           }
         >
@@ -4304,8 +4305,7 @@ exports[`Teacher screens snapshots render TeacherWelcomeScreen 1`] = `
               "color": "#6b6b6b",
               "flex": 1,
               "fontSize": 14,
-              "paddingRight": 20,
-              "textAlign": "right",
+              "paddingLeft": 20,
             }
           }
           underlineColorAndroid="transparent"
@@ -4331,6 +4331,7 @@ exports[`Teacher screens snapshots render TeacherWelcomeScreen 1`] = `
               "color": "#6b6b6b",
               "fontSize": 14,
               "paddingLeft": 20,
+              "width": 115,
             }
           }
         >
@@ -4345,8 +4346,7 @@ exports[`Teacher screens snapshots render TeacherWelcomeScreen 1`] = `
               "color": "#6b6b6b",
               "flex": 1,
               "fontSize": 14,
-              "paddingRight": 20,
-              "textAlign": "right",
+              "paddingLeft": 20,
             }
           }
           underlineColorAndroid="transparent"
@@ -4372,10 +4372,11 @@ exports[`Teacher screens snapshots render TeacherWelcomeScreen 1`] = `
               "color": "#6b6b6b",
               "fontSize": 14,
               "paddingLeft": 20,
+              "width": 115,
             }
           }
         >
-          Email Address
+          Email
         </Text>
         <TextInput
           allowFontScaling={true}
@@ -4386,8 +4387,7 @@ exports[`Teacher screens snapshots render TeacherWelcomeScreen 1`] = `
               "color": "#6b6b6b",
               "flex": 1,
               "fontSize": 14,
-              "paddingRight": 20,
-              "textAlign": "right",
+              "paddingLeft": 20,
             }
           }
           underlineColorAndroid="transparent"

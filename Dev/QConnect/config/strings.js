@@ -69,5 +69,11 @@ export default {
     sProfile: '\'s profile',
 
     //----------------------Error string codes: used to indicate errors in string params -----------
-    titleNotPassed: "no_title_code_500"
+    titleNotPassed: "no_title_code_500",
+
+
+    //---------------------------Place Holder Text For Teacher Name, PhoneNumber, and Email---------------------------
+    namePlaceHolder: "Name",
+    emailPlaceHolder: "Email",
+    phoneNumberPlaceHolder: "Phone Number"
 }
