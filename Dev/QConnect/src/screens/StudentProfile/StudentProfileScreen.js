@@ -103,8 +103,8 @@ class StudentProfileScreen extends FontLoadingComponent {
                   <Text style={styles.bigText}>{currentStudent.name.toUpperCase()}</Text>
                   <View style={{ flexDirection: 'row', height: 25 }}>
                     <Rating readonly={true} startingValue={averageRating} imageSize={25} />
-                    <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center' }}>
-                      <Text style={styles.ratingText}>{averageRating.toLocaleString("EN-US", { minimumFractionDigits: 0 })}</Text>
+                    <View style={{flexDirection: 'column', justifyContent: 'center' }}>
+                      <Text style={styles.ratingText}>{parseFloat(averageRating).toFixed(1)}</Text>
                     </View>
                   </View>
                   <Text style={styles.ratingDescText}>{averageRating >= 3 ? strings.OutStanding : strings.NeedsWork}</Text>
