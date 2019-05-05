@@ -2100,10 +2100,26 @@ exports[`Teacher screens snapshots render ClassEditScreen 1`] = `
         }
       }
     >
+      <Text
+        style={
+          Object {
+            "fontFamily": "regular",
+            "fontSize": 18,
+            "paddingBottom": 10,
+          }
+        }
+      >
+        Enter your student's name
+      </Text>
       <TextInput
         allowFontScaling={true}
         onChangeText={[Function]}
-        placeholder="Enter new student's name..."
+        placeholder="Student name..."
+        style={
+          Object {
+            "paddingBottom": 10,
+          }
+        }
         underlineColorAndroid="transparent"
         value=""
       />
