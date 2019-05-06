@@ -10,14 +10,13 @@ import { addAttendance } from 'model/actions/addAttendance';
 import colors from 'config/colors';
 import studentImages from 'config/studentImages'
 import strings from 'config/strings';
-
-//const { directions: { SWIPE_UP, SWIPE_LEFT, SWIPE_DOWN, SWIPE_RIGHT } } = swipeable;
+import mapStateToCurrentClassProps from 'screens/TeacherScreens/helpers/mapStateToCurrentClassProps'
 
 export class ClassAttendanceScreen extends Component {
-
+    todaysDate = this.props.defaultDate ? this.props.defaultDate : new Date().toLocaleDateString("en-US")
     state = {
         selectedStudents: [],
-        selectedDate: this.props.defaultDate ? this.props.defaultDate : new Date().toLocaleDateString("en-US")
+        selectedDate: this.todaysDate
     }
 
     //This method will set the student selected property to the opposite of whatever it was
@@ -120,7 +119,7 @@ export class ClassAttendanceScreen extends Component {
                     format="MM-DD-YYYY"
                     duration={300}
                     style={{paddingLeft: 15}}
-                    maxDate={new Date().toLocaleDateString("en-US")}
+                    maxDate={this.todaysDate}
                     customStyles={{dateInput: {borderColor: colors.lightGrey}}}
                     onDateChange={(date) => this.getAttendance(date)}
                     />
@@ -166,12 +165,8 @@ const styles = StyleSheet.create({
     }
 });
 
-const mapStateToProps = (state, ownProps) => {
-    const  classIndex  = ownProps.navigation.state.params ? ownProps.navigation.state.params.classIndex : state.data.teachers[0].currentClassIndex;
-    state = state.data.teachers[0].classes[classIndex];
-    return {...state,
-        classIndex: classIndex
-        };
+const mapStateToProps = (state) => {
+    return mapStateToCurrentClassProps(state)
   };
 
 const mapDispatchToProps = dispatch => (

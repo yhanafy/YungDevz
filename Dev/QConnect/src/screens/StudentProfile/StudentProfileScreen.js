@@ -63,13 +63,14 @@ class StudentProfileScreen extends FontLoadingComponent {
     //the rating will default to 0.
     averageRating = currentStudent.totalAssignments === 0 ? 0.0 :
       (currentStudent.totalGrade / currentStudent.totalAssignments);
+    const dialogInitialText =  currentStudent.currentAssignment.name === 'None' ? {hintInput: strings.EnterAssignmentHere} : {initValueTextInput: currentStudent.currentAssignment.name} 
 
     return (
       <View style={styles.container}>
         <DialogInput
           isDialogVisible={this.state.isDialogVisible}
           title={strings.EditAssignment}
-          hintInput={strings.EnterAssignmentHere}
+          {...dialogInitialText}
           dialogStyle={{ marginBottom: 100 }}
           submitInput={(inputText) =>
           //If the student already has an existing assignment, then it will simply edit the
@@ -99,11 +100,11 @@ class StudentProfileScreen extends FontLoadingComponent {
 
                 </View>
                 <View style={styles.profileInfoTopRight}>
-                  <Text style={styles.bigText}>{currentStudent.name.toUpperCase()}</Text>
+                  <Text numberOfLines={1} style={styles.bigText}>{currentStudent.name.toUpperCase()}</Text>
                   <View style={{ flexDirection: 'row', height: 25 }}>
                     <Rating readonly={true} startingValue={averageRating} imageSize={25} />
-                    <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center' }}>
-                      <Text style={styles.ratingText}>{averageRating.toLocaleString("EN-US", { minimumFractionDigits: 0 })}</Text>
+                    <View style={{flexDirection: 'column', justifyContent: 'center' }}>
+                      <Text style={styles.ratingText}>{parseFloat(averageRating).toFixed(1)}</Text>
                     </View>
                   </View>
                   <Text style={styles.ratingDescText}>{averageRating >= 3 ? strings.OutStanding : strings.NeedsWork}</Text>
@@ -121,13 +122,12 @@ class StudentProfileScreen extends FontLoadingComponent {
                     style={{ paddingRight: 0, paddingLeft: 0, marginLeft: 0, fontSize: 12 }}
                   />
                 </View>
-
-                <View style={{ flexDirection: 'column' }}>
-                  <Text style={styles.assignmentTextLarge}>{currentStudent.currentAssignment.name.toUpperCase()}</Text>
+                <View style={{ flex: 1, flexDirection: 'column', height: 59}}>
+                  <Text numberOfLines={1} style={styles.assignmentTextLarge}>{currentStudent.currentAssignment.name.toUpperCase()}</Text>
                   <View style={{ flexDirection: 'row' }}>
                     <TouchableHighlight
                       onPress={() => { this.setState({ isDialogVisible: true }) }} >
-                      <Text style={styles.assignmentActionText}>Edit</Text>
+                      <Text style={styles.assignmentActionText}>{strings.EditAssignment}</Text>
                     </TouchableHighlight>
 
                     {hasCurrentAssignment ? <TouchableHighlight onPress={() =>
@@ -135,7 +135,7 @@ class StudentProfileScreen extends FontLoadingComponent {
                         studentIndex: studentIndex,
                         classIndex: classIndex
                       })} >
-                      <Text style={styles.assignmentActionText}>Grade</Text>
+                      <Text style={styles.assignmentActionText}>{strings.Grade}</Text>
                     </TouchableHighlight> : <View />}
                   </View>
                 </View>
@@ -146,21 +146,21 @@ class StudentProfileScreen extends FontLoadingComponent {
             <ScrollView style={styles.prevAssignments}>
               <FlatList
                 data={currentStudent.assignmentHistory}
-                keyExtractor={(item, index) => item.name}
+                keyExtractor={(item, index) => item.name + index}
                 renderItem={({ item, index }) => (
                   <View style={styles.prevAssignmentCard} key={index}>
 
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', flex: 1 }}>
                       <Text style={[styles.subText, { paddingLeft: 10, paddingTop: 3 }]}>{item.completionDate}</Text>
-                      <View style={{ alignItems: 'center' }}>
-                        <Text style={styles.prevAssignmentTitleText}>{item.name}</Text>
+                      <View style={{ alignItems: 'center', flex: 1 }}>
+                        <Text numberOfLines={1} style={styles.prevAssignmentTitleText}>{item.name}</Text>
                       </View>
                       <Rating style={{ paddingRight: 10, paddingTop: 3 }} readonly={true}
                         startingValue={item.evaluation.overallGrade} imageSize={17} />
                     </View>
                     {item.evaluation.notes ?
                       <View style={{ padding: 10 }}>
-                        <Text style={styles.notesText}>{"Notes: " + item.evaluation.notes}</Text>
+                        <Text numberOfLines={2} style={styles.notesText}>{"Notes: " + item.evaluation.notes}</Text>
                       </View>
                       : <View />
                     }
@@ -205,7 +205,9 @@ const styles = StyleSheet.create({
     fontFamily: 'regular',
     color: colors.darkGrey,
     paddingLeft: 10,
-    paddingTop: 5
+    paddingRight: 2,
+    paddingTop: 5,
+    flex: 1,
   },
   ratingText: {
     fontSize: 24,
@@ -224,11 +226,12 @@ const styles = StyleSheet.create({
     color: colors.primaryDark,
     paddingLeft: 10,
     paddingRight: 10,
-    paddingTop: 10
   },
   prevAssignmentTitleText: {
     fontFamily: 'regular',
-    fontSize: 19
+    fontSize: 19,
+    flex: 1,
+    paddingLeft: 2
   },
   container: {
     flexDirection: "column",
@@ -300,7 +303,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     borderBottomColor: colors.lightGrey,
     borderBottomWidth: 1,
-    height: 80,
+    height: 90,
     justifyContent: 'space-between',
     paddingTop: 10,
   },

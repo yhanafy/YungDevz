@@ -5,7 +5,7 @@ import ClassTabsNavigator from './ClassTabsNavigator';
 import StudentProfileScreen from 'screens/StudentProfile/StudentProfileScreen';
 import ClassEditScreen from 'screens/TeacherScreens/ClassTabs/ClassEditScreen';
 import EvaluationPage from 'screens/Evaluation/EvaluationPage';
-import strings from '../../../../config/strings';
+import strings from 'config/strings';
 
 const ClassHeaderNavigator = createStackNavigator({
   CurrentClass: {
@@ -15,7 +15,7 @@ const ClassHeaderNavigator = createStackNavigator({
         <TopBanner
           LeftIconName="navicon"
           LeftOnPress={() => navigation.openDrawer()}
-          Title={(navigation.state.params && navigation.state.params.classTitle) ? navigation.state.params.classTitle : 'Quran Class'}
+          Title={(navigation.state.params && navigation.state.params.classTitle) ? navigation.state.params.classTitle : strings.titleNotPassed}
           RightIconName="edit"
           RightOnPress={() => navigation.push('ClassEdit', navigation.state.params)}
         />
