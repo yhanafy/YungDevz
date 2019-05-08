@@ -2,6 +2,7 @@ import React from 'react'
 import { View, Text, TextInput, StyleSheet } from 'react-native'
 import PropTypes from 'prop-types'
 import colors from 'config/colors'
+import strings from '../../config/strings';
 
 //--------------------------------------------------------------------------
 // Teacher info entries (Name, Phone number, and Email address). 
@@ -14,21 +15,21 @@ export default TeacherInfoEntries = (props) => {
                 <Text style={styles.subtitle}>Information</Text>
             </View>
             <View style={styles.infoRow}>
-                <Text style={styles.infoTitle}>Name</Text>
+                <Text style={styles.infoTitle}>{strings.namePlaceHolder}</Text>
                 <TextInput
                     style={styles.infoTextInput}
                     onChangeText={props.onNameChanged}
                     value={props.name} />
             </View>
             <View style={styles.infoRow}>
-                <Text style={styles.infoTitle}>Phone Number</Text>
+                <Text style={styles.infoTitle}>{strings.phoneNumberPlaceHolder}</Text>
                 <TextInput
                     style={styles.infoTextInput}
                     onChangeText={props.onPhoneNumberChanged}
                     value={props.phoneNumber} />
             </View>
             <View style={styles.infoRow}>
-                <Text style={styles.infoTitle}>Email Address</Text>
+                <Text style={styles.infoTitle}>{strings.emailPlaceHolder}</Text>
                 <TextInput
                     style={styles.infoTextInput}
                     onChangeText={props.onEmailAddressChanged}
@@ -67,16 +68,16 @@ const styles = StyleSheet.create({
         borderBottomWidth: 0.25
     },
     infoTextInput: {
-        paddingRight: 20,
+        paddingLeft: 20,
         fontSize: 14,
         color: colors.darkGrey,
         flex: 1,
-        alignSelf: 'stretch',
-        textAlign: 'right'
+        alignSelf: 'stretch'
     },
     infoTitle: {
         paddingLeft: 20,
         fontSize: 14,
-        color: colors.darkGrey
+        color: colors.darkGrey,
+        width: 115
     },
 })

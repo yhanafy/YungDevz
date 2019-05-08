@@ -12,7 +12,7 @@ import PropTypes from 'prop-types'
 //  to show more images.
 //--------------------------------------------------------------
 export default ImageSelectionRow = (props) => {
-    const {highlightedImagesIndices, onImageSelected, onShowMore, selectedImageIndex, images} = props;
+    const {highlightedImagesIndices, onImageSelected, onShowMore, selectedImageIndex, images, style} = props;
 
     return (
         <View style={styles.rowContainer}>
@@ -46,6 +46,7 @@ ImageSelectionRow.propTypes = {
     onShowMore: PropTypes.func.isRequired,
     selectedImageIndex: PropTypes.number.isRequired,
     images: PropTypes.array.isRequired,
+    style: PropTypes.object
 }
 
 //Styles for the Teacher profile class

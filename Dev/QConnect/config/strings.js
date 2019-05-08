@@ -44,10 +44,11 @@ export default {
     //--------------------- Class Edit Screen ---------------------
     IsNowAddedToTheClass: ' is now added to the class',
     PleaseInputAName: 'Please input a name!',
-    EnterNewStudentsName: 'Enter new student\'s name...',
+    StudentName: 'Student name...',
     AddStudent: 'Add Student',
     Done: 'Done',
     ThereIsAlreadyAStudentWithThatName: 'There is already a student with that name',
+    EnterYourStudentsName: 'Enter your student\'s name',
 
     //--------------------- Class Header Navigator ---------------------
     StudentProfile: 'Student Profile',
@@ -69,5 +70,11 @@ export default {
     sProfile: '\'s profile',
 
     //----------------------Error string codes: used to indicate errors in string params -----------
-    titleNotPassed: "no_title_code_500"
+    titleNotPassed: "no_title_code_500",
+
+
+    //---------------------------Place Holder Text For Teacher Name, PhoneNumber, and Email---------------------------
+    namePlaceHolder: "Name",
+    emailPlaceHolder: "Email",
+    phoneNumberPlaceHolder: "Phone Number"
 }
