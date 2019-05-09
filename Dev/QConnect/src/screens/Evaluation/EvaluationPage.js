@@ -44,7 +44,7 @@ export class EvaluationPage extends QcParentScreen {
     this.props.editCurrentAssignment(classIndex, studentIndex, { name: this.props.currentAssignment.name, startDate: "" });
     this.props.navigation.pop();
   }
-  
+
   // --------------  Renders Evaluation scree UI --------------
   render() {
     const { classIndex, studentIndex } = this.props.navigation.state.params;
@@ -96,6 +96,7 @@ export class EvaluationPage extends QcParentScreen {
             <QcActionButton
               text={strings.Submit}
               onPress={() => { this.submitRating(classIndex, studentIndex) }}
+              screen={this.constructor.name}
             />
           </View>
           <View style={styles.filler}></View>
