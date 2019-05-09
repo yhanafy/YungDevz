@@ -11,9 +11,9 @@ import { connect } from "react-redux";
 import strings from 'config/strings';
 import studentImages from 'config/studentImages';
 import TouchableText from 'components/TouchableText'
-import FontLoadingComponent from 'components/FontLoadingComponent'
+import QcParentScreen from 'screens/QcParentScreen';
 
-class StudentProfileScreen extends FontLoadingComponent {
+class StudentProfileScreen extends QcParentScreen {
 
   state = {
     isDialogVisible: false,

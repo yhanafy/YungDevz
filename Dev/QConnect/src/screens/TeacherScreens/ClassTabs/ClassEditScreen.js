@@ -12,8 +12,9 @@ import studentImages from "config/studentImages";
 import { Icon } from 'react-native-elements';
 import strings from "config/strings";
 import mapStateToCurrentClassProps from "screens/TeacherScreens/helpers/mapStateToCurrentClassProps";
+import QcParentScreen from "screens/QcParentScreen";
 
-export class ClassEditScreen extends Component {
+export class ClassEditScreen extends QcParentScreen {
 
 
   // ---------- Helpers to initialize random suggested student images --------------
@@ -160,6 +161,7 @@ export class ClassEditScreen extends Component {
             <QcActionButton
               text={strings.AddStudent}
               onPress={() => this.addNewStudent(classIndex)}
+              screen={this.constructor.name}
             />
           </View>
           <FlatList

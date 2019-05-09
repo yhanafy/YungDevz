@@ -8,6 +8,8 @@
     "test": "node ./node_modules/jest/bin/jest.js"
   },
   "dependencies": {
+    "aws-amplify": "^1.1.27",
+    "aws-amplify-react-native": "^2.1.11",
     "expo": "^32.0.5",
     "immutability-helper": "^3.0.0",
     "react": "16.5.0",

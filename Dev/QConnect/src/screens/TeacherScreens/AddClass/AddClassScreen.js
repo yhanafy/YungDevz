@@ -18,8 +18,9 @@ import { bindActionCreators } from "redux";
 import { addClass } from "model/actions/addClass";
 import { saveTeacherInfo } from "model/actions/saveTeacherInfo";
 import strings from '../../../../config/strings';
+import QcParentScreen from "screens/QcParentScreen";
 
-export class AddClassScreen extends Component {
+export class AddClassScreen extends QcParentScreen {
   //----------------------- state -------------------------------------
   state = {
     className: "",
@@ -131,6 +132,7 @@ render() {
               onPress={() => {
                 this.addNewClass();
               }}
+              screen={this.constructor.name}
             />
           </View>
         </View>
