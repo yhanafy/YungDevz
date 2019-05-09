@@ -105,6 +105,7 @@ export class TeacherWelcomeScreen extends QcParentScreen {
                     cancelText={strings.Cancel}
                     setModalVisible={this.setModalVisible.bind(this)}
                     onImageSelected={this.onImageSelected.bind(this)}
+                    screen={this.constructor.name}
                 />
 
                 <View style={styles.picContainer}>
@@ -128,6 +129,7 @@ export class TeacherWelcomeScreen extends QcParentScreen {
                         onImageSelected={this.onImageSelected.bind(this)}
                         onShowMore={() => this.setModalVisible(true)}
                         selectedImageIndex={this.state.profileImageId}
+                        screen={this.constructor.name}
                     />
                 </View>
                 <View style={styles.buttonsContainer}>

@@ -11,6 +11,7 @@ import { connect } from "react-redux";
 import strings from 'config/strings';
 import studentImages from 'config/studentImages';
 import TouchableText from 'components/TouchableText'
+import ImageSelectionModal from 'components/ImageSelectionModal'
 import QcParentScreen from 'screens/QcParentScreen';
 
 class StudentProfileScreen extends QcParentScreen {
@@ -88,6 +89,7 @@ class StudentProfileScreen extends QcParentScreen {
           cancelText="Cancel"
           setModalVisible={this.setModalVisible.bind(this)}
           onImageSelected={this.onImageSelected.bind(this)}
+          screen={this.constructor.name}
         />
 
         {this.state.fontLoaded ? (

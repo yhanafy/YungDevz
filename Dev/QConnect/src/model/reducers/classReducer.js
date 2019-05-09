@@ -1,6 +1,9 @@
 import { combineReducers } from 'redux';
 import update from 'immutability-helper';
 import actionTypes from '../actions/actionTypes';
+import Analytics from '@aws-amplify/analytics';
+import analyticsEvents from 'config/analyticsEvents'
+import awsconfig from '../../../aws-exports';
 
 export const INITIAL_STATE = {
   firstRunCompleted: false,
@@ -17,11 +20,21 @@ export const INITIAL_STATE = {
 
 };
 
+// configure analytics for redux
+Analytics.configure(awsconfig);
+
 export const classReducer = (state = INITIAL_STATE, action) => {
   // pulls list of current student in current state
   const {
     name, phoneNumber, emailAddress, classes
   } = state.teachers[0];
+  
+  if (Object.values(actionTypes).indexOf(action.type) > -1) {
+    Analytics.record({
+      name: analyticsEvents.action_dispatched,
+      attributes: { type: action.type }
+    })
+  } 
 
   const baseState = { ...state };
 

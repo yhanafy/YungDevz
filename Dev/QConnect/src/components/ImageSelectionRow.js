@@ -1,43 +1,57 @@
 import React, { Component } from 'react'
 import { View, StyleSheet } from 'react-native'
-import {Icon} from 'react-native-elements'
+import { Icon } from 'react-native-elements'
 import TouchableAvatar from 'components/TouchableAvatar'
 import colors from 'config/colors'
-import teacherImages from 'config/teacherImages'
 import PropTypes from 'prop-types'
+import Analytics from '@aws-amplify/analytics';
+import analyticsEvents from 'config/analyticsEvents'
 
 //---------------------------------------------------------
 // Renders set of passed in images in a single row, and adds 
 //  an "expand more" ellipsis in the end that calls back to passed in function
 //  to show more images.
 //--------------------------------------------------------------
-export default ImageSelectionRow = (props) => {
-    const {highlightedImagesIndices, onImageSelected, onShowMore, selectedImageIndex, images, style} = props;
+export default class ImageSelectionRow extends Component {
 
-    return (
-        <View style={styles.rowContainer}>
-            {highlightedImagesIndices.map((index) => {
-                return (
-                    <View
-                    key={index}>
-                    <TouchableAvatar
-                        index={index}
-                        image={images[index]}
-                        selected={selectedImageIndex === index}
-                        onPress={() => onImageSelected(index)} />
-                    </View>
-                )
-            })}
-            <Icon
-                raised
-                name='ellipsis-h'
-                type='font-awesome'
-                color={colors.primaryDark}
-                onPress={() => {
-                    onShowMore();
-                }} />
-        </View>
-    );
+    //log event and dispatch image selection event to screen
+    onRowImageSelected(index) {
+        Analytics.record({
+            name: analyticsEvents.image_selected_from_highlights,
+            attributes: { screen: this.props.screen, imageIndex: this.props.index }
+        })
+
+        this.props.onImageSelected(index);
+    }
+
+    render() {
+        const { highlightedImagesIndices, onShowMore, selectedImageIndex, images } = this.props;
+
+        return (
+            <View style={styles.rowContainer}>
+                {highlightedImagesIndices.map((index) => {
+                    return (
+                        <View
+                            key={index}>
+                            <TouchableAvatar
+                                index={index}
+                                image={images[index]}
+                                selected={selectedImageIndex === index}
+                                onPress={() => this.onRowImageSelected(index)} />
+                        </View>
+                    )
+                })}
+                <Icon
+                    raised
+                    name='ellipsis-h'
+                    type='font-awesome'
+                    color={colors.primaryDark}
+                    onPress={() => {
+                        onShowMore();
+                    }} />
+            </View>
+        );
+    }
 }
 
 ImageSelectionRow.propTypes = {

@@ -90,6 +90,7 @@ export class TeacherProfileScreen extends QcParentScreen {
                         cancelText={strings.Cancel}
                         setModalVisible={this.setModalVisible.bind(this)}
                         onImageSelected={this.onImageSelected.bind(this)}
+                        screen={this.constructor.name}
                     />
                     <View style={styles.picContainer}>
                         <Image
