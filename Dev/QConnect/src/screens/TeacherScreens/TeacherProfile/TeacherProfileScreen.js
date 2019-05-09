@@ -11,10 +11,11 @@ import colors from 'config/colors';
 import ImageSelectionModal from 'components/ImageSelectionModal'
 import TeacherInfoEntries from 'components/TeacherInfoEntries';
 import strings from 'config/strings';
+import QcParentScreen from 'screens/QcParentScreen';
 
 //To-Do: All info in this class is static, still needs to be hooked up to data base in order
 //to function dynamically
-export class TeacherProfileScreen extends Component {
+export class TeacherProfileScreen extends QcParentScreen {
     state = {
         name: this.props.name,
         phoneNumber: this.props.phoneNumber,
@@ -89,6 +90,7 @@ export class TeacherProfileScreen extends Component {
                         cancelText={strings.Cancel}
                         setModalVisible={this.setModalVisible.bind(this)}
                         onImageSelected={this.onImageSelected.bind(this)}
+                        screen={this.constructor.name}
                     />
                     <View style={styles.picContainer}>
                         <Image
@@ -111,10 +113,12 @@ export class TeacherProfileScreen extends Component {
                         <QcActionButton
                             text={strings.Cancel}
                             onPress={() => this.resetProfileInfo()}
+                            screen={this.constructor.name}
                         />
                         <QcActionButton
                             text={strings.Save}
                             onPress={() => this.saveProfileInfo(0)} //to-do: Make sure that teacher ID 
+                            screen={this.constructor.name}
                         //is passed instead of 0
                         />
                     </View>

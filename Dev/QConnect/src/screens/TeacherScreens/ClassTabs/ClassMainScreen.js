@@ -6,10 +6,12 @@ import colors from "config/colors";
 import studentImages from "config/studentImages"
 import { Font } from 'expo';
 import mapStateToCurrentClassProps from 'screens/TeacherScreens/helpers/mapStateToCurrentClassProps'
+import QcParentScreen from "screens/QcParentScreen";
 
-export class ClassMainScreen extends Component {
+export class ClassMainScreen extends QcParentScreen {
 
   async componentDidMount() {
+    super.componentDidMount();
     //This may not be the eventual right approach here.. but this is a current mitigation to the 
     // fact that we get an error about 'regular' font not loaded yet if we redirect to add class or edit class 
     // pages before explicitly loading the fonts. 

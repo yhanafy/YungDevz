@@ -9,14 +9,19 @@ import { completeCurrentAssignment } from 'model/actions/completeCurrentAssignme
 import { editCurrentAssignment } from 'model/actions/editCurrentAssignment';
 import strings from 'config/strings';
 import studentImages from 'config/studentImages';
+import Analytics from '@aws-amplify/analytics';
+import analyticsEvents from 'config/analyticsEvents'
+import QcParentScreen from 'screens/QcParentScreen';
 
-export class EvaluationPage extends Component {
+export class EvaluationPage extends QcParentScreen {
 
   // -------------  Current evaluation state ---------------------
   state = {
     overallGrade: 0,
     notes: ""
   }
+
+  myname =  this.constructor.name;
 
   // --------------  Updates state to reflect a change in a category rating --------------
   updateCategoryRating = (name, rating) => {
@@ -39,7 +44,7 @@ export class EvaluationPage extends Component {
     this.props.editCurrentAssignment(classIndex, studentIndex, { name: this.props.currentAssignment.name, startDate: "" });
     this.props.navigation.pop();
   }
-
+  
   // --------------  Renders Evaluation scree UI --------------
   render() {
     const { classIndex, studentIndex } = this.props.navigation.state.params;

@@ -7,6 +7,15 @@ import { createStore } from 'redux';
 import classReducer from 'model/reducers/classReducer'
 import { persistStore, persistReducer } from 'redux-persist'
 import { AsyncStorage } from 'react-native';
+import Auth from '@aws-amplify/auth';
+import Analytics from '@aws-amplify/analytics';
+
+import awsconfig from './aws-exports';
+
+// retrieve temporary AWS credentials and sign requests
+Auth.configure(awsconfig);
+// send analytics events to Amazon Pinpoint
+Analytics.configure(awsconfig);
 
 
 const persistConfig = {

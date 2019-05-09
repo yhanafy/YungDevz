@@ -10,8 +10,9 @@ import QcAppBanner from "components/QcAppBanner";
 import QcDrawerItem from "components/QcDrawerItem";
 import teacherImages from "../../../config/teacherImages";
 import strings from '../../../config/strings';
+import QcParentScreen from "screens/QcParentScreen";
 
-class LeftNavPane extends React.Component {
+class LeftNavPane extends QcParentScreen{
   openClass = (i, className) => {
     //update current class index in redux
     this.props.saveTeacherInfo(
