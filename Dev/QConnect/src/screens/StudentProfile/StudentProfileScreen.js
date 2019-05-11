@@ -54,6 +54,22 @@ class StudentProfileScreen extends QcParentScreen {
     this.setModalVisible(false);
   }
 
+  getRatingCaption() {
+    if(averageRating >4 ){
+      strings.OutStanding = strings.OutStanding
+    }
+    else if (averageRating > 3){
+      strings.OutStanding = strings.GreatJob
+    }
+    else if (averageRating > 2){
+      strings.OutStanding = strings.GoodProgress
+    }
+    else{
+      strings.OutStanding = strings.NeedsWork
+    }
+    return strings.OutStanding
+  }
+
   //---------- main UI render ===============================
   render() {
     const { classIndex, studentIndex } = this.props.navigation.state.params;
@@ -109,7 +125,7 @@ class StudentProfileScreen extends QcParentScreen {
                       <Text style={styles.ratingText}>{parseFloat(averageRating).toFixed(1)}</Text>
                     </View>
                   </View>
-                  <Text style={styles.ratingDescText}>{averageRating >= 3 ? strings.OutStanding : strings.NeedsWork}</Text>
+                  <Text style={styles.ratingDescText}>{this.getRatingCaption()}</Text>
                 </View>
               </View>
 

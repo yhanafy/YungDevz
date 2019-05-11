@@ -22,6 +22,8 @@ export default {
     EnterAssignmentHere: 'Enter assignment here...',
     OutStanding: 'Outstanding!',
     NeedsWork: 'Needs Work',
+    GoodProgress: "Good Progress",
+    GreatJob: "Great Job",
     CurrentAssignment: 'Current Assignment',
     AddAssignment: 'Add Assignment',
     Grade: 'Grade',
