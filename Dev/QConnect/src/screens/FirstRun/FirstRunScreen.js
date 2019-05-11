@@ -27,7 +27,8 @@ class FirstRunScreen extends QcParentScreen {
                     <QcActionButton
                         navigation={navigation}
                         text={strings.IAmATeacher}
-                        onPress={this.onTeacherFlow} />
+                        onPress={this.onTeacherFlow}
+                        screen={this.constructor.name} />
                 </ImageBackground>
             </View>  
         );
