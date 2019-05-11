@@ -61,11 +61,11 @@ class StudentProfileScreen extends QcParentScreen {
     else if (averageRating > 3){
       strings.OutStanding = strings.GreatJob
     }
-    else if (averageRating > 2){
-      strings.OutStanding = strings.GoodProgress
+    else if (averageRating > 0){
+      strings.OutStanding = strings.PracticePerfect
     }
     else{
-      strings.OutStanding = strings.NeedsWork
+      strings.OutStanding = strings.GetStarted
     }
     return strings.OutStanding
   }
