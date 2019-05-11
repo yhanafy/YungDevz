@@ -21,7 +21,7 @@ export class EvaluationPage extends QcParentScreen {
     notes: ""
   }
 
-  myname =  this.constructor.name;
+  myname = this.constructor.name;
 
   // --------------  Updates state to reflect a change in a category rating --------------
   updateCategoryRating = (name, rating) => {
@@ -37,12 +37,27 @@ export class EvaluationPage extends QcParentScreen {
 
   //------------  Saves the rating to db and pops to previous view
   submitRating(classIndex, studentIndex) {
-    this.props.completeCurrentAssignment(classIndex, studentIndex, this.state);
+    let proceed = true;
+    if (this.state.overallGrade === 0) {
+      Alert.alert(
+        'No Rating',
+        strings.AreYouSureYouWantToProceed,
+        [
+          {
+            text: 'Yes', style: 'cancel'
+          },
+          { text: 'No', style: 'cancel', proceed = false },
+        ]
+      );
+    }
+    if (proceed) {
+      this.props.completeCurrentAssignment(classIndex, studentIndex, this.state);
 
-    // keep the assignment name as the last assignment to reduce retype since most of the times the next assignment would be the same surah (next portion) or a redo.
-    // todo: eventually right after grading we should have a step for the teacher to update the next assignment
-    this.props.editCurrentAssignment(classIndex, studentIndex, { name: this.props.currentAssignment.name, startDate: "" });
-    this.props.navigation.pop();
+      // keep the assignment name as the last assignment to reduce retype since most of the times the next assignment would be the same surah (next portion) or a redo.
+      // todo: eventually right after grading we should have a step for the teacher to update the next assignment
+      this.props.editCurrentAssignment(classIndex, studentIndex, { name: this.props.currentAssignment.name, startDate: "" });
+      this.props.navigation.pop();
+    }
   }
 
   // --------------  Renders Evaluation scree UI --------------
