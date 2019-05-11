@@ -102,6 +102,14 @@ export class ClassEditScreen extends QcParentScreen {
         DURATION.LENGTH_SHORT);
       this.setState({ newStudentName: "" });
     }
+
+    this.initialDefaultImageId = this.getRandomGenderNeutralImage()
+
+    this.setState({
+      profileImageId: this.initialDefaultImageId, 
+      highlightedImagesIndices: this.getHighlightedImages()
+    })
+
   }
 
   // ------- event handlers of when images are selected or being selected ---------
