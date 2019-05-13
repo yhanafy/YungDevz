@@ -58,7 +58,7 @@ export class AddClassScreen extends QcParentScreen {
     let { classes } = this.props;
 
     if (!this.state.className || this.state.className.trim().length === 0) {
-      alert(strings.PleaseMakeSureToHaveAnInput);
+      alert(strings.Whoops, strings.strings.PleaseMakeSureAllFieldsAreFilledOut);
       return;
     }
 
