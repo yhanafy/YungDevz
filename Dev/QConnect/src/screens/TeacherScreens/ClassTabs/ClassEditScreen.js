@@ -8,12 +8,15 @@ import { bindActionCreators } from "redux";
 import { deleteStudent } from "model/actions/deleteStudent";
 import { addStudent } from "model/actions/addStudent";
 import QcActionButton from "components/QcActionButton";
+import ImageSelectionModal from 'components/ImageSelectionModal'
+import ImageSelectionRow from 'components/ImageSelectionRow'
 import studentImages from "config/studentImages";
 import { Icon } from 'react-native-elements';
 import strings from "config/strings";
 import mapStateToCurrentClassProps from "screens/TeacherScreens/helpers/mapStateToCurrentClassProps";
+import QcParentScreen from "screens/QcParentScreen";
 
-export class ClassEditScreen extends Component {
+export class ClassEditScreen extends QcParentScreen {
 
 
   // ---------- Helpers to initialize random suggested student images --------------
@@ -76,9 +79,9 @@ export class ClassEditScreen extends Component {
   // ----------- Redux function to persist the added student ------------------------
   addNewStudent(classIndex) {
     if (!this.state.newStudentName) {
-      alert(strings.PleaseInputAName);
+      alert(strings.Whoops, strings.PleaseInputAName);
     } else if (this.studentNameExists()) {
-      alert(strings.ThereIsAlreadyAStudentWithThatName);
+      alert(strings.Whoops, strings.ThereIsAlreadyAStudentWithThatName);
     } else {
       this.props.addStudent({
         classIndex: classIndex,
@@ -99,6 +102,14 @@ export class ClassEditScreen extends Component {
         DURATION.LENGTH_SHORT);
       this.setState({ newStudentName: "" });
     }
+
+    this.initialDefaultImageId = this.getRandomGenderNeutralImage()
+
+    this.setState({
+      profileImageId: this.initialDefaultImageId, 
+      highlightedImagesIndices: this.getHighlightedImages()
+    })
+
   }
 
   // ------- event handlers of when images are selected or being selected ---------
@@ -140,6 +151,7 @@ export class ClassEditScreen extends Component {
             cancelText="Cancel"
             setModalVisible={this.setModalVisible.bind(this)}
             onImageSelected={this.onImageSelected.bind(this)}
+            screen={this.constructor.name}
           />
 
           <View ID={classIndex} style={styles.inputContainer}>
@@ -156,10 +168,12 @@ export class ClassEditScreen extends Component {
               onImageSelected={this.onImageSelected.bind(this)}
               onShowMore={() => this.setModalVisible(true)}
               selectedImageIndex={this.state.profileImageId}
+              screen={this.constructor.name}
             />
             <QcActionButton
               text={strings.AddStudent}
               onPress={() => this.addNewStudent(classIndex)}
+              screen={this.constructor.name}
             />
           </View>
           <FlatList

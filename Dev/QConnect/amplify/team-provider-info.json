@@ -1,0 +1,19 @@
+{
+    "qconnecte": {
+        "awscloudformation": {
+            "AuthRoleName": "qconnect-qconnecte-20190508153709-authRole",
+            "UnauthRoleArn": "arn:aws:iam::923713537221:role/qconnect-qconnecte-20190508153709-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::923713537221:role/qconnect-qconnecte-20190508153709-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "qconnect-qconnecte-20190508153709-deployment",
+            "UnauthRoleName": "qconnect-qconnecte-20190508153709-unauthRole",
+            "StackName": "qconnect-qconnecte-20190508153709",
+            "StackId": "arn:aws:cloudformation:us-east-1:923713537221:stack/qconnect-qconnecte-20190508153709/d1ec85f0-71e1-11e9-8ea4-12b323895910"
+        },
+        "categories": {
+            "auth": {
+                "cognitob1424da5": {}
+            }
+        }
+    }
+}

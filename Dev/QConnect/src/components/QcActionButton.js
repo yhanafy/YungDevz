@@ -3,13 +3,24 @@ import PropTypes from 'prop-types';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 import colors from 'config/colors'
 import FontLoadingComponent from 'components/FontLoadingComponent'
+import Analytics from '@aws-amplify/analytics';
+import analyticsEvents from 'config/analyticsEvents'
 
-class customButton extends FontLoadingComponent {
-	render() {
+class QcActionButton extends FontLoadingComponent {
+  
+  onButtonPress(){
+    Analytics.record({
+      name: analyticsEvents.button_pressed,
+      attributes: { text: this.props.text, screenName: this.props.screen }
+    })
+    this.props.onPress();
+  }
+
+	render() {    
 		const { text, onPress} = this.props;
 		return (
 		  <TouchableOpacity style={styles.buttonStyle}
-			onPress={() => onPress()}
+			onPress={() => this.onButtonPress()}
 		  >
       {this.state.fontLoaded ? (  
 			 <Text style={styles.textStyle}>{text}</Text>
@@ -22,9 +33,10 @@ class customButton extends FontLoadingComponent {
 	}
 }
 
-customButton.propTypes = {
+QcActionButton.propTypes = {
   text: PropTypes.string.isRequired,
-  onPress: PropTypes.func.isRequired
+  onPress: PropTypes.func.isRequired,
+  screen: PropTypes.string,
 };
 
 
@@ -49,4 +61,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default customButton;
+export default QcActionButton;

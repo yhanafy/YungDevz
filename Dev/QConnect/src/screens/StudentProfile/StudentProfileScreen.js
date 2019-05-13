@@ -11,9 +11,10 @@ import { connect } from "react-redux";
 import strings from 'config/strings';
 import studentImages from 'config/studentImages';
 import TouchableText from 'components/TouchableText'
-import FontLoadingComponent from 'components/FontLoadingComponent'
+import ImageSelectionModal from 'components/ImageSelectionModal'
+import QcParentScreen from 'screens/QcParentScreen';
 
-class StudentProfileScreen extends FontLoadingComponent {
+class StudentProfileScreen extends QcParentScreen {
 
   state = {
     isDialogVisible: false,
@@ -53,6 +54,22 @@ class StudentProfileScreen extends FontLoadingComponent {
     this.setModalVisible(false);
   }
 
+  getRatingCaption() {
+    let caption = strings.GetStarted;
+
+    if(averageRating > 4 ){
+      caption = strings.OutStanding
+    }
+    else if (averageRating >= 3){
+      caption = strings.GreatJob
+    }
+    else if (averageRating > 0){
+      caption = strings.PracticePerfect
+    }
+
+    return caption
+  }
+
   //---------- main UI render ===============================
   render() {
     const { classIndex, studentIndex } = this.props.navigation.state.params;
@@ -88,6 +105,7 @@ class StudentProfileScreen extends FontLoadingComponent {
           cancelText="Cancel"
           setModalVisible={this.setModalVisible.bind(this)}
           onImageSelected={this.onImageSelected.bind(this)}
+          screen={this.constructor.name}
         />
 
         {this.state.fontLoaded ? (
@@ -107,7 +125,7 @@ class StudentProfileScreen extends FontLoadingComponent {
                       <Text style={styles.ratingText}>{parseFloat(averageRating).toFixed(1)}</Text>
                     </View>
                   </View>
-                  <Text style={styles.ratingDescText}>{averageRating >= 3 ? strings.OutStanding : strings.NeedsWork}</Text>
+                  <Text style={styles.ratingDescText}>{this.getRatingCaption()}</Text>
                 </View>
               </View>
 

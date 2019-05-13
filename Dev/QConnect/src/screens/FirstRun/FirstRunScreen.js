@@ -3,19 +3,20 @@ import { View, StyleSheet, Dimensions, ImageBackground} from 'react-native';
 import QcActionButton from 'components/QcActionButton';
 import QcAppBanner from 'components/QcAppBanner';
 import strings from '../../../config/strings';
+import QcParentScreen from 'screens/QcParentScreen';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 
 const BG_IMAGE = require('assets/images/read_child_bg.jpg');
 
-class FirstRunScreen extends React.Component {
+class FirstRunScreen extends QcParentScreen {
 
     onTeacherFlow = () => {
       //todo: get the first class to show from redux persist (current class)
         this.props.navigation.push('TeacherWelcomeScreen', { classIndex: 0, classTitle: "Quran Class"});
     }
-
+    
     render() {
         const { navigation } = this.props;
         return (
@@ -26,7 +27,8 @@ class FirstRunScreen extends React.Component {
                     <QcActionButton
                         navigation={navigation}
                         text={strings.IAmATeacher}
-                        onPress={this.onTeacherFlow} />
+                        onPress={this.onTeacherFlow}
+                        screen={this.constructor.name} />
                 </ImageBackground>
             </View>  
         );

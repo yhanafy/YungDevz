@@ -11,8 +11,9 @@ import colors from 'config/colors';
 import studentImages from 'config/studentImages'
 import strings from 'config/strings';
 import mapStateToCurrentClassProps from 'screens/TeacherScreens/helpers/mapStateToCurrentClassProps'
+import QcParentScreen from 'screens/QcParentScreen';
 
-export class ClassAttendanceScreen extends Component {
+export class ClassAttendanceScreen extends QcParentScreen {
     todaysDate = this.props.defaultDate ? this.props.defaultDate : new Date().toLocaleDateString("en-US")
     state = {
         selectedStudents: [],
@@ -127,6 +128,7 @@ export class ClassAttendanceScreen extends Component {
                     text={strings.SaveAttendance}
                     onPress={() => this.saveAttendance()}
                     style={{paddingRight: 30}}
+                    screen={this.constructor.name}
                 />
             </View>
             {this.props.students.map((student, i) => {
