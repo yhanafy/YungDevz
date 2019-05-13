@@ -15,13 +15,13 @@ import QcParentScreen from 'screens/QcParentScreen';
 
 export class EvaluationPage extends QcParentScreen {
 
+  name = "EvaluationPage";
+
   // -------------  Current evaluation state ---------------------
   state = {
     overallGrade: 0,
     notes: ""
   }
-
-  myname = this.constructor.name;
 
   // --------------  Updates state to reflect a change in a category rating --------------
   updateCategoryRating = (name, rating) => {
@@ -116,7 +116,7 @@ export class EvaluationPage extends QcParentScreen {
             <QcActionButton
               text={strings.Submit}
               onPress={() => { this.submitRating(classIndex, studentIndex) }}
-              screen={this.constructor.name}
+              screen={this.name}
             />
           </View>
           <View style={styles.filler}></View>
