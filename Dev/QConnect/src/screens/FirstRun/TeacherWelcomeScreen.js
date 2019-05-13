@@ -18,6 +18,8 @@ import QcParentScreen from 'screens/QcParentScreen';
 //to function dynamically
 export class TeacherWelcomeScreen extends QcParentScreen {
 
+    name = "TeacherWelcomeScreen";
+
     //--- state captures the inputted user info ------------------
     state = {
         name: this.props.name,
@@ -105,7 +107,7 @@ export class TeacherWelcomeScreen extends QcParentScreen {
                     cancelText={strings.Cancel}
                     setModalVisible={this.setModalVisible.bind(this)}
                     onImageSelected={this.onImageSelected.bind(this)}
-                    screen={this.constructor.name}
+                    screen={this.name}
                 />
 
                 <View style={styles.picContainer}>
@@ -129,7 +131,7 @@ export class TeacherWelcomeScreen extends QcParentScreen {
                         onImageSelected={this.onImageSelected.bind(this)}
                         onShowMore={() => this.setModalVisible(true)}
                         selectedImageIndex={this.state.profileImageId}
-                        screen={this.constructor.name}
+                        screen={this.name}
                     />
                 </View>
                 <View style={styles.buttonsContainer}>
@@ -137,7 +139,7 @@ export class TeacherWelcomeScreen extends QcParentScreen {
                         text={strings.Save}
                         onPress={() => this.saveProfileInfo(0)} //to-do: Make sure that teacher ID 
                     //is passed instead of 0
-                        screen={this.constructor.name}
+                        screen={this.name}
                     />
                 </View>
                 <View style={styles.filler}></View>

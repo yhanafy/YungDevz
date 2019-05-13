@@ -21,6 +21,8 @@ import strings from '../../../../config/strings';
 import QcParentScreen from "screens/QcParentScreen";
 
 export class AddClassScreen extends QcParentScreen {
+  name = "AddClassScreen";
+
   //----------------------- state -------------------------------------
   state = {
     className: "",
@@ -104,7 +106,7 @@ render() {
             cancelText={strings.Cancel}
             setModalVisible={this.setModalVisible.bind(this)}
             onImageSelected={this.onImageSelected.bind(this)}
-            screen={this.constructor.name}
+            screen={this.name}
           />
 
           <View style={styles.picContainer}>
@@ -133,7 +135,7 @@ render() {
               onPress={() => {
                 this.addNewClass();
               }}
-              screen={this.constructor.name}
+              screen={this.name}
             />
           </View>
         </View>
