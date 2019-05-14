@@ -34,6 +34,7 @@ export default {
     EditClassImage: 'Edit class image',
     WriteClassNameHere: 'Enter the new class name',
     AddClass: 'Add Class',
+    ClassAlreadyExists: 'Class Name already exists!',
 
     //--------------------- Add Class Navigator ---------------------
     AddNewClass: 'Add New Class',
