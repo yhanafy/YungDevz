@@ -7,7 +7,8 @@ import {
   KeyboardAvoidingView,
   StyleSheet,
   Keyboard,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  Alert
 } from "react-native";
 import colors from "config/colors";
 import classImages from "config/classImages";
@@ -21,6 +22,8 @@ import strings from '../../../../config/strings';
 import QcParentScreen from "screens/QcParentScreen";
 
 export class AddClassScreen extends QcParentScreen {
+  name = "AddClassScreen";
+
   //----------------------- state -------------------------------------
   state = {
     className: "",
@@ -56,12 +59,12 @@ export class AddClassScreen extends QcParentScreen {
     let { classes } = this.props;
 
     if (!this.state.className || this.state.className.trim().length === 0) {
-      alert(strings.Whoops, strings.strings.PleaseMakeSureAllFieldsAreFilledOut);
+      Alert.alert(strings.Whoops, strings.PleaseMakeSureAllFieldsAreFilledOut);
       return;
     }
 
     if (this.classNameAlreadyExists()) {
-      alert(
+      Alert.alert(strings.Whoops,
         /*Message to say that it is an invalid input:*/
         "Class Name already exists!",
         [/*Button to exit */
@@ -104,7 +107,7 @@ render() {
             cancelText={strings.Cancel}
             setModalVisible={this.setModalVisible.bind(this)}
             onImageSelected={this.onImageSelected.bind(this)}
-            screen={this.constructor.name}
+            screen={this.name}
           />
 
           <View style={styles.picContainer}>
@@ -133,7 +136,7 @@ render() {
               onPress={() => {
                 this.addNewClass();
               }}
-              screen={this.constructor.name}
+              screen={this.name}
             />
           </View>
         </View>

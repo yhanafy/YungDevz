@@ -10,7 +10,7 @@ class QcParentScreen extends FontLoadingComponent {
 
         Analytics.record({
             name: analyticsEvents.screen_loaded,
-            attributes: { screen: this.constructor.name }
+            attributes: { screen: this.name }
         })
     }
 }

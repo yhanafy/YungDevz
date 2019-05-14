@@ -10,6 +10,8 @@ import QcParentScreen from "screens/QcParentScreen";
 
 export class ClassMainScreen extends QcParentScreen {
 
+  name = "ClassMainScreen";
+  
   async componentDidMount() {
     super.componentDidMount();
     //This may not be the eventual right approach here.. but this is a current mitigation to the 
