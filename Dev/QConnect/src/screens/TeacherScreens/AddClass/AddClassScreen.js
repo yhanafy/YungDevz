@@ -7,7 +7,8 @@ import {
   KeyboardAvoidingView,
   StyleSheet,
   Keyboard,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  Alert
 } from "react-native";
 import colors from "config/colors";
 import classImages from "config/classImages";
@@ -58,7 +59,7 @@ export class AddClassScreen extends QcParentScreen {
     let { classes } = this.props;
 
     if (!this.state.className || this.state.className.trim().length === 0) {
-      alert(strings.Whoops, strings.strings.PleaseMakeSureAllFieldsAreFilledOut);
+      Alert.alert(strings.Whoops, strings.PleaseMakeSureAllFieldsAreFilledOut);
       return;
     }
 
