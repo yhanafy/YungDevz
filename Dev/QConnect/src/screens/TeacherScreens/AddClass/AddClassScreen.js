@@ -64,7 +64,7 @@ export class AddClassScreen extends QcParentScreen {
     }
 
     if (this.classNameAlreadyExists()) {
-      alert(
+      Alert.alert(strings.Whoops,
         /*Message to say that it is an invalid input:*/
         "Class Name already exists!",
         [/*Button to exit */
