@@ -14,6 +14,8 @@ import mapStateToCurrentClassProps from 'screens/TeacherScreens/helpers/mapState
 import QcParentScreen from 'screens/QcParentScreen';
 
 export class ClassAttendanceScreen extends QcParentScreen {
+    name = "ClassAttendanceScreen";
+    
     todaysDate = this.props.defaultDate ? this.props.defaultDate : new Date().toLocaleDateString("en-US")
     state = {
         selectedStudents: [],
@@ -128,7 +130,7 @@ export class ClassAttendanceScreen extends QcParentScreen {
                     text={strings.SaveAttendance}
                     onPress={() => this.saveAttendance()}
                     style={{paddingRight: 30}}
-                    screen={this.constructor.name}
+                    screen={this.name}
                 />
             </View>
             {this.props.students.map((student, i) => {

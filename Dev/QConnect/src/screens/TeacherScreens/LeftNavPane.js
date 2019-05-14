@@ -13,6 +13,8 @@ import strings from '../../../config/strings';
 import QcParentScreen from "screens/QcParentScreen";
 
 class LeftNavPane extends QcParentScreen{
+  name = "LeftNavPane";
+  
   openClass = (i, className) => {
     //update current class index in redux
     this.props.saveTeacherInfo(

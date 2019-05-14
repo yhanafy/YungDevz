@@ -16,6 +16,8 @@ import QcParentScreen from 'screens/QcParentScreen';
 
 class StudentProfileScreen extends QcParentScreen {
 
+  name = "StudentProfileScreen";
+
   state = {
     isDialogVisible: false,
     averageGrade: 0,
@@ -105,7 +107,7 @@ class StudentProfileScreen extends QcParentScreen {
           cancelText="Cancel"
           setModalVisible={this.setModalVisible.bind(this)}
           onImageSelected={this.onImageSelected.bind(this)}
-          screen={this.constructor.name}
+          screen={this.name}
         />
 
         {this.state.fontLoaded ? (
