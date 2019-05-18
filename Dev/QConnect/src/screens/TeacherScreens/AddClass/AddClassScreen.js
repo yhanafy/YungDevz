@@ -20,13 +20,9 @@ import { addClass } from "model/actions/addClass";
 import { saveTeacherInfo } from "model/actions/saveTeacherInfo";
 import strings from 'config/strings';
 
-<<<<<<< HEAD
-export class AddClassScreen extends Component {
-=======
 export class AddClassScreen extends QcParentScreen {
   name = "AddClassScreen";
 
->>>>>>> master
   //----------------------- state -------------------------------------
   state = {
     className: "",
@@ -139,10 +135,7 @@ render() {
               onPress={() => {
                 this.addNewClass();
               }}
-<<<<<<< HEAD
-=======
               screen={this.name}
->>>>>>> master
             />
           </View>
         </View>

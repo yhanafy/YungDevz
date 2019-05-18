@@ -101,14 +101,16 @@ export class ClassEditScreen extends QcParentScreen {
       });
       this.refs.toast.show(this.state.newStudentName + strings.IsNowAddedToTheClass,
         DURATION.LENGTH_SHORT);
-      this.setState({ newStudentName: "" });
+      this.setState({
+        newStudentName: "",
+        highlightedImagesIndices: this.getHighlightedImages()
+      });
     }
 
     this.initialDefaultImageId = this.getRandomGenderNeutralImage()
 
     this.setState({
-      profileImageId: this.initialDefaultImageId, 
-      highlightedImagesIndices: this.getHighlightedImages()
+      profileImageId: this.initialDefaultImageId
     })
 
   }
