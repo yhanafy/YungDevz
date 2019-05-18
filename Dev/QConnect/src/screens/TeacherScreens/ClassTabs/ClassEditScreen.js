@@ -80,9 +80,9 @@ export class ClassEditScreen extends QcParentScreen {
   // ----------- Redux function to persist the added student ------------------------
   addNewStudent(classIndex) {
     if (!this.state.newStudentName) {
-      alert(strings.Whoops, strings.PleaseInputAName);
+      Alert.alert(strings.Whoops, strings.PleaseInputAName);
     } else if (this.studentNameExists()) {
-      alert(strings.Whoops, strings.ThereIsAlreadyAStudentWithThatName);
+      Alert.alert(strings.Whoops, strings.ThereIsAlreadyAStudentWithThatName);
     } else {
       this.props.addStudent({
         classIndex: classIndex,
