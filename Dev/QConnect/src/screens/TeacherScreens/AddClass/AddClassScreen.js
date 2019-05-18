@@ -110,10 +110,7 @@ render() {
             cancelText={strings.Cancel}
             setModalVisible={this.setModalVisible.bind(this)}
             onImageSelected={this.onImageSelected.bind(this)}
-<<<<<<< HEAD
-=======
             screen={this.name}
->>>>>>> master
           />
 
           <View style={styles.picContainer}>
