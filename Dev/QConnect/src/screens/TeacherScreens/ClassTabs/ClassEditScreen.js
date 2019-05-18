@@ -79,40 +79,46 @@ export class ClassEditScreen extends QcParentScreen {
 
   // ----------- Redux function to persist the added student ------------------------
   addNewStudent(classIndex) {
+
     if (!this.state.newStudentName) {
       Alert.alert(strings.Whoops, strings.PleaseInputAName);
     } else if (this.studentNameExists()) {
       Alert.alert(strings.Whoops, strings.ThereIsAlreadyAStudentWithThatName);
     } else {
-      this.props.addStudent({
-        classIndex: classIndex,
-        studentInfo: {
-          name: this.state.newStudentName,
-          totalAssignments: 0,
-          totalGrade: 0,
-          imageId: this.state.profileImageId,
-          currentAssignment: {
-            name: "None",
-            startDate: ""
-          },
-          assignmentHistory: [],
-          attendanceHistory: []
-        }
-      });
+      this.doAddNewStudent(classIndex);
       this.refs.toast.show(this.state.newStudentName + strings.IsNowAddedToTheClass,
         DURATION.LENGTH_SHORT);
-      this.setState({
-        newStudentName: "",
-        highlightedImagesIndices: this.getHighlightedImages()
-      });
+
+      this.refreshProposedImages();
+
     }
+  }
 
-    this.initialDefaultImageId = this.getRandomGenderNeutralImage()
+  doAddNewStudent(classIndex) {
+    this.props.addStudent({
+      classIndex: classIndex,
+      studentInfo: {
+        name: this.state.newStudentName,
+        totalAssignments: 0,
+        totalGrade: 0,
+        imageId: this.state.profileImageId,
+        currentAssignment: {
+          name: "None",
+          startDate: ""
+        },
+        assignmentHistory: [],
+        attendanceHistory: []
+      }
+    });
+  }
 
+  refreshProposedImages() {
+    this.initialDefaultImageId = this.getRandomGenderNeutralImage();
     this.setState({
+      newStudentName: "",
+      highlightedImagesIndices: this.getHighlightedImages(),
       profileImageId: this.initialDefaultImageId
-    })
-
+    });
   }
 
   // ------- event handlers of when images are selected or being selected ---------
