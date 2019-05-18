@@ -10,7 +10,7 @@ import { editCurrentAssignment } from 'model/actions/editCurrentAssignment';
 import strings from 'config/strings';
 import studentImages from 'config/studentImages';
 import Analytics from '@aws-amplify/analytics';
-import analyticsEvents from 'config/analyticsEvents';
+import analyticsEvents from 'config/analyticsEvents'
 import QcParentScreen from 'screens/QcParentScreen';
 
 export class EvaluationPage extends QcParentScreen {
