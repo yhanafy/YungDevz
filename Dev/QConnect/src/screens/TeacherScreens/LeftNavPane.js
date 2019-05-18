@@ -87,8 +87,14 @@ const styles = StyleSheet.create({
   }
 });
 
+const getTeacherClasses = (classIds, classes) => {
+   return classes.filter(c => classIds.includes(c.id))
+}
+
 const mapStateToProps = state => {
-  const { classes, name, profileImageId, currentClassIndex } = state.data.teachers[0];
+  const { name, profileImageId, currentClassIndex } = state.data.teachers[0];
+  const classes = getTeacherClasses(state.data.teachers[0].classes, state.data.classes);
+
   return { classes, name, profileImageId, currentClassIndex };
 };
 

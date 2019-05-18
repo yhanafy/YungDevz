@@ -30,11 +30,11 @@ export default {
     Grade: 'Grade',
 
     //--------------------- Add Class Screen ---------------------
-    PleaseMakeSureToHaveAnInput: 'Please make sure to have an input!',
+    PleaseMakeSureToHaveAnInput: 'Please make sure to have an input',
     EditClassImage: 'Edit class image',
     WriteClassNameHere: 'Enter the new class name',
     AddClass: 'Add Class',
-    ClassAlreadyExists: 'Class Name already exists!',
+    ClassAlreadyExists: 'Class Name already exists',
 
     //--------------------- Add Class Navigator ---------------------
     AddNewClass: 'Add New Class',

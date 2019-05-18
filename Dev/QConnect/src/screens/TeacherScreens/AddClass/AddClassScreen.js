@@ -82,6 +82,10 @@ export class AddClassScreen extends QcParentScreen {
       students: []
     };
 
+    var nanoid = require('nanoid')
+    let newId = nanoid()
+    classInfo = {id: newId, ...classInfo};
+
     this.props.addClass(classInfo);
     this.props.saveTeacherInfo(
       0, //todo: proper id here..
@@ -186,7 +190,7 @@ const styles = StyleSheet.create({
 }
 );
 const mapStateToProps = state => {
-  const { classes } = state.data.teachers[0];
+  const { classes } = state.data;
   return { classes };
 };
 

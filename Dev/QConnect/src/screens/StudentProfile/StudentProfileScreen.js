@@ -330,7 +330,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  const { classes } = state.data.teachers[0];
+  const { classes } = state.data;
   return { classes };
 };
 const mapDispatchToProps = dispatch =>

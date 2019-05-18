@@ -218,7 +218,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state, ownProps) => {
   const { classIndex, studentIndex } = ownProps.navigation.state.params;
-  state = state.data.teachers[0].classes[classIndex].students[studentIndex];
+  state = state.data.classes[classIndex].students[studentIndex];
   return state;
 };
 

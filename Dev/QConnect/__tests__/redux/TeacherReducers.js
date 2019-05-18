@@ -15,10 +15,12 @@ const teacher_no_class = {
         {
             ...teacher_props,
             classes: []
-        }]
+        }],
+    classes: []
 };
 
 const classInfo = {
+    id: "uid1",
     name: "test class",
     imageId: 1,
     students: []
@@ -29,9 +31,12 @@ const teacher_one_class_no_students = {
         {
             ...teacher_props,
             classes: [
-                classInfo
+                classInfo.id
             ]
         }
+    ],
+    classes: [
+        classInfo
     ]
 };
 
@@ -48,13 +53,14 @@ const teacher_one_class_one_student = {
     teachers: [
         {
             ...teacher_props,
-            classes: [
-                {
-                    ...classInfo,
-                    students: [
-                        studentInfo
-                    ]
-                }
+            classes: [classInfo.id]
+        }
+    ],
+    classes: [
+        {
+            ...classInfo,
+            students: [
+                studentInfo
             ]
         }
     ]
@@ -72,18 +78,19 @@ const teacher_one_class_one_student_with_new_assignment = {
     teachers: [
         {
             ...teacher_props,
-            classes: [
+            classes: [classInfo.id]
+        }
+    ],
+    classes: [
+        {
+            ...classInfo,
+            students: [
                 {
-                    ...classInfo,
-                    students: [
-                        {
-                            ...studentInfo,
-                            currentAssignment: {
-                                name: new_assignment_text,
-                                startDate: "12/31/2018"
-                            }
-                        }
-                    ]
+                    ...studentInfo,
+                    currentAssignment: {
+                        name: new_assignment_text,
+                        startDate: "12/31/2018"
+                    }
                 }
             ]
         }
@@ -96,18 +103,19 @@ const teacher_one_class_one_student_updated_assignment = {
     teachers: [
         {
             ...teacher_props,
-            classes: [
+            classes: [classInfo.id]
+        }
+    ],
+    classes: [
+        {
+            ...classInfo,
+            students: [
                 {
-                    ...classInfo,
-                    students: [
-                        {
-                            ...studentInfo,
-                            currentAssignment: {
-                                name: updated_assignment_text,
-                                startDate: "12/31/2018"
-                            }
-                        }
-                    ]
+                    ...studentInfo,
+                    currentAssignment: {
+                        name: updated_assignment_text,
+                        startDate: "12/31/2018"
+                    }
                 }
             ]
         }
@@ -137,21 +145,22 @@ const studentAssignmentHistory =  [{
         teachers: [
             {
                 ...teacher_props,
-                classes: [
+                classes: [classInfo.id]
+            }
+        ],
+        classes: [
+            {
+                ...classInfo,
+                students: [
                     {
-                        ...classInfo,
-                        students: [
-                            {
-                                ...studentInfo,
-                                totalGrade: 3,
-                                totalAssignments: 1,
-                                currentAssignment: {
-                                    name: new_assignment_text,
-                                    startDate: "12/31/2018"
-                                },
-                                assignmentHistory: studentAssignmentHistory
-                            }
-                        ]
+                        ...studentInfo,
+                        totalGrade: 3,
+                        totalAssignments: 1,
+                        currentAssignment: {
+                            name: new_assignment_text,
+                            startDate: "12/31/2018"
+                        },
+                        assignmentHistory: studentAssignmentHistory
                     }
                 ]
             }
@@ -162,16 +171,17 @@ const teacher_one_class_one_student_with_attendance = {
     teachers: [
         {
             ...teacher_props,
-            classes: [
+            classes: [classInfo.id]
+        }
+    ],
+    classes: [
+        {
+            ...classInfo,
+            students: [
                 {
-                    ...classInfo,
-                    students: [
-                        {
-                            ...studentInfo,
-                            attendanceHistory: [
-                                attendanceInfo
-                            ]
-                        }
+                    ...studentInfo,
+                    attendanceHistory: [
+                        attendanceInfo
                     ]
                 }
             ]
