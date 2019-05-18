@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Image, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { StyleSheet, View, Image, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, Alert } from 'react-native';
 import Toast, { DURATION } from 'react-native-easy-toast'
 import QcActionButton from 'components/QcActionButton';
 import TouchableText from 'components/TouchableText'
@@ -50,7 +50,7 @@ export class TeacherProfileScreen extends QcParentScreen {
     saveProfileInfo = (teacherID) => {
         const { name, phoneNumber, emailAddress } = this.state;
         if (name.trim() === "" || phoneNumber.trim() === "" || emailAddress.trim() === "") {
-            alert(strings.PleaseMakeSureAllFieldsAreFilledOut);
+            Alert.alert(strings.Whoops, strings.PleaseMakeSureAllFieldsAreFilledOut);
         } else {
             const {modalVisible, ...params} = this.state; // trick to remove modalVisible from state and pass in everything else
             this.props.saveTeacherInfo(
