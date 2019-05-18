@@ -12,9 +12,9 @@ import teacherImages from "../../../config/teacherImages";
 import strings from '../../../config/strings';
 import QcParentScreen from "screens/QcParentScreen";
 
-class LeftNavPane extends QcParentScreen{
+class LeftNavPane extends QcParentScreen {
   name = "LeftNavPane";
-  
+
   openClass = (i, className) => {
     //update current class index in redux
     this.props.saveTeacherInfo(
@@ -67,14 +67,18 @@ class LeftNavPane extends QcParentScreen{
                 image={classImages.images[item.imageId]}
                 onPress={() => this.openClass(index, item.name)}
               />
-            )}
-          />
+            )} />
 
           <QcDrawerItem
             title={strings.AddNewClass}
             icon="plus"
-            onPress={() => this.props.navigation.push("AddClass")}
-          />
+            onPress={() => this.props.navigation.push("AddClass")} />
+
+          <QcDrawerItem
+            title={strings.Settings}
+            icon="cogs"
+            onPress={() => this.props.navigation.push("Settings")} />
+
         </SafeAreaView>
       </ScrollView>
     );
