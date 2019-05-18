@@ -17,9 +17,10 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { addClass } from "model/actions/addClass";
 import { saveTeacherInfo } from "model/actions/saveTeacherInfo";
-import strings from 'config/strings';
+import strings from '../../../../config/strings';
+import QcParentScreen from "screens/QcParentScreen";
 
-export class AddClassScreen extends Component {
+export class AddClassScreen extends QcParentScreen {
   //----------------------- state -------------------------------------
   state = {
     className: "",
@@ -103,6 +104,7 @@ render() {
             cancelText={strings.Cancel}
             setModalVisible={this.setModalVisible.bind(this)}
             onImageSelected={this.onImageSelected.bind(this)}
+            screen={this.constructor.name}
           />
 
           <View style={styles.picContainer}>
@@ -131,6 +133,7 @@ render() {
               onPress={() => {
                 this.addNewClass();
               }}
+              screen={this.constructor.name}
             />
           </View>
         </View>
