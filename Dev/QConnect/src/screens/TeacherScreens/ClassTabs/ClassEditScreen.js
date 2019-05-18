@@ -18,6 +18,7 @@ import QcParentScreen from "screens/QcParentScreen";
 
 export class ClassEditScreen extends QcParentScreen {
 
+  name = "ClassEditScreen";
 
   // ---------- Helpers to initialize random suggested student images --------------
   //  2 gender neutral images, one female, and one male
@@ -79,9 +80,9 @@ export class ClassEditScreen extends QcParentScreen {
   // ----------- Redux function to persist the added student ------------------------
   addNewStudent(classIndex) {
     if (!this.state.newStudentName) {
-      alert(strings.PleaseInputAName);
+      Alert.alert(strings.Whoops, strings.PleaseInputAName);
     } else if (this.studentNameExists()) {
-      alert(strings.ThereIsAlreadyAStudentWithThatName);
+      Alert.alert(strings.Whoops, strings.ThereIsAlreadyAStudentWithThatName);
     } else {
       this.props.addStudent({
         classIndex: classIndex,
@@ -151,7 +152,7 @@ export class ClassEditScreen extends QcParentScreen {
             cancelText="Cancel"
             setModalVisible={this.setModalVisible.bind(this)}
             onImageSelected={this.onImageSelected.bind(this)}
-            screen={this.constructor.name}
+            screen={this.name}
           />
 
           <View ID={classIndex} style={styles.inputContainer}>
@@ -168,12 +169,12 @@ export class ClassEditScreen extends QcParentScreen {
               onImageSelected={this.onImageSelected.bind(this)}
               onShowMore={() => this.setModalVisible(true)}
               selectedImageIndex={this.state.profileImageId}
-              screen={this.constructor.name}
+              screen={this.name}
             />
             <QcActionButton
               text={strings.AddStudent}
               onPress={() => this.addNewStudent(classIndex)}
-              screen={this.constructor.name}
+              screen={this.name}
             />
           </View>
           <FlatList

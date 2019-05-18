@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Text, TextInput, Image, FlatList, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard } from 'react-native'
+import { StyleSheet, View, Text, TextInput, Image, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, Alert } from 'react-native'
 import { Rating, AirbnbRating } from 'react-native-elements';
 import colors from 'config/colors';
 import { bindActionCreators } from 'redux';
@@ -15,13 +15,13 @@ import QcParentScreen from 'screens/QcParentScreen';
 
 export class EvaluationPage extends QcParentScreen {
 
+  name = "EvaluationPage";
+
   // -------------  Current evaluation state ---------------------
   state = {
     overallGrade: 0,
     notes: ""
   }
-
-  myname =  this.constructor.name;
 
   // --------------  Updates state to reflect a change in a category rating --------------
   updateCategoryRating = (name, rating) => {
@@ -35,16 +35,36 @@ export class EvaluationPage extends QcParentScreen {
     })
   }
 
-  //------------  Saves the rating to db and pops to previous view
-  submitRating(classIndex, studentIndex) {
+  //----- Saves the rating to db and pops to previous view ---------
+  doSubmitRating(classIndex, studentIndex){
     this.props.completeCurrentAssignment(classIndex, studentIndex, this.state);
 
-    // keep the assignment name as the last assignment to reduce retype since most of the times the next assignment would be the same surah (next portion) or a redo.
-    // todo: eventually right after grading we should have a step for the teacher to update the next assignment
-    this.props.editCurrentAssignment(classIndex, studentIndex, { name: this.props.currentAssignment.name, startDate: "" });
-    this.props.navigation.pop();
+      // keep the assignment name as the last assignment to reduce retype since most of the times the next assignment would be the same surah (next portion) or a redo.
+      // todo: eventually right after grading we should have a step for the teacher to update the next assignment
+      this.props.editCurrentAssignment(classIndex, studentIndex, { name: this.props.currentAssignment.name, startDate: "" });
+      this.props.navigation.pop();
   }
-  
+
+  //------------  Ensures a rating is inputted before submitting it -------
+  submitRating(classIndex, studentIndex) {
+    if (this.state.overallGrade === 0) {
+      Alert.alert(
+        'No Rating',
+        strings.AreYouSureYouWantToProceed,
+        [
+          {
+            text: 'Yes', style: 'cancel', onPress: () => {
+              this.doSubmitRating(classIndex, studentIndex)
+            }
+          },
+          { text: 'No', style: 'cancel'}
+        ]
+      );
+    } else {
+      this.doSubmitRating(classIndex, studentIndex);
+    }
+  }
+
   // --------------  Renders Evaluation scree UI --------------
   render() {
     const { classIndex, studentIndex } = this.props.navigation.state.params;
@@ -96,6 +116,7 @@ export class EvaluationPage extends QcParentScreen {
             <QcActionButton
               text={strings.Submit}
               onPress={() => { this.submitRating(classIndex, studentIndex) }}
+              screen={this.name}
             />
           </View>
           <View style={styles.filler}></View>

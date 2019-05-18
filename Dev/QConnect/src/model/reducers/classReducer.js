@@ -28,13 +28,13 @@ export const classReducer = (state = INITIAL_STATE, action) => {
   const {
     name, phoneNumber, emailAddress, classes
   } = state.teachers[0];
-  
+
   if (Object.values(actionTypes).indexOf(action.type) > -1) {
     Analytics.record({
       name: analyticsEvents.action_dispatched,
       attributes: { type: action.type }
     })
-  } 
+  }
 
   const baseState = { ...state };
 
@@ -89,7 +89,7 @@ export const classReducer = (state = INITIAL_STATE, action) => {
     case actionTypes.SAVE_TEACHER_INFO:
       {
         //fetches current teacher info
-        newState = update(baseState, { teachers: { [action.teacherIndex]:  { $merge: {...action.teacherInfo} } } } );
+        newState = update(baseState, { teachers: { [action.teacherIndex]: { $merge: { ...action.teacherInfo } } } });
         return newState;
       }
     case actionTypes.EDIT_CURRENT_ASSIGNMENT:
@@ -138,18 +138,20 @@ export const classReducer = (state = INITIAL_STATE, action) => {
         //pushes the assignment to the array of assignment history (Remember, this action does not 
         //update the current assignment, this needs to be done using the addNewAssignment action)
         let newState = update(baseState, { teachers: { [0]: { classes: { [classIndex]: { students: { [studentIndex]: { assignmentHistory: { $push: [assignment] } } } } } } } });
-        let totalAssignments = baseState.teachers[0].classes[classIndex].students[studentIndex].totalAssignments;
-        let totalGrade = baseState.teachers[0].classes[classIndex].students[studentIndex].totalGrade;
-        newState = update(newState, { teachers: { [0]: { classes: { [classIndex]: { students: { [studentIndex]: { totalAssignments: { $set: (totalAssignments + 1) } } } } } } } });
-        newState = update(newState, { teachers: { [0]: { classes: { [classIndex]: { students: { [studentIndex]: { totalGrade: { $set: (totalGrade + assignment.evaluation.overallGrade) } } } } } } } });
+        if (evaluation.overallGrade !== 0) {
+          let totalAssignments = baseState.teachers[0].classes[classIndex].students[studentIndex].totalAssignments;
+          let totalGrade = baseState.teachers[0].classes[classIndex].students[studentIndex].totalGrade;
+          newState = update(newState, { teachers: { [0]: { classes: { [classIndex]: { students: { [studentIndex]: { totalAssignments: { $set: (totalAssignments + 1) } } } } } } } });
+          newState = update(newState, { teachers: { [0]: { classes: { [classIndex]: { students: { [studentIndex]: { totalGrade: { $set: (totalGrade + assignment.evaluation.overallGrade) } } } } } } } });
+        }
         return newState;
       }
     case actionTypes.SET_FIRST_RUN_COMPLETED:
-    {
-      let { completed } = action;
-      let newState = update(baseState, { firstRunCompleted: { $set: completed } });
-      return newState;
-    }
+      {
+        let { completed } = action;
+        let newState = update(baseState, { firstRunCompleted: { $set: completed } });
+        return newState;
+      }
     default:
       return state
   }

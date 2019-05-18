@@ -7,6 +7,7 @@ export default {
     sTasmee3: '\'s tasmee\'?',
     WriteANote: 'Write a note',
     Submit: 'Submit',
+    AreYouSureYouWantToProceed: 'Students benefit from recieving feedback. Are you sure you want to proceed without giving a grade?',
 
     //--------------------- First Run Screen ---------------------
     IAmATeacher: 'I am a teacher',
@@ -33,6 +34,7 @@ export default {
     EditClassImage: 'Edit class image',
     WriteClassNameHere: 'Enter the new class name',
     AddClass: 'Add Class',
+    ClassAlreadyExists: 'Class Name already exists!',
 
     //--------------------- Add Class Navigator ---------------------
     AddNewClass: 'Add New Class',
@@ -51,6 +53,7 @@ export default {
     Done: 'Done',
     ThereIsAlreadyAStudentWithThatName: 'There is already a student with that name',
     EnterYourStudentsName: 'Enter your student\'s name',
+    Whoops: 'Whoops',
 
     //--------------------- Class Header Navigator ---------------------
     StudentProfile: 'Student Profile',

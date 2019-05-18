@@ -16,6 +16,8 @@ import QcParentScreen from 'screens/QcParentScreen';
 
 class StudentProfileScreen extends QcParentScreen {
 
+  name = "StudentProfileScreen";
+
   state = {
     isDialogVisible: false,
     averageGrade: 0,
@@ -55,19 +57,19 @@ class StudentProfileScreen extends QcParentScreen {
   }
 
   getRatingCaption() {
-    if(averageRating >4 ){
-      strings.OutStanding = strings.OutStanding
+    let caption = strings.GetStarted;
+
+    if(averageRating > 4 ){
+      caption = strings.OutStanding
     }
-    else if (averageRating > 3){
-      strings.OutStanding = strings.GreatJob
+    else if (averageRating >= 3){
+      caption = strings.GreatJob
     }
     else if (averageRating > 0){
-      strings.OutStanding = strings.PracticePerfect
+      caption = strings.PracticePerfect
     }
-    else{
-      strings.OutStanding = strings.GetStarted
-    }
-    return strings.OutStanding
+
+    return caption
   }
 
   //---------- main UI render ===============================
@@ -105,7 +107,7 @@ class StudentProfileScreen extends QcParentScreen {
           cancelText="Cancel"
           setModalVisible={this.setModalVisible.bind(this)}
           onImageSelected={this.onImageSelected.bind(this)}
-          screen={this.constructor.name}
+          screen={this.name}
         />
 
         {this.state.fontLoaded ? (

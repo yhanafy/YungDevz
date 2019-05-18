@@ -12,6 +12,8 @@ const BG_IMAGE = require('assets/images/read_child_bg.jpg');
 
 class FirstRunScreen extends QcParentScreen {
 
+    name = "FirstRunScreen";
+
     onTeacherFlow = () => {
       //todo: get the first class to show from redux persist (current class)
         this.props.navigation.push('TeacherWelcomeScreen', { classIndex: 0, classTitle: "Quran Class"});
@@ -27,7 +29,8 @@ class FirstRunScreen extends QcParentScreen {
                     <QcActionButton
                         navigation={navigation}
                         text={strings.IAmATeacher}
-                        onPress={this.onTeacherFlow} />
+                        onPress={this.onTeacherFlow}
+                        screen={this.name} />
                 </ImageBackground>
             </View>  
         );

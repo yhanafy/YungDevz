@@ -7,7 +7,8 @@ import {
   KeyboardAvoidingView,
   StyleSheet,
   Keyboard,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  Alert
 } from "react-native";
 import colors from "config/colors";
 import classImages from "config/classImages";
@@ -19,7 +20,13 @@ import { addClass } from "model/actions/addClass";
 import { saveTeacherInfo } from "model/actions/saveTeacherInfo";
 import strings from 'config/strings';
 
+<<<<<<< HEAD
 export class AddClassScreen extends Component {
+=======
+export class AddClassScreen extends QcParentScreen {
+  name = "AddClassScreen";
+
+>>>>>>> master
   //----------------------- state -------------------------------------
   state = {
     className: "",
@@ -55,12 +62,12 @@ export class AddClassScreen extends Component {
     let { classes } = this.props;
 
     if (!this.state.className || this.state.className.trim().length === 0) {
-      alert(strings.PleaseMakeSureToHaveAnInput);
+      Alert.alert(strings.Whoops, strings.PleaseMakeSureAllFieldsAreFilledOut);
       return;
     }
 
     if (this.classNameAlreadyExists()) {
-      alert(
+      Alert.alert(strings.Whoops,
         /*Message to say that it is an invalid input:*/
         "Class Name already exists!",
         [/*Button to exit */
@@ -103,6 +110,10 @@ render() {
             cancelText={strings.Cancel}
             setModalVisible={this.setModalVisible.bind(this)}
             onImageSelected={this.onImageSelected.bind(this)}
+<<<<<<< HEAD
+=======
+            screen={this.name}
+>>>>>>> master
           />
 
           <View style={styles.picContainer}>
@@ -131,6 +142,10 @@ render() {
               onPress={() => {
                 this.addNewClass();
               }}
+<<<<<<< HEAD
+=======
+              screen={this.name}
+>>>>>>> master
             />
           </View>
         </View>

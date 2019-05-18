@@ -123,7 +123,7 @@ const evaluation = {
       }
     ],
     notes: "good job",
-    overallGrade: 0,
+    overallGrade: 3,
   }
 
 const studentAssignmentHistory =  [{
@@ -143,6 +143,7 @@ const studentAssignmentHistory =  [{
                         students: [
                             {
                                 ...studentInfo,
+                                totalGrade: 3,
                                 totalAssignments: 1,
                                 currentAssignment: {
                                     name: new_assignment_text,
