@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Image, Text, StyleSheet, ScrollView, FlatList, TouchableHighlight } from 'react-native';
+import { View, Image, Text, StyleSheet, ScrollView, FlatList, TouchableHighlight, TouchableOpacity } from 'react-native';
 import colors from 'config/colors';
 import { Rating, Icon } from 'react-native-elements';
 import DialogInput from 'react-native-dialog-input';
@@ -13,6 +13,7 @@ import studentImages from 'config/studentImages';
 import TouchableText from 'components/TouchableText'
 import ImageSelectionModal from 'components/ImageSelectionModal'
 import QcParentScreen from 'screens/QcParentScreen';
+
 
 class StudentProfileScreen extends QcParentScreen {
 
@@ -179,9 +180,11 @@ class StudentProfileScreen extends QcParentScreen {
                         startingValue={item.evaluation.overallGrade} imageSize={17} />
                     </View>
                     {item.evaluation.notes ?
-                      <View style={{ padding: 10 }}>
+                    <TouchableOpacity onPress={() => this.props.navigation.push("AssignmentEvaluation", {
+                      classIndex: classIndex , studentIndex: studentIndex , rating: item.evaluation.overallGrade , notes: item.evaluation.notes 
+                      })}>
                         <Text numberOfLines={2} style={styles.notesText}>{"Notes: " + item.evaluation.notes}</Text>
-                      </View>
+                      </TouchableOpacity>
                       : <View />
                     }
                   </View>
