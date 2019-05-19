@@ -50,7 +50,11 @@ export class TeacherProfileScreen extends QcParentScreen {
     saveProfileInfo = (teacherID) => {
         const { name, phoneNumber, emailAddress } = this.state;
         if (name.trim() === "" || phoneNumber.trim() === "" || emailAddress.trim() === "") {
+<<<<<<< HEAD
+            alert(strings.Whoops, strings.PleaseMakeSureAllFieldsAreFilledOut);
+=======
             Alert.alert(strings.Whoops, strings.PleaseMakeSureAllFieldsAreFilledOut);
+>>>>>>> master
         } else {
             const {modalVisible, ...params} = this.state; // trick to remove modalVisible from state and pass in everything else
             this.props.saveTeacherInfo(

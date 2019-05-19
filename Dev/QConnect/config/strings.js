@@ -73,6 +73,7 @@ export default {
 
     //--------------------- Left Nav Pane ---------------------
     sProfile: '\'s profile',
+    Settings: 'Settings',
 
     //----------------------Error string codes: used to indicate errors in string params -----------
     titleNotPassed: "no_title_code_500",
@@ -81,5 +82,17 @@ export default {
     //---------------------------Place Holder Text For Teacher Name, PhoneNumber, and Email---------------------------
     namePlaceHolder: "Name",
     emailPlaceHolder: "Email",
-    phoneNumberPlaceHolder: "Phone Number"
+    phoneNumberPlaceHolder: "Phone Number",
+
+    //--------------------------- Settings -------------------------------------------
+    Credits: 'Credits',
+    PrivacyPolicy: 'Privacy Policy',
+
+    //--------------------------- Credits -------------------------------------------
+    FirstScreenImageCredits: 'First screen image credits to Hany Khalaf Photography',
+
+
+
+
+
 }
