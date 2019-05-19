@@ -92,8 +92,8 @@ const getTeacherClasses = (classIds, classes) => {
 }
 
 const mapStateToProps = state => {
-  const { name, profileImageId, currentClassIndex } = state.data.teachers[0];
-  const classes = getTeacherClasses(state.data.teachers[0].classes, state.data.classes);
+  const { name, profileImageId, currentClassIndex } = state.data.teacher;
+  const classes = getTeacherClasses(state.data.teacher.classes, state.data.classes);
 
   return { classes, name, profileImageId, currentClassIndex };
 };

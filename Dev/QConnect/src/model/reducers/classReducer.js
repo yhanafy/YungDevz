@@ -7,16 +7,15 @@ import awsconfig from '../../../aws-exports';
 
 export const INITIAL_STATE = {
   firstRunCompleted: false,
-  teachers: [
-    {
+  teacher: {
+      id: "",
       name: "",
       phoneNumber: "",
       emailAddress: "",
       currentClassIndex: -1,
       profileImageId: 1,
       classes: []
-    }
-  ],
+  },
   classes: []
 };
 
@@ -26,14 +25,14 @@ Analytics.configure(awsconfig);
 export const classReducer = (state = INITIAL_STATE, action) => {
   // pulls list of current student in current state
   const {
-    name, phoneNumber, emailAddress, classes
-  } = state.teachers[0];
+    id, name, phoneNumber, emailAddress, classes
+  } = state.teacher;
 
   if (Object.values(actionTypes).indexOf(action.type) > -1) {
-    Analytics.record({
-      name: analyticsEvents.action_dispatched,
-      attributes: { type: action.type }
-    })
+    // Analytics.record({
+    //   name: analyticsEvents.action_dispatched,
+    //   attributes: { type: action.type }
+    // })
   }
 
   const baseState = { ...state };
@@ -53,8 +52,8 @@ export const classReducer = (state = INITIAL_STATE, action) => {
     case actionTypes.ADD_CLASS:
       {
         newState = update(baseState, { classes: { $push: [action.classInfo] } } );
-        newState = update(newState, { teachers: { [0]: { classes: { $push: [action.classInfo.id] } } } });
-        newState = update(newState, { teachers: { [0]: { currentClassIndex: { $set: newState.classes.length - 1 } } } });
+        newState = update(newState, { teacher: { classes: { $push: [action.classInfo.id] } } });
+        newState = update(newState, { teacher: { currentClassIndex: { $set: newState.classes.length - 1 } } });
         return newState
       }
     case actionTypes.ADD_ATTENDANCE:
@@ -90,7 +89,7 @@ export const classReducer = (state = INITIAL_STATE, action) => {
     case actionTypes.SAVE_TEACHER_INFO:
       {
         //fetches current teacher info
-        newState = update(baseState, { teachers: { [action.teacherIndex]: { $merge: { ...action.teacherInfo } } } });
+        newState = update(baseState, { teacher: { $merge: { ...action.teacherInfo } } });
         return newState;
       }
     case actionTypes.EDIT_CURRENT_ASSIGNMENT:

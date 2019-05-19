@@ -57,18 +57,23 @@ export class TeacherWelcomeScreen extends QcParentScreen {
     }
 
     //this method saves the new profile information to the redux database
-    saveProfileInfo = (teacherID) => {
+    saveNewTeacherInfo = () => {
         const { name, phoneNumber, emailAddress } = this.state;
+
         if (name.trim() === "" || phoneNumber.trim() === "" || emailAddress.trim() === "") {
             alert(strings.PleaseMakeSureAllFieldsAreFilledOut);
         } else {
             // trick to remove modalVisible and hilightedImagesIndices from state and pass in everything else
             const {modalVisible, highlightedImagesIndices, ...params} = this.state;
 
+            //generate a new id for the new teacher
+            var nanoid = require('nanoid')
+            let id = nanoid()
+
             // save the relevant teacher properties
             this.props.saveTeacherInfo(
-                teacherID,
-                params
+                id,
+                {id, ...params}
             );
 
             this.props.setFirstRunCompleted(true);
@@ -137,7 +142,7 @@ export class TeacherWelcomeScreen extends QcParentScreen {
                 <View style={styles.buttonsContainer}>
                     <QcActionButton
                         text={strings.Save}
-                        onPress={() => this.saveProfileInfo(0)} //to-do: Make sure that teacher ID 
+                        onPress={() => this.saveNewTeacherInfo()} 
                     //is passed instead of 0
                         screen={this.name}
                     />
@@ -196,7 +201,7 @@ const styles = StyleSheet.create({
 
 //-------------- Redux hooks ----------------------------------------------------
 const mapStateToProps = state => {
-    const { name, phoneNumber, emailAddress, profileImageId } = state.data.teachers[0];
+    const { name, phoneNumber, emailAddress, profileImageId } = state.data.teacher;
     return { name, phoneNumber, emailAddress, profileImageId };
 };
 

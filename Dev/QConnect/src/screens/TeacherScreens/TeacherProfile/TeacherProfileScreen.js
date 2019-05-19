@@ -198,7 +198,7 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = state => {
-    const { name, phoneNumber, emailAddress, profileImageId } = state.data.teachers[0];
+    const { name, phoneNumber, emailAddress, profileImageId } = state.data.teacher;
     return { name, phoneNumber, emailAddress, profileImageId };
 };
 
