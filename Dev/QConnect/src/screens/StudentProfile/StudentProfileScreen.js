@@ -169,7 +169,6 @@ class StudentProfileScreen extends QcParentScreen {
                 keyExtractor={(item, index) => item.name + index}
                 renderItem={({ item, index }) => (
                   <View style={styles.prevAssignmentCard} key={index}>
-
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', flex: 1 }}>
                       <Text style={[styles.subText, { paddingLeft: 10, paddingTop: 3 }]}>{item.completionDate}</Text>
                       <View style={{ alignItems: 'center', flex: 1 }}>
