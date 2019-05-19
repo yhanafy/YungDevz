@@ -6,6 +6,7 @@ import StudentProfileScreen from 'screens/StudentProfile/StudentProfileScreen';
 import ClassEditScreen from 'screens/TeacherScreens/ClassTabs/ClassEditScreen';
 import EvaluationPage from 'screens/Evaluation/EvaluationPage';
 import strings from 'config/strings';
+import AssignmentEvaluation from 'screens/StudentProfile/AssignmentEvaluation';
 
 const ClassHeaderNavigator = createStackNavigator({
   CurrentClass: {
@@ -30,6 +31,19 @@ const ClassHeaderNavigator = createStackNavigator({
           LeftIconName="angle-left"
           LeftOnPress={() => navigation.goBack()}
           Title={strings.StudentProfile}
+          RightOnPress={() => { }}
+        />
+      )
+    })
+  },
+  AssignmentEvaluation: {
+    screen: AssignmentEvaluation,
+    navigationOptions: ({ navigation }) => ({
+      header: (
+        <TopBanner
+          LeftIconName="angle-left"
+          LeftOnPress={() => navigation.goBack()}
+          Title={strings.Evaluation}
           RightOnPress={() => { }}
         />
       )

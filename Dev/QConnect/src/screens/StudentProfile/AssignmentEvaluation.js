@@ -10,64 +10,16 @@ import { editCurrentAssignment } from 'model/actions/editCurrentAssignment';
 import strings from 'config/strings';
 import studentImages from 'config/studentImages';
 import Analytics from '@aws-amplify/analytics';
-import analyticsEvents from 'config/analyticsEvents';
+import analyticsEvents from 'config/analyticsEvents'
 import QcParentScreen from 'screens/QcParentScreen';
 
-export class EvaluationPage extends QcParentScreen {
+export class AssignmentEvaluation  extends QcParentScreen {
 
-  name = "EvaluationPage";
-
-  // -------------  Current evaluation state ---------------------
-  state = {
-    overallGrade: 0,
-    notes: ""
-  }
-
-  // --------------  Updates state to reflect a change in a category rating --------------
-  updateCategoryRating = (name, rating) => {
-    let categoriesGrades = this.state.categoriesGrades.map(cat => (
-      cat.name === name ? { ...cat, grade: rating } : cat
-    ))
-    this.setState({
-      overallGrade: this.state.overallGrade,
-      overCategoriesGrades: categoriesGrades,
-      notes: this.state.notes
-    })
-  }
-
-  //----- Saves the rating to db and pops to previous view ---------
-  doSubmitRating(classIndex, studentIndex){
-    this.props.completeCurrentAssignment(classIndex, studentIndex, this.state);
-
-      // keep the assignment name as the last assignment to reduce retype since most of the times the next assignment would be the same surah (next portion) or a redo.
-      // todo: eventually right after grading we should have a step for the teacher to update the next assignment
-      this.props.editCurrentAssignment(classIndex, studentIndex, { name: this.props.currentAssignment.name, startDate: "" });
-      this.props.navigation.pop();
-  }
-
-  //------------  Ensures a rating is inputted before submitting it -------
-  submitRating(classIndex, studentIndex) {
-    if (this.state.overallGrade === 0) {
-      Alert.alert(
-        'No Rating',
-        strings.AreYouSureYouWantToProceed,
-        [
-          {
-            text: 'Yes', style: 'cancel', onPress: () => {
-              this.doSubmitRating(classIndex, studentIndex)
-            }
-          },
-          { text: 'No', style: 'cancel'}
-        ]
-      );
-    } else {
-      this.doSubmitRating(classIndex, studentIndex);
-    }
-  }
+  name = "AssignmentEvaluation";
 
   // --------------  Renders Evaluation scree UI --------------
   render() {
-    const { classIndex, studentIndex } = this.props.navigation.state.params;
+    const { classIndex, studentIndex, rating, notes} = this.props.navigation.state.params;
     const { imageId } = this.props;
 
     return (
@@ -90,12 +42,10 @@ export class EvaluationPage extends QcParentScreen {
               <Text style={styles.mainQuestionText}>{strings.HowWas}{this.props.name}{strings.sTasmee3}</Text>
               <View style={{ paddingVertical: 15 }}>
                 <AirbnbRating
-                  defaultRating={0}
+                  defaultRating={rating}
                   size={30}
                   showRating={false}
-                  onFinishRating={(value) => this.setState({
-                    overallGrade: value
-                  })}
+                  isDisabled={true}
                 />
               </View>
 
@@ -108,17 +58,12 @@ export class EvaluationPage extends QcParentScreen {
                 })}
                 placeholder={strings.WriteANote}
                 placeholderColor={colors.black}
+                editable={false}
+                value={notes}
               />
             </View>
           </View>
 
-          <View style={styles.buttonsContainer}>
-            <QcActionButton
-              text={strings.Submit}
-              onPress={() => { this.submitRating(classIndex, studentIndex) }}
-              screen={this.name}
-            />
-          </View>
           <View style={styles.filler}></View>
         </KeyboardAvoidingView>
       </TouchableWithoutFeedback>
@@ -229,4 +174,4 @@ const mapDispatchToProps = dispatch => (
   }, dispatch)
 );
 
-export default connect(mapStateToProps, mapDispatchToProps)(EvaluationPage);
+export default connect(mapStateToProps, mapDispatchToProps)(AssignmentEvaluation);

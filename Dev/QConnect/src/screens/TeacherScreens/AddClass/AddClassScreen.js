@@ -13,13 +13,13 @@ import {
 import colors from "config/colors";
 import classImages from "config/classImages";
 import QcActionButton from "components/QcActionButton";
+import QcParentScreen from "screens/QcParentScreen";
 import ImageSelectionModal from "components/ImageSelectionModal"
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { addClass } from "model/actions/addClass";
 import { saveTeacherInfo } from "model/actions/saveTeacherInfo";
-import strings from '../../../../config/strings';
-import QcParentScreen from "screens/QcParentScreen";
+import strings from 'config/strings';
 
 export class AddClassScreen extends QcParentScreen {
   name = "AddClassScreen";
