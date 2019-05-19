@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Image, Text, ToastAndroid, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, View, Image, Text, ToastAndroid, KeyboardAvoidingView, Alert } from 'react-native';
 import QcActionButton from 'components/QcActionButton';
 import Toast, { DURATION } from 'react-native-easy-toast'
 import { saveTeacherInfo } from "model/actions/saveTeacherInfo";
@@ -60,7 +60,7 @@ export class TeacherWelcomeScreen extends QcParentScreen {
     saveProfileInfo = (teacherID) => {
         const { name, phoneNumber, emailAddress } = this.state;
         if (name.trim() === "" || phoneNumber.trim() === "" || emailAddress.trim() === "") {
-            alert(strings.PleaseMakeSureAllFieldsAreFilledOut);
+            Alert.alert(strings.Whoops, strings.PleaseMakeSureAllFieldsAreFilledOut);
         } else {
             // trick to remove modalVisible and hilightedImagesIndices from state and pass in everything else
             const {modalVisible, highlightedImagesIndices, ...params} = this.state;
