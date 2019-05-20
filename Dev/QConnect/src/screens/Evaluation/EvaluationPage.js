@@ -71,12 +71,14 @@ export class EvaluationPage extends QcParentScreen {
     const { imageId } = this.props;
 
     return (
+      //Makes so that the keyboard does not 
+      
       //----- outer view, gray background ------------------------
       //Makes it so keyboard is dismissed when clicked somewhere else
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
         <KeyboardAvoidingView
           style={styles.container}
-          behavior="padding">
+          behavior="padding" enabled>
 
           <View style={styles.evaluationContainer}>
             <View style={styles.section}>
