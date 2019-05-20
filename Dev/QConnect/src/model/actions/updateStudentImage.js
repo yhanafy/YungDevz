@@ -1,10 +1,10 @@
 import actionTypes from './actionTypes';
 
-export const updateStudentImage = (classId, studentIndex, imageId) => (
+export const updateStudentImage = (classId, studentId, imageId) => (
     {
       type: actionTypes.UPDATE_STUDENT_IMAGE,
       classId,
-      studentIndex,
+      studentId,
       imageId
     }
 );

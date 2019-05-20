@@ -72,11 +72,11 @@ export class ClassEditScreen extends QcParentScreen {
 
     //Will search if there is a student with the same name or not, if there is, it will return the 
     //index, if there is not, it will return -1.
-    const studentIndex = students.findIndex((student) => {
+    const studentId = students.findIndex((student) => {
       return student.name === input;
     });
 
-    return studentIndex !== -1;
+    return studentId !== -1;
   }
 
   // ----------- Redux function to persist the added student ------------------------

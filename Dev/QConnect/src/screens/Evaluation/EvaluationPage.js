@@ -36,17 +36,17 @@ export class EvaluationPage extends QcParentScreen {
   }
 
   //----- Saves the rating to db and pops to previous view ---------
-  doSubmitRating(classId, studentIndex){
-    this.props.completeCurrentAssignment(classId, studentIndex, this.state);
+  doSubmitRating(classId, studentId){
+    this.props.completeCurrentAssignment(classId, studentId, this.state);
 
       // keep the assignment name as the last assignment to reduce retype since most of the times the next assignment would be the same surah (next portion) or a redo.
       // todo: eventually right after grading we should have a step for the teacher to update the next assignment
-      this.props.editCurrentAssignment(classId, studentIndex, { name: this.props.currentAssignment.name, startDate: "" });
+      this.props.editCurrentAssignment(classId, studentId, { name: this.props.currentAssignment.name, startDate: "" });
       this.props.navigation.pop();
   }
 
   //------------  Ensures a rating is inputted before submitting it -------
-  submitRating(classId, studentIndex) {
+  submitRating(classId, studentId) {
     if (this.state.overallGrade === 0) {
       Alert.alert(
         'No Rating',
@@ -54,20 +54,20 @@ export class EvaluationPage extends QcParentScreen {
         [
           {
             text: 'Yes', style: 'cancel', onPress: () => {
-              this.doSubmitRating(classId, studentIndex)
+              this.doSubmitRating(classId, studentId)
             }
           },
           { text: 'No', style: 'cancel'}
         ]
       );
     } else {
-      this.doSubmitRating(classId, studentIndex);
+      this.doSubmitRating(classId, studentId);
     }
   }
 
   // --------------  Renders Evaluation scree UI --------------
   render() {
-    const { classId, studentIndex } = this.props.navigation.state.params;
+    const { classId, studentId } = this.props.navigation.state.params;
     const { imageId } = this.props;
 
     return (
@@ -115,7 +115,7 @@ export class EvaluationPage extends QcParentScreen {
           <View style={styles.buttonsContainer}>
             <QcActionButton
               text={strings.Submit}
-              onPress={() => { this.submitRating(classId, studentIndex) }}
+              onPress={() => { this.submitRating(classId, studentId) }}
               screen={this.name}
             />
           </View>
@@ -217,8 +217,8 @@ const styles = StyleSheet.create({
 // ------------ Redux hook up --------------------------------
 
 const mapStateToProps = (state, ownProps) => {
-  const { classId, studentIndex } = ownProps.navigation.state.params;
-  state = state.data.classes[classId].students[studentIndex];
+  const { classId, studentId } = ownProps.navigation.state.params;
+  state = state.data.classes[classId].students[studentId];
   return state;
 };
 

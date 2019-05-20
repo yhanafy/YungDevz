@@ -1,9 +1,9 @@
 import actionTypes from './actionTypes';
 
-export const deleteStudent = (classId, studentIndex) => (
+export const deleteStudent = (classId, studentId) => (
     {
       type: actionTypes.DELETE_STUDENT,
       classId,
-      studentIndex
+      studentId
     }
 );

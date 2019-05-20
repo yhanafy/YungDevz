@@ -226,7 +226,7 @@ describe('teacher reducer', () => {
             classReducer(teacher_one_class_one_student, {
                 type: actionTypes.DELETE_STUDENT,
                 classId: 0,
-                studentIndex: 0
+                studentId: 0
             })
         ).toEqual(teacher_one_class_no_students);
     })
@@ -269,7 +269,7 @@ describe('teacher reducer with mock dates', () => {
             classReducer(teacher_one_class_one_student, {
                 type: actionTypes.ADD_NEW_ASSIGNMENT,
                 classId: classId,
-                studentIndex: 0,
+                studentId: 0,
                 newAssignmentName: new_assignment_text
             })
         ).toEqual(teacher_one_class_one_student_with_new_assignment);
@@ -284,7 +284,7 @@ describe('teacher reducer with mock dates', () => {
             classReducer(teacher_one_class_one_student_with_new_assignment, {
                 type: actionTypes.EDIT_CURRENT_ASSIGNMENT,
                 classId: classId,
-                studentIndex: 0,
+                studentId: 0,
                 newAssignment: updated_assignment
             })
         ).toEqual(teacher_one_class_one_student_updated_assignment);
@@ -298,7 +298,7 @@ describe('teacher reducer with mock dates', () => {
             classReducer(teacher_one_class_one_student_with_new_assignment, {
                 type: actionTypes.COMPLETE_CURRENT_ASSIGNMENT,
                 classId: classId,
-                studentIndex: 0,
+                studentId: 0,
                 evaluation: evaluation
             })
         ).toEqual(teacher_one_class_one_student_completed_assignment);

@@ -25,15 +25,15 @@ class StudentProfileScreen extends QcParentScreen {
   }
 
   //method updates the current assignment of the student
-  editAssignment(classId, studentIndex, newAssignmentName) {
-    this.props.editCurrentAssignment(classId, studentIndex, newAssignmentName);
+  editAssignment(classId, studentId, newAssignmentName) {
+    this.props.editCurrentAssignment(classId, studentId, newAssignmentName);
     this.setState({ isDialogVisible: false });
   }
 
   //method will add a new assignment for the student (only to current assignment, will not add
   //to assignment history until after completion of the assignment)
-  addAssignment(classId, studentIndex, newAssignmentName) {
-    this.props.addNewAssignment(classId, studentIndex,
+  addAssignment(classId, studentId, newAssignmentName) {
+    this.props.addNewAssignment(classId, studentId,
       newAssignmentName);
     this.setState({ isDialogVisible: false })
   }
@@ -51,8 +51,8 @@ class StudentProfileScreen extends QcParentScreen {
 
   onImageSelected(index) {
     this.setState({ profileImageId: index })
-    let { classId, studentIndex } = this.props.navigation.state.params;
-    this.props.updateStudentImage(classId, studentIndex, index)
+    let { classId, studentId } = this.props.navigation.state.params;
+    this.props.updateStudentImage(classId, studentId, index)
     this.setModalVisible(false);
   }
 
@@ -74,8 +74,8 @@ class StudentProfileScreen extends QcParentScreen {
 
   //---------- main UI render ===============================
   render() {
-    const { classId, studentIndex } = this.props.navigation.state.params;
-    const currentStudent = this.props.classes[classId].students[studentIndex];
+    const { classId, studentId } = this.props.navigation.state.params;
+    const currentStudent = this.props.classes[classId].students[studentId];
     const hasCurrentAssignment = currentStudent.currentAssignment.name === 'None' ? false : true;
 
     //retrieves the student's average rating. If the student hasn't had any assignments, then 
@@ -95,9 +95,9 @@ class StudentProfileScreen extends QcParentScreen {
           //If the student already has an existing assignment, then it will simply edit the
           //name of the current assignment, if not, then it will create a new assignment
           {
-            hasCurrentAssignment ? this.editAssignment(classId, studentIndex,
+            hasCurrentAssignment ? this.editAssignment(classId, studentId,
               { name: inputText, startDate: new Date().toLocaleDateString("en-US") })
-              : this.addAssignment(classId, studentIndex, inputText)
+              : this.addAssignment(classId, studentId, inputText)
           }}
           closeDialog={() => { this.setState({ isDialogVisible: false }) }} />
 
@@ -152,7 +152,7 @@ class StudentProfileScreen extends QcParentScreen {
 
                     {hasCurrentAssignment ? <TouchableHighlight onPress={() =>
                       this.props.navigation.push("EvaluationPage", {
-                        studentIndex: studentIndex,
+                        studentId: studentId,
                         classId: classId
                       })} >
                       <Text style={styles.assignmentActionText}>{strings.Grade}</Text>

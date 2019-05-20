@@ -47,14 +47,14 @@ describe('actions', () => {
   it('should create an action to delete a student from a class', () => {
 
     classId = 0;
-    studentIndex = 3;
+    studentId = 3;
 
     const expectedAction = {
       type: actionTypes.DELETE_STUDENT,
       classId,
-      studentIndex
+      studentId
     }
-    expect(deleteStudent(classId, studentIndex)).toEqual(expectedAction)
+    expect(deleteStudent(classId, studentId)).toEqual(expectedAction)
   })
 
   // ----------- ADD_ATTENDANCE Dispatch ------------------------
@@ -117,7 +117,7 @@ it('should create an action to save teacher info', () => {
 it("should create an action to edit student's assignment", () => {
 
   classId = 0;
-  studentIndex = 3;
+  studentId = 3;
   newAssignment = {
     name: "current assignment"
   }
@@ -125,33 +125,33 @@ it("should create an action to edit student's assignment", () => {
   const expectedAction = {
     type: actionTypes.EDIT_CURRENT_ASSIGNMENT,
     classId,
-    studentIndex,
+    studentId,
     newAssignment
   }
-  expect(editCurrentAssignment(classId, studentIndex, newAssignment)).toEqual(expectedAction)
+  expect(editCurrentAssignment(classId, studentId, newAssignment)).toEqual(expectedAction)
 })
 
 // ----------- ADD_NEW_ASSIGNMENT Dispatch ------------------------
 it('should create an action to add a new assignment', () => {
 
   classId = 0;
-  studentIndex = 3;
+  studentId = 3;
   newAssignmentName = "test name"
 
   const expectedAction = {
     type: actionTypes.ADD_NEW_ASSIGNMENT,
     classId,
-    studentIndex,
+    studentId,
     newAssignmentName
   }
-  expect(addNewAssignment(classId, studentIndex, newAssignmentName)).toEqual(expectedAction)
+  expect(addNewAssignment(classId, studentId, newAssignmentName)).toEqual(expectedAction)
 })
 
 // ----------- COMPLETE_ASSIGNMENT Dispatch ------------------------
 it("should create an action to complete a student's assignment", () => {
 
   classId = 0;
-  studentIndex = 3;
+  studentId = 3;
   evaluation = {
     mainGrade: 4,
     categoriesGrades: [
@@ -166,10 +166,10 @@ it("should create an action to complete a student's assignment", () => {
   const expectedAction = {
     type: actionTypes.COMPLETE_CURRENT_ASSIGNMENT,
     classId,
-    studentIndex, 
+    studentId, 
     evaluation
   }
-  expect(completeCurrentAssignment(classId, studentIndex, evaluation)).toEqual(expectedAction)
+  expect(completeCurrentAssignment(classId, studentId, evaluation)).toEqual(expectedAction)
 })
 
 })

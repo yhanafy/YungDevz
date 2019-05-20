@@ -1,10 +1,10 @@
 import actionTypes from './actionTypes';
 
-export const editCurrentAssignment = (classId, studentIndex, newAssignment) => (
+export const editCurrentAssignment = (classId, studentId, newAssignment) => (
     {
         type: actionTypes.EDIT_CURRENT_ASSIGNMENT,
         classId,
-        studentIndex,
+        studentId,
         newAssignment
     }
 );

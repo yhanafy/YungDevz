@@ -16,7 +16,8 @@ export const INITIAL_STATE = {
       profileImageId: 1,
       classes: []
   },
-  classes: {}
+  classes: {},
+  students: {}
 };
 
 // configure analytics for redux
@@ -41,12 +42,17 @@ export const classReducer = (state = INITIAL_STATE, action) => {
     case actionTypes.ADD_STUDENT:
       {
         let classId = action.classId
-        newState = update(baseState, { classes: { [classId]: { students: { $push: [action.studentInfo.studentInfo] } } } } );
+
+        var nanoid = require('nanoid')
+        let newStudentId = nanoid()
+
+        newState = update(baseState, { students: { $merge: {[newStudentId]: action.studentInfo} } } );
+        newState = update(newState, { classes: { [classId]: { students: { $push: [newStudentId] } } } } );
         return newState;
       }
     case actionTypes.DELETE_STUDENT:
       {
-        newState = update(baseState, { classes: { [action.classId]: { students: { $splice: [[action.studentIndex, 1]] } } } } );
+        newState = update(baseState, { classes: { [action.classId]: { students: { $splice: [[action.studentId, 1]] } } } } );
         return newState;
       }
     case actionTypes.ADD_CLASS:
@@ -94,24 +100,24 @@ export const classReducer = (state = INITIAL_STATE, action) => {
       }
     case actionTypes.EDIT_CURRENT_ASSIGNMENT:
       {
-        let { classId, studentIndex } = action;
+        let { classId, studentId } = action;
         let updatedAssignment = {
           name: action.newAssignment.name,
           startDate: action.newAssignment.startDate
         }
 
-        let newState = update(baseState, { classes: { [classId]: { students: { [studentIndex]: { currentAssignment: { $set: updatedAssignment } } } } } });
+        let newState = update(baseState, { classes: { [classId]: { students: { [studentId]: { currentAssignment: { $set: updatedAssignment } } } } } });
         return newState;
       }
     case actionTypes.UPDATE_STUDENT_IMAGE:
       {
-        let { classId, studentIndex, imageId } = action;
-        let newState = update(baseState, { classes: { [classId]: { students: { [studentIndex]: { imageId: { $set: imageId } } } } } });
+        let { classId, studentId, imageId } = action;
+        let newState = update(baseState, { classes: { [classId]: { students: { [studentId]: { imageId: { $set: imageId } } } } } });
         return newState;
       }
     case actionTypes.ADD_NEW_ASSIGNMENT:
       {
-        let { classId, studentIndex, newAssignmentName } = action;
+        let { classId, studentId, newAssignmentName } = action;
         let newAssignmentDate = new Date().toLocaleDateString("en-US");
 
         //creates the new assignment before adding it to the persist
@@ -121,28 +127,28 @@ export const classReducer = (state = INITIAL_STATE, action) => {
         }
 
         //updates the current assignment
-        let newState = update(baseState, { classes: { [classId]: { students: { [studentIndex]: { currentAssignment: { $set: newCurrentAssignment } } } } } });
+        let newState = update(baseState, { classes: { [classId]: { students: { [studentId]: { currentAssignment: { $set: newCurrentAssignment } } } } } });
         return newState;
       }
     case actionTypes.COMPLETE_CURRENT_ASSIGNMENT:
       {
-        let { classId, studentIndex, evaluation } = action;
+        let { classId, studentId, evaluation } = action;
 
         //updates the evaluation of the current assignment
         let assignment = {
-          ...baseState.classes[classId].students[studentIndex].currentAssignment,
+          ...baseState.classes[classId].students[studentId].currentAssignment,
           completionDate: new Date().toLocaleDateString("en-US"),
           evaluation
         }
 
         //pushes the assignment to the array of assignment history (Remember, this action does not 
         //update the current assignment, this needs to be done using the addNewAssignment action)
-        let newState = update(baseState, { classes: { [classId]: { students: { [studentIndex]: { assignmentHistory: { $push: [assignment] } } } } } });
+        let newState = update(baseState, { classes: { [classId]: { students: { [studentId]: { assignmentHistory: { $push: [assignment] } } } } } });
         if (evaluation.overallGrade !== 0) {
-          let totalAssignments = baseState.classes[classId].students[studentIndex].totalAssignments;
-          let totalGrade = baseState.classes[classId].students[studentIndex].totalGrade;
-          newState = update(newState, { classes: { [classId]: { students: { [studentIndex]: { totalAssignments: { $set: (totalAssignments + 1) } } } } } });
-          newState = update(newState, { classes: { [classId]: { students: { [studentIndex]: { totalGrade: { $set: (totalGrade + assignment.evaluation.overallGrade) } } } } } });
+          let totalAssignments = baseState.classes[classId].students[studentId].totalAssignments;
+          let totalGrade = baseState.classes[classId].students[studentId].totalGrade;
+          newState = update(newState, { classes: { [classId]: { students: { [studentId]: { totalAssignments: { $set: (totalAssignments + 1) } } } } } });
+          newState = update(newState, { classes: { [classId]: { students: { [studentId]: { totalGrade: { $set: (totalGrade + assignment.evaluation.overallGrade) } } } } } });
         }
         return newState;
       }
