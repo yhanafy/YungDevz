@@ -19,7 +19,7 @@ export class AssignmentEvaluation  extends QcParentScreen {
 
   // --------------  Renders Evaluation scree UI --------------
   render() {
-    const { classIndex, studentIndex, rating, notes} = this.props.navigation.state.params;
+    const { classIndex, studentIndex, rating, notes, assignmentName, completionDate } = this.props.navigation.state.params;
     const { imageId } = this.props;
 
     return (
@@ -35,11 +35,11 @@ export class AssignmentEvaluation  extends QcParentScreen {
               <Image source={studentImages.images[imageId]}
                 style={styles.profilePic} />
               <Text style={styles.titleText}>{this.props.name}</Text>
-              <Text style={styles.subTitleText}>{this.props.currentAssignment.name}</Text>
+              <Text style={styles.subTitleText}>{assignmentName}</Text>
             </View>
 
             <View style={styles.section}>
-              <Text style={styles.mainQuestionText}>{strings.HowWas}{this.props.name}{strings.sTasmee3}</Text>
+              <Text style={styles.mainQuestionText}>{strings.Completed}: {completionDate}</Text>
               <View style={{ paddingVertical: 15 }}>
                 <AirbnbRating
                   defaultRating={rating}
@@ -56,7 +56,7 @@ export class AssignmentEvaluation  extends QcParentScreen {
                 onChangeText={(notes) => this.setState({
                   notes: notes
                 })}
-                placeholder={strings.WriteANote}
+                placeholder={strings.NoNotesProvided}
                 placeholderColor={colors.black}
                 editable={false}
                 value={notes}

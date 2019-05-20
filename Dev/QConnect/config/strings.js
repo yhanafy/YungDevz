@@ -59,6 +59,9 @@ export default {
     StudentProfile: 'Student Profile',
     EditClass: 'Edit Students',
     StudentEvaluation: 'Student Evaluation',
+    Completed: 'Completed',
+    Evaluation: 'Assignment Evaluation',
+    NoNotesProvided: 'There are no additional notes provided.',
 
     //--------------------- Class Tabs Navigator ---------------------
     Attendance: 'Attendance',
@@ -85,11 +88,11 @@ export default {
     phoneNumberPlaceHolder: "Phone Number",
 
     //--------------------------- Settings -------------------------------------------
-    Credits: 'Credits',
+    Credits: 'Photo Credit',
     PrivacyPolicy: 'Privacy Policy',
 
     //--------------------------- Credits -------------------------------------------
-    FirstScreenImageCredits: 'First screen image credits to Hany Khalaf Photography',
+    FirstScreenImageCredits: 'First screen image photo by © Hany Khalaf Photography',
 
 
 
