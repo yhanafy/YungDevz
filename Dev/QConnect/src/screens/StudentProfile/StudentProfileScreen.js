@@ -169,6 +169,14 @@ class StudentProfileScreen extends QcParentScreen {
                 data={currentStudent.assignmentHistory}
                 keyExtractor={(item, index) => item.name + index}
                 renderItem={({ item, index }) => (
+                  <TouchableOpacity onPress={() => this.props.navigation.push("AssignmentEvaluation", {
+                      classIndex: classIndex , 
+                      studentIndex: studentIndex,
+                      assignmentName: item.name, 
+                      completionDate: item.completionDate,
+                      rating: item.evaluation.overallGrade , 
+                      notes: item.evaluation.notes 
+                      })}>
                   <View style={styles.prevAssignmentCard} key={index}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', flex: 1 }}>
                       <Text style={[styles.subText, { paddingLeft: 10, paddingTop: 3 }]}>{item.completionDate}</Text>
@@ -179,14 +187,11 @@ class StudentProfileScreen extends QcParentScreen {
                         startingValue={item.evaluation.overallGrade} imageSize={17} />
                     </View>
                     {item.evaluation.notes ?
-                    <TouchableOpacity onPress={() => this.props.navigation.push("AssignmentEvaluation", {
-                      classIndex: classIndex , studentIndex: studentIndex , rating: item.evaluation.overallGrade , notes: item.evaluation.notes 
-                      })}>
                         <Text numberOfLines={2} style={styles.notesText}>{"Notes: " + item.evaluation.notes}</Text>
-                      </TouchableOpacity>
                       : <View />
                     }
                   </View>
+                  </TouchableOpacity>
                 )}
               />
             </ScrollView>

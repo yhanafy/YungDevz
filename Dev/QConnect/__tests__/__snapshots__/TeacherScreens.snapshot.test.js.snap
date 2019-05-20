@@ -44,9 +44,8 @@ exports[`Teacher screens snapshots render AddClassScreen 1`] = `
           Object {
             "alignItems": "center",
             "flexDirection": "row",
-            "flexWap": "wrap",
             "justifyContent": "center",
-            "marginBottom": 10,
+            "paddingBottom": 20,
           }
         }
       >
@@ -64,7 +63,7 @@ exports[`Teacher screens snapshots render AddClassScreen 1`] = `
               "justifyContent": "center",
               "marginLeft": 5,
               "marginRight": 5,
-              "marginTop": 170,
+              "marginTop": 30,
               "paddingLeft": 15,
               "paddingRight": 15,
               "shadowColor": "#6b6b6b",
@@ -459,6 +458,7 @@ exports[`Teacher screens snapshots render AddClassScreen 1`] = `
                   },
                   Object {
                     "fontSize": 14,
+                    "marginBottom": 20,
                     "marginTop": 10,
                   },
                 ]
@@ -982,9 +982,8 @@ exports[`Teacher screens snapshots render ClassEditScreen 1`] = `
           Object {
             "alignItems": "center",
             "flexDirection": "row",
-            "flexWap": "wrap",
             "justifyContent": "center",
-            "marginBottom": 10,
+            "paddingBottom": 20,
           }
         }
       >
@@ -1002,7 +1001,7 @@ exports[`Teacher screens snapshots render ClassEditScreen 1`] = `
               "justifyContent": "center",
               "marginLeft": 5,
               "marginRight": 5,
-              "marginTop": 170,
+              "marginTop": 30,
               "paddingLeft": 15,
               "paddingRight": 15,
               "shadowColor": "#6b6b6b",
@@ -2078,6 +2077,7 @@ exports[`Teacher screens snapshots render ClassEditScreen 1`] = `
                   },
                   Object {
                     "fontSize": 14,
+                    "marginBottom": 20,
                     "marginTop": 10,
                   },
                 ]
@@ -2905,9 +2905,8 @@ exports[`Teacher screens snapshots render TeacherProfileScreen 1`] = `
         Object {
           "alignItems": "center",
           "flexDirection": "row",
-          "flexWap": "wrap",
           "justifyContent": "center",
-          "marginBottom": 10,
+          "paddingBottom": 20,
         }
       }
     >
@@ -2925,7 +2924,7 @@ exports[`Teacher screens snapshots render TeacherProfileScreen 1`] = `
             "justifyContent": "center",
             "marginLeft": 5,
             "marginRight": 5,
-            "marginTop": 170,
+            "marginTop": 30,
             "paddingLeft": 15,
             "paddingRight": 15,
             "shadowColor": "#6b6b6b",
@@ -3376,6 +3375,7 @@ exports[`Teacher screens snapshots render TeacherProfileScreen 1`] = `
                 },
                 Object {
                   "fontSize": 14,
+                  "marginBottom": 20,
                   "marginTop": 10,
                 },
               ]
@@ -3728,9 +3728,8 @@ exports[`Teacher screens snapshots render TeacherWelcomeScreen 1`] = `
         Object {
           "alignItems": "center",
           "flexDirection": "row",
-          "flexWap": "wrap",
           "justifyContent": "center",
-          "marginBottom": 10,
+          "paddingBottom": 20,
         }
       }
     >
@@ -3748,7 +3747,7 @@ exports[`Teacher screens snapshots render TeacherWelcomeScreen 1`] = `
             "justifyContent": "center",
             "marginLeft": 5,
             "marginRight": 5,
-            "marginTop": 170,
+            "marginTop": 30,
             "paddingLeft": 15,
             "paddingRight": 15,
             "shadowColor": "#6b6b6b",
@@ -4199,6 +4198,7 @@ exports[`Teacher screens snapshots render TeacherWelcomeScreen 1`] = `
                 },
                 Object {
                   "fontSize": 14,
+                  "marginBottom": 20,
                   "marginTop": 10,
                 },
               ]
