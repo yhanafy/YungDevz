@@ -1,9 +1,9 @@
 import actionTypes from './actionTypes';
 
-export const addAttendance = (classIndex, attendanceInfo) => (
+export const addAttendance = (classId, attendanceInfo) => (
     {
         type: actionTypes.ADD_ATTENDANCE,
-        classIndex,
+        classId,
         attendanceInfo
     }
 );

@@ -1,6 +1,6 @@
 
 export default mapStateToCurrentClassProps = (state) => {
-    let classIndex = state.data.teacher.currentClassIndex;
-    let currentClass = classIndex >= 0 ? state.data.classes[classIndex] : null;
-    return { classIndex, ...currentClass };
+    let classId = state.data.teacher.currentClassId;
+    let currentClass = classId.length > 0? state.data.classes[classId] : null;
+    return { classId, ...currentClass };
   };

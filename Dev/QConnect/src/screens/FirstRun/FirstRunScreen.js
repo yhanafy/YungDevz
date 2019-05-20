@@ -16,7 +16,7 @@ class FirstRunScreen extends QcParentScreen {
 
     onTeacherFlow = () => {
       //todo: get the first class to show from redux persist (current class)
-        this.props.navigation.push('TeacherWelcomeScreen', { classIndex: 0, classTitle: "Quran Class"});
+        this.props.navigation.push('TeacherWelcomeScreen', { classId: 0, classTitle: "Quran Class"});
     }
     
     render() {

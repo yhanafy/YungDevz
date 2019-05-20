@@ -65,7 +65,7 @@ export class ClassAttendanceScreen extends QcParentScreen {
             }
         }
         this.props.addAttendance(
-            this.props.classIndex,
+            this.props.classId,
             attendanceInfo
         );
         this.refs.toast.show(strings.AttendanceFor + date + strings.HasBeenSaved, DURATION.LENGTH_SHORT);
@@ -107,7 +107,7 @@ export class ClassAttendanceScreen extends QcParentScreen {
     
     render() {
 
-        const { classIndex } = this.props;
+        const { classId } = this.props;
             
         return (
         //The scroll view will have at the top a date picker which will be defaulted to the current

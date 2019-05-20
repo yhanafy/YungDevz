@@ -72,7 +72,6 @@ export class TeacherWelcomeScreen extends QcParentScreen {
 
             // save the relevant teacher properties
             this.props.saveTeacherInfo(
-                id,
                 {id, ...params}
             );
 

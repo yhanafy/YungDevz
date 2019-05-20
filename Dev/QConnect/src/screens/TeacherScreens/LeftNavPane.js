@@ -18,8 +18,7 @@ class LeftNavPane extends QcParentScreen{
   openClass = (i, className) => {
     //update current class index in redux
     this.props.saveTeacherInfo(
-      0, //todo: proper id here..
-      { currentClassIndex: i }
+      { currentClassId: i }
     );
 
     //navigate to the selected class
@@ -30,7 +29,7 @@ class LeftNavPane extends QcParentScreen{
   //todo: change the ListItem header and footer below to the shared drawer component intead
   // generalize the QcDrawerItem to accept either an image or an icon
   render() {
-    const { name, profileImageId, currentClassIndex } = this.props;
+    const { name, profileImageId, currentClassId } = this.props;
 
     const profileCaption = name + strings.sProfile
     const teacherImageId = profileImageId ? profileImageId : 0
@@ -88,14 +87,14 @@ const styles = StyleSheet.create({
 });
 
 const getTeacherClasses = (classIds, classes) => {
-   return classes.filter(c => classIds.includes(c.id))
+   return Object.values(classes).filter(c => classIds.includes(c.id))
 }
 
 const mapStateToProps = state => {
-  const { name, profileImageId, currentClassIndex } = state.data.teacher;
+  const { name, profileImageId, currentClassId } = state.data.teacher;
   const classes = getTeacherClasses(state.data.teacher.classes, state.data.classes);
 
-  return { classes, name, profileImageId, currentClassIndex };
+  return { classes, name, profileImageId, currentClassId };
 };
 
 const mapDispatchToProps = dispatch => (

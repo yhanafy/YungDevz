@@ -24,15 +24,15 @@ export class ClassMainScreen extends QcParentScreen {
       bold: require('assets/fonts/Montserrat-Bold.ttf'),
     });
 
-    const { classIndex } = this.props;
+    const { classId } = this.props;
 
-    if (classIndex === -1) {
+    if (classId === -1) {
       this.props.navigation.push('AddClass');
     }
   }
 
   render() {
-    const classIndex = this.props.classIndex;
+    const classId = this.props.classId;
 
     return (
       <ScrollView style={styles.container}>
@@ -49,7 +49,7 @@ export class ClassMainScreen extends QcParentScreen {
               onPress={() =>
                 this.props.navigation.push("StudentProfile", {
                   studentIndex: index,
-                  classIndex: classIndex
+                  classId: classId
                 })
               }
             />

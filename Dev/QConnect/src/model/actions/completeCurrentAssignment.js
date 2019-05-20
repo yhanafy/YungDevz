@@ -1,9 +1,9 @@
 import actionTypes from './actionTypes';
 
-export const completeCurrentAssignment = (classIndex, studentIndex, evaluation) => (
+export const completeCurrentAssignment = (classId, studentIndex, evaluation) => (
     {
         type: actionTypes.COMPLETE_CURRENT_ASSIGNMENT,
-        classIndex,
+        classId,
         studentIndex,
         evaluation
     }

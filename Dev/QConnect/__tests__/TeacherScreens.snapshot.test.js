@@ -15,7 +15,7 @@ const INITIAL_STATE = {
       name: "",
       phoneNumber: "",
       emailAddress: "",
-      currentClassIndex: 0,
+      currentClassId: 0,
       profileImageId: 1,
       classes: [
         {
@@ -211,7 +211,7 @@ describe('Teacher screens snapshots', () => {
         const navigation = {
           state: {
             params: {
-              classIndex: 0
+              classId: 0
             }
           }
         }

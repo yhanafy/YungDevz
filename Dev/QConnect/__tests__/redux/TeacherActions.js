@@ -26,7 +26,7 @@ describe('actions', () => {
   // ----------- ADD_STUDENT Dispatch ------------------------
   it('should create an action to add a student to a class', () => {
       const studentInfo = {
-        classIndex: 0,
+        classId: 0,
         studentInfo: {
           name: "Tester Student 1",
           imageId: 6,
@@ -46,15 +46,15 @@ describe('actions', () => {
   // ----------- DELETE_STUDENT Dispatch ------------------------
   it('should create an action to delete a student from a class', () => {
 
-    classIndex = 0;
+    classId = 0;
     studentIndex = 3;
 
     const expectedAction = {
       type: actionTypes.DELETE_STUDENT,
-      classIndex,
+      classId,
       studentIndex
     }
-    expect(deleteStudent(classIndex, studentIndex)).toEqual(expectedAction)
+    expect(deleteStudent(classId, studentIndex)).toEqual(expectedAction)
   })
 
   // ----------- ADD_ATTENDANCE Dispatch ------------------------
@@ -87,14 +87,14 @@ describe('actions', () => {
             isHere: true
         }
     ];
-    const classIndex = 0;
+    const classId = 0;
 
     const expectedAction = {
       type: actionTypes.ADD_ATTENDANCE,
-      classIndex,
+      classId,
       attendanceInfo
     }
-    expect(addAttendance(classIndex, attendanceInfo)).toEqual(expectedAction)
+    expect(addAttendance(classId, attendanceInfo)).toEqual(expectedAction)
   })
 
 // ----------- SAVE_TEACHER_INFO Dispatch ------------------------
@@ -116,7 +116,7 @@ it('should create an action to save teacher info', () => {
 // ----------- EDIT_CURRENT_ASSIGNMENT Dispatch ------------------------
 it("should create an action to edit student's assignment", () => {
 
-  classIndex = 0;
+  classId = 0;
   studentIndex = 3;
   newAssignment = {
     name: "current assignment"
@@ -124,33 +124,33 @@ it("should create an action to edit student's assignment", () => {
 
   const expectedAction = {
     type: actionTypes.EDIT_CURRENT_ASSIGNMENT,
-    classIndex,
+    classId,
     studentIndex,
     newAssignment
   }
-  expect(editCurrentAssignment(classIndex, studentIndex, newAssignment)).toEqual(expectedAction)
+  expect(editCurrentAssignment(classId, studentIndex, newAssignment)).toEqual(expectedAction)
 })
 
 // ----------- ADD_NEW_ASSIGNMENT Dispatch ------------------------
 it('should create an action to add a new assignment', () => {
 
-  classIndex = 0;
+  classId = 0;
   studentIndex = 3;
   newAssignmentName = "test name"
 
   const expectedAction = {
     type: actionTypes.ADD_NEW_ASSIGNMENT,
-    classIndex,
+    classId,
     studentIndex,
     newAssignmentName
   }
-  expect(addNewAssignment(classIndex, studentIndex, newAssignmentName)).toEqual(expectedAction)
+  expect(addNewAssignment(classId, studentIndex, newAssignmentName)).toEqual(expectedAction)
 })
 
 // ----------- COMPLETE_ASSIGNMENT Dispatch ------------------------
 it("should create an action to complete a student's assignment", () => {
 
-  classIndex = 0;
+  classId = 0;
   studentIndex = 3;
   evaluation = {
     mainGrade: 4,
@@ -165,11 +165,11 @@ it("should create an action to complete a student's assignment", () => {
 
   const expectedAction = {
     type: actionTypes.COMPLETE_CURRENT_ASSIGNMENT,
-    classIndex,
+    classId,
     studentIndex, 
     evaluation
   }
-  expect(completeCurrentAssignment(classIndex, studentIndex, evaluation)).toEqual(expectedAction)
+  expect(completeCurrentAssignment(classId, studentIndex, evaluation)).toEqual(expectedAction)
 })
 
 })

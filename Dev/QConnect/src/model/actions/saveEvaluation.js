@@ -1,9 +1,9 @@
 import actionTypes from './actionTypes';
 
-export const saveEvaluationPage = (evaluationInfo, classIndex, studentIndex) => (
+export const saveEvaluationPage = (evaluationInfo, classId, studentIndex) => (
     {
       type: actionTypes.SAVE_EVALUATION_PAGE,
-      classIndex,
+      classId,
       evaluationInfo,
       studentIndex
     }

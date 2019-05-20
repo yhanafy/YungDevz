@@ -47,14 +47,13 @@ export class TeacherProfileScreen extends QcParentScreen {
     }
 
     //this method saves the new profile information to the redux database
-    saveProfileInfo = (teacherID) => {
+    saveProfileInfo = () => {
         const { name, phoneNumber, emailAddress } = this.state;
         if (name.trim() === "" || phoneNumber.trim() === "" || emailAddress.trim() === "") {
             alert(strings.PleaseMakeSureAllFieldsAreFilledOut);
         } else {
             const {modalVisible, ...params} = this.state; // trick to remove modalVisible from state and pass in everything else
             this.props.saveTeacherInfo(
-                teacherID,
                 params
             );
             this.refs.toast.show(strings.YourProfileHasBeenSaved, DURATION.LENGTH_SHORT);
@@ -119,7 +118,7 @@ export class TeacherProfileScreen extends QcParentScreen {
                         />
                         <QcActionButton
                             text={strings.Save}
-                            onPress={() => this.saveProfileInfo(0)} //to-do: Make sure that teacher ID 
+                            onPress={() => this.saveProfileInfo()}
                             screen={this.name}
                         //is passed instead of 0
                         />

@@ -104,8 +104,8 @@ const styles = StyleSheet.create({
 });
   
 const mapStateToProps = (state) => {
-    let classIndex = state.data.teacher.currentClassIndex;
-    let className = classIndex >= 0 ? state.data.classes[classIndex].name : "Quran Class";
+    let classId = state.data.teacher.currentClassId;
+    let className = classId.length > 0 ? state.data.classes[classId].name : "Quran Class";
     return { className };
 };
   

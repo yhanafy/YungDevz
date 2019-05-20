@@ -6,7 +6,7 @@ import actionTypes from "model/actions/actionTypes";
     name: "Teacher Name 1",
     phoneNumber: "123-456-789",
     emailAddress: "test@email.com",
-    currentClassIndex: 0,
+    currentClassId: 0,
     profileImageId: 5
 };
 
@@ -209,7 +209,7 @@ describe('teacher reducer', () => {
     //------------ AddStudent test ---------------------
     it('should handle ADD_STUDENT', () => {
         let payload = {
-            classIndex: 0,
+            classId: 0,
             studentInfo: studentInfo
         }
         expect(
@@ -225,7 +225,7 @@ describe('teacher reducer', () => {
         expect(
             classReducer(teacher_one_class_one_student, {
                 type: actionTypes.DELETE_STUDENT,
-                classIndex: 0,
+                classId: 0,
                 studentIndex: 0
             })
         ).toEqual(teacher_one_class_no_students);
@@ -233,12 +233,12 @@ describe('teacher reducer', () => {
 
     //------------ AddAttendance test ---------------------
     it('should handle ADD_ATTENDANCE', () => {
-        const classIndex = 0;
+        const classId = 0;
 
         expect(
             classReducer(teacher_one_class_one_student, {
                 type: actionTypes.ADD_ATTENDANCE,
-                classIndex: classIndex,
+                classId: classId,
                 attendanceInfo: [attendanceInfo]
             })
         ).toEqual(teacher_one_class_one_student_with_attendance);
@@ -263,12 +263,12 @@ describe('teacher reducer with mock dates', () => {
         
     //------------ AddNewAssignment test ---------------------
     it('should handle ADD_NEW_ASSIGNMENT', () => {
-        const classIndex = 0;
+        const classId = 0;
 
         expect(
             classReducer(teacher_one_class_one_student, {
                 type: actionTypes.ADD_NEW_ASSIGNMENT,
-                classIndex: classIndex,
+                classId: classId,
                 studentIndex: 0,
                 newAssignmentName: new_assignment_text
             })
@@ -277,13 +277,13 @@ describe('teacher reducer with mock dates', () => {
 
     //------------ EditCurrentAssignment test ---------------------
     it('should handle EDIT_CURRENT_ASSIGNMENT', () => {
-        const classIndex = 0;
+        const classId = 0;
 
         updated_assignment = { name: updated_assignment_text, startDate: new Date().toLocaleDateString("EN-US") }
         expect(
             classReducer(teacher_one_class_one_student_with_new_assignment, {
                 type: actionTypes.EDIT_CURRENT_ASSIGNMENT,
-                classIndex: classIndex,
+                classId: classId,
                 studentIndex: 0,
                 newAssignment: updated_assignment
             })
@@ -292,12 +292,12 @@ describe('teacher reducer with mock dates', () => {
 
     //------------ CompleteCurrentAssignment test ---------------------
     it('should handle COMPLETE_CURRENT_ASSIGNMENT', () => {
-        const classIndex = 0;
+        const classId = 0;
 
         expect(
             classReducer(teacher_one_class_one_student_with_new_assignment, {
                 type: actionTypes.COMPLETE_CURRENT_ASSIGNMENT,
-                classIndex: classIndex,
+                classId: classId,
                 studentIndex: 0,
                 evaluation: evaluation
             })
