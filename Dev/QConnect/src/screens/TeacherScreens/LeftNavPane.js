@@ -15,10 +15,10 @@ import QcParentScreen from "screens/QcParentScreen";
 class LeftNavPane extends QcParentScreen{
   name = "LeftNavPane";
   
-  openClass = (i, className) => {
+  openClass = (id, className) => {
     //update current class index in redux
     this.props.saveTeacherInfo(
-      { currentClassId: i }
+      { currentClassId: id }
     );
 
     //navigate to the selected class
@@ -64,7 +64,7 @@ class LeftNavPane extends QcParentScreen{
               <QcDrawerItem
                 title={item.name}
                 image={classImages.images[item.imageId]}
-                onPress={() => this.openClass(index, item.name)}
+                onPress={() => this.openClass(item.id, item.name)}
               />
             )}
           />

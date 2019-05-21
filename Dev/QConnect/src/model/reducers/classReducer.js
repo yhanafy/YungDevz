@@ -46,7 +46,9 @@ export const classReducer = (state = INITIAL_STATE, action) => {
         var nanoid = require('nanoid')
         let newStudentId = nanoid()
 
-        newState = update(baseState, { students: { $merge: {[newStudentId]: action.studentInfo} } } );
+        let newStudent = {id: newStudentId, ...action.studentInfo.studentInfo}
+
+        newState = update(baseState, { students: { $merge: {[newStudentId]: newStudent} } } );
         newState = update(newState, { classes: { [classId]: { students: { $push: [newStudentId] } } } } );
         return newState;
       }
