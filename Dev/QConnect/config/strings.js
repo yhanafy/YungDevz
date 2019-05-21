@@ -92,7 +92,7 @@ export default {
     PrivacyPolicy: 'Privacy Policy',
 
     //--------------------------- Credits -------------------------------------------
-    FirstScreenImageCredits: 'First screen image photo by © Hany Khalaf Photography',
+    FirstScreenImageCredits: 'First screen background photo by © Hany Khalaf Photography',
 
 
 
