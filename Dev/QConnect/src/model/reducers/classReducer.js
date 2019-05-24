@@ -17,7 +17,10 @@ export const INITIAL_STATE = {
       classes: []
   },
   classes: {},
-  students: {}
+  students: {},
+  attendance: {
+    byClassIds: {}
+  }
 };
 
 // configure analytics for redux
@@ -66,32 +69,13 @@ export const classReducer = (state = INITIAL_STATE, action) => {
       }
     case actionTypes.ADD_ATTENDANCE:
       {
-        //Fetches the current list of students
-        studentslist = state.classes[action.classId].students;
-
-        //First checks if the student already has a recorded date with an attendance saved.
-        //If he does, it will overwrite the old information with the new information. If he doesn't,
-        //it will write the new information 
-        for (i = 0; i < studentslist.length; i++) {
-          let attHistory = studentslist[i].attendanceHistory;
-          let addingDate = action.attendanceInfo[i].date;
-          let isDatePreviouslySaved = false;
-          let counter = 0;
-          for (counter = 0; counter < attHistory.length; counter++) {
-            if (attHistory[counter].date === addingDate) {
-              isDatePreviouslySaved = true;
-              break;
-            }
-          }
-          if (isDatePreviouslySaved) {
-            studentslist[i].attendanceHistory.splice(counter, 1, action.attendanceInfo[i])
-          } else {
-            studentslist[i].attendanceHistory.push(action.attendanceInfo[i]);
-          }
-
+        let classId = action.classId;
+        newState = baseState;
+        if (!baseState.attendance.byClassIds[classId]) {
+          newState = update(baseState, { attendance: { byClassIds: { $merge: {[classId]: { byDate: { }}}}}});
         }
-
-        newState = update(baseState, { classes: { [action.classId]: { students: { $set: studentslist } } } });
+      
+        newState = update(newState,  { attendance: { byClassIds: { [classId]: { byDate: {$merge: {[ action.date]: action.attendanceInfo} } } } }} );
         return newState;
       }
     case actionTypes.SAVE_TEACHER_INFO:
