@@ -33,18 +33,18 @@ export default class StudentCard extends FontLoadingComponent {
                             style={styles.infoStyle}>
                             {currentAssignment ? (
                                 <View>
-                                <Text style={styles.studentNameStyle}>{studentName}</Text>
-                                <Text style={styles.assignmentStyle}>{currentAssignment}</Text>
+                                <Text numberOfLines={1} style={styles.studentNameStyle}>{studentName}</Text>
+                                <Text numberOfLines={1} style={styles.assignmentStyle}>{currentAssignment}</Text>
                                 </View>
                             ) : (
                                 <View>
-                                <Text style={styles.studentNameStyle}>{studentName}</Text>
+                                <Text numberOfLines={1} style={styles.studentNameStyle}>{studentName}</Text>
                                 </View>
                             )}
                         </View>
                         <View style={styles.removeStudentStyle}>
                             {comp}
-                        </View>
+                        </View> 
                     </TouchableOpacity>
                 ) : (
                         <View></View>
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
         fontFamily: 'regular',
     },
     removeStudentStyle: {
-        flex: 1,
+        flexWrap: 'wrap',
         flexDirection: 'row',
         justifyContent: 'flex-end',
         marginRight: 20
@@ -87,7 +87,8 @@ const styles = StyleSheet.create({
     infoStyle: {
         flexDirection: 'column',
         justifyContent: 'center',
-        fontFamily: 'regular'
+        fontFamily: 'regular',
+        flex: 1
     },
     profilePicStyle: {
         width: 60,
