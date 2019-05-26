@@ -234,7 +234,7 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 2,
     paddingTop: 5,
-    flex: 1,
+    textAlign: 'left'
   },
   ratingText: {
     fontSize: 24,
