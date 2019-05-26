@@ -13,7 +13,7 @@ class QcAppBanner extends FontLoadingComponent {
                     <View style={{ flexDirection: 'row' }}>
                         <Text style={styles.titleText}>QuranConnect</Text>
                     </View>
-                    <View style={{ marginTop: -5 }}>
+                    <View style={{ marginTop: 0 }}>
                         <Text style={styles.subtitleText}>Serving your passion for the Quran</Text>
                     </View>
                 </View>

@@ -24,13 +24,17 @@ class FirstRunScreen extends QcParentScreen {
         return (
           <View style={styles.container}>
                 <ImageBackground source={BG_IMAGE} style={styles.bgImage}>
+                <View style={{flex: 4}}></View>
                     <QcAppBanner />
                     <View style={styles.spacer}></View>
+                    <View style={{flex: 1}}>
                     <QcActionButton
                         navigation={navigation}
                         text={strings.IAmATeacher}
                         onPress={this.onTeacherFlow}
                         screen={this.name} />
+                    </View>
+                    <View style={{flex: 1}}></View>
                 </ImageBackground>
             </View>  
         );
@@ -42,10 +46,10 @@ const styles = StyleSheet.create({
       flex: 1
     },
     spacer: {
-      marginTop: 150 //hack, change this to be flex based.
+      flex: 3
     },
     bgImage: {
-      flex: 1,
+      flex: 5,
       top: 0,
       left: 0,
       width: SCREEN_WIDTH,
