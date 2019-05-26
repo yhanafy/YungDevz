@@ -74,15 +74,14 @@ class StudentProfileScreen extends QcParentScreen {
 
   //---------- main UI render ===============================
   render() {
-    const { classId, studentId } = this.props.navigation.state.params;
-    const currentStudent = this.props.classes[classId].students[studentId];
-    const hasCurrentAssignment = currentStudent.currentAssignment.name === 'None' ? false : true;
+    const { classId, studentId, currentStudent, currentAssignment } = this.props
+    const hasCurrentAssignment = currentAssignment.name === 'None' ? false : true;
 
     //retrieves the student's average rating. If the student hasn't had any assignments, then 
     //the rating will default to 0.
     averageRating = currentStudent.totalAssignments === 0 ? 0.0 :
       (currentStudent.totalGrade / currentStudent.totalAssignments);
-    const dialogInitialText =  currentStudent.currentAssignment.name === 'None' ? {hintInput: strings.EnterAssignmentHere} : {initValueTextInput: currentStudent.currentAssignment.name} 
+    const dialogInitialText =  currentAssignment.name === 'None' ? {hintInput: strings.EnterAssignmentHere} : {initValueTextInput: currentAssignment.name} 
 
     return (
       <View style={styles.container}>
@@ -92,13 +91,7 @@ class StudentProfileScreen extends QcParentScreen {
           {...dialogInitialText}
           dialogStyle={{ marginBottom: 100 }}
           submitInput={(inputText) =>
-          //If the student already has an existing assignment, then it will simply edit the
-          //name of the current assignment, if not, then it will create a new assignment
-          {
-            hasCurrentAssignment ? this.editAssignment(classId, studentId,
-              { name: inputText, startDate: new Date().toLocaleDateString("en-US") })
-              : this.addAssignment(classId, studentId, inputText)
-          }}
+            this.editAssignment(classId, studentId, inputText)}
           closeDialog={() => { this.setState({ isDialogVisible: false }) }} />
 
         <ImageSelectionModal
@@ -143,7 +136,7 @@ class StudentProfileScreen extends QcParentScreen {
                   />
                 </View>
                 <View style={{ flex: 1, flexDirection: 'column', height: 59}}>
-                  <Text numberOfLines={1} style={styles.assignmentTextLarge}>{currentStudent.currentAssignment.name.toUpperCase()}</Text>
+                  <Text numberOfLines={1} style={styles.assignmentTextLarge}>{currentAssignment.name.toUpperCase()}</Text>
                   <View style={{ flexDirection: 'row' }}>
                     <TouchableHighlight
                       onPress={() => { this.setState({ isDialogVisible: true }) }} >
@@ -329,10 +322,20 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = state => {
-  const { classes } = state.data;
-  return { classes };
+const mapStateToProps = (state, ownProps) => {
+  const { classId, studentId } = ownProps.navigation.state.params;
+  const currentStudent = state.data.students[studentId];
+  let currentAssignment = {name: 'None', date: ''};
+
+  if(state.data.currentAssignments.byClassId[classId] && 
+    state.data.currentAssignments.byClassId[classId].byStudentId[studentId] &&
+    state.data.currentAssignments.byClassId[classId].byStudentId[studentId][0]){
+      currentAssignment = state.data.currentAssignments.byClassId[classId].byStudentId[studentId][0];
+    }
+
+  return { classId, studentId, currentStudent, currentAssignment };
 };
+
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {

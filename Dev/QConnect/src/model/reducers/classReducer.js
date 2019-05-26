@@ -5,6 +5,7 @@ import Analytics from '@aws-amplify/analytics';
 import analyticsEvents from 'config/analyticsEvents'
 import awsconfig from '../../../aws-exports';
 
+
 export const INITIAL_STATE = {
   firstRunCompleted: false,
   teacher: {
@@ -19,7 +20,17 @@ export const INITIAL_STATE = {
   classes: {},
   students: {},
   attendance: {
-    byClassIds: {}
+    byClassId: {}
+  },
+  currentAssignments: {
+    byClassIds: {
+
+    }
+  },
+  assignmentsHistory:{
+    byStudentIds: {
+
+    }
   }
 };
 
@@ -53,6 +64,7 @@ export const classReducer = (state = INITIAL_STATE, action) => {
 
         newState = update(baseState, { students: { $merge: {[newStudentId]: newStudent} } } );
         newState = update(newState, { classes: { [classId]: { students: { $push: [newStudentId] } } } } );
+        newState = editAssignment(newState, classId, newStudentId, {name: 'None', date: ''});
         return newState;
       }
     case actionTypes.DELETE_STUDENT:
@@ -71,11 +83,11 @@ export const classReducer = (state = INITIAL_STATE, action) => {
       {
         let classId = action.classId;
         newState = baseState;
-        if (!baseState.attendance.byClassIds[classId]) {
-          newState = update(baseState, { attendance: { byClassIds: { $merge: {[classId]: { byDate: { }}}}}});
+        if (!baseState.attendance.byClassId[classId]) {
+          newState = update(baseState, { attendance: { byClassId: { $merge: {[classId]: { byDate: { }}}}}});
         }
       
-        newState = update(newState,  { attendance: { byClassIds: { [classId]: { byDate: {$merge: {[ action.date]: action.attendanceInfo} } } } }} );
+        newState = update(newState,  { attendance: { byClassId: { [classId]: { byDate: {$merge: {[ action.date]: action.attendanceInfo} } } } }} );
         return newState;
       }
     case actionTypes.SAVE_TEACHER_INFO:
@@ -86,34 +98,21 @@ export const classReducer = (state = INITIAL_STATE, action) => {
       }
     case actionTypes.EDIT_CURRENT_ASSIGNMENT:
       {
-        let { classId, studentId } = action;
-        let updatedAssignment = {
-          name: action.newAssignment.name,
-          startDate: action.newAssignment.startDate
+        let { classId, studentId, newAssignmentName } = action;
+        let newAssignmentDate = new Date().toLocaleDateString("en-US");
+
+        let newAssignment = {
+          name: newAssignmentName,
+          startDate: newAssignmentDate
         }
 
-        let newState = update(baseState, { classes: { [classId]: { students: { [studentId]: { currentAssignment: { $set: updatedAssignment } } } } } });
+        let newState = editAssignment(baseState, classId, studentId, newAssignment);
         return newState;
       }
     case actionTypes.UPDATE_STUDENT_IMAGE:
       {
         let { classId, studentId, imageId } = action;
         let newState = update(baseState, { classes: { [classId]: { students: { [studentId]: { imageId: { $set: imageId } } } } } });
-        return newState;
-      }
-    case actionTypes.ADD_NEW_ASSIGNMENT:
-      {
-        let { classId, studentId, newAssignmentName } = action;
-        let newAssignmentDate = new Date().toLocaleDateString("en-US");
-
-        //creates the new assignment before adding it to the persist
-        let newCurrentAssignment = {
-          name: newAssignmentName,
-          startDate: newAssignmentDate
-        }
-
-        //updates the current assignment
-        let newState = update(baseState, { classes: { [classId]: { students: { [studentId]: { currentAssignment: { $set: newCurrentAssignment } } } } } });
         return newState;
       }
     case actionTypes.COMPLETE_CURRENT_ASSIGNMENT:
@@ -152,3 +151,21 @@ export const classReducer = (state = INITIAL_STATE, action) => {
 export default combineReducers({
   data: classReducer,
 });
+
+function editAssignment(baseState, classId, studentId, newAssignment) {
+  newState = baseState;
+  if (!newState.currentAssignments.byClassId) {
+    newState = update(newState, { currentAssignments: { byClassId: { $set: { [classId]: { byStudentId: { [studentId]: [newAssignment] } } } } } });
+  }
+  else if (!newState.currentAssignments.byClassId[classId]) {
+    newState = update(newState, { currentAssignments: { byClassId: { $merge: { [classId]: { byStudentId: { [studentId]: [newAssignment] } } } } } });
+  }
+  else if (!newState.currentAssignments.byClassId[classId].byStudentId[studentId]) {
+    newState = update(newState, { currentAssignments: { byClassId: { [classId]: { byStudentId: { $merge: { [studentId]: [newAssignment] } } } } } });
+  }
+  else {
+    newState = update(newState, { currentAssignments: { byClassId: { [classId]: { byStudentId: { [studentId]: { $set: newAssignment } } } } } });
+  }
+
+  return newState;
+}

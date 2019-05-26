@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
     let props = mapStateToCurrentClassProps(state)
-    let attendance = state.data.attendance.byClassIds[props.classId];
+    let attendance = state.data.attendance.byClassId[props.classId];
     return { ...props, attendance }
 };
 

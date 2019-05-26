@@ -38,17 +38,17 @@ export class ClassMainScreen extends QcParentScreen {
       <ScrollView style={styles.container}>
         <FlatList
           data={this.props.students}
-          keyExtractor={(item, index) => item.name} // fix, should be item.id (add id to classes)
-          renderItem={({ item, index }) => (
+          keyExtractor={(item) => item.name} // fix, should be item.id (add id to classes)
+          renderItem={({ item }) => (
             <StudentCard
-              key={index}
+              key={item.id}
               studentName={item.name}
               background={colors.white}
               profilePic={studentImages.images[item.imageId]}
-              currentAssignment={item.currentAssignment.name}
+              currentAssignment={this.props.currentAssignments.byStudentId[item.id][0].name}
               onPress={() =>
                 this.props.navigation.push("StudentProfile", {
-                  studentId: index,
+                  studentId: item.id,
                   classId: classId
                 })
               }

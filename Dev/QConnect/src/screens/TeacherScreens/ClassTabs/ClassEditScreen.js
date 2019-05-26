@@ -93,13 +93,7 @@ export class ClassEditScreen extends QcParentScreen {
             name: this.state.newStudentName,
             totalAssignments: 0,
             totalGrade: 0,
-            imageId: this.state.profileImageId,
-            currentAssignment: {
-              name: "None",
-              startDate: ""
-            },
-            assignmentHistory: [],
-            attendanceHistory: []
+            imageId: this.state.profileImageId
           }
         }
       );
