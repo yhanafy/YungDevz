@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { TouchableOpacity, Text, StyleSheet, Image, View } from 'react-native';
 import colors from 'config/colors'
 import FontLoadingComponent from './FontLoadingComponent';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 /*Class represents the student card that will show up in the list of students
 *from the teachers view.
@@ -33,21 +34,21 @@ export default class StudentCard extends FontLoadingComponent {
                             style={styles.infoStyle}>
                             {currentAssignment ? (
                                 <View>
-                                <Text numberOfLines={1} style={styles.studentNameStyle}>{studentName}</Text>
-                                <Text numberOfLines={1} style={styles.assignmentStyle}>{currentAssignment}</Text>
+                                    <Text numberOfLines={1} style={styles.studentNameStyle}>{studentName}</Text>
+                                    <Text numberOfLines={1} style={styles.assignmentStyle}>{currentAssignment}</Text>
                                 </View>
                             ) : (
-                                <View>
-                                <Text numberOfLines={1} style={styles.studentNameStyle}>{studentName}</Text>
-                                </View>
-                            )}
+                                    <View>
+                                        <Text numberOfLines={1} style={styles.studentNameStyle}>{studentName}</Text>
+                                    </View>
+                                )}
                         </View>
                         <View style={styles.removeStudentStyle}>
                             {comp}
-                        </View> 
+                        </View>
                     </TouchableOpacity>
                 ) : (
-                        <View></View>
+                        <LoadingSpinner isVisible={!this.state.fontLoaded} />
                     )
                 }
             </View>

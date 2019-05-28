@@ -1,19 +1,12 @@
 //This will be the credits screen
-import React, { Component } from 'react';
 import { View, StyleSheet, Text, ScrollView, Dimensions, Linking } from 'react-native';
 import colors from 'config/colors';
 import strings from 'config/strings';
+import QcParentScreen from "screens/QcParentScreen";
 
-export default class creditsScreen extends Component {
-    _goToURL(url) {
-        Linking.canOpenURL(url).then(supported => {
-          if (supported) {
-            Linking.openURL(this.props.url);
-          } else {
-            console.log('Don\'t know how to open URI: ' + this.props.url);
-          }
-        });
-      }
+export default class CreditsScreen extends QcParentScreen {
+
+    name = "CreditsScreen";
 
     render() {
         return (

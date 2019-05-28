@@ -1,26 +1,26 @@
-import React, {Component} from 'react';
-import {Font} from 'expo';
-import {View, Text, StyleSheet} from 'react-native';
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 import colors from 'config/colors';
 import FontLoadingComponent from './FontLoadingComponent';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 class QcAppBanner extends FontLoadingComponent {
     render() {
         return (
             <View ID="AppBanner">
-            {this.state.fontLoaded ? (              
-                <View style={styles.loginTitle}>
-                    <View style={{ flexDirection: 'row' }}>
-                        <Text style={styles.titleText}>QuranConnect</Text>
+                {this.state.fontLoaded ? (
+                    <View style={styles.loginTitle}>
+                        <View style={{ flexDirection: 'row' }}>
+                            <Text style={styles.titleText}>QuranConnect</Text>
+                        </View>
+                        <View style={{ marginTop: 0 }}>
+                            <Text style={styles.subtitleText}>Serving your passion for the Quran</Text>
+                        </View>
                     </View>
-                    <View style={{ marginTop: 0 }}>
-                        <Text style={styles.subtitleText}>Serving your passion for the Quran</Text>
-                    </View>
-                </View>
-            ) : (
-                <Text>Welcome to QuranConnect...</Text>
-                )
-            }
+                ) : (
+                        <LoadingSpinner isVisible={!this.state.fontLoaded} />
+                    )
+                }
             </View>
         )
     }
@@ -34,15 +34,15 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         textAlign: 'center',
-      },
-      subtitleText: {
+    },
+    subtitleText: {
         color: colors.darkGrey,
         fontSize: 12,
         fontFamily: 'regular',
         justifyContent: 'center',
         alignItems: 'center',
         textAlign: 'center',
-      }
+    }
 });
 
 export default QcAppBanner;

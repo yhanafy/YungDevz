@@ -10,7 +10,7 @@ import strings from '../../config/strings';
 //--------------------------------------------------------------------------
 export default TeacherInfoEntries = (props) => {
     return (
-        <View  style={styles.container}>
+        <View style={styles.container}>
             <View style={styles.infoRow}>
                 <Text style={styles.subtitle}>Information</Text>
             </View>

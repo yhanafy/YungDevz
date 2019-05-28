@@ -3,48 +3,49 @@
 import FontLoadingComponent from './FontLoadingComponent';
 import React from 'React';
 import PropTypes from 'prop-types';
-import { StyleSheet, Text, View, Dimensions } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { Icon } from 'react-native-elements';
 import colors from 'config/colors'
 import { connect } from "react-redux";
 import strings from "config/strings"
+import LoadingSpinner from '../components/LoadingSpinner';
 
 class TopBanner extends FontLoadingComponent {
     render() {
         //Component properties
-        const {LeftIconName, LeftTextName, LeftOnPress, Title, 
-            RightIconName, RightTextName, RightOnPress, className} = this.props;
-        let headerTitle = (Title === strings.titleNotPassed)?  className : Title ;
+        const { LeftIconName, LeftTextName, LeftOnPress, Title,
+            RightIconName, RightTextName, RightOnPress, className } = this.props;
+        let headerTitle = (Title === strings.titleNotPassed) ? className : Title;
 
-        return(
+        return (
             <View>
                 {this.state.fontLoaded ? (
                     <View style={styles.entireTopView}>
-                    <View style={styles.topLeftView}>
-                        <Icon
-                            name={LeftIconName}
-                            type="font-awesome"
-                            onPress={() => {LeftOnPress()}}
-                        />
-                        <Text style={styles.leftText} 
-                            onPress={() => {LeftOnPress()}}>{LeftTextName}</Text>
-                    </View>
-                    <View style={styles.topMiddleView}>
-                        <Text style={styles.titleStyle}>{headerTitle}</Text>
-                    </View>
-                    <View style={styles.topRightView}>
-                        <Icon
-                            name={RightIconName}
-                            type="font-awesome"
-                            onPress={() => {RightOnPress()}}
-                        />
-                        <Text style={styles.rightText}
-                            onPress={() => {RightOnPress()}}>{RightTextName}</Text>
-                    </View>
+                        <View style={styles.topLeftView}>
+                            <Icon
+                                name={LeftIconName}
+                                type="font-awesome"
+                                onPress={() => { LeftOnPress() }}
+                            />
+                            <Text style={styles.leftText}
+                                onPress={() => { LeftOnPress() }}>{LeftTextName}</Text>
+                        </View>
+                        <View style={styles.topMiddleView}>
+                            <Text style={styles.titleStyle}>{headerTitle}</Text>
+                        </View>
+                        <View style={styles.topRightView}>
+                            <Icon
+                                name={RightIconName}
+                                type="font-awesome"
+                                onPress={() => { RightOnPress() }}
+                            />
+                            <Text style={styles.rightText}
+                                onPress={() => { RightOnPress() }}>{RightTextName}</Text>
+                        </View>
                     </View>
                 ) : (
-                    <View></View>
-                )}
+                        <LoadingSpinner isVisible={!this.state.fontLoaded} />
+                    )}
             </View>
         );
     }
@@ -85,7 +86,7 @@ const styles = StyleSheet.create({
     },
     topRightView: {
         height: 100,
-        justifyContent: 'center', 
+        justifyContent: 'center',
         alignItems: 'center',
         paddingRight: 20,
         flexDirection: 'row'
@@ -97,16 +98,16 @@ const styles = StyleSheet.create({
     },
     leftText: {
         fontSize: 15,
-    }, 
+    },
     rightText: {
         fontSize: 15,
     }
 });
-  
+
 const mapStateToProps = (state) => {
     let classIndex = state.data.teachers[0].currentClassIndex;
     let className = classIndex >= 0 ? state.data.teachers[0].classes[classIndex].name : "Quran Class";
     return { className };
 };
-  
+
 export default connect(mapStateToProps)(TopBanner);

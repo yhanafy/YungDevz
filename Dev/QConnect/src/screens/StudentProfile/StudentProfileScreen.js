@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View, Image, Text, StyleSheet, ScrollView, FlatList, TouchableHighlight, TouchableOpacity } from 'react-native';
 import colors from 'config/colors';
-import { Rating, Icon } from 'react-native-elements';
+import { Rating } from 'react-native-elements';
 import DialogInput from 'react-native-dialog-input';
 import { editCurrentAssignment } from 'model/actions/editCurrentAssignment';
 import { addNewAssignment } from 'model/actions/addNewAssignment';
@@ -11,7 +11,8 @@ import { connect } from "react-redux";
 import strings from 'config/strings';
 import studentImages from 'config/studentImages';
 import TouchableText from 'components/TouchableText'
-import ImageSelectionModal from 'components/ImageSelectionModal'
+import ImageSelectionModal from 'components/ImageSelectionModal';
+import LoadingSpinner from '../../components/LoadingSpinner';
 import QcParentScreen from 'screens/QcParentScreen';
 
 
@@ -60,13 +61,13 @@ class StudentProfileScreen extends QcParentScreen {
   getRatingCaption() {
     let caption = strings.GetStarted;
 
-    if(averageRating > 4 ){
+    if (averageRating > 4) {
       caption = strings.OutStanding
     }
-    else if (averageRating >= 3){
+    else if (averageRating >= 3) {
       caption = strings.GreatJob
     }
-    else if (averageRating > 0){
+    else if (averageRating > 0) {
       caption = strings.PracticePerfect
     }
 
@@ -83,7 +84,7 @@ class StudentProfileScreen extends QcParentScreen {
     //the rating will default to 0.
     averageRating = currentStudent.totalAssignments === 0 ? 0.0 :
       (currentStudent.totalGrade / currentStudent.totalAssignments);
-    const dialogInitialText =  currentStudent.currentAssignment.name === 'None' ? {hintInput: strings.EnterAssignmentHere} : {initValueTextInput: currentStudent.currentAssignment.name} 
+    const dialogInitialText = currentStudent.currentAssignment.name === 'None' ? { hintInput: strings.EnterAssignmentHere } : { initValueTextInput: currentStudent.currentAssignment.name }
 
     return (
       <View style={styles.container}>
@@ -124,7 +125,7 @@ class StudentProfileScreen extends QcParentScreen {
                   <Text numberOfLines={1} style={styles.bigText}>{currentStudent.name.toUpperCase()}</Text>
                   <View style={{ flexDirection: 'row', height: 25 }}>
                     <Rating readonly={true} startingValue={averageRating} imageSize={25} />
-                    <View style={{flexDirection: 'column', justifyContent: 'center' }}>
+                    <View style={{ flexDirection: 'column', justifyContent: 'center' }}>
                       <Text style={styles.ratingText}>{parseFloat(averageRating).toFixed(1)}</Text>
                     </View>
                   </View>
@@ -136,14 +137,14 @@ class StudentProfileScreen extends QcParentScreen {
                 <View style={styles.profileInfoTopLeft}>
                   <Image
                     style={styles.profilePic}
-                    source={studentImages.images[this.state.profileImageId >= 0? this.state.profileImageId : currentStudent.imageId]} />
+                    source={studentImages.images[this.state.profileImageId >= 0 ? this.state.profileImageId : currentStudent.imageId]} />
                   <TouchableText
                     text="update image"
                     onPress={() => this.setModalVisible(true)}
                     style={{ paddingRight: 0, paddingLeft: 0, marginLeft: 0, fontSize: 12 }}
                   />
                 </View>
-                <View style={{ flex: 1, flexDirection: 'column', height: 59}}>
+                <View style={{ flex: 1, flexDirection: 'column', height: 59 }}>
                   <Text numberOfLines={1} style={styles.assignmentTextLarge}>{currentStudent.currentAssignment.name.toUpperCase()}</Text>
                   <View style={{ flexDirection: 'row' }}>
                     <TouchableHighlight
@@ -170,34 +171,34 @@ class StudentProfileScreen extends QcParentScreen {
                 keyExtractor={(item, index) => item.name + index}
                 renderItem={({ item, index }) => (
                   <TouchableOpacity onPress={() => this.props.navigation.push("AssignmentEvaluation", {
-                      classIndex: classIndex , 
-                      studentIndex: studentIndex,
-                      assignmentName: item.name, 
-                      completionDate: item.completionDate,
-                      rating: item.evaluation.overallGrade , 
-                      notes: item.evaluation.notes 
-                      })}>
-                  <View style={styles.prevAssignmentCard} key={index}>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', flex: 1 }}>
-                      <Text style={[styles.subText, { paddingLeft: 10, paddingTop: 3 }]}>{item.completionDate}</Text>
-                      <View style={{ alignItems: 'center', flex: 1 }}>
-                        <Text numberOfLines={1} style={styles.prevAssignmentTitleText}>{item.name}</Text>
+                    classIndex: classIndex,
+                    studentIndex: studentIndex,
+                    assignmentName: item.name,
+                    completionDate: item.completionDate,
+                    rating: item.evaluation.overallGrade,
+                    notes: item.evaluation.notes
+                  })}>
+                    <View style={styles.prevAssignmentCard} key={index}>
+                      <View style={{ flexDirection: 'row', justifyContent: 'space-between', flex: 1 }}>
+                        <Text style={[styles.subText, { paddingLeft: 10, paddingTop: 3 }]}>{item.completionDate}</Text>
+                        <View style={{ alignItems: 'center', flex: 1 }}>
+                          <Text numberOfLines={1} style={styles.prevAssignmentTitleText}>{item.name}</Text>
+                        </View>
+                        <Rating style={{ paddingRight: 10, paddingTop: 3 }} readonly={true}
+                          startingValue={item.evaluation.overallGrade} imageSize={17} />
                       </View>
-                      <Rating style={{ paddingRight: 10, paddingTop: 3 }} readonly={true}
-                        startingValue={item.evaluation.overallGrade} imageSize={17} />
-                    </View>
-                    {item.evaluation.notes ?
+                      {item.evaluation.notes ?
                         <Text numberOfLines={2} style={styles.notesText}>{"Notes: " + item.evaluation.notes}</Text>
-                      : <View />
-                    }
-                  </View>
+                        : <View />
+                      }
+                    </View>
                   </TouchableOpacity>
                 )}
               />
             </ScrollView>
           </View>
         ) : (
-            <Text style={styles.textStyle}>Loading...</Text>
+            <LoadingSpinner isVisible={!this.state.fontLoaded} />
           )
         }
       </View>
