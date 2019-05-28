@@ -1,4 +1,4 @@
-import { createStackNavigator, createAppContainer, DrawerActions } from 'react-navigation';
+import { createStackNavigator, createAppContainer } from 'react-navigation';
 import React from 'react';
 import FirstRunScreen from './FirstRunScreen';
 import TeacherMenu from '../TeacherScreens/TeacherMenu';

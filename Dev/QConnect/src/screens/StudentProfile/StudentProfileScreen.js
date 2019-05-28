@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View, Image, Text, StyleSheet, ScrollView, FlatList, TouchableHighlight, TouchableOpacity } from 'react-native';
 import colors from 'config/colors';
-import { Rating, Icon } from 'react-native-elements';
+import { Rating } from 'react-native-elements';
 import DialogInput from 'react-native-dialog-input';
 import { editCurrentAssignment } from 'model/actions/editCurrentAssignment';
 import { addNewAssignment } from 'model/actions/addNewAssignment';

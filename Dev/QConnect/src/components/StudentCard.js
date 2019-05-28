@@ -34,21 +34,21 @@ export default class StudentCard extends FontLoadingComponent {
                             style={styles.infoStyle}>
                             {currentAssignment ? (
                                 <View>
-                                <Text numberOfLines={1} style={styles.studentNameStyle}>{studentName}</Text>
-                                <Text numberOfLines={1} style={styles.assignmentStyle}>{currentAssignment}</Text>
+                                    <Text numberOfLines={1} style={styles.studentNameStyle}>{studentName}</Text>
+                                    <Text numberOfLines={1} style={styles.assignmentStyle}>{currentAssignment}</Text>
                                 </View>
                             ) : (
-                                <View>
-                                <Text numberOfLines={1} style={styles.studentNameStyle}>{studentName}</Text>
-                                </View>
-                            )}
+                                    <View>
+                                        <Text numberOfLines={1} style={styles.studentNameStyle}>{studentName}</Text>
+                                    </View>
+                                )}
                         </View>
                         <View style={styles.removeStudentStyle}>
                             {comp}
-                        </View> 
+                        </View>
                     </TouchableOpacity>
                 ) : (
-                    <LoadingSpinner isVisible={!this.state.fontLoaded} />
+                        <LoadingSpinner isVisible={!this.state.fontLoaded} />
                     )
                 }
             </View>

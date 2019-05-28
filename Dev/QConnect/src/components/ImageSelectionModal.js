@@ -39,7 +39,7 @@ export default class ImageSelectionModal extends Component {
                 onRequestClose={() => {
                 }}>
 
-                <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', paddingBottom: 20}}>
+                <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', paddingBottom: 20 }}>
                     <View style={styles.container}>
                         <ImageSelectionGrid
                             images={this.props.images}
