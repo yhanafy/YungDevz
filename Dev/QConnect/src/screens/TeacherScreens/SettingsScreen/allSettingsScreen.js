@@ -24,7 +24,7 @@ export default class allSettingsScreen extends Component {
                     Linking.openURL('https://app.termly.io/document/privacy-policy/d3e756e4-a763-4095-9ec1-3965b609d015')
                 }}>
                     <Text style={styles.textStyle}>{strings.PrivacyPolicy}</Text>
-                    <Icon
+                    <Icon   
                         name='angle-right'
                         type='font-awesome'
                         iconStyle={{ marginRight: 20 }}

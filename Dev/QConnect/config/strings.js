@@ -93,6 +93,7 @@ export default {
 
     //--------------------------- Credits -------------------------------------------
     FirstScreenImageCredits: 'First screen image photo by © Hany Khalaf Photography',
+    AvatarCredits: 'Computer vector created by brgfx - www.freepik.com'
 
 
 

@@ -28,6 +28,39 @@ import QcParentScreen from "screens/QcParentScreen";
 export class TeacherWelcomeScreen extends QcParentScreen {
   name = "TeacherWelcomeScreen";
 
+  getRandomGenderNeutralImage = () => {
+    index = Math.floor(Math.random() * Math.floor(teacherImages.genderNeutralImages.length));
+    imageIndex = teacherImages.genderNeutralImages[index];
+    return imageIndex;
+  }
+
+  getRandomMaleImage = () => {
+    index = Math.floor(Math.random() * Math.floor(teacherImages.maleImages.length));
+    imageIndex = teacherImages.maleImages[index];
+    return imageIndex;
+  }
+
+  getRandomFemaleImage = () => {
+    index = Math.floor(Math.random() * Math.floor(teacherImages.femaleImages.length));
+    imageIndex = teacherImages.femaleImages[index];
+    return imageIndex;
+  }
+
+  initialDefaultImageId = this.getRandomGenderNeutralImage()
+
+  getHighlightedImages = () => {
+    defaultImageId = this.initialDefaultImageId;
+
+    // get a second gender neutral image, make sure it is different than the first one
+    do {
+      secondGenericImageId = this.getRandomGenderNeutralImage();
+    } while (secondGenericImageId === defaultImageId)
+
+    //initialize the array of suggested images
+    let proposedImages = [defaultImageId, secondGenericImageId, this.getRandomFemaleImage(), this.getRandomMaleImage()]
+    return proposedImages;
+  }
+
   //--- state captures the inputted user info ------------------
   state = {
     name: this.props.name,
@@ -35,7 +68,7 @@ export class TeacherWelcomeScreen extends QcParentScreen {
     emailAddress: this.props.emailAddress,
     modalVisible: false,
     profileImageId: this.props.profileImageId,
-    highlightedImagesIndices: [1, 2, 3, 10]
+    highlightedImagesIndices: this.getHighlightedImages()
   };
 
   //--- event handlers, handle user interaction ------------------
