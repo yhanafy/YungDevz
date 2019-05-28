@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { StyleSheet, View, Text, TextInput, Image, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, Alert } from 'react-native'
-import { Rating, AirbnbRating } from 'react-native-elements';
+import { AirbnbRating } from 'react-native-elements';
 import colors from 'config/colors';
 import { bindActionCreators } from 'redux';
 import { connect } from "react-redux";
@@ -9,8 +9,6 @@ import { completeCurrentAssignment } from 'model/actions/completeCurrentAssignme
 import { editCurrentAssignment } from 'model/actions/editCurrentAssignment';
 import strings from 'config/strings';
 import studentImages from 'config/studentImages';
-import Analytics from '@aws-amplify/analytics';
-import analyticsEvents from 'config/analyticsEvents';
 import QcParentScreen from 'screens/QcParentScreen';
 
 export class EvaluationPage extends QcParentScreen {
@@ -36,13 +34,13 @@ export class EvaluationPage extends QcParentScreen {
   }
 
   //----- Saves the rating to db and pops to previous view ---------
-  doSubmitRating(classIndex, studentIndex){
+  doSubmitRating(classIndex, studentIndex) {
     this.props.completeCurrentAssignment(classIndex, studentIndex, this.state);
 
-      // keep the assignment name as the last assignment to reduce retype since most of the times the next assignment would be the same surah (next portion) or a redo.
-      // todo: eventually right after grading we should have a step for the teacher to update the next assignment
-      this.props.editCurrentAssignment(classIndex, studentIndex, { name: this.props.currentAssignment.name, startDate: "" });
-      this.props.navigation.pop();
+    // keep the assignment name as the last assignment to reduce retype since most of the times the next assignment would be the same surah (next portion) or a redo.
+    // todo: eventually right after grading we should have a step for the teacher to update the next assignment
+    this.props.editCurrentAssignment(classIndex, studentIndex, { name: this.props.currentAssignment.name, startDate: "" });
+    this.props.navigation.pop();
   }
 
   //------------  Ensures a rating is inputted before submitting it -------
@@ -57,7 +55,7 @@ export class EvaluationPage extends QcParentScreen {
               this.doSubmitRating(classIndex, studentIndex)
             }
           },
-          { text: 'No', style: 'cancel'}
+          { text: 'No', style: 'cancel' }
         ]
       );
     } else {

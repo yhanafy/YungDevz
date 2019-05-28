@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
 import Analytics from '@aws-amplify/analytics';
 import analyticsEvents from 'config/analyticsEvents'
 import FontLoadingComponent from 'components/FontLoadingComponent';
 
 class QcParentScreen extends FontLoadingComponent {
-    
+
     async componentDidMount() {
         super.componentDidMount();
 

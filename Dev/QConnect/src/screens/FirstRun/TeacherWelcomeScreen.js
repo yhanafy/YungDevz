@@ -1,14 +1,5 @@
-import React, { Component } from "react";
-import {
-  StyleSheet,
-  View,
-  Image,
-  Text,
-  TouchableWithoutFeedback,
-  KeyboardAvoidingView,
-  Keyboard,
-  Alert
-} from "react-native";
+import React from "react";
+import { StyleSheet, View, Image, Text, TouchableWithoutFeedback, KeyboardAvoidingView, Keyboard, Alert } from "react-native";
 import QcActionButton from "components/QcActionButton";
 import Toast, { DURATION } from "react-native-easy-toast";
 import { saveTeacherInfo } from "model/actions/saveTeacherInfo";

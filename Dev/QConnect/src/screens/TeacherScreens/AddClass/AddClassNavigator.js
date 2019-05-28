@@ -1,5 +1,5 @@
 import React from 'react';
-import { createStackNavigator, DrawerActions } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 import AddClassScreen from './AddClassScreen';
 import TopBanner from 'components/TopBanner';
@@ -19,7 +19,7 @@ const AddClassNavigator = createStackNavigator({
     }),
   },
 },
-{
+  {
     drawerLabel: strings.AddNewClass,
     drawerIcon: ({ tintColor }) => (
       <Icon
