@@ -1,10 +1,14 @@
 //This will be the credits screen
-import React, { Component } from 'react';
+import React from 'react';
 import { View, StyleSheet, Text, ScrollView, Dimensions } from 'react-native';
 import colors from 'config/colors';
 import strings from 'config/strings';
+import QcParentScreen from "screens/QcParentScreen";
 
-export default class creditsScreen extends Component {
+export default class CreditsScreen extends QcParentScreen {
+
+    name = "CreditsScreen";
+
     render() {
         return (
             <View style={styles.container}>

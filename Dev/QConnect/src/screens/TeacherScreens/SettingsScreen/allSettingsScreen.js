@@ -1,11 +1,15 @@
 //Screen which will provide all of the possible settings for the user to click on
-import React, { Component } from 'react';
+import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Linking } from 'react-native';
 import colors from 'config/colors';
 import { Icon } from 'react-native-elements';
 import strings from '../../../../config/strings';
+import QcParentScreen from "screens/QcParentScreen";
 
-export default class allSettingsScreen extends Component {
+export default class AllSettingsScreen extends QcParentScreen {
+
+    name = "AllSettingsScreen";
+
     render() {
         return (
             <View style={styles.container}>
