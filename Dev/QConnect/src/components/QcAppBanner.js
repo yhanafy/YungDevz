@@ -3,6 +3,7 @@ import {Font} from 'expo';
 import {View, Text, StyleSheet} from 'react-native';
 import colors from 'config/colors';
 import FontLoadingComponent from './FontLoadingComponent';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 class QcAppBanner extends FontLoadingComponent {
     render() {
@@ -18,7 +19,7 @@ class QcAppBanner extends FontLoadingComponent {
                     </View>
                 </View>
             ) : (
-                <Text>Welcome to QuranConnect...</Text>
+                <LoadingSpinner isVisible={!this.state.fontLoaded} />
                 )
             }
             </View>

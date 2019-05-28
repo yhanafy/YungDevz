@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { TouchableOpacity, Text, StyleSheet, Image, View } from 'react-native';
 import colors from 'config/colors'
 import FontLoadingComponent from './FontLoadingComponent';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 /*Class represents the student card that will show up in the list of students
 *from the teachers view.
@@ -47,7 +48,7 @@ export default class StudentCard extends FontLoadingComponent {
                         </View> 
                     </TouchableOpacity>
                 ) : (
-                        <View></View>
+                    <LoadingSpinner isVisible={!this.state.fontLoaded} />
                     )
                 }
             </View>

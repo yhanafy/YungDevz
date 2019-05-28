@@ -3,11 +3,12 @@
 import FontLoadingComponent from './FontLoadingComponent';
 import React from 'React';
 import PropTypes from 'prop-types';
-import { StyleSheet, Text, View, Dimensions } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { Icon } from 'react-native-elements';
 import colors from 'config/colors'
 import { connect } from "react-redux";
 import strings from "config/strings"
+import LoadingSpinner from '../components/LoadingSpinner';
 
 class TopBanner extends FontLoadingComponent {
     render() {
@@ -43,7 +44,7 @@ class TopBanner extends FontLoadingComponent {
                     </View>
                     </View>
                 ) : (
-                    <View></View>
+                    <LoadingSpinner isVisible={!this.state.fontLoaded} />
                 )}
             </View>
         );
