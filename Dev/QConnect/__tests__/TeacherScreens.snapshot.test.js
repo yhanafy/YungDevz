@@ -1,10 +1,11 @@
 import React from 'react';
-import {ClassMainScreen} from '../src/screens/TeacherScreens/ClassTabs/ClassMainScreen';
+import { ClassMainScreen } from '../src/screens/TeacherScreens/ClassTabs/ClassMainScreen';
 import renderer from 'react-test-renderer';
-import {ClassEditScreen} from '../src/screens/TeacherScreens/ClassTabs/ClassEditScreen';
-import {ClassAttendanceScreen} from '../src/screens/TeacherScreens/ClassTabs/ClassAttendanceScreen';
-import {AddClassScreen} from '../src/screens/TeacherScreens/AddClass/AddClassScreen';
-import {TeacherProfileScreen} from '../src/screens/TeacherScreens/TeacherProfile/TeacherProfileScreen.js'
+import { ClassEditScreen } from '../src/screens/TeacherScreens/ClassTabs/ClassEditScreen';
+import { ClassAttendanceScreen } from '../src/screens/TeacherScreens/ClassTabs/ClassAttendanceScreen';
+import { AddClassScreen } from '../src/screens/TeacherScreens/AddClass/AddClassScreen';
+import { TeacherProfileScreen } from '../src/screens/TeacherScreens/TeacherProfile/TeacherProfileScreen.js'
+jest.mock('../src/components/FadeInView')
 import { TeacherWelcomeScreen } from '../src/screens/FirstRun/TeacherWelcomeScreen';
 import { EvaluationPage } from '../src/screens/Evaluation/EvaluationPage';
 
@@ -207,35 +208,37 @@ const INITIAL_STATE = {
 
 describe('Teacher screens snapshots', () => {
   const testRenderTeacherScreen = (screenName, Component, props) => {
+    global.requestAnimationFrame = null
+
     test(`render ${screenName}`, () => {
-        const navigation = {
-          state: {
-            params: {
-              classIndex: 0
-            }
+      const navigation = {
+        state: {
+          params: {
+            classIndex: 0
           }
         }
+      }
 
-        const {teachers} = INITIAL_STATE;
-        const teacher = teachers[0];
-        const students = teacher.classes[0].students
+      const { teachers } = INITIAL_STATE;
+      const teacher = teachers[0];
+      const students = teacher.classes[0].students
 
-        const tree = renderer.create(<Component 
-          classes = {teacher.classes}
-          navigation = {navigation}
-          students = {students}
-          {...props} 
-        />).toJSON();
+      const tree = renderer.create(<Component
+        classes={teacher.classes}
+        navigation={navigation}
+        students={students}
+        {...props}
+      />).toJSON();
 
-        expect(tree).toMatchSnapshot();
+      expect(tree).toMatchSnapshot();
     })
   }
 
   testRenderTeacherScreen("ClassMainScreen", ClassMainScreen)
   testRenderTeacherScreen("ClassEditScreen", ClassEditScreen)
-  testRenderTeacherScreen("ClassAttendanceScreen", ClassAttendanceScreen, {defaultDate: new Date(1552719600000)})
+  testRenderTeacherScreen("ClassAttendanceScreen", ClassAttendanceScreen, { defaultDate: new Date(1552719600000) })
   testRenderTeacherScreen("AddClassScreen", AddClassScreen)
-  testRenderTeacherScreen("TeacherProfileScreen", TeacherProfileScreen, {name: "TestName", phoneNumber: "TestNumber", emailAddress: "TestEmail", profileImageId: 1})
-  testRenderTeacherScreen("TeacherWelcomeScreen", TeacherWelcomeScreen, {name: "TestName", phoneNumber: "TestNumber", emailAddress: "TestEmail", profileImageId: 1})
-  testRenderTeacherScreen("TeacherWelcomeScreen", EvaluationPage, {name: "TestName", imageId:  6, currentAssignment: {name: "test assignment"}})
+  testRenderTeacherScreen("TeacherProfileScreen", TeacherProfileScreen, { name: "TestName", phoneNumber: "TestNumber", emailAddress: "TestEmail", profileImageId: 1 })
+  testRenderTeacherScreen("TeacherWelcomeScreen", TeacherWelcomeScreen, { name: "TestName", phoneNumber: "TestNumber", emailAddress: "TestEmail", profileImageId: 1 })
+  testRenderTeacherScreen("TeacherWelcomeScreen", EvaluationPage, { name: "TestName", imageId: 6, currentAssignment: { name: "test assignment" } })
 })

@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import colors from 'config/colors';
 import FontLoadingComponent from './FontLoadingComponent';
 import LoadingSpinner from '../components/LoadingSpinner';
+import strings from '../../config/strings';
 
 class QcAppBanner extends FontLoadingComponent {
     render() {
@@ -11,10 +12,10 @@ class QcAppBanner extends FontLoadingComponent {
                 {this.state.fontLoaded ? (
                     <View style={styles.loginTitle}>
                         <View style={{ flexDirection: 'row' }}>
-                            <Text style={styles.titleText}>QuranConnect</Text>
+                            <Text style={styles.titleText}>{strings.AppTitle}</Text>
                         </View>
-                        <View style={{ marginTop: -5 }}>
-                            <Text style={styles.subtitleText}>Serving your passion for the Quran</Text>
+                        <View>
+                            <Text style={styles.subtitleText}>{strings.AppSubTitle}</Text>
                         </View>
                     </View>
                 ) : (
