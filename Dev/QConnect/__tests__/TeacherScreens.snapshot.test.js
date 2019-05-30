@@ -1,4 +1,5 @@
 import React from 'react';
+import {View} from 'react-native';
 import {ClassMainScreen} from '../src/screens/TeacherScreens/ClassTabs/ClassMainScreen';
 import renderer from 'react-test-renderer';
 import {ClassEditScreen} from '../src/screens/TeacherScreens/ClassTabs/ClassEditScreen';
@@ -7,6 +8,7 @@ import {AddClassScreen} from '../src/screens/TeacherScreens/AddClass/AddClassScr
 import {TeacherProfileScreen} from '../src/screens/TeacherScreens/TeacherProfile/TeacherProfileScreen.js'
 import { TeacherWelcomeScreen } from '../src/screens/FirstRun/TeacherWelcomeScreen';
 import { EvaluationPage } from '../src/screens/Evaluation/EvaluationPage';
+import FadeInView from '../src/components/FadeInView'
 
 const INITIAL_STATE = {
   firstRunCompleted: false,
@@ -207,6 +209,8 @@ const INITIAL_STATE = {
 
 describe('Teacher screens snapshots', () => {
   const testRenderTeacherScreen = (screenName, Component, props) => {
+    global.requestAnimationFrame = null
+
     test(`render ${screenName}`, () => {
         const navigation = {
           state: {
@@ -219,6 +223,18 @@ describe('Teacher screens snapshots', () => {
         const {teachers} = INITIAL_STATE;
         const teacher = teachers[0];
         const students = teacher.classes[0].students
+
+        
+        
+        jest.mock("../src/components/FadeInView", () => {
+          const {View} = require('react-native');
+          return(
+          <View></View>
+          )
+        }
+        );
+
+        jest.useFakeTimers();
 
         const tree = renderer.create(<Component 
           classes = {teacher.classes}

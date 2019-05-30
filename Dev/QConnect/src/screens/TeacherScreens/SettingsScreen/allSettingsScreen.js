@@ -18,7 +18,7 @@ export default class AllSettingsScreen extends QcParentScreen {
                 }}>
                     <Text style={styles.textStyle}>{strings.Credits}</Text>
                     <Icon
-                        name='angle-right'
+                        name='angle-right'  
                         type='font-awesome'
                         iconStyle={{ marginRight: 20 }}
                         color={colors.primaryDark} />

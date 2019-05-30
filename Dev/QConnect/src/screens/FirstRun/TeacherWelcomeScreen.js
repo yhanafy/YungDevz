@@ -13,6 +13,7 @@ import TeacherInfoEntries from "components/TeacherInfoEntries";
 import teacherImages from "config/teacherImages";
 import strings from "config/strings";
 import QcParentScreen from "screens/QcParentScreen";
+import FadeInView from "../../components/FadeInView";
 
 //To-Do: All info in this class is static, still needs to be hooked up to data base in order
 //to function dynamically
@@ -149,10 +150,12 @@ export class TeacherWelcomeScreen extends QcParentScreen {
             />
 
             <View style={styles.picContainer}>
+            <FadeInView>
               <Image
                 style={styles.welcomeImage}
                 source={require("assets/images/salam.png")}
               />
+              </FadeInView>
               <Text style={styles.quote}>{strings.TeacherWelcomeMessage}</Text>
             </View>
             <View style={styles.editInfo} behavior="padding">
