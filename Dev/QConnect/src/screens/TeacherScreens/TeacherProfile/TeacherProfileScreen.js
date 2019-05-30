@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { StyleSheet, View, Image, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, Alert } from 'react-native';
 import Toast, { DURATION } from 'react-native-easy-toast'
 import QcActionButton from 'components/QcActionButton';
@@ -52,7 +52,7 @@ export class TeacherProfileScreen extends QcParentScreen {
         if (name.trim() === "" || phoneNumber.trim() === "" || emailAddress.trim() === "") {
             Alert.alert(strings.Whoops, strings.PleaseMakeSureAllFieldsAreFilledOut);
         } else {
-            const {modalVisible, ...params} = this.state; // trick to remove modalVisible from state and pass in everything else
+            const { modalVisible, ...params } = this.state; // trick to remove modalVisible from state and pass in everything else
             this.props.saveTeacherInfo(
                 teacherID,
                 params
@@ -84,50 +84,52 @@ export class TeacherProfileScreen extends QcParentScreen {
     //-----------renders the teacher profile UI ------------------------------------
     render() {
         return (
-            <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-                <KeyboardAvoidingView style={styles.container} behavior="padding">
-                    <ImageSelectionModal
-                        visible={this.state.modalVisible}
-                        images={teacherImages.images}
-                        cancelText={strings.Cancel}
-                        setModalVisible={this.setModalVisible.bind(this)}
-                        onImageSelected={this.onImageSelected.bind(this)}
-                        screen={this.name}
-                    />
-                    <View style={styles.picContainer}>
-                        <Image
-                            style={styles.profilePic}
-                            source={teacherImages.images[this.state.profileImageId]} />
-                        <TouchableText
-                            text={strings.UpdateProfileImage}
-                            onPress={() => this.editProfilePic(0)} />
-                    </View>
+            <KeyboardAvoidingView style={styles.container} behavior="padding">
+                <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+                    <View style={styles.container}>
+                        <ImageSelectionModal
+                            visible={this.state.modalVisible}
+                            images={teacherImages.images}
+                            cancelText={strings.Cancel}
+                            setModalVisible={this.setModalVisible.bind(this)}
+                            onImageSelected={this.onImageSelected.bind(this)}
+                            screen={this.name}
+                        />
+                        <View style={styles.picContainer}>
+                            <Image
+                                style={styles.profilePic}
+                                source={teacherImages.images[this.state.profileImageId]} />
+                            <TouchableText
+                                text={strings.UpdateProfileImage}
+                                onPress={() => this.editProfilePic(0)} />
+                        </View>
 
-                    <TeacherInfoEntries
-                        name={this.state.name}
-                        phoneNumber={this.state.phoneNumber}
-                        emailAddress={this.state.emailAddress}
-                        onNameChanged={this.onNameChanged}
-                        onPhoneNumberChanged={this.onPhoneNumberChanged}
-                        onEmailAddressChanged={this.onEmailAddressChanged}
-                    />
-                    <View style={styles.buttonsContainer}>
-                        <QcActionButton
-                            text={strings.Cancel}
-                            onPress={() => this.resetProfileInfo()}
-                            screen={this.name}
+                        <TeacherInfoEntries
+                            name={this.state.name}
+                            phoneNumber={this.state.phoneNumber}
+                            emailAddress={this.state.emailAddress}
+                            onNameChanged={this.onNameChanged}
+                            onPhoneNumberChanged={this.onPhoneNumberChanged}
+                            onEmailAddressChanged={this.onEmailAddressChanged}
                         />
-                        <QcActionButton
-                            text={strings.Save}
-                            onPress={() => this.saveProfileInfo(0)} //to-do: Make sure that teacher ID 
-                            screen={this.name}
-                        //is passed instead of 0
-                        />
+                        <View style={styles.buttonsContainer}>
+                            <QcActionButton
+                                text={strings.Cancel}
+                                onPress={() => this.resetProfileInfo()}
+                                screen={this.name}
+                            />
+                            <QcActionButton
+                                text={strings.Save}
+                                onPress={() => this.saveProfileInfo(0)} //to-do: Make sure that teacher ID 
+                                screen={this.name}
+                            //is passed instead of 0
+                            />
+                        </View>
+                        <View style={styles.filler}></View>
+                        <Toast ref="toast" />
                     </View>
-                    <View style={styles.filler}></View>
-                    <Toast ref="toast" />
-                </KeyboardAvoidingView>
-            </TouchableWithoutFeedback>
+                </TouchableWithoutFeedback>
+            </KeyboardAvoidingView>
         )
     }
 

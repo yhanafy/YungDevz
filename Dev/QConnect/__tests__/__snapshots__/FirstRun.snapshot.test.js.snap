@@ -44,9 +44,28 @@ exports[`First run screens snapshots initial first run screen renders correctly 
     <View
       ID="AppBanner"
     >
-      <Text>
-        Welcome to QuranConnect...
-      </Text>
+      <View
+        style={
+          Object {
+            "marginTop": 20,
+          }
+        }
+      >
+        <RNSpinkit
+          color={4287856491}
+          size={60}
+          style={
+            Array [
+              Object {
+                "height": 60,
+                "width": 60,
+              },
+              undefined,
+            ]
+          }
+          type="ThreeBounce"
+        />
+      </View>
     </View>
     <View
       style={

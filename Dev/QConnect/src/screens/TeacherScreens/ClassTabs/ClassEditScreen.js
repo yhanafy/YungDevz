@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { ScrollView, View, StyleSheet, TextInput, FlatList, TouchableWithoutFeedback, Keyboard, Text, Alert } from "react-native";
 import Toast, { DURATION } from 'react-native-easy-toast'
 import { connect } from "react-redux";

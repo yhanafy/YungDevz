@@ -1,19 +1,16 @@
-import React, { Component } from 'react'
-import { StyleSheet, View, Text, TextInput, Image, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, Alert } from 'react-native'
-import { Rating, AirbnbRating } from 'react-native-elements';
+import React from 'react'
+import { StyleSheet, View, Text, TextInput, Image, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard } from 'react-native'
+import { AirbnbRating } from 'react-native-elements';
 import colors from 'config/colors';
 import { bindActionCreators } from 'redux';
 import { connect } from "react-redux";
-import QcActionButton from 'components/QcActionButton';
 import { completeCurrentAssignment } from 'model/actions/completeCurrentAssignment';
 import { editCurrentAssignment } from 'model/actions/editCurrentAssignment';
 import strings from 'config/strings';
 import studentImages from 'config/studentImages';
-import Analytics from '@aws-amplify/analytics';
-import analyticsEvents from 'config/analyticsEvents'
 import QcParentScreen from 'screens/QcParentScreen';
 
-export class AssignmentEvaluation  extends QcParentScreen {
+export class AssignmentEvaluation extends QcParentScreen {
 
   name = "AssignmentEvaluation";
 
