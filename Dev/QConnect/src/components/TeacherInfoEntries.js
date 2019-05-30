@@ -18,6 +18,7 @@ export default TeacherInfoEntries = (props) => {
                 <Text style={styles.infoTitle}>{strings.namePlaceHolder}</Text>
                 <TextInput
                     style={styles.infoTextInput}
+                    textContentType='name'
                     onChangeText={props.onNameChanged}
                     value={props.name} />
             </View>
@@ -25,6 +26,8 @@ export default TeacherInfoEntries = (props) => {
                 <Text style={styles.infoTitle}>{strings.phoneNumberPlaceHolder}</Text>
                 <TextInput
                     style={styles.infoTextInput}
+                    keyboardType='phone-pad'
+                    textContentType='telephoneNumber'
                     onChangeText={props.onPhoneNumberChanged}
                     value={props.phoneNumber} />
             </View>
@@ -32,6 +35,8 @@ export default TeacherInfoEntries = (props) => {
                 <Text style={styles.infoTitle}>{strings.emailPlaceHolder}</Text>
                 <TextInput
                     style={styles.infoTextInput}
+                    keyboardType='email-address'
+                    textContentType='emailAddress'
                     onChangeText={props.onEmailAddressChanged}
                     value={props.emailAddress} />
             </View>

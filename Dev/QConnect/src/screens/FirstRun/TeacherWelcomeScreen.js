@@ -13,11 +13,45 @@ import TeacherInfoEntries from "components/TeacherInfoEntries";
 import teacherImages from "config/teacherImages";
 import strings from "config/strings";
 import QcParentScreen from "screens/QcParentScreen";
+import FadeInView from "../../components/FadeInView";
 
 //To-Do: All info in this class is static, still needs to be hooked up to data base in order
 //to function dynamically
 export class TeacherWelcomeScreen extends QcParentScreen {
   name = "TeacherWelcomeScreen";
+
+  getRandomGenderNeutralImage = () => {
+    index = Math.floor(Math.random() * Math.floor(teacherImages.genderNeutralImages.length));
+    imageIndex = teacherImages.genderNeutralImages[index];
+    return imageIndex;
+  }
+
+  getRandomMaleImage = () => {
+    index = Math.floor(Math.random() * Math.floor(teacherImages.maleImages.length));
+    imageIndex = teacherImages.maleImages[index];
+    return imageIndex;
+  }
+
+  getRandomFemaleImage = () => {
+    index = Math.floor(Math.random() * Math.floor(teacherImages.femaleImages.length));
+    imageIndex = teacherImages.femaleImages[index];
+    return imageIndex;
+  }
+
+  initialDefaultImageId = this.getRandomGenderNeutralImage()
+
+  getHighlightedImages = () => {
+    defaultImageId = this.initialDefaultImageId;
+
+    // get a second gender neutral image, make sure it is different than the first one
+    do {
+      secondGenericImageId = this.getRandomGenderNeutralImage();
+    } while (secondGenericImageId === defaultImageId)
+
+    //initialize the array of suggested images
+    let proposedImages = [defaultImageId, secondGenericImageId, this.getRandomFemaleImage(), this.getRandomMaleImage()]
+    return proposedImages;
+  }
 
   //--- state captures the inputted user info ------------------
   state = {
@@ -26,7 +60,7 @@ export class TeacherWelcomeScreen extends QcParentScreen {
     emailAddress: this.props.emailAddress,
     modalVisible: false,
     profileImageId: this.props.profileImageId,
-    highlightedImagesIndices: [1, 2, 3, 10]
+    highlightedImagesIndices: this.getHighlightedImages()
   };
 
   //--- event handlers, handle user interaction ------------------
@@ -116,10 +150,12 @@ export class TeacherWelcomeScreen extends QcParentScreen {
             />
 
             <View style={styles.picContainer}>
+            <FadeInView>
               <Image
                 style={styles.welcomeImage}
                 source={require("assets/images/salam.png")}
               />
+              </FadeInView>
               <Text style={styles.quote}>{strings.TeacherWelcomeMessage}</Text>
             </View>
             <View style={styles.editInfo} behavior="padding">

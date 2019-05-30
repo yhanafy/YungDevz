@@ -1,6 +1,10 @@
 //This class will hold all of the strings throughout the app
 export default {
 
+    //---------------------  App info ---------------------------
+    AppTitle: 'QuranConnect',
+    AppSubTitle: 'Serving your passion for the Quran',
+
     //--------------------- Evaluation Page ---------------------
     None: 'None',
     HowWas: 'How was ',
@@ -15,7 +19,7 @@ export default {
     //--------------------- Teacher Welcome Screen ---------------------
     YourProfileHasBeenSaved: 'Your profile has been saved',
     Cancel: 'Cancel',
-    TeacherWelcomeMessage: 'Quran teachers are very dear to our hearts.  It is our great honor and pleasure to serve your dedication to the holy book.',
+    TeacherWelcomeMessage: 'Quran teachers are very dear to our hearts. It is our great honor and pleasure to serve your dedication to the holy book.',
     Save: 'Save',
 
     //--------------------- Student Profile Screen ---------------------
@@ -93,9 +97,5 @@ export default {
 
     //--------------------------- Credits -------------------------------------------
     FirstScreenImageCredits: 'First screen background photo by © Hany Khalaf Photography',
-
-
-
-
-
+    AvatarCredits: 'Computer vector created by brgfx - www.freepik.com',
 }

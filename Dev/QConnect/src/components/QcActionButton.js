@@ -16,21 +16,21 @@ class QcActionButton extends FontLoadingComponent {
     this.props.onPress();
   }
 
-  render() {
-    const { text, onPress } = this.props;
-    return (
-      <TouchableOpacity style={styles.buttonStyle}
-        onPress={() => this.onButtonPress()}
-      >
-        {this.state.fontLoaded ? (
-          <Text style={styles.textStyle}>{text}</Text>
-        ) : (
-            <Text style={styles.textStyle}>{text}</Text>
-          )
-        }
-      </TouchableOpacity>
-    );
-  }
+	render() {    
+		const { text, onPress} = this.props;
+		return (
+		  <TouchableOpacity style={styles.buttonStyle}
+			onPress={() => this.onButtonPress()}
+		  >
+      {this.state.fontLoaded ? (  
+			 <Text style={styles.textStyle}>{text}</Text>
+       ) : (
+        <Text style={styles.textStyleNoFont}>{text}</Text>
+                )
+            }
+		  </TouchableOpacity>
+		);
+	}
 }
 
 QcActionButton.propTypes = {
@@ -42,21 +42,26 @@ QcActionButton.propTypes = {
 
 const styles = StyleSheet.create({
   buttonStyle: {
-    marginRight: 10,
-    marginLeft: 10,
-    marginTop: 10,
-    marginBottom: 10,
-    paddingTop: 7,
-    paddingBottom: 7,
-    paddingRight: 21,
-    paddingLeft: 21,
-    borderRadius: 30,
+    marginRight:10,
+    marginLeft:10,
+    marginTop:10,
+    marginBottom:10,
+    paddingTop:10,
+    paddingBottom:10,
+    paddingRight:25,
+    paddingLeft:25,
+    borderRadius:25,
     backgroundColor: colors.primaryLight,
     justifyContent: 'center',
     alignItems: 'center',
     textAlign: 'center',
+
   },
   textStyle: {
+    color: colors.primaryDark,
+    fontFamily: 'regular',
+  },
+  textStyleNoFont: {
     color: colors.primaryDark,
   },
 });
