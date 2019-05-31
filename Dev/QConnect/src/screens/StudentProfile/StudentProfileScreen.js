@@ -179,9 +179,9 @@ class StudentProfileScreen extends QcParentScreen {
                     notes: item.evaluation.notes
                   })}>
                     <View style={styles.prevAssignmentCard} key={index}>
-                      <View style={{ flexDirection: 'row', justifyContent: 'space-between', flex: 1 }}>
-                        <Text style={[styles.subText, { paddingLeft: 10, paddingTop: 3 }]}>{item.completionDate}</Text>
-                        <View style={{ alignItems: 'center', flex: 1 }}>
+                      <View style={{ flexDirection: 'row', justifyContent: 'space-between'}}>
+                        <Text style={[styles.subText]}>{item.completionDate}</Text>
+                        <View style={{ alignItems: 'center', flexWrap: 'wrap', alignSelf: 'baseline', flex: 1 }}>
                           <Text numberOfLines={1} style={styles.prevAssignmentTitleText}>{item.name}</Text>
                         </View>
                         <Rating style={{ paddingRight: 10, paddingTop: 3 }} readonly={true}
@@ -325,15 +325,13 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     marginLeft: 7,
     marginRight: 7,
-    marginTop: 10,
   },
   prevAssignmentCard: {
     flexDirection: 'column',
     borderBottomColor: colors.lightGrey,
     borderBottomWidth: 1,
     height: 90,
-    justifyContent: 'space-between',
-    paddingTop: 10,
+    padding: 5,
   },
 });
 

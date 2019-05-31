@@ -13,7 +13,7 @@ exports[`First run screens snapshots initial first run screen renders correctly 
     style={
       Object {
         "alignItems": "center",
-        "flex": 1,
+        "flex": 5,
         "height": 1334,
         "justifyContent": "center",
         "left": 0,
@@ -42,6 +42,13 @@ exports[`First run screens snapshots initial first run screen renders correctly 
       }
     />
     <View
+      style={
+        Object {
+          "flex": 4,
+        }
+      }
+    />
+    <View
       ID="AppBanner"
     >
       <View
@@ -51,67 +58,74 @@ exports[`First run screens snapshots initial first run screen renders correctly 
           }
         }
       >
-        <RNSpinkit
-          color={4287856491}
-          size={60}
-          style={
-            Array [
-              Object {
-                "height": 60,
-                "width": 60,
-              },
-              undefined,
-            ]
-          }
-          type="ThreeBounce"
+        <ActivityIndicator
+          animating={true}
+          color="#937f6b"
+          hidesWhenStopped={true}
+          size="small"
         />
       </View>
     </View>
     <View
       style={
         Object {
-          "marginTop": 150,
+          "flex": 3,
         }
       }
     />
     <View
-      accessible={true}
-      isTVSelectable={true}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
       style={
         Object {
-          "alignItems": "center",
-          "backgroundColor": "#efdecc",
-          "borderRadius": 30,
-          "justifyContent": "center",
-          "marginBottom": 10,
-          "marginLeft": 10,
-          "marginRight": 10,
-          "marginTop": 10,
-          "opacity": 1,
-          "paddingBottom": 7,
-          "paddingLeft": 21,
-          "paddingRight": 21,
-          "paddingTop": 7,
-          "textAlign": "center",
+          "flex": 1,
         }
       }
     >
-      <Text
+      <View
+        accessible={true}
+        isTVSelectable={true}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
         style={
           Object {
-            "color": "#937f6b",
+            "alignItems": "center",
+            "backgroundColor": "#efdecc",
+            "borderRadius": 25,
+            "justifyContent": "center",
+            "marginBottom": 10,
+            "marginLeft": 10,
+            "marginRight": 10,
+            "marginTop": 10,
+            "opacity": 1,
+            "paddingBottom": 10,
+            "paddingLeft": 25,
+            "paddingRight": 25,
+            "paddingTop": 10,
+            "textAlign": "center",
           }
         }
       >
-        I am a teacher
-      </Text>
+        <Text
+          style={
+            Object {
+              "color": "#937f6b",
+            }
+          }
+        >
+          I am a teacher
+        </Text>
+      </View>
     </View>
+    <View
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    />
   </View>
 </View>
 `;

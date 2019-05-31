@@ -47,7 +47,6 @@ QcDrawerItem.propTypes = {
 const styles = StyleSheet.create({
   cardStyle: {
     margin: 5,
-    marginTop: 0,
     borderBottomWidth: 1,
     borderBottomColor: colors.lightGrey,
   },
