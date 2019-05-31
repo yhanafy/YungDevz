@@ -179,7 +179,7 @@ class StudentProfileScreen extends QcParentScreen {
                     notes: item.evaluation.notes
                   })}>
                     <View style={styles.prevAssignmentCard} key={index}>
-                      <View style={{ flexDirection: 'row', justifyContent: 'space-between'}}>
+                      <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                         <Text style={[styles.subText]}>{item.completionDate}</Text>
                         <View style={{ alignItems: 'center', flexWrap: 'wrap', alignSelf: 'baseline', flex: 1 }}>
                           <Text numberOfLines={1} style={styles.prevAssignmentTitleText}>{item.name}</Text>
@@ -198,7 +198,9 @@ class StudentProfileScreen extends QcParentScreen {
             </ScrollView>
           </View>
         ) : (
-            <LoadingSpinner isVisible={!this.state.fontLoaded} />
+            <View style={{ justifyContent: "center", alignItems: "center" }}>
+              <LoadingSpinner isVisible={!this.state.fontLoaded} />
+            </View>
           )
         }
       </View>
