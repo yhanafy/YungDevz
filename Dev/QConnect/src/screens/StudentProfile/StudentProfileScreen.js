@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, Text, StyleSheet, ScrollView, FlatList, TouchableHighlight, TouchableOpacity } from 'react-native';
+import { View, Image, Text, StyleSheet, ScrollView, FlatList, TouchableHighlight, TouchableOpacity, Alert } from 'react-native';
 import colors from 'config/colors';
 import { Rating } from 'react-native-elements';
 import DialogInput from 'react-native-dialog-input';
@@ -27,17 +27,25 @@ class StudentProfileScreen extends QcParentScreen {
   }
 
   //method updates the current assignment of the student
-  editAssignment(classIndex, studentIndex, newAssignmentName) {
-    this.props.editCurrentAssignment(classIndex, studentIndex, newAssignmentName);
-    this.setState({ isDialogVisible: false });
+  editAssignment(classIndex, studentIndex, assignmentObject) {
+    if (assignmentObject.name.trim() === "") {
+      Alert.alert(strings.Whoops, strings.PleaseEnterAnAssignmentName);
+    } else {
+      this.props.editCurrentAssignment(classIndex, studentIndex, assignmentObject);
+      this.setState({ isDialogVisible: false });
+    }
   }
 
   //method will add a new assignment for the student (only to current assignment, will not add
   //to assignment history until after completion of the assignment)
   addAssignment(classIndex, studentIndex, newAssignmentName) {
-    this.props.addNewAssignment(classIndex, studentIndex,
-      newAssignmentName);
-    this.setState({ isDialogVisible: false })
+    if (newAssignmentName === "") {
+      Alert.alert(strings.Whoops, strings.PleaseEnterAnAssignmentName);
+    } else {
+      this.props.addNewAssignment(classIndex, studentIndex,
+        newAssignmentName);
+      this.setState({ isDialogVisible: false });
+    }
   }
 
   //---------- profile image views handlers --------------

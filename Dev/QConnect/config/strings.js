@@ -32,6 +32,7 @@ export default {
     CurrentAssignment: 'Current Assignment',
     AddAssignment: 'Add Assignment',
     Grade: 'Grade',
+    PleaseEnterAnAssignmentName: 'Please enter an assignment name',
 
     //--------------------- Add Class Screen ---------------------
     PleaseMakeSureToHaveAnInput: 'Please make sure to have an input',
