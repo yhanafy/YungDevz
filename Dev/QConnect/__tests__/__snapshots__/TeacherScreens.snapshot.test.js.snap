@@ -5771,23 +5771,23 @@ exports[`Teacher screens snapshots render TeacherWelcomeScreen 1`] = `
             onStartShouldSetResponder={[Function]}
             style={
               Object {
-                "backgroundColor": "#fdfdff",
+                "backgroundColor": "#efdecc",
                 "borderRadius": 40,
               }
             }
           >
             <Image
-              backgroundColor="#fdfdff"
+              backgroundColor="#efdecc"
               resizeMode="cover"
               source={1}
               style={
                 Object {
                   "alignItems": "center",
-                  "borderRadius": 30,
-                  "height": 60,
+                  "borderRadius": 35,
+                  "height": 70,
                   "justifyContent": "center",
                   "margin": 5,
-                  "width": 60,
+                  "width": 70,
                 }
               }
             />
