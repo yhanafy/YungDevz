@@ -10,6 +10,7 @@ import { editCurrentAssignment } from 'model/actions/editCurrentAssignment';
 import strings from 'config/strings';
 import studentImages from 'config/studentImages';
 import QcParentScreen from 'screens/QcParentScreen';
+import FlowLayout from 'components/FlowLayout'
 
 export class EvaluationPage extends QcParentScreen {
 
@@ -18,17 +19,18 @@ export class EvaluationPage extends QcParentScreen {
   // -------------  Current evaluation state ---------------------
   state = {
     overallGrade: 0,
-    notes: ""
+    notes: "",
+    improvementAreas: []
   }
+
+  areas = [strings.Memorization, strings.Makharej, strings.Edgham, strings.Ekhfae, strings.RulingsOfRaa, strings.Muduud, strings.Qalqalah]
 
   // --------------  Updates state to reflect a change in a category rating --------------
   updateCategoryRating = (name, rating) => {
-    let categoriesGrades = this.state.categoriesGrades.map(cat => (
-      cat.name === name ? { ...cat, grade: rating } : cat
-    ))
+
     this.setState({
       overallGrade: this.state.overallGrade,
-      overCategoriesGrades: categoriesGrades,
+      improvementAreas: categoriesGrades,
       notes: this.state.notes
     })
   }
@@ -106,6 +108,14 @@ export class EvaluationPage extends QcParentScreen {
                 })}
                 placeholder={strings.WriteANote}
                 placeholderColor={colors.black}
+              />
+              <View style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
+                <Text style={[{ flex: 1 }, styles.subCategoryText]}>{strings.improvementAreas}</Text>
+              </View>
+              <FlowLayout ref="flow"
+                dataValue={this.categories}
+                title="Improvement Areas"
+                onSelectionChanged={(improvementAreas) => this.setState({ improvementAreas: improvementAreas })}
               />
             </View>
           </View>
@@ -192,7 +202,7 @@ const styles = StyleSheet.create({
   subCategoryText: {
     color: colors.darkGrey,
     fontSize: 16,
-    paddingBottom: 7
+    paddingVertical: 4
   },
   buttonsContainer: {
     alignItems: 'center',

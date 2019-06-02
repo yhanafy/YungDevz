@@ -32,7 +32,17 @@ export default {
     CurrentAssignment: 'Current Assignment',
     AddAssignment: 'Add Assignment',
     Grade: 'Grade',
+    ImprovementAreas: 'Improvement Areas: ',
 
+    //-------------------- Evaluation Sub-Categories -----------------------
+    Memorization: "Memorization", 
+    Makharej: "Makharej", 
+    Edgham: "Edgham", 
+    Ekhfae: "Ekhfae", 
+    RulingsOfRaae: "Rulings of Raa'", 
+    Muduud: "Muduud", 
+    Qalqalah: "Qalqalah",
+    
     //--------------------- Add Class Screen ---------------------
     PleaseMakeSureToHaveAnInput: 'Please make sure to have an input',
     EditClassImage: 'Edit class image',

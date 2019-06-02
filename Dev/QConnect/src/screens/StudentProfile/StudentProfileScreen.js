@@ -179,7 +179,7 @@ class StudentProfileScreen extends QcParentScreen {
                     notes: item.evaluation.notes
                   })}>
                     <View style={styles.prevAssignmentCard} key={index}>
-                      <View style={{ flexDirection: 'row', justifyContent: 'space-between'}}>
+                      <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                         <Text style={[styles.subText]}>{item.completionDate}</Text>
                         <View style={{ alignItems: 'center', flexWrap: 'wrap', alignSelf: 'baseline', flex: 1 }}>
                           <Text numberOfLines={1} style={styles.prevAssignmentTitleText}>{item.name}</Text>
@@ -189,6 +189,13 @@ class StudentProfileScreen extends QcParentScreen {
                       </View>
                       {item.evaluation.notes ?
                         <Text numberOfLines={2} style={styles.notesText}>{"Notes: " + item.evaluation.notes}</Text>
+                        : <View />
+                      }
+                      {item.evaluation.improvementAreas && item.evaluation.improvementAreas.length > 0 ?
+                        <View style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
+                          <Text style={{height: 20, marginTop: 5}}>{strings.ImprovementAreas}</Text>
+                          {item.evaluation.improvementAreas.map((tag) => { return (<Text key={tag} style={styles.corner}>{tag}</Text>) })}
+                        </View>
                         : <View />
                       }
                     </View>
@@ -282,6 +289,18 @@ const styles = StyleSheet.create({
   },
   nonButtons: {
     flexDirection: 'column'
+  },
+  corner: {
+    borderColor: '#D0D0D0',
+    borderWidth: 1,
+    borderRadius: 3,
+    height: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingLeft: 5,
+    paddingRight: 5,
+    marginRight: 5,
+    marginTop: 5,
   },
   profileInfoTop: {
     paddingHorizontal: 10,
