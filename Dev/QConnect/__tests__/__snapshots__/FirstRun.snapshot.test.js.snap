@@ -54,16 +54,25 @@ exports[`First run screens snapshots initial first run screen renders correctly 
       <View
         style={
           Object {
-            "marginTop": 20,
+            "alignItems": "center",
+            "justifyContent": "center",
           }
         }
       >
-        <ActivityIndicator
-          animating={true}
-          color="#937f6b"
-          hidesWhenStopped={true}
-          size="small"
-        />
+        <View
+          style={
+            Object {
+              "marginTop": 20,
+            }
+          }
+        >
+          <ActivityIndicator
+            animating={true}
+            color="#937f6b"
+            hidesWhenStopped={true}
+            size="large"
+          />
+        </View>
       </View>
     </View>
     <View

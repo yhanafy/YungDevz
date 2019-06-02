@@ -32,6 +32,7 @@ export default {
     CurrentAssignment: 'Current Assignment',
     AddAssignment: 'Add Assignment',
     Grade: 'Grade',
+    PleaseEnterAnAssignmentName: 'Please enter an assignment name',
     ImprovementAreas: 'Improvement Areas: ',
 
     //-------------------- Evaluation Sub-Categories -----------------------
@@ -42,7 +43,7 @@ export default {
     RulingsOfRaae: "Rulings of Raa'", 
     Muduud: "Muduud", 
     Qalqalah: "Qalqalah",
-    
+
     //--------------------- Add Class Screen ---------------------
     PleaseMakeSureToHaveAnInput: 'Please make sure to have an input',
     EditClassImage: 'Edit class image',
