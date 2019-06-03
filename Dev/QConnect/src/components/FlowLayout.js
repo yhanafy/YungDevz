@@ -16,6 +16,7 @@ import {
 	Dimensions,
 } from 'react-native';
 import colors from 'config/colors'
+import strings from 'config/strings';
 
 var {
 	width,
@@ -30,11 +31,13 @@ class FlowView extends Component {
 		text: PropTypes.string,
 		isSelected: PropTypes.bool,
 		onClick: PropTypes.func,
+		readOnly: PropTypes.bool,
 	}
 	static defaultProps = {
 		backgroundColors: [colors.lightGrey, colors.primaryLight],
 		textColors: [colors.darkGrey, colors.primaryDark],
 		isSelected: false,
+		readOnly: false,
 	}
 	constructor(props) {
 		super(props);
@@ -69,9 +72,13 @@ class FlowView extends Component {
 	render() {
 		return (
 			<View>
-				<TouchableOpacity onPress={() => {
-					this.props.onClick();
-					this.setState({ isSelected: !this.state.isSelected });
+				<TouchableOpacity
+				 disabled={this.props.readOnly}
+				 onPress={() => {
+					if(!this.props.readOnly){
+						this.props.onClick();
+						this.setState({ isSelected: !this.state.isSelected });
+					}
 				}}>
 					<View style={[styles.corner, { backgroundColor: this._backgoundColor() }]}>
 						<Text style={[styles.text, { color: this._textColor() }]}>{this.props.text}</Text>
@@ -90,12 +97,14 @@ export default class FlowLayout extends Component {
 		title: PropTypes.string,
 		multiselect: PropTypes.bool,
 		onSelectionChanged: PropTypes.func.isRequired,
+		readOnly: PropTypes.bool,
 	}
 	static defaultProps = {
 		style: {},
 		dataValue: [],
 		multiselect: true,
-		title: strings.ImprovementAreas
+		title: strings.ImprovementAreas,
+		readOnly: false,
 	}
 	constructor(props) {
 		super(props);
@@ -136,7 +145,7 @@ export default class FlowLayout extends Component {
 		let items = this.props.dataValue.map((value, position) => {
 			return (
 				<View key={position}>
-					<FlowView ref={this.props.dataValue[position]} text={value} onClick={() => {
+					<FlowView ref={this.props.dataValue[position]} text={value} readOnly={this.props.readOnly} onClick={() => {
 						if (this.props.multiselect == false) {
 							for (var i = this.state.selectedState.length - 1; i >= 0; i--) {
 								if (i == position) {

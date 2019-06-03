@@ -178,13 +178,15 @@ class StudentProfileScreen extends QcParentScreen {
                 data={currentStudent.assignmentHistory}
                 keyExtractor={(item, index) => item.name + index}
                 renderItem={({ item, index }) => (
-                  <TouchableOpacity onPress={() => this.props.navigation.push("AssignmentEvaluation", {
+                  <TouchableOpacity onPress={() => this.props.navigation.push("EvaluationPage", {
                     classIndex: classIndex,
                     studentIndex: studentIndex,
                     assignmentName: item.name,
                     completionDate: item.completionDate,
                     rating: item.evaluation.overallGrade,
-                    notes: item.evaluation.notes
+                    notes: item.evaluation.notes,
+                    improvementAreas: item.evaluation.improvementAreas,
+                    readOnly: true
                   })}>
                     <View style={styles.prevAssignmentCard} key={index}>
                       <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>

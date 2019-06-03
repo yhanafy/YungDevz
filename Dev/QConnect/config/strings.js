@@ -40,7 +40,7 @@ export default {
     Makharej: "Makharej", 
     Edgham: "Edgham", 
     Ekhfae: "Ekhfae", 
-    RulingsOfRaae: "Rulings of Raa'", 
+    RulingsOfRaa: "Rulings of Raa'", 
     Muduud: "Muduud", 
     Qalqalah: "Qalqalah",
 
