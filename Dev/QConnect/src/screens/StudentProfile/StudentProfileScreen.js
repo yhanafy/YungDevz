@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, Text, StyleSheet, ScrollView, FlatList, TouchableHighlight, TouchableOpacity } from 'react-native';
+import { View, Image, Text, StyleSheet, ScrollView, FlatList, TouchableHighlight, TouchableOpacity, Alert } from 'react-native';
 import colors from 'config/colors';
 import { Rating } from 'react-native-elements';
 import DialogInput from 'react-native-dialog-input';
@@ -27,17 +27,25 @@ class StudentProfileScreen extends QcParentScreen {
   }
 
   //method updates the current assignment of the student
-  editAssignment(classIndex, studentIndex, newAssignmentName) {
-    this.props.editCurrentAssignment(classIndex, studentIndex, newAssignmentName);
-    this.setState({ isDialogVisible: false });
+  editAssignment(classIndex, studentIndex, assignmentObject) {
+    if (assignmentObject.name.trim() === "") {
+      Alert.alert(strings.Whoops, strings.PleaseEnterAnAssignmentName);
+    } else {
+      this.props.editCurrentAssignment(classIndex, studentIndex, assignmentObject);
+      this.setState({ isDialogVisible: false });
+    }
   }
 
   //method will add a new assignment for the student (only to current assignment, will not add
   //to assignment history until after completion of the assignment)
   addAssignment(classIndex, studentIndex, newAssignmentName) {
-    this.props.addNewAssignment(classIndex, studentIndex,
-      newAssignmentName);
-    this.setState({ isDialogVisible: false })
+    if (newAssignmentName === "") {
+      Alert.alert(strings.Whoops, strings.PleaseEnterAnAssignmentName);
+    } else {
+      this.props.addNewAssignment(classIndex, studentIndex,
+        newAssignmentName);
+      this.setState({ isDialogVisible: false });
+    }
   }
 
   //---------- profile image views handlers --------------
@@ -170,16 +178,18 @@ class StudentProfileScreen extends QcParentScreen {
                 data={currentStudent.assignmentHistory}
                 keyExtractor={(item, index) => item.name + index}
                 renderItem={({ item, index }) => (
-                  <TouchableOpacity onPress={() => this.props.navigation.push("AssignmentEvaluation", {
+                  <TouchableOpacity onPress={() => this.props.navigation.push("EvaluationPage", {
                     classIndex: classIndex,
                     studentIndex: studentIndex,
                     assignmentName: item.name,
                     completionDate: item.completionDate,
                     rating: item.evaluation.overallGrade,
-                    notes: item.evaluation.notes
+                    notes: item.evaluation.notes,
+                    improvementAreas: item.evaluation.improvementAreas,
+                    readOnly: true
                   })}>
                     <View style={styles.prevAssignmentCard} key={index}>
-                      <View style={{ flexDirection: 'row', justifyContent: 'space-between'}}>
+                      <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                         <Text style={[styles.subText]}>{item.completionDate}</Text>
                         <View style={{ alignItems: 'center', flexWrap: 'wrap', alignSelf: 'baseline', flex: 1 }}>
                           <Text numberOfLines={1} style={styles.prevAssignmentTitleText}>{item.name}</Text>
@@ -191,6 +201,13 @@ class StudentProfileScreen extends QcParentScreen {
                         <Text numberOfLines={2} style={styles.notesText}>{"Notes: " + item.evaluation.notes}</Text>
                         : <View />
                       }
+                      {item.evaluation.improvementAreas && item.evaluation.improvementAreas.length > 0 ?
+                        <View style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
+                          <Text style={{height: 20, marginTop: 5}}>{strings.ImprovementAreas}</Text>
+                          {item.evaluation.improvementAreas.map((tag) => { return (<Text key={tag} style={styles.corner}>{tag}</Text>) })}
+                        </View>
+                        : <View />
+                      }
                     </View>
                   </TouchableOpacity>
                 )}
@@ -198,7 +215,9 @@ class StudentProfileScreen extends QcParentScreen {
             </ScrollView>
           </View>
         ) : (
-            <LoadingSpinner isVisible={!this.state.fontLoaded} />
+            <View style={{ justifyContent: "center", alignItems: "center" }}>
+              <LoadingSpinner isVisible={!this.state.fontLoaded} />
+            </View>
           )
         }
       </View>
@@ -282,6 +301,18 @@ const styles = StyleSheet.create({
   },
   nonButtons: {
     flexDirection: 'column'
+  },
+  corner: {
+    borderColor: '#D0D0D0',
+    borderWidth: 1,
+    borderRadius: 3,
+    height: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingLeft: 5,
+    paddingRight: 5,
+    marginRight: 5,
+    marginTop: 5,
   },
   profileInfoTop: {
     paddingHorizontal: 10,

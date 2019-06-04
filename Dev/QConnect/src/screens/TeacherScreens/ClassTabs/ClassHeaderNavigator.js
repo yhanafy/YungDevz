@@ -6,7 +6,6 @@ import StudentProfileScreen from 'screens/StudentProfile/StudentProfileScreen';
 import ClassEditScreen from 'screens/TeacherScreens/ClassTabs/ClassEditScreen';
 import EvaluationPage from 'screens/Evaluation/EvaluationPage';
 import strings from 'config/strings';
-import AssignmentEvaluation from 'screens/StudentProfile/AssignmentEvaluation';
 
 const ClassHeaderNavigator = createStackNavigator({
   CurrentClass: {
@@ -36,8 +35,8 @@ const ClassHeaderNavigator = createStackNavigator({
       )
     })
   },
-  AssignmentEvaluation: {
-    screen: AssignmentEvaluation,
+  EvaluationPage: {
+    screen: EvaluationPage,
     navigationOptions: ({ navigation }) => ({
       header: (
         <TopBanner
