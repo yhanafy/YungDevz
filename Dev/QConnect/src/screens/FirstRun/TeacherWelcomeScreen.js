@@ -59,7 +59,7 @@ export class TeacherWelcomeScreen extends QcParentScreen {
     phoneNumber: this.props.phoneNumber,
     emailAddress: this.props.emailAddress,
     modalVisible: false,
-    profileImageId: this.props.profileImageId,
+    profileImageId: this.initialDefaultImageId,
     highlightedImagesIndices: this.getHighlightedImages()
   };
 

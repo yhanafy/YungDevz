@@ -6091,9 +6091,7 @@ exports[`Teacher screens snapshots render TeacherWelcomeScreen 2`] = `
           }
         }
       >
-        How was 
-        TestName
-        's tasmee'?
+        How was TestName's tasmee'?
       </Text>
       <View
         style={
@@ -6286,6 +6284,7 @@ exports[`Teacher screens snapshots render TeacherWelcomeScreen 2`] = `
       </View>
       <TextInput
         allowFontScaling={true}
+        editable={true}
         height={100}
         multiline={true}
         onChangeText={[Function]}
@@ -6301,6 +6300,447 @@ exports[`Teacher screens snapshots render TeacherWelcomeScreen 2`] = `
         }
         underlineColorAndroid="transparent"
       />
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "flex-start",
+          }
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "flex": 1,
+              },
+              Object {
+                "color": "#6b6b6b",
+                "fontSize": 16,
+                "paddingVertical": 4,
+              },
+            ]
+          }
+        >
+          Things to work on: 
+        </Text>
+      </View>
+      <View>
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "flex-start",
+                "flexDirection": "row",
+                "flexWrap": "wrap",
+                "marginHorizontal": 15,
+                "width": 710,
+              },
+              Object {},
+            ]
+          }
+        >
+          <View>
+            <View>
+              <View
+                accessible={true}
+                isTVSelectable={true}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "opacity": 1,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "borderColor": "#dadada",
+                        "borderRadius": 5,
+                        "borderWidth": 0.5,
+                        "height": 35,
+                        "justifyContent": "center",
+                        "marginRight": 10,
+                        "marginTop": 10,
+                        "paddingLeft": 10,
+                        "paddingRight": 10,
+                      },
+                      Object {
+                        "backgroundColor": "#F3F3F3",
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "fontSize": 16,
+                          "textAlign": "center",
+                        },
+                        Object {
+                          "color": "#6b6b6b",
+                        },
+                      ]
+                    }
+                  >
+                    Memorization
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </View>
+          <View>
+            <View>
+              <View
+                accessible={true}
+                isTVSelectable={true}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "opacity": 1,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "borderColor": "#dadada",
+                        "borderRadius": 5,
+                        "borderWidth": 0.5,
+                        "height": 35,
+                        "justifyContent": "center",
+                        "marginRight": 10,
+                        "marginTop": 10,
+                        "paddingLeft": 10,
+                        "paddingRight": 10,
+                      },
+                      Object {
+                        "backgroundColor": "#F3F3F3",
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "fontSize": 16,
+                          "textAlign": "center",
+                        },
+                        Object {
+                          "color": "#6b6b6b",
+                        },
+                      ]
+                    }
+                  >
+                    Makharej
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </View>
+          <View>
+            <View>
+              <View
+                accessible={true}
+                isTVSelectable={true}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "opacity": 1,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "borderColor": "#dadada",
+                        "borderRadius": 5,
+                        "borderWidth": 0.5,
+                        "height": 35,
+                        "justifyContent": "center",
+                        "marginRight": 10,
+                        "marginTop": 10,
+                        "paddingLeft": 10,
+                        "paddingRight": 10,
+                      },
+                      Object {
+                        "backgroundColor": "#F3F3F3",
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "fontSize": 16,
+                          "textAlign": "center",
+                        },
+                        Object {
+                          "color": "#6b6b6b",
+                        },
+                      ]
+                    }
+                  >
+                    Edgham
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </View>
+          <View>
+            <View>
+              <View
+                accessible={true}
+                isTVSelectable={true}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "opacity": 1,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "borderColor": "#dadada",
+                        "borderRadius": 5,
+                        "borderWidth": 0.5,
+                        "height": 35,
+                        "justifyContent": "center",
+                        "marginRight": 10,
+                        "marginTop": 10,
+                        "paddingLeft": 10,
+                        "paddingRight": 10,
+                      },
+                      Object {
+                        "backgroundColor": "#F3F3F3",
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "fontSize": 16,
+                          "textAlign": "center",
+                        },
+                        Object {
+                          "color": "#6b6b6b",
+                        },
+                      ]
+                    }
+                  >
+                    Ekhfae
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </View>
+          <View>
+            <View>
+              <View
+                accessible={true}
+                isTVSelectable={true}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "opacity": 1,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "borderColor": "#dadada",
+                        "borderRadius": 5,
+                        "borderWidth": 0.5,
+                        "height": 35,
+                        "justifyContent": "center",
+                        "marginRight": 10,
+                        "marginTop": 10,
+                        "paddingLeft": 10,
+                        "paddingRight": 10,
+                      },
+                      Object {
+                        "backgroundColor": "#F3F3F3",
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "fontSize": 16,
+                          "textAlign": "center",
+                        },
+                        Object {
+                          "color": "#6b6b6b",
+                        },
+                      ]
+                    }
+                  >
+                    Rulings of Raa'
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </View>
+          <View>
+            <View>
+              <View
+                accessible={true}
+                isTVSelectable={true}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "opacity": 1,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "borderColor": "#dadada",
+                        "borderRadius": 5,
+                        "borderWidth": 0.5,
+                        "height": 35,
+                        "justifyContent": "center",
+                        "marginRight": 10,
+                        "marginTop": 10,
+                        "paddingLeft": 10,
+                        "paddingRight": 10,
+                      },
+                      Object {
+                        "backgroundColor": "#F3F3F3",
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "fontSize": 16,
+                          "textAlign": "center",
+                        },
+                        Object {
+                          "color": "#6b6b6b",
+                        },
+                      ]
+                    }
+                  >
+                    Muduud
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </View>
+          <View>
+            <View>
+              <View
+                accessible={true}
+                isTVSelectable={true}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "opacity": 1,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "borderColor": "#dadada",
+                        "borderRadius": 5,
+                        "borderWidth": 0.5,
+                        "height": 35,
+                        "justifyContent": "center",
+                        "marginRight": 10,
+                        "marginTop": 10,
+                        "paddingLeft": 10,
+                        "paddingRight": 10,
+                      },
+                      Object {
+                        "backgroundColor": "#F3F3F3",
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "fontSize": 16,
+                          "textAlign": "center",
+                        },
+                        Object {
+                          "color": "#6b6b6b",
+                        },
+                      ]
+                    }
+                  >
+                    Qalqalah
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
     </View>
   </View>
   <View

@@ -178,13 +178,15 @@ class StudentProfileScreen extends QcParentScreen {
                 data={currentStudent.assignmentHistory}
                 keyExtractor={(item, index) => item.name + index}
                 renderItem={({ item, index }) => (
-                  <TouchableOpacity onPress={() => this.props.navigation.push("AssignmentEvaluation", {
+                  <TouchableOpacity onPress={() => this.props.navigation.push("EvaluationPage", {
                     classIndex: classIndex,
                     studentIndex: studentIndex,
                     assignmentName: item.name,
                     completionDate: item.completionDate,
                     rating: item.evaluation.overallGrade,
-                    notes: item.evaluation.notes
+                    notes: item.evaluation.notes,
+                    improvementAreas: item.evaluation.improvementAreas,
+                    readOnly: true
                   })}>
                     <View style={styles.prevAssignmentCard} key={index}>
                       <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -197,6 +199,13 @@ class StudentProfileScreen extends QcParentScreen {
                       </View>
                       {item.evaluation.notes ?
                         <Text numberOfLines={2} style={styles.notesText}>{"Notes: " + item.evaluation.notes}</Text>
+                        : <View />
+                      }
+                      {item.evaluation.improvementAreas && item.evaluation.improvementAreas.length > 0 ?
+                        <View style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
+                          <Text style={{height: 20, marginTop: 5}}>{strings.ImprovementAreas}</Text>
+                          {item.evaluation.improvementAreas.map((tag) => { return (<Text key={tag} style={styles.corner}>{tag}</Text>) })}
+                        </View>
                         : <View />
                       }
                     </View>
@@ -292,6 +301,18 @@ const styles = StyleSheet.create({
   },
   nonButtons: {
     flexDirection: 'column'
+  },
+  corner: {
+    borderColor: '#D0D0D0',
+    borderWidth: 1,
+    borderRadius: 3,
+    height: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingLeft: 5,
+    paddingRight: 5,
+    marginRight: 5,
+    marginTop: 5,
   },
   profileInfoTop: {
     paddingHorizontal: 10,
