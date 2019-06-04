@@ -6322,7 +6322,7 @@ exports[`Teacher screens snapshots render TeacherWelcomeScreen 2`] = `
             ]
           }
         >
-          Improvement Areas: 
+          Things to work on: 
         </Text>
       </View>
       <View>

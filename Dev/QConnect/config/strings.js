@@ -33,7 +33,7 @@ export default {
     AddAssignment: 'Add Assignment',
     Grade: 'Grade',
     PleaseEnterAnAssignmentName: 'Please enter an assignment name',
-    ImprovementAreas: 'Improvement Areas: ',
+    ImprovementAreas: 'Things to work on: ',
 
     //-------------------- Evaluation Sub-Categories -----------------------
     Memorization: "Memorization", 
