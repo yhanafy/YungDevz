@@ -29,15 +29,7 @@ class StudentProfileScreen extends QcParentScreen {
     this.props.editCurrentAssignment(classId, studentId, newAssignmentName);
     this.setState({ isDialogVisible: false });
   }
-
-  //method will add a new assignment for the student (only to current assignment, will not add
-  //to assignment history until after completion of the assignment)
-  addAssignment(classId, studentId, newAssignmentName) {
-    this.props.addNewAssignment(classId, studentId,
-      newAssignmentName);
-    this.setState({ isDialogVisible: false })
-  }
-
+  
   //---------- profile image views handlers --------------
   setModalVisible(visible) {
     this.setState({ isModalVisible: visible });
