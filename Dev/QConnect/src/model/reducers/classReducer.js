@@ -164,7 +164,7 @@ function editAssignment(baseState, classId, studentId, newAssignment) {
     newState = update(newState, { currentAssignments: { byClassId: { [classId]: { byStudentId: { $merge: { [studentId]: [newAssignment] } } } } } });
   }
   else {
-    newState = update(newState, { currentAssignments: { byClassId: { [classId]: { byStudentId: { [studentId]: { $push: [newAssignment] } } } } } });
+    newState = update(newState, { currentAssignments: { byClassId: { [classId]: { byStudentId: { [studentId]: { $set: [newAssignment] } } } } } });
   }
 
   return newState;

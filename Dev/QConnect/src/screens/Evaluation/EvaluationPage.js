@@ -218,7 +218,9 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state, ownProps) => {
   const { classId, studentId } = ownProps.navigation.state.params;
-  state = state.data.classes[classId].students[studentId];
+  student = state.data.students[studentId];
+  currentAssignment = state.data.currentAssignments.byClassId[classId].byStudentId[studentId][0]; //todo: support multiple current assignments
+  state = {classId, ...student, currentAssignment }
   return state;
 };
 
