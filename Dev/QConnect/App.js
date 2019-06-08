@@ -19,7 +19,7 @@ Analytics.configure(awsconfig);
 
 
 const persistConfig = {
-  key: 'qcstorealpha001',
+  key: 'qcstorealpha000fa',
   storage: AsyncStorage,
   version: 0,
 }
