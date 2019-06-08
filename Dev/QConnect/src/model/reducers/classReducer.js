@@ -64,7 +64,7 @@ export const classReducer = (state = INITIAL_STATE, action) => {
 
         newState = update(baseState, { students: { $merge: {[newStudentId]: newStudent} } } );
         newState = update(newState, { classes: { [classId]: { students: { $push: [newStudentId] } } } } );
-        newState = editAssignment(newState, classId, newStudentId, {name: 'None', startDate: '', totalAssignments: 0, grade: 0});
+        newState = editAssignment(newState, classId, newStudentId, {name: 'None', startDate: ''});
         return newState;
       }
     case actionTypes.DELETE_STUDENT:
@@ -112,7 +112,7 @@ export const classReducer = (state = INITIAL_STATE, action) => {
     case actionTypes.UPDATE_STUDENT_IMAGE:
       {
         let { classId, studentId, imageId } = action;
-        let newState = update(baseState, {students: { [studentId]: { imageId: { $set: imageId } } } });
+        let newState = update(baseState, { classes: { [classId]: { students: { [studentId]: { imageId: { $set: imageId } } } } } });
         return newState;
       }
     case actionTypes.COMPLETE_CURRENT_ASSIGNMENT:

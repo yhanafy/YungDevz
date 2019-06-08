@@ -66,7 +66,7 @@ class StudentProfileScreen extends QcParentScreen {
 
   //---------- main UI render ===============================
   render() {
-    const { classId, studentId, currentStudent, currentAssignment, assignmentsHistory } = this.props
+    const { classId, studentId, currentStudent, currentAssignment } = this.props
     const hasCurrentAssignment = currentAssignment.name === 'None' ? false : true;
 
     //retrieves the student's average rating. If the student hasn't had any assignments, then 
@@ -108,7 +108,7 @@ class StudentProfileScreen extends QcParentScreen {
                   <View style={{ flexDirection: 'row', height: 25 }}>
                     <Rating readonly={true} startingValue={averageRating} imageSize={25} />
                     <View style={{flexDirection: 'column', justifyContent: 'center' }}>
-                      <Text style={styles.ratingText}>{averageRating === 0? "": parseFloat(averageRating).toFixed(1)}</Text>
+                      <Text style={styles.ratingText}>{parseFloat(averageRating).toFixed(1)}</Text>
                     </View>
                   </View>
                   <Text style={styles.ratingDescText}>{this.getRatingCaption()}</Text>
@@ -149,7 +149,7 @@ class StudentProfileScreen extends QcParentScreen {
 
             <ScrollView style={styles.prevAssignments}>
               <FlatList
-                data={assignmentsHistory}
+                data={currentStudent.assignmentHistory}
                 keyExtractor={(item, index) => item.name + index}
                 renderItem={({ item, index }) => (
                   <View style={styles.prevAssignmentCard} key={index}>
@@ -160,7 +160,7 @@ class StudentProfileScreen extends QcParentScreen {
                         <Text numberOfLines={1} style={styles.prevAssignmentTitleText}>{item.name}</Text>
                       </View>
                       <Rating style={{ paddingRight: 10, paddingTop: 3 }} readonly={true}
-                        startingValue={item.evaluation.grade} imageSize={17} />
+                        startingValue={item.evaluation.overallGrade} imageSize={17} />
                     </View>
                     {item.evaluation.notes ?
                       <View style={{ padding: 10 }}>
@@ -317,7 +317,6 @@ const mapStateToProps = (state, ownProps) => {
   const { classId, studentId } = ownProps.navigation.state.params;
   const currentStudent = state.data.students[studentId];
   let currentAssignment = {name: 'None', date: ''};
-  let assignmentsHistory = []
 
   if(state.data.currentAssignments.byClassId[classId] && 
     state.data.currentAssignments.byClassId[classId].byStudentId[studentId] &&
@@ -325,12 +324,7 @@ const mapStateToProps = (state, ownProps) => {
       currentAssignment = state.data.currentAssignments.byClassId[classId].byStudentId[studentId][0];
     }
 
-    if(state.data.assignmentsHistory.byStudentId[studentId] &&
-      state.data.assignmentsHistory.byStudentId[studentId].byClassId[classId]){
-        assignmentsHistory = state.data.assignmentsHistory.byStudentId[studentId].byClassId[classId];
-    }
-
-  return { classId, studentId, currentStudent, currentAssignment, assignmentsHistory };
+  return { classId, studentId, currentStudent, currentAssignment };
 };
 
 const mapDispatchToProps = dispatch =>
