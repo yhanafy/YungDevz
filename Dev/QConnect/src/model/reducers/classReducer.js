@@ -57,7 +57,7 @@ export const classReducer = (state = INITIAL_STATE, action) => {
       {
         let classId = action.classId
 
-        var nanoid = require('nanoid')
+        var nanoid = require('nanoid/non-secure')
         let newStudentId = nanoid()
 
         let newStudent = {id: newStudentId, ...action.studentInfo.studentInfo}

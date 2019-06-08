@@ -74,7 +74,7 @@ export class TeacherWelcomeScreen extends QcParentScreen {
             const {modalVisible, highlightedImagesIndices, ...params} = this.state;
 
             //generate a new id for the new teacher
-            var nanoid = require('nanoid')
+            var nanoid = require('nanoid/non-secure')
             let id = nanoid()
 
             // save the relevant teacher properties

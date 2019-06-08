@@ -28,7 +28,7 @@ class StudentProfileScreen extends QcParentScreen {
 
   //method updates the current assignment of the student
   editAssignment(classId, studentId, newAssignmentName) {
-    if (assignmentObject.name.trim() === "") {
+    if (newAssignmentName.trim() === "") {
       Alert.alert(strings.Whoops, strings.PleaseEnterAnAssignmentName);
     } else {
       this.props.editCurrentAssignment(classId, studentId, newAssignmentName);

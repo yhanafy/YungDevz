@@ -73,8 +73,8 @@ const styles = StyleSheet.create({
         alignItems: 'stretch',
         backgroundColor: colors.white,
         borderBottomWidth: 0.25,
-        borderBottomColor: colors.black
-    
+        borderBottomColor: colors.black,
+        paddingTop: 25,
     },
     topLeftView: { 
         flex: 1.5
