@@ -146,7 +146,7 @@ export class EvaluationPage extends QcParentScreen {
         </View>
         <View style={styles.filler}></View>
       </KeyboardAvoidingView>
-    <TouchableWithoutFeedback/>  
+    </TouchableWithoutFeedback>  
 
     )
   }
