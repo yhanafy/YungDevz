@@ -39,7 +39,7 @@ export default class ImageSelectionModal extends Component {
                 onRequestClose={() => {
                 }}>
 
-                <View style={{ flexDirection: 'row', flexWap: 'wrap', justifyContent: 'center', alignItems: 'center', marginBottom: 10 }}>
+                <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', paddingBottom: 20 }}>
                     <View style={styles.container}>
                         <ImageSelectionGrid
                             images={this.props.images}
@@ -47,7 +47,7 @@ export default class ImageSelectionModal extends Component {
                         />
                         <TouchableText
                             text={this.props.cancelText}
-                            style={{ fontSize: 14, marginTop: 10 }}
+                            style={{ fontSize: 14, marginTop: 10, marginBottom: 20 }}
                             onPress={() => {
                                 this.props.setModalVisible(false);
                             }} />
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'column',
-        marginTop: 170,
+        marginTop: 30,
         borderWidth: 1,
         borderRadius: 2,
         borderColor: colors.grey,

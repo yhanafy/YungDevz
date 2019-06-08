@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { ScrollView, StyleSheet, View, ToastAndroid } from 'react-native';
+import React from 'react';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import Toast, { DURATION } from 'react-native-easy-toast'
 import DatePicker from 'react-native-datepicker';
 import { connect } from 'react-redux';
@@ -101,7 +101,7 @@ export class ClassAttendanceScreen extends QcParentScreen {
                         date={this.state.selectedDate}
                         confirmBtnText={strings.Confirm}
                         cancelBtnText={strings.Cancel}
-                        format="MM/DD/YYYY"
+                        format="MM-DD-YYYY"
                         duration={300}
                         style={{ paddingLeft: 15 }}
                         maxDate={this.todaysDate}

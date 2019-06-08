@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { ScrollView, StyleSheet, FlatList } from "react-native";
 import { connect } from "react-redux";
 import StudentCard from "components/StudentCard";
@@ -11,7 +11,7 @@ import QcParentScreen from "screens/QcParentScreen";
 export class ClassMainScreen extends QcParentScreen {
 
   name = "ClassMainScreen";
-  
+
   async componentDidMount() {
     super.componentDidMount();
     //This may not be the eventual right approach here.. but this is a current mitigation to the 

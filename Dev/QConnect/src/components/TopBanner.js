@@ -3,7 +3,7 @@
 import FontLoadingComponent from './FontLoadingComponent';
 import React from 'React';
 import PropTypes from 'prop-types';
-import { StyleSheet, Text, View, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements';
 import colors from 'config/colors'
 import { connect } from "react-redux";
@@ -12,39 +12,43 @@ import strings from "config/strings"
 class TopBanner extends FontLoadingComponent {
     render() {
         //Component properties
-        const {LeftIconName, LeftTextName, LeftOnPress, Title, 
-            RightIconName, RightTextName, RightOnPress, className} = this.props;
-        let headerTitle = (Title === strings.titleNotPassed)?  className : Title ;
+        const { LeftIconName, LeftTextName, LeftOnPress, Title,
+            RightIconName, RightTextName, RightOnPress, className } = this.props;
+        let headerTitle = (Title === strings.titleNotPassed) ? className : Title;
 
-        return(
+        return (
             <View>
                 {this.state.fontLoaded ? (
                     <View style={styles.entireTopView}>
-                    <View style={styles.topLeftView}>
-                        <Icon
-                            name={LeftIconName}
-                            type="font-awesome"
-                            onPress={() => {LeftOnPress()}}
-                        />
-                        <Text style={styles.leftText} 
-                            onPress={() => {LeftOnPress()}}>{LeftTextName}</Text>
-                    </View>
-                    <View style={styles.topMiddleView}>
-                        <Text style={styles.titleStyle}>{headerTitle}</Text>
-                    </View>
-                    <View style={styles.topRightView}>
-                        <Icon
-                            name={RightIconName}
-                            type="font-awesome"
-                            onPress={() => {RightOnPress()}}
-                        />
-                        <Text style={styles.rightText}
-                            onPress={() => {RightOnPress()}}>{RightTextName}</Text>
-                    </View>
+                        <View style={styles.topLeftView}  >
+                            <TouchableOpacity style={{flex: 1, flexDirection: 'row',  paddingLeft: 20, height: 100, justifyContent: 'flex-start', alignItems: 'center'}} onPress={() => { LeftOnPress() }} >
+                            <Icon
+                                name={LeftIconName}
+                                type="font-awesome"
+                            />
+                            <Text style={styles.leftText}
+                                onPress={() => { LeftOnPress() }}>{LeftTextName}</Text> 
+                             </TouchableOpacity>
+                        </View>
+
+                        <View style={styles.topMiddleView}>
+                            <Text style={styles.titleStyle}>{headerTitle}</Text>
+                        </View>
+
+                        <View style={styles.topRightView} >
+                            <TouchableOpacity style={{flex: 1, flexDirection: 'row',  paddingRight: 20, height: 100, justifyContent: 'flex-end', alignItems: 'center'}}  onPress={() => { RightOnPress() }}>
+                            <Icon
+                                name={RightIconName}
+                                type="font-awesome"  
+                            />
+                            <Text style={styles.rightText}
+                                onPress={() => { RightOnPress() }}>{RightTextName}</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 ) : (
-                    <View></View>
-                )}
+                        <View></View>
+                    )}
             </View>
         );
     }
@@ -70,25 +74,22 @@ const styles = StyleSheet.create({
         backgroundColor: colors.white,
         borderBottomWidth: 0.25,
         borderBottomColor: colors.black
+    
     },
-    topLeftView: {
-        height: 100,
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingLeft: 20,
-        flexDirection: 'row'
+    topLeftView: { 
+        flex: 1.5
     },
     topMiddleView: {
         height: 100,
         paddingBottom: 3,
-        justifyContent: 'center'
+        justifyContent: 'center',
+        alignSelf: 'center',
+        alignItems: 'center',
+        flex: 4
     },
     topRightView: {
-        height: 100,
-        justifyContent: 'center', 
-        alignItems: 'center',
-        paddingRight: 20,
-        flexDirection: 'row'
+        flex: 1.5,
+        justifyContent: 'center'
     },
     titleStyle: {
         fontSize: 22,
@@ -97,16 +98,16 @@ const styles = StyleSheet.create({
     },
     leftText: {
         fontSize: 15,
-    }, 
+    },
     rightText: {
         fontSize: 15,
     }
 });
-  
+
 const mapStateToProps = (state) => {
     let classId = state.data.teacher.currentClassId;
     let className = classId.length > 0 ? state.data.classes[classId].name : "Quran Class";
     return { className };
 };
-  
+
 export default connect(mapStateToProps)(TopBanner);

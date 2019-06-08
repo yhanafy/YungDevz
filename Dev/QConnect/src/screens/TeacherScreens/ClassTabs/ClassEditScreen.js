@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { ScrollView, View, StyleSheet, TextInput, FlatList, TouchableWithoutFeedback, Keyboard, Text, Alert } from "react-native";
 import Toast, { DURATION } from 'react-native-easy-toast'
 import { connect } from "react-redux";
@@ -82,9 +82,9 @@ export class ClassEditScreen extends QcParentScreen {
   // ----------- Redux function to persist the added student ------------------------
   addNewStudent(classId) {
     if (!this.state.newStudentName) {
-      alert(strings.Whoops, strings.PleaseInputAName);
+      Alert.alert(strings.Whoops, strings.PleaseInputAName);
     } else if (this.studentNameExists()) {
-      alert(strings.Whoops, strings.ThereIsAlreadyAStudentWithThatName);
+      Alert.alert(strings.Whoops, strings.ThereIsAlreadyAStudentWithThatName);
     } else {
       this.props.addStudent(
         classId,
@@ -95,18 +95,22 @@ export class ClassEditScreen extends QcParentScreen {
           }
         }
       );
+
       this.refs.toast.show(this.state.newStudentName + strings.IsNowAddedToTheClass,
         DURATION.LENGTH_SHORT);
-      this.setState({ newStudentName: "" });
+
+      this.refreshProposedImages();
+
     }
+  }
 
-    this.initialDefaultImageId = this.getRandomGenderNeutralImage()
-
+  refreshProposedImages() {
+    this.initialDefaultImageId = this.getRandomGenderNeutralImage();
     this.setState({
-      profileImageId: this.initialDefaultImageId,
-      highlightedImagesIndices: this.getHighlightedImages()
-    })
-
+      newStudentName: "",
+      highlightedImagesIndices: this.getHighlightedImages(),
+      profileImageId: this.initialDefaultImageId
+    });
   }
 
   // ------- event handlers of when images are selected or being selected ---------

@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
-import {StyleSheet, TouchableHighlight, Text} from 'react-native'
+import React from 'react'
+import { StyleSheet, TouchableHighlight, Text } from 'react-native'
 import colors from 'config/colors'
 import PropTypes from 'prop-types'
 
@@ -18,9 +18,9 @@ export default TouchableText = (props) => {
 const styles = StyleSheet.create({
     container: {
         color: colors.primaryDark,
-        marginBottom:10,
-        paddingTop:7,
-        paddingBottom:7,
+        marginBottom: 10,
+        paddingTop: 7,
+        paddingBottom: 7,
         fontSize: 11,
         justifyContent: 'center',
         alignItems: 'center',
@@ -32,5 +32,5 @@ const styles = StyleSheet.create({
 TouchableText.propTypes = {
     text: PropTypes.string.isRequired,
     onPress: PropTypes.func.isRequired,
-    style: PropTypes.object, 
+    style: PropTypes.object,
 }

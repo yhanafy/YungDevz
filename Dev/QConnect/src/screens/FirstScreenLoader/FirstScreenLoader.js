@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  ActivityIndicator,
-  AsyncStorage,
-  StatusBar,
-  View,
-} from 'react-native';
+import { ActivityIndicator, StatusBar, View } from 'react-native';
 import { connect } from "react-redux";
 
 class FirstScreenLoader extends React.Component {
