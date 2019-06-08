@@ -122,7 +122,7 @@ export class ClassAttendanceScreen extends QcParentScreen {
                             key={i}
                             studentName={student.name}
                             profilePic={studentImages.images[student.imageId]}
-                            currentAssignment={student.currentAssignment.name}
+                            currentAssignment={this.props.currentAssignments.byStudentId[student.id][0].name}
                             background={color}
                             onPress={() => this.onStudentSelected(i)}
                         />

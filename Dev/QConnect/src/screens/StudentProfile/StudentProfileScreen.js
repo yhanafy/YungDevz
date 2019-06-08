@@ -71,8 +71,7 @@ class StudentProfileScreen extends QcParentScreen {
 
     //retrieves the student's average rating. If the student hasn't had any assignments, then 
     //the rating will default to 0.
-    averageRating = currentStudent.totalAssignments === 0 ? 0.0 :
-      (currentStudent.totalGrade / currentStudent.totalAssignments);
+    averageRating = currentAssignment.grade;
     const dialogInitialText =  currentAssignment.name === 'None' ? {hintInput: strings.EnterAssignmentHere} : {initValueTextInput: currentAssignment.name} 
 
     return (

@@ -19,7 +19,7 @@ export class EvaluationPage extends QcParentScreen {
 
   // -------------  Current evaluation state ---------------------
   state = {
-    overallGrade: 0,
+    grade: 0,
     notes: ""
   }
 
@@ -29,25 +29,25 @@ export class EvaluationPage extends QcParentScreen {
       cat.name === name ? { ...cat, grade: rating } : cat
     ))
     this.setState({
-      overallGrade: this.state.overallGrade,
-      overCategoriesGrades: categoriesGrades,
+      grade: this.state.grade,
       notes: this.state.notes
     })
   }
 
   //----- Saves the rating to db and pops to previous view ---------
   doSubmitRating(classId, studentId){
-    this.props.completeCurrentAssignment(classId, studentId, this.state);
+    const {fontLoaded, ...evaluationDetails} = this.state;
+    this.props.completeCurrentAssignment(classId, studentId, evaluationDetails);
 
       // keep the assignment name as the last assignment to reduce retype since most of the times the next assignment would be the same surah (next portion) or a redo.
       // todo: eventually right after grading we should have a step for the teacher to update the next assignment
-      this.props.editCurrentAssignment(classId, studentId, { name: this.props.currentAssignment.name, startDate: "" });
+      this.props.editCurrentAssignment(classId, studentId, this.props.currentAssignment.name );
       this.props.navigation.pop();
   }
 
   //------------  Ensures a rating is inputted before submitting it -------
   submitRating(classId, studentId) {
-    if (this.state.overallGrade === 0) {
+    if (this.state.grade === 0) {
       Alert.alert(
         'No Rating',
         strings.AreYouSureYouWantToProceed,
@@ -94,7 +94,7 @@ export class EvaluationPage extends QcParentScreen {
                   size={30}
                   showRating={false}
                   onFinishRating={(value) => this.setState({
-                    overallGrade: value
+                    grade: value
                   })}
                 />
               </View>

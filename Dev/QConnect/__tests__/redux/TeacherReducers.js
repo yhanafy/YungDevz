@@ -45,8 +45,6 @@ const studentInfo = {
     imageId: 8,
     attendanceHistory: [],
     assignmentHistory: [],
-    totalAssignments: 0,
-    totalGrade: 0,
 };
 
 const teacher_one_class_one_student = {

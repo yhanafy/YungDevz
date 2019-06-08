@@ -23,12 +23,12 @@ export const INITIAL_STATE = {
     byClassId: {}
   },
   currentAssignments: {
-    byClassIds: {
+    byClassId: {
 
     }
   },
   assignmentsHistory:{
-    byStudentIds: {
+    byStudentId: {
 
     }
   }
@@ -118,22 +118,25 @@ export const classReducer = (state = INITIAL_STATE, action) => {
     case actionTypes.COMPLETE_CURRENT_ASSIGNMENT:
       {
         let { classId, studentId, evaluation } = action;
-
+        const {grade, totalAssignments, ...oldAssignment} = baseState.currentAssignments.byClassId[classId].byStudentId[studentId][0];
+    
         //updates the evaluation of the current assignment
         let assignment = {
-          ...baseState.classes[classId].students[studentId].currentAssignment,
+          ...oldAssignment, //todo, pass index of which assignment (oncw we support multiple current assigments)
           completionDate: new Date().toLocaleDateString("en-US"),
           evaluation
         }
 
+        let newState = addToAssignmentHistory(baseState, classId, studentId, assignment);
+        
         //pushes the assignment to the array of assignment history (Remember, this action does not 
-        //update the current assignment, this needs to be done using the addNewAssignment action)
-        let newState = update(baseState, { classes: { [classId]: { students: { [studentId]: { assignmentHistory: { $push: [assignment] } } } } } });
-        if (evaluation.overallGrade !== 0) {
-          let totalAssignments = baseState.classes[classId].students[studentId].totalAssignments;
-          let totalGrade = baseState.classes[classId].students[studentId].totalGrade;
-          newState = update(newState, { classes: { [classId]: { students: { [studentId]: { totalAssignments: { $set: (totalAssignments + 1) } } } } } });
-          newState = update(newState, { classes: { [classId]: { students: { [studentId]: { totalGrade: { $set: (totalGrade + assignment.evaluation.overallGrade) } } } } } });
+        if (evaluation.grade !== 0) {
+          let { totalAssignmentsNum, newGrade } = getNewAvgGradeAndTotal(totalAssignments, grade, assignment);
+          let newAssignment = {...oldAssignment, totalAssignments: totalAssignmentsNum, grade: newGrade}
+          
+          //todo: right now even though the currentAssignments is an array, we still only support one assignment, so we replace the first element with the new assignment
+          // later, once we start officially supporting mutliple assignments, we need to properly replace the right assignment index
+          newState = update(newState, { currentAssignments: { byClassId: { [classId]: { byStudentId: { [studentId]: {$splice: [[0, 1, newAssignment]]} } } }}});
         }
         return newState;
       }
@@ -152,6 +155,16 @@ export default combineReducers({
   data: classReducer,
 });
 
+//calculates new average grade from old average and total number of assignments
+// returns: {the new grade average, the new total number of assignments
+function getNewAvgGradeAndTotal(totalAssignments, grade, assignment) {
+  let totalAssignmentsNum = totalAssignments ? totalAssignments : 0;
+  let oldGrade = grade ? grade : 0;
+  let newGrade = ((oldGrade * totalAssignmentsNum) + assignment.evaluation.grade) / ++totalAssignmentsNum;
+  return { totalAssignmentsNum, newGrade };
+}
+
+// Updates the current assignment with the new info
 function editAssignment(baseState, classId, studentId, newAssignment) {
   newState = baseState;
   if (!newState.currentAssignments.byClassId) {
@@ -164,7 +177,28 @@ function editAssignment(baseState, classId, studentId, newAssignment) {
     newState = update(newState, { currentAssignments: { byClassId: { [classId]: { byStudentId: { $merge: { [studentId]: [newAssignment] } } } } } });
   }
   else {
-    newState = update(newState, { currentAssignments: { byClassId: { [classId]: { byStudentId: { [studentId]: { $set: [newAssignment] } } } } } });
+    let oldAssignment = newState.currentAssignments.byClassId[classId].byStudentId[studentId][0];
+    let mergedAssignment = {...oldAssignment, ...newAssignment}
+    newState = update(newState, { currentAssignments: { byClassId: { [classId]: { byStudentId: { [studentId]: { $set: [mergedAssignment] } } } } } });
+  }
+
+  return newState;
+}
+
+// pushes the completed assignment to the assignment history
+function addToAssignmentHistory(baseState, classId, studentId, assignment) {
+  newState = baseState;
+  if (!newState.assignmentsHistory.byStudentId) {
+    newState = update(newState, { assignmentsHistory: { byStudentId: { $set: { [studentId]: { byClassId: { [classId]: [assignment] } } } } } });
+  }
+  else if (!newState.assignmentsHistory.byStudentId[studentId]) {
+    newState = update(newState, { assignmentsHistory: { byStudentId: { $merge: { [studentId]: { byClassId: { [classId]: [assignment] } } } } } });
+  }
+  else if (!newState.assignmentsHistory.byStudentId[studentId].byClassId[classId]) {
+    newState = update(newState, { assignmentsHistory: { byStudentId: { [studentId]: { byClassId: { $merge: { [classId]: [assignment] } } } } } });
+  }
+  else {
+    newState = update(newState, { assignmentsHistory: { byStudentId: { [studentId]: { byClassId: { [classId]: { $push: [assignment] } } } } } });
   }
 
   return newState;
