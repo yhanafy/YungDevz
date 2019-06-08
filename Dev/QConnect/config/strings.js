@@ -1,6 +1,10 @@
 //This class will hold all of the strings throughout the app
 export default {
 
+    //---------------------  App info ---------------------------
+    AppTitle: 'QuranConnect',
+    AppSubTitle: 'Serving your passion for the Quran',
+
     //--------------------- Evaluation Page ---------------------
     None: 'None',
     HowWas: 'How was ',
@@ -15,7 +19,7 @@ export default {
     //--------------------- Teacher Welcome Screen ---------------------
     YourProfileHasBeenSaved: 'Your profile has been saved',
     Cancel: 'Cancel',
-    TeacherWelcomeMessage: 'Quran teachers are very dear to our hearts.  It is our great honor and pleasure to serve your dedication to the holy book.',
+    TeacherWelcomeMessage: 'Quran teachers are very dear to our hearts. It is our great honor and pleasure to serve your dedication to the holy book.',
     Save: 'Save',
 
     //--------------------- Student Profile Screen ---------------------
@@ -28,6 +32,17 @@ export default {
     CurrentAssignment: 'Current Assignment',
     AddAssignment: 'Add Assignment',
     Grade: 'Grade',
+    PleaseEnterAnAssignmentName: 'Please enter an assignment name',
+    ImprovementAreas: 'Things to work on: ',
+
+    //-------------------- Evaluation Sub-Categories -----------------------
+    Memorization: "Memorization", 
+    Makharej: "Makharej", 
+    Edgham: "Edgham", 
+    Ekhfae: "Ekhfae", 
+    RulingsOfRaa: "Rulings of Raa'", 
+    Muduud: "Muduud", 
+    Qalqalah: "Qalqalah",
 
     //--------------------- Add Class Screen ---------------------
     PleaseMakeSureToHaveAnInput: 'Please make sure to have an input',
@@ -59,6 +74,9 @@ export default {
     StudentProfile: 'Student Profile',
     EditClass: 'Edit Students',
     StudentEvaluation: 'Student Evaluation',
+    Completed: 'Completed',
+    Evaluation: 'Assignment Evaluation',
+    NoNotesProvided: 'There are no additional notes provided.',
 
     //--------------------- Class Tabs Navigator ---------------------
     Attendance: 'Attendance',
@@ -85,11 +103,12 @@ export default {
     phoneNumberPlaceHolder: "Phone Number",
 
     //--------------------------- Settings -------------------------------------------
-    Credits: 'Credits',
+    Credits: 'Photo Credit',
     PrivacyPolicy: 'Privacy Policy',
 
     //--------------------------- Credits -------------------------------------------
-    FirstScreenImageCredits: 'First screen image credits to Hany Khalaf Photography',
+    FirstScreenImageCredits: 'First screen image photo by © Hany Khalaf Photography',
+    AvatarCredits: 'Computer vector created by brgfx - www.freepik.com'
 
 
 

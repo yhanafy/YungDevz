@@ -15,23 +15,23 @@ export default class ImageSelectionGrid extends Component {
 
         return (
             <ScrollView >
-            <View>
-                <FlatList
-                    numColumns={4}
-                    data={images}
-                    keyExtractor={(item, index) => index} // fix, should be item.id (add id to classes)
-                    renderItem={({ item, index }) => (
-                        <TouchableHighlight onPress={() => onImageSelected(index)}>
-                            <Image
-                                key={index}
-                                borderRadius={30}
-                                source={item}
-                                style={styles.imageStyle}
-                                resizeMode="contain"
-                            />
-                        </TouchableHighlight>
-                    )} >
-                </FlatList>
+                <View>
+                    <FlatList
+                        numColumns={4}
+                        data={images}
+                        keyExtractor={(item, index) => index} // fix, should be item.id (add id to classes)
+                        renderItem={({ item, index }) => (
+                            <TouchableHighlight onPress={() => onImageSelected(index)}>
+                                <Image
+                                    key={index}
+                                    borderRadius={30}
+                                    source={item}
+                                    style={styles.imageStyle}
+                                    resizeMode="contain"
+                                />
+                            </TouchableHighlight>
+                        )} >
+                    </FlatList>
                 </View>
             </ScrollView>
         );

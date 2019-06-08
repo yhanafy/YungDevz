@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { View, Image, Text, StyleSheet, ScrollView, FlatList, TouchableHighlight, TouchableOpacity } from 'react-native';
+import React from 'react';
+import { View, Image, Text, StyleSheet, ScrollView, FlatList, TouchableHighlight, TouchableOpacity, Alert } from 'react-native';
 import colors from 'config/colors';
-import { Rating, Icon } from 'react-native-elements';
+import { Rating } from 'react-native-elements';
 import DialogInput from 'react-native-dialog-input';
 import { editCurrentAssignment } from 'model/actions/editCurrentAssignment';
 import { addNewAssignment } from 'model/actions/addNewAssignment';
@@ -11,7 +11,8 @@ import { connect } from "react-redux";
 import strings from 'config/strings';
 import studentImages from 'config/studentImages';
 import TouchableText from 'components/TouchableText'
-import ImageSelectionModal from 'components/ImageSelectionModal'
+import ImageSelectionModal from 'components/ImageSelectionModal';
+import LoadingSpinner from '../../components/LoadingSpinner';
 import QcParentScreen from 'screens/QcParentScreen';
 
 
@@ -26,17 +27,25 @@ class StudentProfileScreen extends QcParentScreen {
   }
 
   //method updates the current assignment of the student
-  editAssignment(classIndex, studentIndex, newAssignmentName) {
-    this.props.editCurrentAssignment(classIndex, studentIndex, newAssignmentName);
-    this.setState({ isDialogVisible: false });
+  editAssignment(classIndex, studentIndex, assignmentObject) {
+    if (assignmentObject.name.trim() === "") {
+      Alert.alert(strings.Whoops, strings.PleaseEnterAnAssignmentName);
+    } else {
+      this.props.editCurrentAssignment(classIndex, studentIndex, assignmentObject);
+      this.setState({ isDialogVisible: false });
+    }
   }
 
   //method will add a new assignment for the student (only to current assignment, will not add
   //to assignment history until after completion of the assignment)
   addAssignment(classIndex, studentIndex, newAssignmentName) {
-    this.props.addNewAssignment(classIndex, studentIndex,
-      newAssignmentName);
-    this.setState({ isDialogVisible: false })
+    if (newAssignmentName === "") {
+      Alert.alert(strings.Whoops, strings.PleaseEnterAnAssignmentName);
+    } else {
+      this.props.addNewAssignment(classIndex, studentIndex,
+        newAssignmentName);
+      this.setState({ isDialogVisible: false });
+    }
   }
 
   //---------- profile image views handlers --------------
@@ -60,13 +69,13 @@ class StudentProfileScreen extends QcParentScreen {
   getRatingCaption() {
     let caption = strings.GetStarted;
 
-    if(averageRating > 4 ){
+    if (averageRating > 4) {
       caption = strings.OutStanding
     }
-    else if (averageRating >= 3){
+    else if (averageRating >= 3) {
       caption = strings.GreatJob
     }
-    else if (averageRating > 0){
+    else if (averageRating > 0) {
       caption = strings.PracticePerfect
     }
 
@@ -83,7 +92,7 @@ class StudentProfileScreen extends QcParentScreen {
     //the rating will default to 0.
     averageRating = currentStudent.totalAssignments === 0 ? 0.0 :
       (currentStudent.totalGrade / currentStudent.totalAssignments);
-    const dialogInitialText =  currentStudent.currentAssignment.name === 'None' ? {hintInput: strings.EnterAssignmentHere} : {initValueTextInput: currentStudent.currentAssignment.name} 
+    const dialogInitialText = currentStudent.currentAssignment.name === 'None' ? { hintInput: strings.EnterAssignmentHere } : { initValueTextInput: currentStudent.currentAssignment.name }
 
     return (
       <View style={styles.container}>
@@ -124,7 +133,7 @@ class StudentProfileScreen extends QcParentScreen {
                   <Text numberOfLines={1} style={styles.bigText}>{currentStudent.name.toUpperCase()}</Text>
                   <View style={{ flexDirection: 'row', height: 25 }}>
                     <Rating readonly={true} startingValue={averageRating} imageSize={25} />
-                    <View style={{flexDirection: 'column', justifyContent: 'center' }}>
+                    <View style={{ flexDirection: 'column', justifyContent: 'center' }}>
                       <Text style={styles.ratingText}>{parseFloat(averageRating).toFixed(1)}</Text>
                     </View>
                   </View>
@@ -136,14 +145,14 @@ class StudentProfileScreen extends QcParentScreen {
                 <View style={styles.profileInfoTopLeft}>
                   <Image
                     style={styles.profilePic}
-                    source={studentImages.images[this.state.profileImageId >= 0? this.state.profileImageId : currentStudent.imageId]} />
+                    source={studentImages.images[this.state.profileImageId >= 0 ? this.state.profileImageId : currentStudent.imageId]} />
                   <TouchableText
                     text="update image"
                     onPress={() => this.setModalVisible(true)}
                     style={{ paddingRight: 0, paddingLeft: 0, marginLeft: 0, fontSize: 12 }}
                   />
                 </View>
-                <View style={{ flex: 1, flexDirection: 'column', height: 59}}>
+                <View style={{ flex: 1, flexDirection: 'column', height: 59 }}>
                   <Text numberOfLines={1} style={styles.assignmentTextLarge}>{currentStudent.currentAssignment.name.toUpperCase()}</Text>
                   <View style={{ flexDirection: 'row' }}>
                     <TouchableHighlight
@@ -169,30 +178,46 @@ class StudentProfileScreen extends QcParentScreen {
                 data={currentStudent.assignmentHistory}
                 keyExtractor={(item, index) => item.name + index}
                 renderItem={({ item, index }) => (
-                  <View style={styles.prevAssignmentCard} key={index}>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', flex: 1 }}>
-                      <Text style={[styles.subText, { paddingLeft: 10, paddingTop: 3 }]}>{item.completionDate}</Text>
-                      <View style={{ alignItems: 'center', flex: 1 }}>
-                        <Text numberOfLines={1} style={styles.prevAssignmentTitleText}>{item.name}</Text>
+                  <TouchableOpacity onPress={() => this.props.navigation.push("EvaluationPage", {
+                    classIndex: classIndex,
+                    studentIndex: studentIndex,
+                    assignmentName: item.name,
+                    completionDate: item.completionDate,
+                    rating: item.evaluation.overallGrade,
+                    notes: item.evaluation.notes,
+                    improvementAreas: item.evaluation.improvementAreas,
+                    readOnly: true
+                  })}>
+                    <View style={styles.prevAssignmentCard} key={index}>
+                      <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                        <Text style={[styles.subText]}>{item.completionDate}</Text>
+                        <View style={{ alignItems: 'center', flexWrap: 'wrap', alignSelf: 'baseline', flex: 1 }}>
+                          <Text numberOfLines={1} style={styles.prevAssignmentTitleText}>{item.name}</Text>
+                        </View>
+                        <Rating style={{ paddingRight: 10, paddingTop: 3 }} readonly={true}
+                          startingValue={item.evaluation.overallGrade} imageSize={17} />
                       </View>
-                      <Rating style={{ paddingRight: 10, paddingTop: 3 }} readonly={true}
-                        startingValue={item.evaluation.overallGrade} imageSize={17} />
-                    </View>
-                    {item.evaluation.notes ?
-                    <TouchableOpacity onPress={() => this.props.navigation.push("AssignmentEvaluation", {
-                      classIndex: classIndex , studentIndex: studentIndex , rating: item.evaluation.overallGrade , notes: item.evaluation.notes 
-                      })}>
+                      {item.evaluation.notes ?
                         <Text numberOfLines={2} style={styles.notesText}>{"Notes: " + item.evaluation.notes}</Text>
-                      </TouchableOpacity>
-                      : <View />
-                    }
-                  </View>
+                        : <View />
+                      }
+                      {item.evaluation.improvementAreas && item.evaluation.improvementAreas.length > 0 ?
+                        <View style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
+                          <Text style={{height: 20, marginTop: 5}}>{strings.ImprovementAreas}</Text>
+                          {item.evaluation.improvementAreas.map((tag) => { return (<Text key={tag} style={styles.corner}>{tag}</Text>) })}
+                        </View>
+                        : <View />
+                      }
+                    </View>
+                  </TouchableOpacity>
                 )}
               />
             </ScrollView>
           </View>
         ) : (
-            <Text style={styles.textStyle}>Loading...</Text>
+            <View style={{ justifyContent: "center", alignItems: "center" }}>
+              <LoadingSpinner isVisible={!this.state.fontLoaded} />
+            </View>
           )
         }
       </View>
@@ -229,7 +254,7 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 2,
     paddingTop: 5,
-    flex: 1,
+    textAlign: 'left'
   },
   ratingText: {
     fontSize: 24,
@@ -277,6 +302,18 @@ const styles = StyleSheet.create({
   nonButtons: {
     flexDirection: 'column'
   },
+  corner: {
+    borderColor: '#D0D0D0',
+    borderWidth: 1,
+    borderRadius: 3,
+    height: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingLeft: 5,
+    paddingRight: 5,
+    marginRight: 5,
+    marginTop: 5,
+  },
   profileInfoTop: {
     paddingHorizontal: 10,
     paddingTop: 10,
@@ -319,15 +356,13 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     marginLeft: 7,
     marginRight: 7,
-    marginTop: 10,
   },
   prevAssignmentCard: {
     flexDirection: 'column',
     borderBottomColor: colors.lightGrey,
     borderBottomWidth: 1,
     height: 90,
-    justifyContent: 'space-between',
-    paddingTop: 10,
+    padding: 5,
   },
 });
 

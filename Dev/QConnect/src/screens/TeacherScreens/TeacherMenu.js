@@ -1,6 +1,4 @@
-import React from 'react';
 import { createDrawerNavigator, createStackNavigator, createAppContainer } from 'react-navigation';
-import { Icon } from 'react-native-elements';
 import AddClassNavigator from './AddClass/AddClassNavigator';
 import ClassHeaderNavigator from './ClassTabs/ClassHeaderNavigator';
 import LeftNavPane from './LeftNavPane';

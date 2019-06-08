@@ -34,7 +34,8 @@
   "jest": {
     "preset": "jest-expo",
     "setupFiles": [
-      "./src/testHelpers/mocks/ScrollViewMock.js"
+      "./src/testHelpers/mocks/ScrollViewMock.js",
+      "./src/testHelpers/mocks/FadeInViewMock.js"
     ]
   },
   "private": true

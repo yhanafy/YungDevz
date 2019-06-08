@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 import colors from 'config/colors'
@@ -7,8 +7,8 @@ import Analytics from '@aws-amplify/analytics';
 import analyticsEvents from 'config/analyticsEvents'
 
 class QcActionButton extends FontLoadingComponent {
-  
-  onButtonPress(){
+
+  onButtonPress() {
     Analytics.record({
       name: analyticsEvents.button_pressed,
       attributes: { text: this.props.text, screenName: this.props.screen }
@@ -25,7 +25,7 @@ class QcActionButton extends FontLoadingComponent {
       {this.state.fontLoaded ? (  
 			 <Text style={styles.textStyle}>{text}</Text>
        ) : (
-        <Text style={styles.textStyle}>{text}</Text>
+        <Text style={styles.textStyleNoFont}>{text}</Text>
                 )
             }
 		  </TouchableOpacity>
@@ -46,17 +46,22 @@ const styles = StyleSheet.create({
     marginLeft:10,
     marginTop:10,
     marginBottom:10,
-    paddingTop:7,
-    paddingBottom:7,
-    paddingRight:21,
-    paddingLeft:21,
-    borderRadius:30,
+    paddingTop:10,
+    paddingBottom:10,
+    paddingRight:25,
+    paddingLeft:25,
+    borderRadius:25,
     backgroundColor: colors.primaryLight,
     justifyContent: 'center',
     alignItems: 'center',
     textAlign: 'center',
+
   },
   textStyle: {
+    color: colors.primaryDark,
+    fontFamily: 'regular',
+  },
+  textStyleNoFont: {
     color: colors.primaryDark,
   },
 });

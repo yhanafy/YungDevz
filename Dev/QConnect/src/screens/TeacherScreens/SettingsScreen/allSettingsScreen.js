@@ -1,11 +1,15 @@
 //Screen which will provide all of the possible settings for the user to click on
-import React, { Component } from 'react';
+import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Linking } from 'react-native';
 import colors from 'config/colors';
 import { Icon } from 'react-native-elements';
 import strings from '../../../../config/strings';
+import QcParentScreen from "screens/QcParentScreen";
 
-export default class allSettingsScreen extends Component {
+export default class AllSettingsScreen extends QcParentScreen {
+
+    name = "AllSettingsScreen";
+
     render() {
         return (
             <View style={styles.container}>
@@ -14,7 +18,7 @@ export default class allSettingsScreen extends Component {
                 }}>
                     <Text style={styles.textStyle}>{strings.Credits}</Text>
                     <Icon
-                        name='angle-right'
+                        name='angle-right'  
                         type='font-awesome'
                         iconStyle={{ marginRight: 20 }}
                         color={colors.primaryDark} />
@@ -24,7 +28,7 @@ export default class allSettingsScreen extends Component {
                     Linking.openURL('https://app.termly.io/document/privacy-policy/d3e756e4-a763-4095-9ec1-3965b609d015')
                 }}>
                     <Text style={styles.textStyle}>{strings.PrivacyPolicy}</Text>
-                    <Icon
+                    <Icon   
                         name='angle-right'
                         type='font-awesome'
                         iconStyle={{ marginRight: 20 }}
