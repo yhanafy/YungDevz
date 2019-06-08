@@ -36,13 +36,13 @@ export class EvaluationPage extends QcParentScreen {
   }
 
   //----- Saves the rating to db and pops to previous view ---------
-  doSubmitRating(classIndex, studentIndex){
+  doSubmitRating(classIndex, studentIndex) {
     this.props.completeCurrentAssignment(classIndex, studentIndex, this.state);
 
-      // keep the assignment name as the last assignment to reduce retype since most of the times the next assignment would be the same surah (next portion) or a redo.
-      // todo: eventually right after grading we should have a step for the teacher to update the next assignment
-      this.props.editCurrentAssignment(classIndex, studentIndex, { name: this.props.currentAssignment.name, startDate: "" });
-      this.props.navigation.pop();
+    // keep the assignment name as the last assignment to reduce retype since most of the times the next assignment would be the same surah (next portion) or a redo.
+    // todo: eventually right after grading we should have a step for the teacher to update the next assignment
+    this.props.editCurrentAssignment(classIndex, studentIndex, { name: this.props.currentAssignment.name, startDate: "" });
+    this.props.navigation.pop();
   }
 
   //------------  Ensures a rating is inputted before submitting it -------
@@ -57,7 +57,7 @@ export class EvaluationPage extends QcParentScreen {
               this.doSubmitRating(classIndex, studentIndex)
             }
           },
-          { text: 'No', style: 'cancel'}
+          { text: 'No', style: 'cancel' }
         ]
       );
     } else {
@@ -71,59 +71,54 @@ export class EvaluationPage extends QcParentScreen {
     const { imageId } = this.props;
 
     return (
-      //Makes so that the keyboard does not 
-      
-      //----- outer view, gray background ------------------------
-      //Makes it so keyboard is dismissed when clicked somewhere else
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-        <KeyboardAvoidingView
-          style={styles.container}
-          behavior="padding" enabled>
+      //Makes so that the keyboard does not cover the submit button
 
-          <View style={styles.evaluationContainer}>
-            <View style={styles.section}>
-              <Image source={studentImages.images[imageId]}
-                style={styles.profilePic} />
-              <Text style={styles.titleText}>{this.props.name}</Text>
-              <Text style={styles.subTitleText}>{this.props.currentAssignment.name}</Text>
-            </View>
+      <KeyboardAvoidingView style={styles.container} behavior="padding">
 
-            <View style={styles.section}>
-              <Text style={styles.mainQuestionText}>{strings.HowWas}{this.props.name}{strings.sTasmee3}</Text>
-              <View style={{ paddingVertical: 15 }}>
-                <AirbnbRating
-                  defaultRating={0}
-                  size={30}
-                  showRating={false}
-                  onFinishRating={(value) => this.setState({
-                    overallGrade: value
-                  })}
-                />
-              </View>
 
-              <TextInput
-                style={styles.notesStyle}
-                multiline={true}
-                height={100}
-                onChangeText={(notes) => this.setState({
-                  notes: notes
+        <View style={styles.evaluationContainer}>
+          <View style={styles.section}>
+            <Image source={studentImages.images[imageId]}
+              style={styles.profilePic} />
+            <Text style={styles.titleText}>{this.props.name}</Text>
+            <Text style={styles.subTitleText}>{this.props.currentAssignment.name}</Text>
+          </View>
+
+          <View style={styles.section}>
+            <Text style={styles.mainQuestionText}>{strings.HowWas}{this.props.name}{strings.sTasmee3}</Text>
+            <View style={{ paddingVertical: 15 }}>
+              <AirbnbRating
+                defaultRating={0}
+                size={30}
+                showRating={false}
+                onFinishRating={(value) => this.setState({
+                  overallGrade: value
                 })}
-                placeholder={strings.WriteANote}
-                placeholderColor={colors.black}
               />
             </View>
-          </View>
 
-          <View style={styles.buttonsContainer}>
-            <QcActionButton
-              text={strings.Submit}
-              onPress={() => { this.submitRating(classIndex, studentIndex) }}
-              screen={this.name}
+            <TextInput
+              style={styles.notesStyle}
+              multiline={true}
+              height={100}
+              onChangeText={(notes) => this.setState({
+                notes: notes
+              })}
+              placeholder={strings.WriteANote}
+              placeholderColor={colors.black}
             />
           </View>
-          <View style={styles.filler}></View>
-        </KeyboardAvoidingView>
-      </TouchableWithoutFeedback>
+        </View>
+
+        <View style={styles.buttonsContainer}>
+          <QcActionButton
+            text={strings.Submit}
+            onPress={() => { this.submitRating(classIndex, studentIndex) }}
+            screen={this.name}
+          />
+        </View>
+        <View style={styles.filler}></View>
+      </KeyboardAvoidingView>
 
     )
   }
