@@ -107,11 +107,6 @@ export default {
     PrivacyPolicy: 'Privacy Policy',
 
     //--------------------------- Credits -------------------------------------------
-    FirstScreenImageCredits: 'First screen image photo by © Hany Khalaf Photography',
-    AvatarCredits: 'Computer vector created by brgfx - www.freepik.com'
-
-
-
-
-
+    FirstScreenImageCredits: 'First screen background photo by © Hany Khalaf Photography',
+    AvatarCredits: 'Computer vector created by brgfx - www.freepik.com',
 }
