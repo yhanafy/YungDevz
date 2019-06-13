@@ -5,10 +5,11 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { createStore } from 'redux';
 import classReducer from 'model/reducers/classReducer'
-import { persistStore, persistReducer } from 'redux-persist'
+import { persistStore, persistReducer, createMigrate } from 'redux-persist'
 import { AsyncStorage } from 'react-native';
 import Auth from '@aws-amplify/auth';
 import Analytics from '@aws-amplify/analytics';
+import migrateFromV0ToV1 from 'model/migrationScripts/migrateFromV0ToV1'
 
 import awsconfig from './aws-exports';
 
@@ -17,11 +18,14 @@ Auth.configure(awsconfig);
 // send analytics events to Amazon Pinpoint
 Analytics.configure(awsconfig);
 
+const migrations = {  1: (state) => migrateFromV0ToV1(state)}
 
 const persistConfig = {
-  key: 'qcstorealpha000fa',
+  key: 'qcstorealpha001',
   storage: AsyncStorage,
-  version: 0,
+  version: 1,
+  debug: true,  //we should consider turn off verbose logs at some point, but we keep them now until we have enough validation.
+  migrate: createMigrate(migrations, { debug: true })
 }
 const persistedReducer = persistReducer(persistConfig, classReducer)
 
