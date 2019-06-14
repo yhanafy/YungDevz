@@ -76,7 +76,7 @@ export const classReducer = (state = INITIAL_STATE, action) => {
       {
         newState = update(baseState, { classes: { $merge: {[action.classInfo.id]: action.classInfo} } } );
         newState = update(newState, { teacher: { classes: { $push: [action.classInfo.id] } } });
-        newState = update(newState, { teacher: { currentClassId: { $set: [action.classInfo.id] } } });
+        newState = update(newState, { teacher: { currentClassId: { $set: action.classInfo.id } } });
         return newState
       }
     case actionTypes.ADD_ATTENDANCE:

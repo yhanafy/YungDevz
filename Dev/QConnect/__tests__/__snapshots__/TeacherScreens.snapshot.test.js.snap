@@ -997,12 +997,6 @@ exports[`Teacher screens snapshots render ClassAttendanceScreen 1`] = `
     <View>
       <View />
     </View>
-    <View>
-      <View />
-    </View>
-    <View>
-      <View />
-    </View>
   </View>
 </RCTScrollView>
 `;
@@ -2654,179 +2648,24 @@ exports[`Teacher screens snapshots render ClassEditScreen 1`] = `
       data={
         Array [
           Object {
-            "assignmentHistory": Array [
-              Object {
-                "completionDate": "03-20-2019",
-                "evaluation": Object {
-                  "notes": "",
-                  "overallGrade": 2,
-                },
-                "name": "Al-Baqara 5-9",
-                "startDate": "03-17-2019",
-              },
-            ],
-            "attendanceHistory": Array [
-              Object {
-                "date": "02-23-2019",
-                "isHere": true,
-              },
-              Object {
-                "date": "03-25-2019",
-                "isHere": false,
-              },
-            ],
-            "currentAssignment": Object {
-              "name": "Al-Nahl page 5",
-              "startDate": "03-24-2019",
-            },
-            "imageId": 5,
-            "name": "Ahmed Reducer",
-            "totalAssignments": 1,
-            "totalGrade": 2,
+            "id": "Kvu_cRpBXG5nxUW6mHCNL",
+            "imageId": 1,
+            "name": "CS1 ",
           },
           Object {
-            "assignmentHistory": Array [
-              Object {
-                "completionDate": "03-20-2019",
-                "evaluation": Object {
-                  "notes": "",
-                  "overallGrade": 4,
-                },
-                "name": "Al-Baqara 5-9",
-                "startDate": "03-17-2019",
-              },
-            ],
-            "attendanceHistory": Array [
-              Object {
-                "date": "02-23-2019",
-                "isHere": true,
-              },
-            ],
-            "currentAssignment": Object {
-              "name": "An-Naze'aat",
-              "startDate": "03-24-2019",
-            },
-            "imageId": 25,
-            "name": "Amina Khan",
-            "totalAssignments": 1,
-            "totalGrade": 4,
+            "id": "RPVYO2TFj7Zthc13_V_xg",
+            "imageId": 3,
+            "name": "CS2 ",
           },
           Object {
-            "assignmentHistory": Array [
-              Object {
-                "completionDate": "03-20-2019",
-                "evaluation": Object {
-                  "notes": "",
-                  "overallGrade": 1,
-                },
-                "name": "Al-Baqara 5-9",
-                "startDate": "03-17-2019",
-              },
-            ],
-            "attendanceHistory": Array [
-              Object {
-                "date": "02-23-2019",
-                "isHere": true,
-              },
-            ],
-            "currentAssignment": Object {
-              "name": "Aal-Imran",
-              "startDate": "03-24-2019",
-            },
-            "imageId": 19,
-            "name": "Ayoub Barrak",
-            "totalAssignments": 1,
-            "totalGrade": 1,
+            "id": "U1WNVEvgZ6vmv_DrO6sQ9",
+            "imageId": 4,
+            "name": "CS3",
           },
           Object {
-            "assignmentHistory": Array [
-              Object {
-                "completionDate": "03-20-2019",
-                "evaluation": Object {
-                  "notes": "",
-                  "overallGrade": 5,
-                },
-                "name": "Al-Baqara 5-9",
-                "startDate": "03-17-2019",
-              },
-            ],
-            "attendanceHistory": Array [
-              Object {
-                "date": "02-23-2019",
-                "isHere": true,
-              },
-            ],
-            "currentAssignment": Object {
-              "name": "Al-Toor pages 5, 6, 8",
-              "startDate": "03-24-2019",
-            },
-            "imageId": 21,
-            "name": "Nouha Yacoubi",
-            "totalAssignments": 1,
-            "totalGrade": 5,
-          },
-          Object {
-            "assignmentHistory": Array [
-              Object {
-                "completionDate": "03-20-2019",
-                "evaluation": Object {
-                  "notes": "",
-                  "overallGrade": 2,
-                },
-                "name": "Al-Baqara 5-9",
-                "startDate": "03-17-2019",
-              },
-            ],
-            "attendanceHistory": Array [
-              Object {
-                "date": "02-23-2019",
-                "isHere": true,
-              },
-            ],
-            "currentAssignment": Object {
-              "name": "Al-Baqara pages 5-8",
-              "startDate": "03-24-2019",
-            },
-            "imageId": 15,
-            "name": "Yassine Lightening",
-            "totalAssignments": 1,
-            "totalGrade": 2,
-          },
-          Object {
-            "assignmentHistory": Array [
-              Object {
-                "completionDate": "03-22-2019",
-                "evaluation": Object {
-                  "notes": "",
-                  "overallGrade": 3,
-                },
-                "name": "Al-Baqara 5-9",
-                "startDate": "03-17-2019",
-              },
-              Object {
-                "completionDate": "03-20-2019",
-                "evaluation": Object {
-                  "notes": "",
-                  "overallGrade": 5,
-                },
-                "name": "Al-Baqara 9-15",
-                "startDate": "03-17-2019",
-              },
-            ],
-            "attendanceHistory": Array [
-              Object {
-                "date": "02-23-2019",
-                "isHere": true,
-              },
-            ],
-            "currentAssignment": Object {
-              "name": "None",
-              "startDate": "",
-            },
-            "imageId": 27,
-            "name": "Ayah Sulaiman",
-            "totalAssignments": 2,
-            "totalGrade": 8,
+            "id": "wN1FhsRhvCOJP3Hs_K1Pq",
+            "imageId": 7,
+            "name": "CS4",
           },
         ]
       }
@@ -2853,22 +2692,6 @@ exports[`Teacher screens snapshots render ClassEditScreen 1`] = `
       windowSize={21}
     >
       <View>
-        <View
-          onLayout={[Function]}
-          style={null}
-        >
-          <View>
-            <View />
-          </View>
-        </View>
-        <View
-          onLayout={[Function]}
-          style={null}
-        >
-          <View>
-            <View />
-          </View>
-        </View>
         <View
           onLayout={[Function]}
           style={null}
@@ -2922,179 +2745,24 @@ exports[`Teacher screens snapshots render ClassMainScreen 1`] = `
       data={
         Array [
           Object {
-            "assignmentHistory": Array [
-              Object {
-                "completionDate": "03-20-2019",
-                "evaluation": Object {
-                  "notes": "",
-                  "overallGrade": 2,
-                },
-                "name": "Al-Baqara 5-9",
-                "startDate": "03-17-2019",
-              },
-            ],
-            "attendanceHistory": Array [
-              Object {
-                "date": "02-23-2019",
-                "isHere": true,
-              },
-              Object {
-                "date": "03-25-2019",
-                "isHere": false,
-              },
-            ],
-            "currentAssignment": Object {
-              "name": "Al-Nahl page 5",
-              "startDate": "03-24-2019",
-            },
-            "imageId": 5,
-            "name": "Ahmed Reducer",
-            "totalAssignments": 1,
-            "totalGrade": 2,
+            "id": "Kvu_cRpBXG5nxUW6mHCNL",
+            "imageId": 1,
+            "name": "CS1 ",
           },
           Object {
-            "assignmentHistory": Array [
-              Object {
-                "completionDate": "03-20-2019",
-                "evaluation": Object {
-                  "notes": "",
-                  "overallGrade": 4,
-                },
-                "name": "Al-Baqara 5-9",
-                "startDate": "03-17-2019",
-              },
-            ],
-            "attendanceHistory": Array [
-              Object {
-                "date": "02-23-2019",
-                "isHere": true,
-              },
-            ],
-            "currentAssignment": Object {
-              "name": "An-Naze'aat",
-              "startDate": "03-24-2019",
-            },
-            "imageId": 25,
-            "name": "Amina Khan",
-            "totalAssignments": 1,
-            "totalGrade": 4,
+            "id": "RPVYO2TFj7Zthc13_V_xg",
+            "imageId": 3,
+            "name": "CS2 ",
           },
           Object {
-            "assignmentHistory": Array [
-              Object {
-                "completionDate": "03-20-2019",
-                "evaluation": Object {
-                  "notes": "",
-                  "overallGrade": 1,
-                },
-                "name": "Al-Baqara 5-9",
-                "startDate": "03-17-2019",
-              },
-            ],
-            "attendanceHistory": Array [
-              Object {
-                "date": "02-23-2019",
-                "isHere": true,
-              },
-            ],
-            "currentAssignment": Object {
-              "name": "Aal-Imran",
-              "startDate": "03-24-2019",
-            },
-            "imageId": 19,
-            "name": "Ayoub Barrak",
-            "totalAssignments": 1,
-            "totalGrade": 1,
+            "id": "U1WNVEvgZ6vmv_DrO6sQ9",
+            "imageId": 4,
+            "name": "CS3",
           },
           Object {
-            "assignmentHistory": Array [
-              Object {
-                "completionDate": "03-20-2019",
-                "evaluation": Object {
-                  "notes": "",
-                  "overallGrade": 5,
-                },
-                "name": "Al-Baqara 5-9",
-                "startDate": "03-17-2019",
-              },
-            ],
-            "attendanceHistory": Array [
-              Object {
-                "date": "02-23-2019",
-                "isHere": true,
-              },
-            ],
-            "currentAssignment": Object {
-              "name": "Al-Toor pages 5, 6, 8",
-              "startDate": "03-24-2019",
-            },
-            "imageId": 21,
-            "name": "Nouha Yacoubi",
-            "totalAssignments": 1,
-            "totalGrade": 5,
-          },
-          Object {
-            "assignmentHistory": Array [
-              Object {
-                "completionDate": "03-20-2019",
-                "evaluation": Object {
-                  "notes": "",
-                  "overallGrade": 2,
-                },
-                "name": "Al-Baqara 5-9",
-                "startDate": "03-17-2019",
-              },
-            ],
-            "attendanceHistory": Array [
-              Object {
-                "date": "02-23-2019",
-                "isHere": true,
-              },
-            ],
-            "currentAssignment": Object {
-              "name": "Al-Baqara pages 5-8",
-              "startDate": "03-24-2019",
-            },
-            "imageId": 15,
-            "name": "Yassine Lightening",
-            "totalAssignments": 1,
-            "totalGrade": 2,
-          },
-          Object {
-            "assignmentHistory": Array [
-              Object {
-                "completionDate": "03-22-2019",
-                "evaluation": Object {
-                  "notes": "",
-                  "overallGrade": 3,
-                },
-                "name": "Al-Baqara 5-9",
-                "startDate": "03-17-2019",
-              },
-              Object {
-                "completionDate": "03-20-2019",
-                "evaluation": Object {
-                  "notes": "",
-                  "overallGrade": 5,
-                },
-                "name": "Al-Baqara 9-15",
-                "startDate": "03-17-2019",
-              },
-            ],
-            "attendanceHistory": Array [
-              Object {
-                "date": "02-23-2019",
-                "isHere": true,
-              },
-            ],
-            "currentAssignment": Object {
-              "name": "None",
-              "startDate": "",
-            },
-            "imageId": 27,
-            "name": "Ayah Sulaiman",
-            "totalAssignments": 2,
-            "totalGrade": 8,
+            "id": "wN1FhsRhvCOJP3Hs_K1Pq",
+            "imageId": 7,
+            "name": "CS4",
           },
         ]
       }
@@ -3121,22 +2789,6 @@ exports[`Teacher screens snapshots render ClassMainScreen 1`] = `
       windowSize={21}
     >
       <View>
-        <View
-          onLayout={[Function]}
-          style={null}
-        >
-          <View>
-            <View />
-          </View>
-        </View>
-        <View
-          onLayout={[Function]}
-          style={null}
-        >
-          <View>
-            <View />
-          </View>
-        </View>
         <View
           onLayout={[Function]}
           style={null}
