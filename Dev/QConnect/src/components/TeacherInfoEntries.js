@@ -81,7 +81,6 @@ const styles = StyleSheet.create({
         paddingLeft: 20,
         fontSize: 14,
         color: colors.darkGrey,
-        backgroundColor: colors.white,
         flex: 1,
         alignSelf: 'stretch'
     },
