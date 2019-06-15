@@ -1,5 +1,6 @@
 import { classReducer, INITIAL_STATE } from 'model/reducers/classReducer';
 import actionTypes from "model/actions/actionTypes";
+import nanoid from 'nanoid/non-secure'
 
   //------ test consts --------
   const teacher_props = {
@@ -49,9 +50,39 @@ const teacher_one_class_no_students = {
 };
 
 const studentInfo = {
+    id: "suid1",
     name: "Test Student 1",
     imageId: 8,
 };
+
+const teacher_one_class_one_student = {
+    ...teacher_one_class_no_students,
+    classes:{
+        ...teacher_one_class_no_students.classes,
+        uid1: {
+            ...teacher_one_class_no_students.classes.uid1,
+            students: ["suid1"]
+        }
+    },
+    students: {
+        "suid1": {
+        ...studentInfo,
+        }
+    },
+    currentAssignments: {
+        byClassId: {
+        uid1:{
+            byStudentId: {
+            "suid1": [
+                {
+                    grade: 0,
+                    name: "None",
+                    startDate: "",
+                    totalAssignments: 0,
+                },
+            ],
+        },
+    }}}}
 
 const date = Date.now;
 
@@ -166,15 +197,14 @@ const teacher_one_class_one_student_with_attendance = {
     ]
 };
 
-
 describe('teacher reducer', () => {
     //------------ Initial state test ---------------------
-    it('should return the initial state', () => {
+    it('should return the initial state', async () => {
         expect(classReducer(undefined, {})).toEqual(INITIAL_STATE)
     })
 
     //------------ AddClass test ---------------------
-    it('should handle ADD_CLASS', () => {
+    it('should handle ADD_CLASS', async () => {
         expect(
             classReducer(teacher_no_class, {
                 type: actionTypes.ADD_CLASS,
@@ -184,64 +214,34 @@ describe('teacher reducer', () => {
     })
 
     //------------ AddStudent test ---------------------
-    it('should handle ADD_STUDENT', () => {
+    it('should handle ADD_STUDENT', async () => {
+        jest.mock('nanoid/non-secure', () => jest.fn(() => 'suid1'));
+
         let payload = {
             studentInfo: studentInfo
         }
+
         actualState = classReducer(teacher_one_class_no_students, {
             type: actionTypes.ADD_STUDENT,
             classId: "uid1",
             studentInfo: payload
         });
 
-        newStudentId = Object.values(actualState.students)[0].id;
-
-        expectedState = {
-            ...teacher_one_class_no_students,
-            classes:{
-                ...teacher_one_class_no_students.classes,
-                uid1: {
-                    ...teacher_one_class_no_students.classes.uid1,
-                    students: [newStudentId]
-                }
-            },
-            students: {
-                [newStudentId]: {
-                ...studentInfo,
-                id: newStudentId
-                }
-            },
-            currentAssignments: {
-                byClassId: {
-                uid1:{
-                    byStudentId: {
-                    [newStudentId]: [
-                        {
-                            grade: 0,
-                            name: "None",
-                            startDate: "",
-                            totalAssignments: 0,
-                        },
-                    ],
-                },
-            }}}
-        }
-
         expect(
-            newState
-        ).toEqual(expectedState);
+            actualState
+        ).toEqual(teacher_one_class_one_student);
     })
 
-//     //------------ DeleteStudent test ---------------------
-//     it('should handle DELETE_STUDENT', () => {
-//         expect(
-//             classReducer(teacher_one_class_one_student, {
-//                 type: actionTypes.DELETE_STUDENT,
-//                 classId: 0,
-//                 studentId: 0
-//             })
-//         ).toEqual(teacher_one_class_no_students);
-//     })
+    // //------------ DeleteStudent test ---------------------
+    // it('should handle DELETE_STUDENT', () => {
+    //     expect(
+    //         classReducer(teacher_one_class_one_student, {
+    //             type: actionTypes.DELETE_STUDENT,
+    //             classId: "uid1",
+    //             studentId: "suid1"
+    //         })
+    //     ).toEqual(teacher_one_class_no_students);
+    // })
 
 //     //------------ AddAttendance test ---------------------
 //     it('should handle ADD_ATTENDANCE', () => {
