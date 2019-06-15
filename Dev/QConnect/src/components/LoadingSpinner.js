@@ -10,8 +10,9 @@ class LoadingSpinner extends Component {
         return (
             <View style={{ marginTop: 20 }}>
                 <ActivityIndicator
-                    size="small"
-                    color={colors.primaryDark} />
+                    size="large"
+                    color={colors.primaryDark}
+                    animating={this.props.isVisible} />
             </View>
         );
     }

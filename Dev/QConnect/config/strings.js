@@ -32,6 +32,17 @@ export default {
     CurrentAssignment: 'Current Assignment',
     AddAssignment: 'Add Assignment',
     Grade: 'Grade',
+    PleaseEnterAnAssignmentName: 'Please enter an assignment name',
+    ImprovementAreas: 'Things to work on: ',
+
+    //-------------------- Evaluation Sub-Categories -----------------------
+    Memorization: "Memorization", 
+    Makharej: "Makharej", 
+    Edgham: "Edgham", 
+    Ekhfae: "Ekhfae", 
+    RulingsOfRaa: "Rulings of Raa'", 
+    Muduud: "Muduud", 
+    Qalqalah: "Qalqalah",
 
     //--------------------- Add Class Screen ---------------------
     PleaseMakeSureToHaveAnInput: 'Please make sure to have an input',
@@ -96,11 +107,6 @@ export default {
     PrivacyPolicy: 'Privacy Policy',
 
     //--------------------------- Credits -------------------------------------------
-    FirstScreenImageCredits: 'First screen image photo by © Hany Khalaf Photography',
-    AvatarCredits: 'Computer vector created by brgfx - www.freepik.com'
-
-
-
-
-
+    FirstScreenImageCredits: 'First screen background photo by © Hany Khalaf Photography',
+    AvatarCredits: 'Computer vector created by brgfx - www.freepik.com',
 }
