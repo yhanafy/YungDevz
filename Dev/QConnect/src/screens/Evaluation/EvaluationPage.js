@@ -136,14 +136,6 @@ export class EvaluationPage extends QcParentScreen {
             /> : <View></View>}
           </View>
         </View>
-
-        <View style={styles.buttonsContainer}>
-          <QcActionButton
-            text={strings.Submit}
-            onPress={() => { this.submitRating(classIndex, studentIndex) }}
-            screen={this.name}
-          />
-        </View>
         <View style={styles.filler}></View>
       </KeyboardAvoidingView>
     </TouchableWithoutFeedback>  
