@@ -91,15 +91,15 @@ export default function migrateFromV0ToV1(state) {
     return {data: migratedState};
 }
 
-function updateAttendance(clsId, studentId, attendance, currentAttendance) {
+function updateAttendance(clsId, studentId, attendance, currentAttendance) {    
     if (!attendance.byClassId[clsId]) {
-      attendance = update(attendance, { byClassId: { $merge: { [clsId]: { byDate: { [currentAttendance.date]: { [studentId]: currentAttendance.isHere } } } } } });
+      attendance = update(attendance, { byClassId: { $merge: { [clsId]: { byStudentId: { [studentId]: { [currentAttendance.date]: currentAttendance.isHere } } } } } });
     }
-    else if (!attendance.byClassId[clsId].byDate[currentAttendance.date]) {
-      attendance = update(attendance, { byClassId: { [clsId]: { byDate: { $merge: { [currentAttendance.date]: { [studentId]: currentAttendance.isHere } } } } } });
+    else if (!attendance.byClassId[clsId].byStudentId[studentId]) {
+      attendance = update(attendance, { byClassId: { [clsId]: { byStudentId: { $merge: { [studentId]: { [currentAttendance.date]: currentAttendance.isHere } } } } } });
     }
     else {
-      attendance = update(attendance, { byClassId: { [clsId]: { byDate: { [currentAttendance.date]: { $merge: { [studentId]: currentAttendance.isHere } } } } } });
+      attendance = update(attendance, { byClassId: { [clsId]: { byStudentId: { [studentId]: { $merge: { [currentAttendance.date]: currentAttendance.isHere } } } } } });
     }
     return attendance;
   }
