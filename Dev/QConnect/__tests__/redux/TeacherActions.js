@@ -2,7 +2,6 @@ import { addClass } from "model/actions/addClass";
 import { addStudent } from "model/actions/addStudent";
 import { deleteStudent } from "model/actions/deleteStudent";
 import { addAttendance } from "model/actions/addAttendance";
-import { addNewAssignment } from "../../src/model/actions/addNewAssignment";
 import { completeCurrentAssignment } from "../../src/model/actions/completeCurrentAssignment";
 import {saveTeacherInfo} from "../../src/model/actions/saveTeacherInfo"
 import { editCurrentAssignment } from "../../src/model/actions/editCurrentAssignment"; 
@@ -14,7 +13,6 @@ describe('actions', () => {
     const classInfo = {
         name: "test class",
         imageId: 1,
-        students: []
       };
     const expectedAction = {
       type: actionTypes.ADD_CLASS,
@@ -26,21 +24,18 @@ describe('actions', () => {
   // ----------- ADD_STUDENT Dispatch ------------------------
   it('should create an action to add a student to a class', () => {
       const studentInfo = {
-        classId: 0,
-        studentInfo: {
-          name: "Tester Student 1",
-          imageId: 6,
-          currentAssignment: "Test assignment",
-          assignmentHistory: [],
-          attendanceHistory: []
-        }
+            name: "Tester Student 1",
+            imageId: 6,
       };
+      
+      const classId = "uid1";
 
     const expectedAction = {
       type: actionTypes.ADD_STUDENT,
+      classId,
       studentInfo
     }
-    expect(addStudent(studentInfo)).toEqual(expectedAction)
+    expect(addStudent(classId, studentInfo)).toEqual(expectedAction)
   })
 
   // ----------- DELETE_STUDENT Dispatch ------------------------
@@ -61,56 +56,34 @@ describe('actions', () => {
   it('should create an action to update a class attendance', () => {
 
     let date = Date.now
-    const attendanceInfo =[
-        {
-            date: date,
-            isHere: false
-        },
-        {
-            date: date,
-            isHere: true
-        },
-        {
-            date: date,
-            isHere: false
-        },
-        {
-            date: date,
-            isHere: true
-        },
-        {
-            date: date,
-            isHere: false
-        },
-        {
-            date: date,
-            isHere: true
-        }
-    ];
-    const classId = 0;
+    const attendanceInfo ={
+      "suid1": {
+        "3/2/1982": false
+      }
+    };
+    const classId = "uid1";
 
     const expectedAction = {
       type: actionTypes.ADD_ATTENDANCE,
       classId,
-      attendanceInfo
+      date,
+      attendanceInfo,
     }
-    expect(addAttendance(classId, attendanceInfo)).toEqual(expectedAction)
+    expect(addAttendance(classId, date, attendanceInfo)).toEqual(expectedAction)
   })
 
 // ----------- SAVE_TEACHER_INFO Dispatch ------------------------
 it('should create an action to save teacher info', () => {
 
-  teacherIndex = 0;
   teacherInfo = {
     name: "test name"
   };
 
   const expectedAction = {
     type: actionTypes.SAVE_TEACHER_INFO,
-    teacherIndex,
     teacherInfo
   }
-  expect(saveTeacherInfo(teacherIndex, teacherInfo)).toEqual(expectedAction)
+  expect(saveTeacherInfo(teacherInfo)).toEqual(expectedAction)
 })
 
 // ----------- EDIT_CURRENT_ASSIGNMENT Dispatch ------------------------
@@ -118,33 +91,15 @@ it("should create an action to edit student's assignment", () => {
 
   classId = 0;
   studentId = 3;
-  newAssignment = {
-    name: "current assignment"
-  }
+  newAssignmentName = "current assignment"
 
   const expectedAction = {
     type: actionTypes.EDIT_CURRENT_ASSIGNMENT,
     classId,
     studentId,
-    newAssignment
-  }
-  expect(editCurrentAssignment(classId, studentId, newAssignment)).toEqual(expectedAction)
-})
-
-// ----------- ADD_NEW_ASSIGNMENT Dispatch ------------------------
-it('should create an action to add a new assignment', () => {
-
-  classId = 0;
-  studentId = 3;
-  newAssignmentName = "test name"
-
-  const expectedAction = {
-    type: actionTypes.ADD_NEW_ASSIGNMENT,
-    classId,
-    studentId,
     newAssignmentName
   }
-  expect(addNewAssignment(classId, studentId, newAssignmentName)).toEqual(expectedAction)
+  expect(editCurrentAssignment(classId, studentId, newAssignmentName)).toEqual(expectedAction)
 })
 
 // ----------- COMPLETE_ASSIGNMENT Dispatch ------------------------

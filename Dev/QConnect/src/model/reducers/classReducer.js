@@ -5,7 +5,6 @@ import Analytics from '@aws-amplify/analytics';
 import analyticsEvents from 'config/analyticsEvents'
 import awsconfig from '../../../aws-exports';
 
-
 export const INITIAL_STATE = {
   firstRunCompleted: false,
   teacher: {
@@ -69,7 +68,26 @@ export const classReducer = (state = INITIAL_STATE, action) => {
       }
     case actionTypes.DELETE_STUDENT:
       {
+        //remove student from the class's roster 
         newState = update(baseState, { classes: { [action.classId]: { students: { $splice: [[action.studentId, 1]] } } } } );
+
+        newState = update(newState, { currentAssignments: { byClassId: { [action.classId]: { byStudentId: {$unset: [action.studentId]}}}}});
+
+        //delete the class entry from currentAssignments object if there are no more students in the class
+        if(Object.entries(newState.currentAssignments.byClassId[action.classId].byStudentId).length == 0){
+          newState = update(newState, { currentAssignments: { byClassId: {$unset: [action.classId]}}});
+        }
+
+        //delete attendance records
+        if(newState.attendance.byClassId[action.classId] && newState.attendance.byClassId[action.classId].byStudentId){
+          newState = update(newState,  { attendance: { byClassId: { [action.classId]: { byStudentId: {$unset: [action.studentId]} } } }} );
+        }
+
+        //delete the class entry from attendance object if there are no more students in the class
+        if(newState.attendance.byClassId[action.classId] && (Object.entries(newState.attendance.byClassId[action.classId].byStudentId).length === 0)){
+          newState = update(newState, { attendance: { byClassId: {$unset: [action.classId]}}});
+        }
+
         return newState;
       }
     case actionTypes.ADD_CLASS:
@@ -82,12 +100,21 @@ export const classReducer = (state = INITIAL_STATE, action) => {
     case actionTypes.ADD_ATTENDANCE:
       {
         let classId = action.classId;
+        
         newState = baseState;
-        if (!baseState.attendance.byClassId[classId]) {
-          newState = update(baseState, { attendance: { byClassId: { $merge: {[classId]: { byDate: { }}}}}});
+        if (!newState.attendance.byClassId[classId]) {
+          newState = update(baseState, { attendance: { byClassId: { $merge: {[classId]: { byStudentId: { }}}}}});
         }
       
-        newState = update(newState,  { attendance: { byClassId: { [classId]: { byDate: {$merge: {[ action.date]: action.attendanceInfo} } } } }} );
+        for (const [key, value] of Object.entries(action.attendanceInfo)) {
+          if(!newState.attendance.byClassId[classId].byStudentId[key]){
+            newState = update(newState,  { attendance: { byClassId: { [classId]: { byStudentId: {[key]: {$set: action.attendanceInfo[key] } } }}}} );
+          }
+          else{
+            newState = update(newState,  { attendance: { byClassId: { [classId]: { byStudentId: {[key]: {$merge: action.attendanceInfo[key] } } }}}} );
+          }
+        }
+        
         return newState;
       }
     case actionTypes.SAVE_TEACHER_INFO:

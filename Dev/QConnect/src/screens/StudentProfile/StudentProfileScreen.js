@@ -4,7 +4,6 @@ import colors from 'config/colors';
 import { Rating } from 'react-native-elements';
 import DialogInput from 'react-native-dialog-input';
 import { editCurrentAssignment } from 'model/actions/editCurrentAssignment';
-import { addNewAssignment } from 'model/actions/addNewAssignment';
 import { updateStudentImage } from 'model/actions/updateStudentImage';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
@@ -370,7 +369,6 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       editCurrentAssignment,
-      addNewAssignment,
       updateStudentImage
     },
     dispatch
