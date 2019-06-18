@@ -43,10 +43,10 @@ export const classReducer = (state = INITIAL_STATE, action) => {
   } = state.teacher;
 
   if (Object.values(actionTypes).indexOf(action.type) > -1) {
-    // Analytics.record({
-    //   name: analyticsEvents.action_dispatched,
-    //   attributes: { type: action.type }
-    // })
+    Analytics.record({
+      name: analyticsEvents.action_dispatched,
+      attributes: { type: action.type }
+    })
   }
 
   const baseState = { ...state };
