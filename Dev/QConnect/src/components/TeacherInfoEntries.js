@@ -3,6 +3,9 @@ import { View, Text, TextInput, StyleSheet } from 'react-native'
 import PropTypes from 'prop-types'
 import colors from 'config/colors'
 import strings from '../../config/strings';
+import usernameImg from 'screens/images/username.png';
+import passwordImg from 'screens/images/password.png';
+import eyeImg from 'screens/images/eye_black.png';
 
 //--------------------------------------------------------------------------
 // Teacher info entries (Name, Phone number, and Email address). 
@@ -17,7 +20,7 @@ export default TeacherInfoEntries = (props) => {
             <View style={styles.infoRow}>
                 <Text style={styles.infoTitle}>{strings.namePlaceHolder}</Text>
                 <View style={{flex: 1}}>
-                <TextInput
+                <UserInput
                     style={styles.infoTextInput}
                     textContentType='name'
                     onChangeText={props.onNameChanged}
@@ -27,7 +30,7 @@ export default TeacherInfoEntries = (props) => {
             <View style={styles.infoRow}>
                 <Text style={styles.infoTitle}>{strings.phoneNumberPlaceHolder}</Text>
                 <View style={{flex: 1}}>
-                <TextInput
+                <UserInput
                     style={styles.infoTextInput}
                     keyboardType='phone-pad'
                     textContentType='telephoneNumber'
@@ -38,12 +41,18 @@ export default TeacherInfoEntries = (props) => {
             <View style={styles.infoRow}>
                 <Text style={styles.infoTitle}>{strings.emailPlaceHolder}</Text>
                 <View style={{flex: 1 }}>
-                <TextInput
+                <UserInput
                     style={styles.infoTextInput}
                     keyboardType='email-address'
                     textContentType='emailAddress'
                     onChangeText={props.onEmailAddressChanged}
-                    value={props.emailAddress} />
+                    value={props.emailAddress} 
+                    source={usernameImg}
+                    placeholder={strings.emailPlaceHolder}
+                    autoCapitalize={'none'}
+                    returnKeyType={'done'}
+                    autoCorrect={false}
+                    />
                     </View>
             </View>
         </View>

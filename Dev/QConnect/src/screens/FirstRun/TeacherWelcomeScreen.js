@@ -14,6 +14,7 @@ import teacherImages from "config/teacherImages";
 import strings from "config/strings";
 import QcParentScreen from "screens/QcParentScreen";
 import FadeInView from "../../components/FadeInView";
+import UserInput from "screens/AuthenticationScreens/UserInput.js"
 
 //To-Do: All info in this class is static, still needs to be hooked up to data base in order
 //to function dynamically
@@ -62,6 +63,21 @@ export class TeacherWelcomeScreen extends QcParentScreen {
     profileImageId: this.initialDefaultImageId,
     highlightedImagesIndices: this.getHighlightedImages()
   };
+
+  signUp = (username, password, email, phone_number) => {
+    console.log("inside signup.... " + username, password);
+
+    Auth.signUp({
+        username: this.state.emailAddress,
+        password,
+        attributes: {
+            email,          // optional
+        },
+        validationData: []  //optional
+        })
+        .then(data => console.log(data))
+        .catch(err => console.log(err));
+  }
 
     //this method saves the new profile information to the redux database
     saveNewTeacherInfo = () => {

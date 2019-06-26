@@ -101,6 +101,7 @@ export default {
     namePlaceHolder: "Name",
     emailPlaceHolder: "Email",
     phoneNumberPlaceHolder: "Phone Number",
+    password: "Password",
 
     //--------------------------- Settings -------------------------------------------
     Credits: 'Photo Credit',
