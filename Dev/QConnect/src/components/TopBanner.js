@@ -73,8 +73,8 @@ const styles = StyleSheet.create({
         alignItems: 'stretch',
         backgroundColor: colors.white,
         borderBottomWidth: 0.25,
-        borderBottomColor: colors.black
-    
+        borderBottomColor: colors.black,
+        paddingTop: 25,
     },
     topLeftView: { 
         flex: 1.5
@@ -105,8 +105,8 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
-    let classIndex = state.data.teachers[0].currentClassIndex;
-    let className = classIndex >= 0 ? state.data.teachers[0].classes[classIndex].name : "Quran Class";
+    let classId = state.data.teacher.currentClassId;
+    let className = classId.length > 0 ? state.data.classes[classId].name : "Quran Class";
     return { className };
 };
 

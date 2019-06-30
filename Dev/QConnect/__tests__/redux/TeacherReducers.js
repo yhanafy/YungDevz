@@ -6,127 +6,164 @@ import actionTypes from "model/actions/actionTypes";
     name: "Teacher Name 1",
     phoneNumber: "123-456-789",
     emailAddress: "test@email.com",
-    currentClassIndex: 0,
+    currentClassId: "",
     profileImageId: 5
 };
 
 const teacher_no_class = {
-    teachers: [
-        {
-            ...teacher_props,
-            classes: []
-        }]
+    assignmentsHistory: {byStudentId: {}},
+    attendance: {byClassId: {}},
+    classes: {},
+    currentAssignments: {byClassId: {}},
+    students: {},
+    teacher: {
+        ...teacher_props,
+        classes: []
+    }
 };
 
 const classInfo = {
+    id: "uid1",
     name: "test class",
     imageId: 1,
     students: []
 };
 
 const teacher_one_class_no_students = {
-    teachers: [
-        {
-            ...teacher_props,
-            classes: [
-                classInfo
-            ]
+    assignmentsHistory: {byStudentId: {}},
+    attendance: {byClassId: {}},
+    classes: {
+        [classInfo.id]: {
+            ...classInfo
         }
-    ]
+    },
+    currentAssignments: {byClassId: {}},
+    students: {},
+    teacher: {
+        ...teacher_props,
+        currentClassId: "uid1",
+        classes: [
+            classInfo.id
+        ]
+    },
 };
 
 const studentInfo = {
+    id: "suid1",
     name: "Test Student 1",
     imageId: 8,
-    attendanceHistory: [],
-    assignmentHistory: [],
-    totalAssignments: 0,
-    totalGrade: 0,
+};
+
+const teacher_one_class_student_removed_from_class = {
+    assignmentsHistory: {byStudentId: {}},
+    attendance: {byClassId: {}},
+    classes: {
+        [classInfo.id]: {
+            ...classInfo
+        }
+    },
+    currentAssignments: {byClassId: {}},
+    students: {
+        suid1: {
+            ...studentInfo
+        }
+    },
+    teacher: {
+        ...teacher_props,
+        currentClassId: "uid1",
+        classes: [
+            classInfo.id
+        ]
+    },
 };
 
 const teacher_one_class_one_student = {
-    teachers: [
-        {
-            ...teacher_props,
-            classes: [
-                {
-                    ...classInfo,
-                    students: [
-                        studentInfo
-                    ]
-                }
-            ]
+    ...teacher_one_class_no_students,
+    classes:{
+        ...teacher_one_class_no_students.classes,
+        uid1: {
+            ...teacher_one_class_no_students.classes.uid1,
+            students: ["suid1"]
         }
-    ]
-};
+    },
+    students: {
+        "suid1": {
+        ...studentInfo,
+        }
+    },
+    currentAssignments: {
+        byClassId: {
+        "uid1":{
+            byStudentId: {
+            "suid1": [
+                {
+                    grade: 0,
+                    name: "None",
+                    startDate: "",
+                    totalAssignments: 0,
+                },
+            ],
+        },
+    }}}}
 
 const date = Date.now;
 
 const attendanceInfo = {
-    date: date,
-    isHere: false
+    suid1: {
+        "12/31/2018": false
+    }
 };
 
 const new_assignment_text = "Test new assignment";
 const teacher_one_class_one_student_with_new_assignment = {
-    teachers: [
-        {
-            ...teacher_props,
-            classes: [
+    ...teacher_one_class_one_student,
+    currentAssignments: {
+        byClassId: {
+        uid1:{
+            byStudentId: {
+            "suid1": [
                 {
-                    ...classInfo,
-                    students: [
-                        {
-                            ...studentInfo,
-                            currentAssignment: {
-                                name: new_assignment_text,
-                                startDate: "12/31/2018"
-                            }
-                        }
-                    ]
-                }
-            ]
-        }
-    ]
+                    grade: 0,
+                    name: new_assignment_text,
+                    startDate: "12/31/2018",
+                    totalAssignments: 0,
+                },
+            ],
+        },
+    }}
+    }
 };
 
 const updated_assignment_text = "Updated assignment";
 
 const teacher_one_class_one_student_updated_assignment = {
-    teachers: [
-        {
-            ...teacher_props,
-            classes: [
-                {
-                    ...classInfo,
-                    students: [
-                        {
-                            ...studentInfo,
-                            currentAssignment: {
-                                name: updated_assignment_text,
-                                startDate: "12/31/2018"
-                            }
-                        }
-                    ]
-                }
-            ]
+    ...teacher_one_class_one_student_with_new_assignment,
+        currentAssignments: {
+            byClassId: {
+            uid1:{
+                byStudentId: {
+                "suid1": [
+                    {
+                        grade: 0,
+                        name: updated_assignment_text,
+                        startDate: "12/31/2018",
+                        totalAssignments: 0,
+                    },
+                ],
+            },
+        }}
         }
-    ]
 };
 
 const evaluation = {
-    mainGrade: 4,
-    categoriesGrades: [
-      {
-        name: "Memorization",
-        grade: 'not graded',
-      }
+    notes: 'Great job',
+    improvementAreas: [
+        'Makharej'
     ],
-    notes: "good job",
-    overallGrade: 3,
-  }
+    grade: 5
+}
 
-const studentAssignmentHistory =  [{
+const studentassignmentsHistory =  [{
         name: "Test new assignment",
         startDate: "12/31/2018",
         evaluation: evaluation,
@@ -134,60 +171,82 @@ const studentAssignmentHistory =  [{
     }]
 
     const teacher_one_class_one_student_completed_assignment = {
-        teachers: [
-            {
-                ...teacher_props,
-                classes: [
-                    {
-                        ...classInfo,
-                        students: [
+        ...teacher_one_class_one_student_with_new_assignment,
+        currentAssignments: {
+            byClassId: {
+                uid1: {
+                    byStudentId: {
+                        "suid1": [
                             {
-                                ...studentInfo,
-                                totalGrade: 3,
+                                grade: 5,
+                                name: new_assignment_text,
+                                startDate: "12/31/2018",
                                 totalAssignments: 1,
-                                currentAssignment: {
-                                    name: new_assignment_text,
-                                    startDate: "12/31/2018"
-                                },
-                                assignmentHistory: studentAssignmentHistory
-                            }
+                            },
+                        ],
+                    },
+                }
+            }
+        },
+        assignmentsHistory: {
+            byStudentId: {
+                suid1: {
+                    byClassId: {
+                        uid1:[
+                        {
+                            name: new_assignment_text,
+                            startDate: '12/31/2018',
+                            completionDate: '12/31/2018',
+                            evaluation: evaluation
+                        }
                         ]
                     }
-                ]
+                }
             }
-        ]
+        }
     };
     
 const teacher_one_class_one_student_with_attendance = {
-    teachers: [
-        {
-            ...teacher_props,
-            classes: [
-                {
-                    ...classInfo,
-                    students: [
-                        {
-                            ...studentInfo,
-                            attendanceHistory: [
-                                attendanceInfo
-                            ]
-                        }
-                    ]
+    ...teacher_one_class_one_student,
+    attendance: {
+        byClassId: {
+            uid1: {
+                byStudentId: {
+                    suid1: {
+                        "12/31/2018": false
+                    }
                 }
-            ]
+            }
         }
-    ]
+    }
 };
 
+//----- Mocking AWS Analytics -------------------------
+//Todo: we should create a real mock instead of hacking global
+//--------------------------------------------------------
+const RealAnalytics = require('@aws-amplify/analytics')
 
+afterEach(() => {
+    global.Analytics = RealAnalytics
+})
+
+class MockAnalytics {
+    static configure(data){return ""};
+}
+
+beforeEach(() => {
+    global.Analytics = jest.fn(() => MockAnalytics);
+})
+//----------- End of mocking Analytics ------------------
+  
 describe('teacher reducer', () => {
     //------------ Initial state test ---------------------
-    it('should return the initial state', () => {
+    it('should return the initial state', async () => {
         expect(classReducer(undefined, {})).toEqual(INITIAL_STATE)
     })
 
     //------------ AddClass test ---------------------
-    it('should handle ADD_CLASS', () => {
+    it('should handle ADD_CLASS', async () => {
         expect(
             classReducer(teacher_no_class, {
                 type: actionTypes.ADD_CLASS,
@@ -197,16 +256,21 @@ describe('teacher reducer', () => {
     })
 
     //------------ AddStudent test ---------------------
-    it('should handle ADD_STUDENT', () => {
+    it('should handle ADD_STUDENT', async () => {
+        jest.mock('nanoid/non-secure', () => jest.fn(() => 'suid1'));
+
         let payload = {
-            classIndex: 0,
             studentInfo: studentInfo
         }
+
+        actualState = classReducer(teacher_one_class_no_students, {
+            type: actionTypes.ADD_STUDENT,
+            classId: "uid1",
+            studentInfo: payload
+        });
+
         expect(
-            classReducer(teacher_one_class_no_students, {
-                type: actionTypes.ADD_STUDENT,
-                studentInfo: payload
-            })
+            actualState
         ).toEqual(teacher_one_class_one_student);
     })
 
@@ -215,21 +279,29 @@ describe('teacher reducer', () => {
         expect(
             classReducer(teacher_one_class_one_student, {
                 type: actionTypes.DELETE_STUDENT,
-                classIndex: 0,
-                studentIndex: 0
+                classId: "uid1",
+                studentId: "suid1"
             })
-        ).toEqual(teacher_one_class_no_students);
+        ).toEqual(teacher_one_class_student_removed_from_class);
+
+        // test removing a student who has attendance record
+        expect(
+            classReducer(teacher_one_class_one_student_with_attendance, {
+                type: actionTypes.DELETE_STUDENT,
+                classId: "uid1",
+                studentId: "suid1"
+            })
+        ).toEqual(teacher_one_class_student_removed_from_class);
     })
 
     //------------ AddAttendance test ---------------------
     it('should handle ADD_ATTENDANCE', () => {
-        const classIndex = 0;
 
         expect(
             classReducer(teacher_one_class_one_student, {
                 type: actionTypes.ADD_ATTENDANCE,
-                classIndex: classIndex,
-                attendanceInfo: [attendanceInfo]
+                classId: "uid1",
+                attendanceInfo: attendanceInfo
             })
         ).toEqual(teacher_one_class_one_student_with_attendance);
     })
@@ -252,14 +324,13 @@ describe('teacher reducer with mock dates', () => {
     })
         
     //------------ AddNewAssignment test ---------------------
-    it('should handle ADD_NEW_ASSIGNMENT', () => {
-        const classIndex = 0;
+    it('should handle Adding new assignment', () => {
 
         expect(
             classReducer(teacher_one_class_one_student, {
-                type: actionTypes.ADD_NEW_ASSIGNMENT,
-                classIndex: classIndex,
-                studentIndex: 0,
+                type: actionTypes.EDIT_CURRENT_ASSIGNMENT,
+                classId: "uid1",
+                studentId: "suid1",
                 newAssignmentName: new_assignment_text
             })
         ).toEqual(teacher_one_class_one_student_with_new_assignment);
@@ -267,30 +338,33 @@ describe('teacher reducer with mock dates', () => {
 
     //------------ EditCurrentAssignment test ---------------------
     it('should handle EDIT_CURRENT_ASSIGNMENT', () => {
-        const classIndex = 0;
+
+        actual = classReducer(teacher_one_class_one_student_with_new_assignment, {
+            type: actionTypes.EDIT_CURRENT_ASSIGNMENT,
+            classId: "uid1",
+            studentId: "suid1",
+            newAssignmentName: updated_assignment_text
+        });
 
         updated_assignment = { name: updated_assignment_text, startDate: new Date().toLocaleDateString("EN-US") }
         expect(
-            classReducer(teacher_one_class_one_student_with_new_assignment, {
-                type: actionTypes.EDIT_CURRENT_ASSIGNMENT,
-                classIndex: classIndex,
-                studentIndex: 0,
-                newAssignment: updated_assignment
-            })
+            actual
         ).toEqual(teacher_one_class_one_student_updated_assignment);
+
     })
 
     //------------ CompleteCurrentAssignment test ---------------------
     it('should handle COMPLETE_CURRENT_ASSIGNMENT', () => {
-        const classIndex = 0;
+
+        actual = classReducer(teacher_one_class_one_student_with_new_assignment, {
+            type: actionTypes.COMPLETE_CURRENT_ASSIGNMENT,
+            classId: "uid1",
+            studentId: "suid1",
+            evaluation: evaluation
+        });
 
         expect(
-            classReducer(teacher_one_class_one_student_with_new_assignment, {
-                type: actionTypes.COMPLETE_CURRENT_ASSIGNMENT,
-                classIndex: classIndex,
-                studentIndex: 0,
-                evaluation: evaluation
-            })
+            actual
         ).toEqual(teacher_one_class_one_student_completed_assignment);
-    })
+   })
 })

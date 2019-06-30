@@ -18,7 +18,7 @@ export class ClassAttendanceScreen extends QcParentScreen {
 
     todaysDate = this.props.defaultDate ? this.props.defaultDate : new Date().toLocaleDateString("en-US")
     state = {
-        selectedStudents: [],
+        absentStudents: [],
         selectedDate: this.todaysDate
     }
 
@@ -26,7 +26,7 @@ export class ClassAttendanceScreen extends QcParentScreen {
     //by either removing the student or adding them to the array of selected students
     //based on if they are already in the array or not
     onStudentSelected = (id) => {
-        let tmp = this.state.selectedStudents;
+        let tmp = this.state.absentStudents;
 
         if (tmp.includes(id)) {
             tmp.splice(tmp.indexOf(id), 1);
@@ -35,7 +35,7 @@ export class ClassAttendanceScreen extends QcParentScreen {
         }
 
         this.setState({
-            selectedStudents: tmp,
+            absentStudents: tmp,
             selectedDate: this.state.selectedDate
         });
 
@@ -44,70 +44,53 @@ export class ClassAttendanceScreen extends QcParentScreen {
     //fetches the current selected students and the current selected date and adds the current
     //attendance to the database
     saveAttendance = () => {
-        let selected = this.state.selectedStudents;
+        let absent = this.state.absentStudents;
         let date = this.state.selectedDate;
-        let studentList = this.props.students;
-        let attendanceInfo = [];
-        for (let i = 0; i < studentList.length; i++) {
-            //If the current state of selected students includes the current student being
-            //iterated over, then the student will be marked as absent. If not, then the student
-            //is present
-            if (selected.includes(i)) {
-                attendanceInfo.push({
-                    date: date,
-                    isHere: false
-                });
-            } else {
-                attendanceInfo.push({
-                    date: date,
-                    isHere: true
-                });
-            }
-        }
+        let attendanceInfo = {};
+
+        this.props.students.map((student, index) => {
+            attendanceInfo = {
+                ...attendanceInfo,
+                [student.id]: {
+                    [date]: !absent.includes(index)}
+                }
+        });
+
         this.props.addAttendance(
-            this.props.classIndex,
-            attendanceInfo
+            this.props.classId,
+            date,
+            attendanceInfo,
         );
+
         this.refs.toast.show(strings.AttendanceFor + date + strings.HasBeenSaved, DURATION.LENGTH_SHORT);
     }
 
     //This method will set the state of the attendance screen based on the isHere property
     //from each student's attendance history based on the corresponding date
     getAttendance = (date) => {
-        let studentList = this.props.students;
-        let selected = [];
-        //Maps out the list of students
-        studentList.map((student, i) => {
-            let attHistory = student.attendanceHistory;
-            let counter = 0;
-            let wasHere = true;
-            //goes through attendance history of the student from the beginning.
-            //If the date in the attendance history matches the date that is currently
-            //seleted, then the boolean "wasHere" will be set to whether the student
-            //was there or not on the given date. Then it will break out of the for loop
-            //since there is no point of going any further.
-            for (counter; counter < attHistory.length; counter++) {
-                if (attHistory[counter].date === date) {
-                    wasHere = attHistory[counter].isHere;
-                    break;
+        const { students, classId, attendance } = this.props;
+
+        let absent = [];
+        //Capture absent students to flag them in the UI.
+        if (attendance.byClassId[classId]) {
+            students.map((student, i) => {
+                let wasHere = attendance.byClassId[classId].byStudentId[student.id].date;
+
+                if (!wasHere) {
+                    absent.push(i);
                 }
-            }
-            //At the end, it will add which students should be selected into the selected
-            //array which will later be passed to the state.
-            if (!wasHere) {
-                selected.push(i);
-            }
-        })
+            })
+        }
 
         this.setState({
-            selectedStudents: selected,
+            absentStudents: absent,
             selectedDate: date
         })
     }
 
     render() {
 
-        const { classIndex } = this.props;
+        const { classId } = this.props;
 
         return (
             //The scroll view will have at the top a date picker which will be defaulted to the current
@@ -134,13 +117,13 @@ export class ClassAttendanceScreen extends QcParentScreen {
                     />
                 </View>
                 {this.props.students.map((student, i) => {
-                    let color = this.state.selectedStudents.includes(i) ? colors.red : colors.green;
+                    let color = this.state.absentStudents.includes(i) ? colors.red : colors.green;
                     return (
                         <StudentCard
                             key={i}
                             studentName={student.name}
                             profilePic={studentImages.images[student.imageId]}
-                            currentAssignment={student.currentAssignment.name}
+                            currentAssignment={this.props.currentAssignments.byStudentId[student.id][0].name}
                             background={color}
                             onPress={() => this.onStudentSelected(i)}
                         />
@@ -170,7 +153,9 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
-    return mapStateToCurrentClassProps(state)
+    let props = mapStateToCurrentClassProps(state)
+    let attendance = state.data.attendance.byClassId[props.classId];
+    return { ...props, attendance }
 };
 
 const mapDispatchToProps = dispatch => (

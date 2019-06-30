@@ -18,7 +18,7 @@ export class EvaluationPage extends QcParentScreen {
 
   // -------------  Current evaluation state ---------------------
   state = {
-    overallGrade: 0,
+    grade: 0,
     notes: this.props.navigation.state.params.notes,
     improvementAreas: []
   }
@@ -29,45 +29,47 @@ export class EvaluationPage extends QcParentScreen {
   updateCategoryRating = (name, rating) => {
 
     this.setState({
-      overallGrade: this.state.overallGrade,
+      grade: this.state.grade,
       improvementAreas: categoriesGrades,
       notes: this.state.notes
     })
   }
 
   //----- Saves the rating to db and pops to previous view ---------
-  doSubmitRating(classIndex, studentIndex) {
-    this.props.completeCurrentAssignment(classIndex, studentIndex, this.state);
+  doSubmitRating(classId, studentId){
+    const {fontLoaded, ...evaluationDetails} = this.state;
+    this.props.completeCurrentAssignment(classId, studentId, evaluationDetails);
 
-    // keep the assignment name as the last assignment to reduce retype since most of the times the next assignment would be the same surah (next portion) or a redo.
-    // todo: eventually right after grading we should have a step for the teacher to update the next assignment
-    this.props.editCurrentAssignment(classIndex, studentIndex, { name: this.props.currentAssignment.name, startDate: "" });
-    this.props.navigation.pop();
+      // keep the assignment name as the last assignment to reduce retype since most of the times the next assignment would be the same surah (next portion) or a redo.
+      // todo: eventually right after grading we should have a step for the teacher to update the next assignment
+      this.props.editCurrentAssignment(classId, studentId, this.props.currentAssignment.name );
+      this.props.navigation.pop();
   }
 
   //------------  Ensures a rating is inputted before submitting it -------
-  submitRating(classIndex, studentIndex) {
-    if (this.state.overallGrade === 0) {
+  submitRating(classId, studentId) {
+    if (this.state.grade === 0) {
       Alert.alert(
         'No Rating',
         strings.AreYouSureYouWantToProceed,
         [
           {
             text: 'Yes', style: 'cancel', onPress: () => {
-              this.doSubmitRating(classIndex, studentIndex)
+              this.doSubmitRating(classId, studentId)
             }
           },
           { text: 'No', style: 'cancel' }
         ]
       );
     } else {
-      this.doSubmitRating(classIndex, studentIndex);
+      this.doSubmitRating(classId, studentId);
     }
   }
 
   // --------------  Renders Evaluation scree UI --------------
   render() {
-    const { classIndex, studentIndex, readOnly,  rating, notes, assignmentName, completionDate, improvementAreas } = this.props.navigation.state.params;
+    const { classId, studentId, readOnly,  rating, notes, assignmentName, completionDate, improvementAreas } = this.props.navigation.state.params;
+
     const { imageId } = this.props;
 
     _rating = rating? rating : 0;
@@ -98,7 +100,7 @@ export class EvaluationPage extends QcParentScreen {
                   size={30}
                   showRating={false}
                   onFinishRating={(value) => this.setState({
-                    overallGrade: value
+                    grade: value
                   })}
                   isDisabled={readOnly}
                 />
@@ -132,7 +134,7 @@ export class EvaluationPage extends QcParentScreen {
           {!readOnly? 
             <QcActionButton
               text={strings.Submit}
-              onPress={() => { this.submitRating(classIndex, studentIndex) }}
+              onPress={() => { this.submitRating(classId, studentId) }}
               screen={this.name}
             /> : <View></View>}
           </View>
@@ -234,8 +236,10 @@ const styles = StyleSheet.create({
 // ------------ Redux hook up --------------------------------
 
 const mapStateToProps = (state, ownProps) => {
-  const { classIndex, studentIndex } = ownProps.navigation.state.params;
-  state = state.data.teachers[0].classes[classIndex].students[studentIndex];
+  const { classId, studentId } = ownProps.navigation.state.params;
+  student = state.data.students[studentId];
+  currentAssignment = state.data.currentAssignments.byClassId[classId].byStudentId[studentId][0]; //todo: support multiple current assignments
+  state = {classId, ...student, currentAssignment }
   return state;
 };
 
