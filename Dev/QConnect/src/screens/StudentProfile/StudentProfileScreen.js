@@ -158,11 +158,11 @@ class StudentProfileScreen extends QcParentScreen {
                 keyExtractor={(item, index) => item.name + index}
                 renderItem={({ item, index }) => (
                   <TouchableOpacity onPress={() => this.props.navigation.push("EvaluationPage", {
-                    classIndex: classIndex,
-                    studentIndex: studentIndex,
+                    classId: classId,
+                    studentId: studentId,
                     assignmentName: item.name,
                     completionDate: item.completionDate,
-                    rating: item.evaluation.overallGrade,
+                    rating: item.evaluation.grade,
                     notes: item.evaluation.notes,
                     improvementAreas: item.evaluation.improvementAreas,
                     readOnly: true
