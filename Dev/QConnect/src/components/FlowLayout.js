@@ -1,27 +1,15 @@
 // ------- FlowLayout: Sorts items in a way similar to Android's FlowLayout ------
 // items flowing through the row and then overflowing down to next columns ------
 //--------------------------------------------------------------------------------
-import React, {
-	Component,
-} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
-import {
-	StyleSheet,
-	PixelRatio,
-	Text,
-	View,
-	TouchableOpacity,
-	Platform,
-	Dimensions,
-} from 'react-native';
-import colors from 'config/colors'
+import { StyleSheet, PixelRatio, Text, View, TouchableOpacity, Dimensions, Modal, FlatList, TextInput } from 'react-native';
+import colors from 'config/colors';
 import strings from 'config/strings';
+import QcActionButton from './QcActionButton';
+import { Badge } from 'react-native-elements';
 
-var {
-	width,
-	height
-} = Dimensions.get('window');
+var { width } = Dimensions.get('window');
 
 class FlowView extends Component {
 
@@ -73,16 +61,30 @@ class FlowView extends Component {
 		return (
 			<View>
 				<TouchableOpacity
-				 disabled={this.props.readOnly}
-				 onPress={() => {
-					if(!this.props.readOnly){
-						this.props.onClick();
-						this.setState({ isSelected: !this.state.isSelected });
-					}
-				}}>
-					<View style={[styles.corner, { backgroundColor: this._backgoundColor() }]}>
+					disabled={this.props.readOnly}
+					onPress={() => {
+						if (!this.props.readOnly) {
+							this.props.onClick();
+							if (this.props.text !== strings.Ellipses && this.props.text !== strings.PlusSign && !this.props.editMode) {
+								this.setState({ isSelected: !this.state.isSelected });
+							}
+						}
+					}}>
+					<View style={[styles.corner, { backgroundColor: this.props.backgroundColor ? this.props.backgroundColor : this._backgoundColor() }]}>
 						<Text style={[styles.text, { color: this._textColor() }]}>{this.props.text}</Text>
 					</View>
+					{
+						this.props.isBadgeVisible ? (
+							<Badge
+								value={strings.MinusSign}
+								badgeStyle={{ width: 20, height: 20, borderRadius: 10, backgroundColor: colors.red }}
+								textStyle={styles.minusText}
+								containerStyle={{ position: 'absolute', top: 2, right: 2 }}
+							/>
+						) : (
+								<View></View>
+							)
+					}
 				</TouchableOpacity>
 			</View>
 		);
@@ -91,6 +93,7 @@ class FlowView extends Component {
 }
 
 export default class FlowLayout extends Component {
+
 	static propTypes = {
 		style: PropTypes.object,
 		dataValue: PropTypes.array,
@@ -108,15 +111,18 @@ export default class FlowLayout extends Component {
 	}
 	constructor(props) {
 		super(props);
-
 		this.state = {
+			modalVisible: false,
+			dataValue: this.props.dataValue,
 			selectedState: new Array(this.props.dataValue.length).fill(false),
+			isBadgeVisible: false
+
 		};
 
 	}
 	change() {
 		for (var i = 0; i < this.state.selectedState.length; i++) {
-			let item = this.refs[this.props.dataValue[i]];
+			let item = this.refs[this.state.dataValue[i]];
 			if (item) {
 				item.setSelected(this.state.selectedState[i]);
 			}
@@ -128,53 +134,150 @@ export default class FlowLayout extends Component {
 		let list = [];
 		this.state.selectedState.forEach((value, key) => {
 			if (value) {
-				list.push(this.props.dataValue[key]);
+				list.push(this.state.dataValue[key]);
 			}
 		});
 		return list;
 	}
 	resetData() {
 		this.setState({
-			selectedState: new Array(this.props.dataValue.length).fill(false),
+			selectedState: new Array(this.state.dataValue.length).fill(false),
 		}, () => {
 			this.change();
 		})
 	}
+	openCustomImprovements() {
+		this.setState({ modalVisible: true });
+	}
 
 	render() {
-		let items = this.props.dataValue.map((value, position) => {
-			return (
-				<View key={position}>
-					<FlowView ref={this.props.dataValue[position]} text={value} readOnly={this.props.readOnly} onClick={() => {
-						if (this.props.multiselect == false) {
-							for (var i = this.state.selectedState.length - 1; i >= 0; i--) {
-								if (i == position) {
-									continue;
-								}
-								if (this.state.selectedState[i] == true) {
-									this.state.selectedState[i] = false;
-									break;
-								}
-							}
-						}
-						this.state.selectedState[position] = !this.state.selectedState[position];
-
-						this.change();
-					}} />
-				</View>
-			);
-		});
-
+		const { dataValue } = this.state;
+		//Creates a new array of data values that exclude the ellipses & instead
+		//include an addition symbol to add new improvments
 		return (
 			<View>
-				<View style={[styles.container, this.props.style]}>
-					{items}
+				<Modal
+					transparent={true}
+					visible={this.state.modalVisible}
+					presentationStyle="overFullScreen">
+					<View style={styles.modalStyle}>
+						<View style={{
+							flex: 1,
+							flexDirection: 'row',
+							flexWrap: 'wrap',
+							justifyContent: 'center'
+						}}>
+							{
+								this.state.isBadgeVisible === true ? (
+									dataValue.map((value, position) => {
+										return (
+											<View key={position}>
+												<FlowView isBadgeVisible={true} ref={this.state.dataValue[position]} text={value} readOnly={false} onClick={() => {
+													dataValue.splice(position, position + 1);
+													this.setState({ dataValue })
+												}} />
+											</View>
+										);
+									})
+								) : (
+										dataValue.map((value, position) => {
+											return (
+												<View key={position}>
+													<FlowView ref={this.state.dataValue[position]} text={value} editMode={true} readOnly={false} onClick={() => {
+
+													}} />
+												</View>
+											);
+										})
+									)
+							}
+							{
+								this.state.isBadgeVisible === true ? (
+									<View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
+										<FlowView backgroundColor={colors.primaryLight} text={strings.PlusSign} onClick={() => {
+
+										}} />
+										<FlowView text={strings.Ellipses} backgroundColor={colors.primaryLight} onClick={() => {
+											this.setState({ isBadgeVisible: false })
+										}} />
+									</View>
+								) : (
+										<FlowView text={strings.Ellipses} backgroundColor={colors.primaryLight} onClick={() => {
+											this.setState({ isBadgeVisible: true })
+										}} />
+									)
+							}
+						</View>
+						<View style={{ justifyContent: 'space-between', flexDirection: 'row' }}>
+							<QcActionButton
+								text={strings.Done}
+								onPress={() => { this.setState({ modalVisible: false }) }}
+							/>
+						</View>
+					</View>
+
+				</Modal>
+				<View style={styles.container}>
+					{
+						dataValue.map((value, position) => {
+							return (
+								<View key={position}>
+									<FlowView ref={dataValue[position]} text={value} readOnly={this.props.readOnly} onClick={() => {
+
+										if (this.props.multiselect == false) {
+											for (var i = this.state.selectedState.length - 1; i >= 0; i--) {
+												if (i == position) {
+													continue;
+												}
+												if (this.state.selectedState[i] == true) {
+													this.state.selectedState[i] = false;
+													break;
+												}
+											}
+										}
+										this.state.selectedState[position] = !this.state.selectedState[position];
+
+										this.change();
+									}} />
+								</View>
+							);
+						})}
+					{
+						//Only shows the ellipses if this is not read only
+						(!this.props.readOnly) ? (
+							<FlowView text={strings.Ellipses} onClick={() => {
+								this.openCustomImprovements();
+							}} />
+						) :
+							(
+								<View></View>
+							)
+					}
 				</View>
 			</View>
 		);
 	};
 }
 const styles = StyleSheet.create({
+	modalStyle: {
+		backgroundColor: colors.white,
+		alignItems: 'center',
+		justifyContent: 'center',
+		height: Dimensions.get('window').height - 200,
+		flexDirection: 'column',
+		marginTop: 100,
+		borderWidth: 1,
+		borderRadius: 2,
+		borderColor: colors.grey,
+		borderBottomWidth: 1,
+		shadowColor: colors.darkGrey,
+		shadowOffset: { width: 0, height: 2 },
+		shadowOpacity: 0.8,
+		shadowRadius: 3,
+		elevation: 2,
+		marginLeft: 20,
+		marginRight: 20,
+	},
 	corner: {
 		borderColor: colors.grey,
 		borderWidth: 1 / PixelRatio.get(),
@@ -191,10 +294,13 @@ const styles = StyleSheet.create({
 		fontSize: 16,
 		textAlign: 'center',
 	},
+	minusText: {
+		fontSize: 10,
+		color: colors.white
+	},
 	container: {
 		flexDirection: 'row',
 		flexWrap: 'wrap',
-		alignItems: 'flex-start',
 		marginHorizontal: 15,
 		width: width - 40,
 	},
