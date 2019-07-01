@@ -14,12 +14,11 @@ import QcParentScreen from "screens/QcParentScreen";
 
 class LeftNavPane extends QcParentScreen {
   name = "LeftNavPane";
-
-  openClass = (i, className) => {
+  
+  openClass = (id, className) => {
     //update current class index in redux
     this.props.saveTeacherInfo(
-      0, //todo: proper id here..
-      { currentClassIndex: i }
+      { currentClassId: id }
     );
 
     //navigate to the selected class
@@ -30,7 +29,7 @@ class LeftNavPane extends QcParentScreen {
   //todo: change the ListItem header and footer below to the shared drawer component intead
   // generalize the QcDrawerItem to accept either an image or an icon
   render() {
-    const { name, profileImageId, currentClassIndex } = this.props;
+    const { name, profileImageId, currentClassId } = this.props;
 
     const profileCaption = name + strings.sProfile
     const teacherImageId = profileImageId ? profileImageId : 0
@@ -65,7 +64,7 @@ class LeftNavPane extends QcParentScreen {
               <QcDrawerItem
                 title={item.name}
                 image={classImages.images[item.imageId]}
-                onPress={() => this.openClass(index, item.name)}
+                onPress={() => this.openClass(item.id, item.name)}
               />
             )} />
 
@@ -91,9 +90,15 @@ const styles = StyleSheet.create({
   }
 });
 
+const getTeacherClasses = (classIds, classes) => {
+   return Object.values(classes).filter(c => classIds.includes(c.id))
+}
+
 const mapStateToProps = state => {
-  const { classes, name, profileImageId, currentClassIndex } = state.data.teachers[0];
-  return { classes, name, profileImageId, currentClassIndex };
+  const { name, profileImageId, currentClassId } = state.data.teacher;
+  const classes = getTeacherClasses(state.data.teacher.classes, state.data.classes);
+
+  return { classes, name, profileImageId, currentClassId };
 };
 
 const mapDispatchToProps = dispatch => (

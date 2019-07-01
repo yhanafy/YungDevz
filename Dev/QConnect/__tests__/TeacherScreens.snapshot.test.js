@@ -9,202 +9,265 @@ jest.mock('../src/components/FadeInView')
 import { TeacherWelcomeScreen } from '../src/screens/FirstRun/TeacherWelcomeScreen';
 import { EvaluationPage } from '../src/screens/Evaluation/EvaluationPage';
 
+const getClassStudents = (studentIds, students) => {
+  return Object.values(students).filter(s => studentIds.includes(s.id))
+}
+
 const INITIAL_STATE = {
-  firstRunCompleted: false,
-  teachers: [
-    {
-      name: "",
-      phoneNumber: "",
-      emailAddress: "",
-      currentClassIndex: 0,
+    firstRunCompleted: true,
+    teacher: {
+      id: '',
+      name: '',
+      phoneNumber: '',
+      emailAddress: '',
+      currentClassId: 'iTwcObaU9ZjnSN6SSiB_N',
       profileImageId: 1,
       classes: [
-        {
-          name: "Demo Class",
-          imageId: 1,
-          students: [
-            {
-              name: "Ahmed Reducer",
-              imageId: 5,
-              totalAssignments: 1,
-              totalGrade: 2,
-              currentAssignment: {
-                name: "Al-Nahl page 5",
-                startDate: "03-24-2019"
-              },
-              assignmentHistory: [
-                {
-                  name: "Al-Baqara 5-9",
-                  startDate: "03-17-2019",
-                  completionDate: "03-20-2019",
-                  evaluation: {
-                    overallGrade: 2,
-                    notes: ""
-                  }
-                }
-              ],
-              attendanceHistory: [
-                {
-                  date: "02-23-2019",
-                  isHere: true
-                }, {
-                  date: '03-25-2019',
-                  isHere: false
-                }
-              ]
-            },
-            {
-              name: "Amina Khan",
-              imageId: 25,
-              totalAssignments: 1,
-              totalGrade: 4,
-              currentAssignment: {
-                name: "An-Naze'aat",
-                startDate: "03-24-2019"
-              },
-              assignmentHistory: [
-                {
-                  name: "Al-Baqara 5-9",
-                  startDate: "03-17-2019",
-                  completionDate: "03-20-2019",
-                  evaluation: {
-                    overallGrade: 4,
-                    notes: ""
-                  }
-                }
-              ],
-              attendanceHistory: [
-                {
-                  date: "02-23-2019",
-                  isHere: true
-                }
-              ]
-            },
-            {
-              name: "Ayoub Barrak",
-
-              imageId: 19,
-              totalAssignments: 1,
-              totalGrade: 1,
-              currentAssignment: {
-                name: "Aal-Imran",
-                startDate: "03-24-2019"
-              },
-              assignmentHistory: [
-                {
-                  name: "Al-Baqara 5-9",
-                  startDate: "03-17-2019",
-                  completionDate: "03-20-2019",
-                  evaluation: {
-                    overallGrade: 1,
-                    notes: ""
-                  }
-                }
-              ],
-              attendanceHistory: [
-                {
-                  date: "02-23-2019",
-                  isHere: true
-                }
-              ]
-            },
-            {
-              name: "Nouha Yacoubi",
-              imageId: 21,
-              totalAssignments: 1,
-              totalGrade: 5,
-              currentAssignment: {
-                name: "Al-Toor pages 5, 6, 8",
-                startDate: "03-24-2019"
-              },
-              assignmentHistory: [
-                {
-                  name: "Al-Baqara 5-9",
-                  startDate: "03-17-2019",
-                  completionDate: "03-20-2019",
-                  evaluation: {
-                    overallGrade: 5,
-                    notes: ""
-                  }
-                }
-              ],
-              attendanceHistory: [
-                {
-                  date: "02-23-2019",
-                  isHere: true
-                }
-              ]
-            },
-            {
-              name: "Yassine Lightening",
-              imageId: 15,
-              totalAssignments: 1,
-              totalGrade: 2,
-              currentAssignment: {
-                name: "Al-Baqara pages 5-8",
-                startDate: "03-24-2019"
-              },
-              assignmentHistory: [
-                {
-                  name: "Al-Baqara 5-9",
-                  startDate: "03-17-2019",
-                  completionDate: "03-20-2019",
-                  evaluation: {
-                    overallGrade: 2,
-                    notes: ""
-                  }
-                }
-              ],
-              attendanceHistory: [
-                {
-                  date: "02-23-2019",
-                  isHere: true
-                }
-              ]
-            },
-            {
-              name: "Ayah Sulaiman",
-              imageId: 27,
-              totalAssignments: 2,
-              totalGrade: 8,
-              currentAssignment: {
-                name: "None",
-                startDate: ""
-              },
-              assignmentHistory: [
-                {
-                  name: "Al-Baqara 5-9",
-                  startDate: "03-17-2019",
-                  completionDate: "03-22-2019",
-                  evaluation: {
-                    overallGrade: 3,
-                    notes: ""
-                  }
-                },
-                {
-                  name: "Al-Baqara 9-15",
-                  startDate: "03-17-2019",
-                  completionDate: "03-20-2019",
-                  evaluation: {
-                    overallGrade: 5,
-                    notes: ""
-                  }
-                }
-              ],
-              attendanceHistory: [
-                {
-                  date: "02-23-2019",
-                  isHere: true
-                }
-              ]
-            }
-          ],
-        }
-
+        'iTwcObaU9ZjnSN6SSiB_N',
+        'LGG0TwfH1KuTabwao9jcj'
       ]
+    },
+    classes: {
+      iTwcObaU9ZjnSN6SSiB_N: {
+        id: 'iTwcObaU9ZjnSN6SSiB_N',
+        name: 'Class 1',
+        imageId: 1,
+        students: [
+          'Kvu_cRpBXG5nxUW6mHCNL',
+          'RPVYO2TFj7Zthc13_V_xg',
+          'U1WNVEvgZ6vmv_DrO6sQ9',
+          'wN1FhsRhvCOJP3Hs_K1Pq'
+        ]
+      },
+      LGG0TwfH1KuTabwao9jcj: {
+        id: 'LGG0TwfH1KuTabwao9jcj',
+        name: 'Class 2',
+        imageId: 2,
+        students: [
+          '-DTfTpCH5pZVFcN01Kiro',
+          'EX7yXPzvEpJbLvCkm2JRN',
+          'TL8GSSCvahYa4HMDUsx6Q',
+          'BcoFOO-5INvrIXrE4Y44j'
+        ]
+      }
+    },
+    students: {
+      Kvu_cRpBXG5nxUW6mHCNL: {
+        id: 'Kvu_cRpBXG5nxUW6mHCNL',
+        name: 'CS1 ',
+        imageId: 1
+      },
+      RPVYO2TFj7Zthc13_V_xg: {
+        id: 'RPVYO2TFj7Zthc13_V_xg',
+        name: 'CS2 ',
+        imageId: 3
+      },
+      U1WNVEvgZ6vmv_DrO6sQ9: {
+        id: 'U1WNVEvgZ6vmv_DrO6sQ9',
+        name: 'CS3',
+        imageId: 4
+      },
+      wN1FhsRhvCOJP3Hs_K1Pq: {
+        id: 'wN1FhsRhvCOJP3Hs_K1Pq',
+        name: 'CS4',
+        imageId: 7
+      },
+      '-DTfTpCH5pZVFcN01Kiro': {
+        id: '-DTfTpCH5pZVFcN01Kiro',
+        name: '2S1',
+        imageId: 6
+      },
+      EX7yXPzvEpJbLvCkm2JRN: {
+        id: 'EX7yXPzvEpJbLvCkm2JRN',
+        name: '2S2',
+        imageId: 0
+      },
+      TL8GSSCvahYa4HMDUsx6Q: {
+        id: 'TL8GSSCvahYa4HMDUsx6Q',
+        name: '2S3',
+        imageId: 26
+      },
+      'BcoFOO-5INvrIXrE4Y44j': {
+        id: 'BcoFOO-5INvrIXrE4Y44j',
+        name: '2S4',
+        imageId: 3
+      }
+    },
+    attendance: {
+      byClassId: {
+        iTwcObaU9ZjnSN6SSiB_N: {
+          byDate: {
+            '6/13/2019': {
+              Kvu_cRpBXG5nxUW6mHCNL: false,
+              RPVYO2TFj7Zthc13_V_xg: false,
+              U1WNVEvgZ6vmv_DrO6sQ9: true,
+              wN1FhsRhvCOJP3Hs_K1Pq: true
+            },
+            '05-13-2019': {
+              Kvu_cRpBXG5nxUW6mHCNL: true,
+              RPVYO2TFj7Zthc13_V_xg: true,
+              U1WNVEvgZ6vmv_DrO6sQ9: false,
+              wN1FhsRhvCOJP3Hs_K1Pq: true
+            }
+          }
+        }
+      }
+    },
+    currentAssignments: {
+      byClassId: {
+        iTwcObaU9ZjnSN6SSiB_N: {
+          byStudentId: {
+            Kvu_cRpBXG5nxUW6mHCNL: [
+              {
+                name: 'Test 1',
+                startDate: '6/13/2019',
+                totalAssignments: 0,
+                grade: 0
+              }
+            ],
+            RPVYO2TFj7Zthc13_V_xg: [
+              {
+                name: 'Test 3',
+                startDate: '6/13/2019',
+                totalAssignments: 2,
+                grade: 4.5
+              }
+            ],
+            U1WNVEvgZ6vmv_DrO6sQ9: [
+              {
+                name: 'None',
+                startDate: '',
+                totalAssignments: 0,
+                grade: 0
+              }
+            ],
+            wN1FhsRhvCOJP3Hs_K1Pq: [
+              {
+                name: 'Test CS4',
+                startDate: '6/13/2019',
+                totalAssignments: 1,
+                grade: 4
+              }
+            ]
+          }
+        },
+        LGG0TwfH1KuTabwao9jcj: {
+          byStudentId: {
+            '-DTfTpCH5pZVFcN01Kiro': [
+              {
+                name: 'None',
+                startDate: '',
+                totalAssignments: 0,
+                grade: 0
+              }
+            ],
+            EX7yXPzvEpJbLvCkm2JRN: [
+              {
+                name: '2S2as2',
+                startDate: '6/13/2019',
+                totalAssignments: 2,
+                grade: 4.5
+              }
+            ],
+            TL8GSSCvahYa4HMDUsx6Q: [
+              {
+                name: 'None',
+                startDate: '',
+                totalAssignments: 0,
+                grade: 0
+              }
+            ],
+            'BcoFOO-5INvrIXrE4Y44j': [
+              {
+                name: '2S4 assignment 1',
+                startDate: '6/13/2019',
+                totalAssignments: 0,
+                grade: 0
+              }
+            ]
+          }
+        }
+      }
+    },
+    assignmentsHistory: {
+      byStudentId: {
+        RPVYO2TFj7Zthc13_V_xg: {
+          byClassId: {
+            iTwcObaU9ZjnSN6SSiB_N: [
+              {
+                name: 'Test 1',
+                startDate: '6/13/2019',
+                completionDate: '6/13/2019',
+                evaluation: {
+                  grade: 4,
+                  notes: 'Test test test',
+                  improvementAreas: [
+                    'Makharej',
+                    'Ekhfae',
+                    'Qalqalah'
+                  ]
+                }
+              },
+              {
+                name: 'Test 2',
+                startDate: '6/13/2019',
+                completionDate: '6/13/2019',
+                evaluation: {
+                  grade: 5,
+                  notes: 'Mundo',
+                  improvementAreas: [
+                    'Rulings of Raa\''
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        wN1FhsRhvCOJP3Hs_K1Pq: {
+          byClassId: {
+            iTwcObaU9ZjnSN6SSiB_N: [
+              {
+                name: 'Test CS4',
+                startDate: '6/13/2019',
+                completionDate: '6/13/2019',
+                evaluation: {
+                  grade: 4,
+                  notes: 'Hola',
+                  improvementAreas: []
+                }
+              }
+            ]
+          }
+        },
+        EX7yXPzvEpJbLvCkm2JRN: {
+          byClassId: {
+            LGG0TwfH1KuTabwao9jcj: [
+              {
+                name: '2S2as1',
+                startDate: '6/13/2019',
+                completionDate: '6/13/2019',
+                evaluation: {
+                  grade: 4,
+                  notes: 'Test',
+                  improvementAreas: []
+                }
+              },
+              {
+                name: '2S2as2',
+                startDate: '6/13/2019',
+                completionDate: '6/13/2019',
+                evaluation: {
+                  grade: 5,
+                  notes: 'Test test test',
+                  improvementAreas: []
+                }
+              }
+            ]
+          }
+        }
+      }
     }
-  ]
-}
+  }
 
 describe('Teacher screens snapshots', () => {
   const testRenderTeacherScreen = (screenName, Component, props) => {
@@ -219,14 +282,16 @@ describe('Teacher screens snapshots', () => {
         }
       }
 
-      const { teachers } = INITIAL_STATE;
-      const teacher = teachers[0];
-      const students = teacher.classes[0].students
+      const { teacher, students, classes, currentAssignments } = INITIAL_STATE;
+      let classId = teacher.currentClassId;
+      const classStudents = getClassStudents(classes[classId].students, students);
+      const classAssignments = currentAssignments.byClassId[classId];
 
       const tree = renderer.create(<Component
         classes={teacher.classes}
         navigation={navigation}
-        students={students}
+        students={classStudents}
+        currentAssignments={classAssignments}
         {...props}
       />).toJSON();
 

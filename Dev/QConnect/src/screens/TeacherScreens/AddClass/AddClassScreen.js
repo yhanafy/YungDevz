@@ -72,10 +72,14 @@ export class AddClassScreen extends QcParentScreen {
       students: []
     };
 
+    //todo: this should be in the reducer??
+    var nanoid = require('nanoid/non-secure')
+    let newId = nanoid()
+    classInfo = {id: newId, ...classInfo};
+
     this.props.addClass(classInfo);
     this.props.saveTeacherInfo(
-      0, //todo: proper id here..
-      { currentClassIndex: newClassIndex }
+      { currentClassId: newId }
     );
 
     //Navigates to the class
@@ -176,7 +180,7 @@ const styles = StyleSheet.create({
 }
 );
 const mapStateToProps = state => {
-  const { classes } = state.data.teachers[0];
+  const { classes } = state.data;
   return { classes };
 };
 
