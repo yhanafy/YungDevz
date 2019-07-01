@@ -3,7 +3,7 @@
 //--------------------------------------------------------------------------------
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, PixelRatio, Text, View, TouchableOpacity, Dimensions, Modal, FlatList, TextInput } from 'react-native';
+import { StyleSheet, PixelRatio, Text, View, TouchableOpacity, Dimensions, Modal, TextInput } from 'react-native';
 import colors from 'config/colors';
 import strings from 'config/strings';
 import QcActionButton from './QcActionButton';
@@ -115,7 +115,9 @@ export default class FlowLayout extends Component {
 			modalVisible: false,
 			dataValue: this.props.dataValue,
 			selectedState: new Array(this.props.dataValue.length).fill(false),
-			isBadgeVisible: false
+			isBadgeVisible: false,
+			isNewAddition: false,
+			newImprovementText: ""
 
 		};
 
@@ -194,8 +196,23 @@ export default class FlowLayout extends Component {
 							{
 								this.state.isBadgeVisible === true ? (
 									<View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
+										{
+											this.state.isNewAddition === true ? (
+												<TextInput
+													style={[styles.corner, styles.textInputStyle]}
+													value={this.state.newImprovementText}
+													onChangeText={(text) => { this.setState({ newImprovementText: text }) }}
+													onEndEditing={() => {
+														dataValue.push(this.state.newImprovementText);
+														this.setState({ dataValue, isNewAddition: false });
+													}}
+												/>
+											) : (
+													<View></View>
+												)
+										}
 										<FlowView backgroundColor={colors.primaryLight} text={strings.PlusSign} onClick={() => {
-
+											this.setState({ isNewAddition: true });
 										}} />
 										<FlowView text={strings.Ellipses} backgroundColor={colors.primaryLight} onClick={() => {
 											this.setState({ isBadgeVisible: false })
@@ -277,6 +294,12 @@ const styles = StyleSheet.create({
 		elevation: 2,
 		marginLeft: 20,
 		marginRight: 20,
+	},
+	textInputStyle: {
+		backgroundColor: colors.lightGrey, 
+		textAlign: 'center', 
+		alignItems: 'center', 
+		justifyContent: 'center'
 	},
 	corner: {
 		borderColor: colors.grey,
