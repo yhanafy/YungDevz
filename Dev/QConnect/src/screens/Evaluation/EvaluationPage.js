@@ -10,7 +10,8 @@ import { editCurrentAssignment } from 'model/actions/editCurrentAssignment';
 import strings from 'config/strings';
 import studentImages from 'config/studentImages';
 import QcParentScreen from 'screens/QcParentScreen';
-import FlowLayout from 'components/FlowLayout'
+import FlowLayout from 'components/FlowLayout';
+import AssignmentEntryComponent from 'components/AssignmentEntryComponent';
 
 export class EvaluationPage extends QcParentScreen {
 
@@ -82,6 +83,7 @@ export class EvaluationPage extends QcParentScreen {
           style={styles.container}
           behavior="padding">
 
+
           <View style={styles.evaluationContainer}>
             <View style={styles.section}>
               <Image source={studentImages.images[imageId]}
@@ -126,6 +128,8 @@ export class EvaluationPage extends QcParentScreen {
                 onSelectionChanged={(improvementAreas) => this.setState({ improvementAreas: improvementAreas })}
               />
             </View>
+
+            <AssignmentEntryComponent></AssignmentEntryComponent>
 
           <View style={styles.buttonsContainer}>
           {!readOnly? 
