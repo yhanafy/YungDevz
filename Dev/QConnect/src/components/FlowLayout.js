@@ -61,11 +61,11 @@ class FlowView extends Component {
 		return (
 			<View>
 				<TouchableOpacity
-					disabled={this.props.readOnly}
+					disabled={this.props.readOnlye}
 					onPress={() => {
 						if (!this.props.readOnly) {
 							this.props.onClick();
-							if (this.props.text !== strings.Ellipses && this.props.text !== strings.PlusSign && !this.props.editMode) {
+							if (this.props.text !== strings.Ellipses && this.props.text !== strings.PlusSign && !this.props.editMode && !this.props.isBadgeVisible) {
 								this.setState({ isSelected: !this.state.isSelected });
 							}
 						}
