@@ -24,32 +24,32 @@ export class ClassMainScreen extends QcParentScreen {
       bold: require('assets/fonts/Montserrat-Bold.ttf'),
     });
 
-    const { classIndex } = this.props;
+    const { classId } = this.props;
 
-    if (classIndex === -1) {
+    if (classId === -1) {
       this.props.navigation.push('AddClass');
     }
   }
 
   render() {
-    const classIndex = this.props.classIndex;
+    const classId = this.props.classId;
 
     return (
       <ScrollView style={styles.container}>
         <FlatList
           data={this.props.students}
-          keyExtractor={(item, index) => item.name} // fix, should be item.id (add id to classes)
-          renderItem={({ item, index }) => (
+          keyExtractor={(item) => item.name} // fix, should be item.id (add id to classes)
+          renderItem={({ item }) => (
             <StudentCard
-              key={index}
+              key={item.id}
               studentName={item.name}
               background={colors.white}
               profilePic={studentImages.images[item.imageId]}
-              currentAssignment={item.currentAssignment.name}
+              currentAssignment={this.props.currentAssignments.byStudentId[item.id][0].name}
               onPress={() =>
                 this.props.navigation.push("StudentProfile", {
-                  studentIndex: index,
-                  classIndex: classIndex
+                  studentId: item.id,
+                  classId: classId
                 })
               }
             />

@@ -65,51 +65,43 @@ export class ClassEditScreen extends QcParentScreen {
 
   //Tests whether the entered input is already a student that exists in the given class
   studentNameExists() {
+    if (!this.props.students) { return false; }
+
     const students = this.props.students;
     const input = this.state.newStudentName.trim();
 
     //Will search if there is a student with the same name or not, if there is, it will return the 
     //index, if there is not, it will return -1.
-    const studentIndex = students.findIndex((student) => {
+    const studentId = students.findIndex((student) => {
       return student.name === input;
     });
 
-    return studentIndex !== -1;
+    return studentId !== -1;
   }
 
   // ----------- Redux function to persist the added student ------------------------
-  addNewStudent(classIndex) {
-
+  addNewStudent(classId) {
     if (!this.state.newStudentName) {
       Alert.alert(strings.Whoops, strings.PleaseInputAName);
     } else if (this.studentNameExists()) {
       Alert.alert(strings.Whoops, strings.ThereIsAlreadyAStudentWithThatName);
     } else {
-      this.doAddNewStudent(classIndex);
+      this.props.addStudent(
+        classId,
+        {
+          studentInfo: {
+            name: this.state.newStudentName,
+            imageId: this.state.profileImageId
+          }
+        }
+      );
+
       this.refs.toast.show(this.state.newStudentName + strings.IsNowAddedToTheClass,
         DURATION.LENGTH_SHORT);
 
       this.refreshProposedImages();
 
     }
-  }
-
-  doAddNewStudent(classIndex) {
-    this.props.addStudent({
-      classIndex: classIndex,
-      studentInfo: {
-        name: this.state.newStudentName,
-        totalAssignments: 0,
-        totalGrade: 0,
-        imageId: this.state.profileImageId,
-        currentAssignment: {
-          name: "None",
-          startDate: ""
-        },
-        assignmentHistory: [],
-        attendanceHistory: []
-      }
-    });
   }
 
   refreshProposedImages() {
@@ -145,7 +137,7 @@ export class ClassEditScreen extends QcParentScreen {
   // ------- Render method: Main entry to render the screen's UI ------------------
 
   render() {
-    const { deleteStudent, addStudent, classIndex, students } = this.props;
+    const { deleteStudent, addStudent, classId, students } = this.props;
 
     if (this.state.highlightedImagesIndices.length == 0) {
       return false;
@@ -163,7 +155,7 @@ export class ClassEditScreen extends QcParentScreen {
             screen={this.name}
           />
 
-          <View ID={classIndex} style={styles.inputContainer}>
+          <View ID={classId} style={styles.inputContainer}>
             <Text style={styles.inputName}>{strings.EnterYourStudentsName}</Text>
             <TextInput
               placeholder={strings.StudentName}
@@ -181,7 +173,7 @@ export class ClassEditScreen extends QcParentScreen {
             />
             <QcActionButton
               text={strings.AddStudent}
-              onPress={() => this.addNewStudent(classIndex)}
+              onPress={() => this.addNewStudent(classId)}
               screen={this.name}
             />
           </View>
@@ -208,7 +200,7 @@ export class ClassEditScreen extends QcParentScreen {
                         {
                           text: 'Delete', onPress: () => {
                             deleteStudent(
-                              classIndex,
+                              classId,
                               index
                             );
                           }

@@ -63,7 +63,33 @@ export class TeacherWelcomeScreen extends QcParentScreen {
     highlightedImagesIndices: this.getHighlightedImages()
   };
 
-  //--- event handlers, handle user interaction ------------------
+    //this method saves the new profile information to the redux database
+    saveNewTeacherInfo = () => {
+        const { name, phoneNumber, emailAddress } = this.state;
+
+        if (name.trim() === "" || phoneNumber.trim() === "" || emailAddress.trim() === "") {
+            alert(strings.PleaseMakeSureAllFieldsAreFilledOut);
+        } else {
+            // trick to remove modalVisible and hilightedImagesIndices from state and pass in everything else
+            const {modalVisible, highlightedImagesIndices, ...params} = this.state;
+
+            //generate a new id for the new teacher
+            var nanoid = require('nanoid/non-secure')
+            let id = nanoid()
+
+            // save the relevant teacher properties
+            this.props.saveTeacherInfo(
+                {id, ...params}
+            );
+
+            this.props.setFirstRunCompleted(true);
+
+            this.refs.toast.show(strings.YourProfileHasBeenSaved, DURATION.LENGTH_SHORT);
+            this.onTeacherFlow();
+        }
+    }
+
+    //--- event handlers, handle user interaction ------------------
   setModalVisible(isModalVisible) {
     this.setState({ modalVisible: isModalVisible });
   }
@@ -239,13 +265,8 @@ const styles = StyleSheet.create({
 
 //-------------- Redux hooks ----------------------------------------------------
 const mapStateToProps = state => {
-  const {
-    name,
-    phoneNumber,
-    emailAddress,
-    profileImageId
-  } = state.data.teachers[0];
-  return { name, phoneNumber, emailAddress, profileImageId };
+    const { name, phoneNumber, emailAddress, profileImageId } = state.data.teacher;
+    return { name, phoneNumber, emailAddress, profileImageId };
 };
 
 const mapDispatchToProps = dispatch =>
