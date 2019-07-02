@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "aws-amplify": "^1.1.28",
-    "aws-amplify-react-native": "^2.1.12",
+    "aws-amplify-react-native": "^2.1.13",
     "expo": "^32.0.5",
     "immutability-helper": "^3.0.0",
     "nanoid": "^2.0.2",
