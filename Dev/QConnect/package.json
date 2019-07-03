@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "aws-amplify": "^1.1.28",
-    "aws-amplify-react-native": "^2.1.12",
+    "aws-amplify-react-native": "^2.1.13",
     "expo": "^32.0.5",
     "immutability-helper": "^3.0.0",
     "nanoid": "^2.0.2",
@@ -32,7 +32,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-expo": "^5.0.0",
     "jest": "^24.1.0",
-    "jest-expo": "^32.0.0"
+    "jest-expo": "^33.0.2"
   },
   "jest": {
     "preset": "jest-expo",
