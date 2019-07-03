@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Image, Text, TouchableWithoutFeedback, KeyboardAvoidingView, Keyboard, Alert } from "react-native";
+import { StyleSheet, View, Image, Text, TouchableWithoutFeedback, KeyboardAvoidingView, Keyboard, Alert, ScrollView} from "react-native";
 import QcActionButton from "components/QcActionButton";
 import Toast, { DURATION } from "react-native-easy-toast";
 import { saveTeacherInfo } from "model/actions/saveTeacherInfo";
@@ -14,6 +14,8 @@ import teacherImages from "config/teacherImages";
 import strings from "config/strings";
 import QcParentScreen from "screens/QcParentScreen";
 import FadeInView from "../../components/FadeInView";
+
+
 
 //To-Do: All info in this class is static, still needs to be hooked up to data base in order
 //to function dynamically
@@ -163,6 +165,8 @@ export class TeacherWelcomeScreen extends QcParentScreen {
   render() {
     return (
       //Random image appears, still need to hook up database, see to-do above
+      <View>
+        <ScrollView>
       <KeyboardAvoidingView style={styles.container} behavior="padding">
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
           <View style={styles.container}>
@@ -174,7 +178,7 @@ export class TeacherWelcomeScreen extends QcParentScreen {
               onImageSelected={this.onImageSelected.bind(this)}
               screen={this.name}
             />
-
+            
             <View style={styles.picContainer}>
             <FadeInView>
               <Image
@@ -215,6 +219,8 @@ export class TeacherWelcomeScreen extends QcParentScreen {
           </View>
         </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
+      </ScrollView>
+      </View>
     );
   }
 }
