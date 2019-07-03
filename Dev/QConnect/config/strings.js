@@ -43,6 +43,9 @@ export default {
     RulingsOfRaa: "Rulings of Raa'", 
     Muduud: "Muduud", 
     Qalqalah: "Qalqalah",
+    Ellipses: '...',
+    PlusSign: '+',
+    MinusSign: '-',
 
     //--------------------- Add Class Screen ---------------------
     PleaseMakeSureToHaveAnInput: 'Please make sure to have an input',
