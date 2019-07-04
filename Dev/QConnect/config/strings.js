@@ -5,6 +5,11 @@ export default {
     AppTitle: 'QuranConnect',
     AppSubTitle: 'Serving your passion for the Quran',
 
+    //--------------------- Student Main Screen ---------------------
+    TotalAssignments: 'Total Assignments',
+    Ready: 'Ready',
+    NotReady: 'Not Ready',
+
     //--------------------- Evaluation Page ---------------------
     None: 'None',
     HowWas: 'How was ',
@@ -15,6 +20,7 @@ export default {
 
     //--------------------- First Run Screen ---------------------
     IAmATeacher: 'I am a teacher',
+    IAmAStudent: 'I am a student',
 
     //--------------------- Teacher Welcome Screen ---------------------
     YourProfileHasBeenSaved: 'Your profile has been saved',
