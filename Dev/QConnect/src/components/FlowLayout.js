@@ -61,7 +61,7 @@ class FlowView extends Component {
 		return (
 			<View>
 				<TouchableOpacity
-					disabled={this.props.readOnlye}
+					disabled={this.props.readOnly}
 					onPress={() => {
 						if (!this.props.readOnly) {
 							this.props.onClick();
