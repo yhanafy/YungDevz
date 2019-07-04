@@ -77,7 +77,7 @@ class StudentProfileScreen extends QcParentScreen {
     //retrieves the student's average rating. If the student hasn't had any assignments, then 
     //the rating will default to 0.
     averageRating = currentAssignment.grade;
-    const dialogInitialText =  currentAssignment.name === 'None' ? {hintInput: strings.EnterAssignmentHere} : {initValueTextInput: currentAssignment.name} 
+    const dialogInitialText = currentAssignment.name === 'None' ? { hintInput: strings.EnterAssignmentHere } : { initValueTextInput: currentAssignment.name }
 
     return (
       <View style={styles.container}>
@@ -112,8 +112,8 @@ class StudentProfileScreen extends QcParentScreen {
                   <Text numberOfLines={1} style={styles.bigText}>{currentStudent.name.toUpperCase()}</Text>
                   <View style={{ flexDirection: 'row', height: 25 }}>
                     <Rating readonly={true} startingValue={averageRating} imageSize={25} />
-                    <View style={{flexDirection: 'column', justifyContent: 'center' }}>
-                      <Text style={styles.ratingText}>{averageRating === 0? "": parseFloat(averageRating).toFixed(1)}</Text>
+                    <View style={{ flexDirection: 'column', justifyContent: 'center' }}>
+                      <Text style={styles.ratingText}>{averageRating === 0 ? "" : parseFloat(averageRating).toFixed(1)}</Text>
                     </View>
                   </View>
                   <Text style={styles.ratingDescText}>{this.getRatingCaption()}</Text>
@@ -131,7 +131,7 @@ class StudentProfileScreen extends QcParentScreen {
                     style={{ paddingRight: 0, paddingLeft: 0, marginLeft: 0, fontSize: 12 }}
                   />
                 </View>
-                <View style={{ flex: 1, flexDirection: 'column', height: 59}}>
+                <View style={{ flex: 1, flexDirection: 'column', height: 59 }}>
                   <Text numberOfLines={1} style={styles.assignmentTextLarge}>{currentAssignment.name.toUpperCase()}</Text>
                   <View style={{ flexDirection: 'row' }}>
                     <TouchableHighlight
@@ -182,7 +182,7 @@ class StudentProfileScreen extends QcParentScreen {
                       }
                       {item.evaluation.improvementAreas && item.evaluation.improvementAreas.length > 0 ?
                         <View style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-                          <Text style={{height: 20, marginTop: 5}}>{strings.ImprovementAreas}</Text>
+                          <Text style={{ height: 20, marginTop: 5 }}>{strings.ImprovementAreas}</Text>
                           {item.evaluation.improvementAreas.map((tag) => { return (<Text key={tag} style={styles.corner}>{tag}</Text>) })}
                         </View>
                         : <View />
@@ -348,19 +348,19 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state, ownProps) => {
   const { classId, studentId } = ownProps.navigation.state.params;
   const currentStudent = state.data.students[studentId];
-  let currentAssignment = {name: 'None', date: ''};
+  let currentAssignment = { name: 'None', date: '' };
   let assignmentsHistory = []
 
-  if(state.data.currentAssignments.byClassId[classId] && 
+  if (state.data.currentAssignments.byClassId[classId] &&
     state.data.currentAssignments.byClassId[classId].byStudentId[studentId] &&
-    state.data.currentAssignments.byClassId[classId].byStudentId[studentId][0]){
-      currentAssignment = state.data.currentAssignments.byClassId[classId].byStudentId[studentId][0];
-    }
+    state.data.currentAssignments.byClassId[classId].byStudentId[studentId][0]) {
+    currentAssignment = state.data.currentAssignments.byClassId[classId].byStudentId[studentId][0];
+  }
 
-    if(state.data.assignmentsHistory.byStudentId[studentId] &&
-      state.data.assignmentsHistory.byStudentId[studentId].byClassId[classId]){
-        assignmentsHistory = state.data.assignmentsHistory.byStudentId[studentId].byClassId[classId];
-    }
+  if (state.data.assignmentsHistory.byStudentId[studentId] &&
+    state.data.assignmentsHistory.byStudentId[studentId].byClassId[classId]) {
+    assignmentsHistory = state.data.assignmentsHistory.byStudentId[studentId].byClassId[classId];
+  }
 
   return { classId, studentId, currentStudent, currentAssignment, assignmentsHistory };
 };

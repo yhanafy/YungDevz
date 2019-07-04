@@ -13,13 +13,13 @@ const routeConfig = {
                     LeftIconName="navicon"
                     LeftOnPress={
                         //Todo: A drawer needs to open with options to join a class
-                        () => {}
+                        () => { }
                     }
                     Title={
                         //Todo: Make sure an actual class name is passed and not a hard coded one
                         "Tuesday Hifth Class"
                     }
-                    RightOnPress={() => {}}
+                    RightOnPress={() => { }}
                 />
             ),
         }),

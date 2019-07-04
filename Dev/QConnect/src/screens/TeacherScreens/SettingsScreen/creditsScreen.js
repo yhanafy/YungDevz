@@ -11,11 +11,11 @@ export default class CreditsScreen extends QcParentScreen {
     render() {
         return (
             <View style={styles.container}>
-                <ScrollView style={styles.creditsContainer} contentContainerStyle={{ }}>
+                <ScrollView style={styles.creditsContainer} contentContainerStyle={{}}>
                     <Text style={{ marginTop: 10, }}>{strings.FirstScreenImageCredits}</Text>
                     <Text style={{ marginTop: 10, color: 'blue' }} onPress={() => {
                         Linking.openURL('https://www.freepik.com/free-photos-vectors/computer')
-                }} >{strings.AvatarCredits}</Text>
+                    }} >{strings.AvatarCredits}</Text>
                 </ScrollView>
             </View>
         )

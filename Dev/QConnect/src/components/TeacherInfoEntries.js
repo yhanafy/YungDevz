@@ -16,35 +16,35 @@ export default TeacherInfoEntries = (props) => {
             </View>
             <View style={styles.infoRow}>
                 <Text style={styles.infoTitle}>{strings.namePlaceHolder}</Text>
-                <View style={{flex: 1}}>
-                <TextInput
-                    style={styles.infoTextInput}
-                    textContentType='name'
-                    onChangeText={props.onNameChanged}
-                    value={props.name} />
-                    </View>
+                <View style={{ flex: 1 }}>
+                    <TextInput
+                        style={styles.infoTextInput}
+                        textContentType='name'
+                        onChangeText={props.onNameChanged}
+                        value={props.name} />
+                </View>
             </View>
             <View style={styles.infoRow}>
                 <Text style={styles.infoTitle}>{strings.phoneNumberPlaceHolder}</Text>
-                <View style={{flex: 1}}>
-                <TextInput
-                    style={styles.infoTextInput}
-                    keyboardType='phone-pad'
-                    textContentType='telephoneNumber'
-                    onChangeText={props.onPhoneNumberChanged}
-                    value={props.phoneNumber} />
-                    </View>
+                <View style={{ flex: 1 }}>
+                    <TextInput
+                        style={styles.infoTextInput}
+                        keyboardType='phone-pad'
+                        textContentType='telephoneNumber'
+                        onChangeText={props.onPhoneNumberChanged}
+                        value={props.phoneNumber} />
+                </View>
             </View>
             <View style={styles.infoRow}>
                 <Text style={styles.infoTitle}>{strings.emailPlaceHolder}</Text>
-                <View style={{flex: 1 }}>
-                <TextInput
-                    style={styles.infoTextInput}
-                    keyboardType='email-address'
-                    textContentType='emailAddress'
-                    onChangeText={props.onEmailAddressChanged}
-                    value={props.emailAddress} />
-                    </View>
+                <View style={{ flex: 1 }}>
+                    <TextInput
+                        style={styles.infoTextInput}
+                        keyboardType='email-address'
+                        textContentType='emailAddress'
+                        onChangeText={props.onEmailAddressChanged}
+                        value={props.emailAddress} />
+                </View>
             </View>
         </View>
     );
