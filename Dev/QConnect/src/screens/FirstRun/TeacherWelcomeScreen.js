@@ -1,7 +1,7 @@
 import React from "react";
-import { StyleSheet, View, Image, Text, TouchableWithoutFeedback, KeyboardAvoidingView, Keyboard, Alert, ScrollView} from "react-native";
+import { StyleSheet, View, Image, Text, TouchableWithoutFeedback, KeyboardAvoidingView, Keyboard, Alert, ScrollView } from "react-native";
 import QcActionButton from "components/QcActionButton";
-import Toast, { DURATION } from "react-native-easy-toast";
+import Toast from "react-native-easy-toast";
 import { saveTeacherInfo } from "model/actions/saveTeacherInfo";
 import { setFirstRunCompleted } from "model/actions/setFirstRunCompleted";
 import { bindActionCreators } from "redux";
@@ -65,33 +65,33 @@ export class TeacherWelcomeScreen extends QcParentScreen {
     highlightedImagesIndices: this.getHighlightedImages()
   };
 
-    //this method saves the new profile information to the redux database
-    saveNewTeacherInfo = () => {
-        const { name, phoneNumber, emailAddress } = this.state;
+  //this method saves the new profile information to the redux database
+  saveNewTeacherInfo = () => {
+    const { name, phoneNumber, emailAddress } = this.state;
 
-        if (name.trim() === "" || phoneNumber.trim() === "" || emailAddress.trim() === "") {
-            alert(strings.PleaseMakeSureAllFieldsAreFilledOut);
-        } else {
-            // trick to remove modalVisible and hilightedImagesIndices from state and pass in everything else
-            const {modalVisible, highlightedImagesIndices, ...params} = this.state;
+    if (name.trim() === "" || phoneNumber.trim() === "" || emailAddress.trim() === "") {
+      alert(strings.PleaseMakeSureAllFieldsAreFilledOut);
+    } else {
+      // trick to remove modalVisible and hilightedImagesIndices from state and pass in everything else
+      const { modalVisible, highlightedImagesIndices, ...params } = this.state;
 
-            //generate a new id for the new teacher
-            var nanoid = require('nanoid/non-secure')
-            let id = nanoid()
+      //generate a new id for the new teacher
+      var nanoid = require('nanoid/non-secure')
+      let id = nanoid()
 
-            // save the relevant teacher properties
-            this.props.saveTeacherInfo(
-                {id, ...params}
-            );
+      // save the relevant teacher properties
+      this.props.saveTeacherInfo(
+        { id, ...params }
+      );
 
-            this.props.setFirstRunCompleted(true);
+      this.props.setFirstRunCompleted(true);
 
-            this.refs.toast.show(strings.YourProfileHasBeenSaved, DURATION.LENGTH_SHORT);
-            this.onTeacherFlow();
-        }
+      this.refs.toast.show(strings.YourProfileHasBeenSaved, DURATION.LENGTH_SHORT);
+      this.onTeacherFlow();
     }
+  }
 
-    //--- event handlers, handle user interaction ------------------
+  //--- event handlers, handle user interaction ------------------
   setModalVisible(isModalVisible) {
     this.setState({ modalVisible: isModalVisible });
   }
@@ -167,59 +167,59 @@ export class TeacherWelcomeScreen extends QcParentScreen {
       //Random image appears, still need to hook up database, see to-do above
       <View>
         <ScrollView>
-      <KeyboardAvoidingView style={styles.container} behavior="padding">
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-          <View style={styles.container}>
-            <ImageSelectionModal
-              visible={this.state.modalVisible}
-              images={teacherImages.images}
-              cancelText={strings.Cancel}
-              setModalVisible={this.setModalVisible.bind(this)}
-              onImageSelected={this.onImageSelected.bind(this)}
-              screen={this.name}
-            />
-            
-            <View style={styles.picContainer}>
-            <FadeInView>
-              <Image
-                style={styles.welcomeImage}
-                source={require("assets/images/salam.png")}
-              />
-              </FadeInView>
-              <Text style={styles.quote}>{strings.TeacherWelcomeMessage}</Text>
-            </View>
-            <View style={styles.editInfo} behavior="padding">
-              <TeacherInfoEntries
-                name={this.state.name}
-                phoneNumber={this.state.phoneNumber}
-                emailAddress={this.state.emailAddress}
-                onNameChanged={this.onNameChanged}
-                onPhoneNumberChanged={this.onPhoneNumberChanged}
-                onEmailAddressChanged={this.onEmailAddressChanged}
-              />
-              <ImageSelectionRow
-                images={teacherImages.images}
-                highlightedImagesIndices={this.state.highlightedImagesIndices}
-                onImageSelected={this.onImageSelected.bind(this)}
-                onShowMore={() => this.setModalVisible(true)}
-                selectedImageIndex={this.state.profileImageId}
-                screen={this.name}
-              />
-            </View>
-            <View style={styles.buttonsContainer}>
-              <QcActionButton
-                text={strings.Save}
-                onPress={() => this.saveProfileInfo(0)} //to-do: Make sure that teacher ID
-                //is passed instead of 0
-                screen={this.name}
-              />
-            </View>
-            <View style={styles.filler} />
-            <Toast ref="toast" />
-          </View>
-        </TouchableWithoutFeedback>
-      </KeyboardAvoidingView>
-      </ScrollView>
+          <KeyboardAvoidingView style={styles.container} behavior="padding">
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+              <View style={styles.container}>
+                <ImageSelectionModal
+                  visible={this.state.modalVisible}
+                  images={teacherImages.images}
+                  cancelText={strings.Cancel}
+                  setModalVisible={this.setModalVisible.bind(this)}
+                  onImageSelected={this.onImageSelected.bind(this)}
+                  screen={this.name}
+                />
+
+                <View style={styles.picContainer}>
+                  <FadeInView>
+                    <Image
+                      style={styles.welcomeImage}
+                      source={require("assets/images/salam.png")}
+                    />
+                  </FadeInView>
+                  <Text style={styles.quote}>{strings.TeacherWelcomeMessage}</Text>
+                </View>
+                <View style={styles.editInfo} behavior="padding">
+                  <TeacherInfoEntries
+                    name={this.state.name}
+                    phoneNumber={this.state.phoneNumber}
+                    emailAddress={this.state.emailAddress}
+                    onNameChanged={this.onNameChanged}
+                    onPhoneNumberChanged={this.onPhoneNumberChanged}
+                    onEmailAddressChanged={this.onEmailAddressChanged}
+                  />
+                  <ImageSelectionRow
+                    images={teacherImages.images}
+                    highlightedImagesIndices={this.state.highlightedImagesIndices}
+                    onImageSelected={this.onImageSelected.bind(this)}
+                    onShowMore={() => this.setModalVisible(true)}
+                    selectedImageIndex={this.state.profileImageId}
+                    screen={this.name}
+                  />
+                </View>
+                <View style={styles.buttonsContainer}>
+                  <QcActionButton
+                    text={strings.Save}
+                    onPress={() => this.saveProfileInfo(0)} //to-do: Make sure that teacher ID
+                    //is passed instead of 0
+                    screen={this.name}
+                  />
+                </View>
+                <View style={styles.filler} />
+                <Toast ref="toast" />
+              </View>
+            </TouchableWithoutFeedback>
+          </KeyboardAvoidingView>
+        </ScrollView>
       </View>
     );
   }
@@ -271,8 +271,8 @@ const styles = StyleSheet.create({
 
 //-------------- Redux hooks ----------------------------------------------------
 const mapStateToProps = state => {
-    const { name, phoneNumber, emailAddress, profileImageId } = state.data.teacher;
-    return { name, phoneNumber, emailAddress, profileImageId };
+  const { name, phoneNumber, emailAddress, profileImageId } = state.data.teacher;
+  return { name, phoneNumber, emailAddress, profileImageId };
 };
 
 const mapDispatchToProps = dispatch =>

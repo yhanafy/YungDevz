@@ -6,6 +6,7 @@ import TeacherWelcomeScreen from './TeacherWelcomeScreen';
 import AddClassScreen from '../TeacherScreens/AddClass/AddClassScreen';
 import TopBanner from 'components/TopBanner';
 import strings from 'config/strings';
+import StudentScreensNavigator from '../StudentScreens/StudentScreensNavigator';
 
 const routeConfig = {
     FirstRunScreen: {
@@ -16,6 +17,9 @@ const routeConfig = {
     },
     TeacherScreens: {
         screen: TeacherMenu
+    },
+    StudentScreensNavigator: {
+        screen: StudentScreensNavigator
     },
     AddClassScreenFirstRun: {
         screen: AddClassScreen,

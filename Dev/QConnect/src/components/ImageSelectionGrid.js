@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import { ScrollView, FlatList, Image, StyleSheet, TouchableHighlight, Text, View } from 'react-native'
+import { ScrollView, FlatList, Image, StyleSheet, TouchableHighlight, View } from 'react-native'
 import PropTypes from 'prop-types'
-import colors from 'config/colors'
 
 
 //--------------------------------------------------------------
