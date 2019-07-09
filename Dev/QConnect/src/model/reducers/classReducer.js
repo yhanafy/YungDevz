@@ -225,7 +225,7 @@ function addToAssignmentHistory(baseState, classId, studentId, assignment) {
     newState = update(newState, { assignmentsHistory: { byStudentId: { [studentId]: { byClassId: { $merge: { [classId]: [assignment] } } } } } });
   }
   else {
-    newState = update(newState, { assignmentsHistory: { byStudentId: { [studentId]: { byClassId: { [classId]: { $push: [assignment] } } } } } });
+    newState = update(newState, { assignmentsHistory: { byStudentId: { [studentId]: { byClassId: { [classId]: {  $splice: [[0, 0, assignment]] } } } } } });
   }
 
   return newState;

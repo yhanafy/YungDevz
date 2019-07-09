@@ -161,7 +161,8 @@ export default class FlowLayout extends Component {
 				<Modal
 					transparent={true}
 					visible={this.state.modalVisible}
-					presentationStyle="overFullScreen">
+					presentationStyle="overFullScreen"
+					onRequestClose={() => {}}>
 					<View style={styles.modalStyle}>
 						<View style={{
 							flex: 1,

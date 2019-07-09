@@ -1,4 +1,5 @@
 //This will be the credits screen
+import React from 'react';
 import { View, StyleSheet, Text, ScrollView, Dimensions, Linking } from 'react-native';
 import colors from 'config/colors';
 import strings from 'config/strings';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
-import Toast, { DURATION } from 'react-native-easy-toast'
+import Toast, {DURATION} from 'react-native-easy-toast'
 import DatePicker from 'react-native-datepicker';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
