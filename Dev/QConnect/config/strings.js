@@ -21,6 +21,7 @@ export default {
     Cancel: 'Cancel',
     TeacherWelcomeMessage: 'Quran teachers are very dear to our hearts. It is our great honor and pleasure to serve your dedication to the holy book.',
     Save: 'Save',
+    CreateAccount: 'Create Account',
 
     //--------------------- Student Profile Screen ---------------------
     EditAssignment: 'Edit Assignment',

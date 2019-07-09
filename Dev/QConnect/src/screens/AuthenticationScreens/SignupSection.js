@@ -12,10 +12,8 @@ export default class SignupSection extends Component {
       <View style={styles.container}>
         <TouchableOpacity
           activeOpacity={1}
-          onPress={() => {console.log("clicked . ****"); this.props.onCreateAccount(); }}>
-         <Text  onPress={() => {console.log("clicked 22222. ****"); this.props.onCreateAccount(); }} style={styles.text}>
-         <Text>Click me please why not pressable?</Text>
-         Create Account</Text>
+          onPress={() => {this.props.onCreateAccount(); }}>
+            <Text style={styles.text}>Create Account</Text>
         </TouchableOpacity>
         <Text style={styles.text}>Forgot Password?</Text>
       </View>
@@ -33,6 +31,7 @@ const styles = StyleSheet.create({
     width: DEVICE_WIDTH,
     flexDirection: 'row',
     justifyContent: 'space-around',
+    zIndex: 800
   },
   text: {
     color: colors.black,

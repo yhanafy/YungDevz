@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Image, Text, TouchableWithoutFeedback, KeyboardAvoidingView, Keyboard, Alert } from "react-native";
+import { StyleSheet, View, Image, Text, TouchableWithoutFeedback, KeyboardAvoidingView, Keyboard, Alert, Modal } from "react-native";
 import QcActionButton from "components/QcActionButton";
 import Toast, { DURATION } from "react-native-easy-toast";
 import { saveTeacherInfo } from "model/actions/saveTeacherInfo";
@@ -14,11 +14,46 @@ import teacherImages from "config/teacherImages";
 import strings from "config/strings";
 import QcParentScreen from "screens/QcParentScreen";
 import FadeInView from "../../components/FadeInView";
-import UserInput from "screens/AuthenticationScreens/UserInput.js"
+import Auth from '@aws-amplify/auth';
+import { createUser, confirmUserSignUp } from 'model/actions/authActions'
+import { Input, Button } from 'react-native-elements'
+
+const initialState = {
+  password: '',
+  emailAddress: '',
+  phoneNumber: '',
+  authCode: ''
+}
 
 //To-Do: All info in this class is static, still needs to be hooked up to data base in order
 //to function dynamically
 export class TeacherWelcomeScreen extends QcParentScreen {
+  state = initialState
+
+  onChangeText = (key, value) => {
+    this.setState({
+      [key]: value
+    })
+  }
+
+  signUp(username, password, email, phone_number ) {
+    console.log("calling create User: " + username + " - " + "password: " + password);
+    console.log("about to call actiion: " + JSON.stringify({ username, password, email, phone_number }))
+    this.props.createUser(username, password, email, phone_number)
+  }
+
+  confirm() {
+    const { authCode, emailAddress } = this.state
+    this.props.confirmUserSignUp(emailAddress, authCode)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { auth: { showSignUpConfirmationModal } } = nextProps
+    if (!showSignUpConfirmationModal && this.props.auth.showSignUpConfirmationModal) {
+      this.setState(initialState)
+    }
+  }
+
   name = "TeacherWelcomeScreen";
 
   getRandomGenderNeutralImage = () => {
@@ -56,56 +91,57 @@ export class TeacherWelcomeScreen extends QcParentScreen {
 
   //--- state captures the inputted user info ------------------
   state = {
-    name: this.props.name,
-    phoneNumber: this.props.phoneNumber,
-    emailAddress: this.props.emailAddress,
+    phoneNumber: this.props.phoneNumber === undefined? "" : this.props.phoneNumber,
+    emailAddress: this.props.emailAddress === undefined? "" : this.props.emailAddress,
+    name: this.props.name === undefined? "" : this.props.name,
     modalVisible: false,
     profileImageId: this.initialDefaultImageId,
     highlightedImagesIndices: this.getHighlightedImages()
   };
 
-  signUp = (username, password, email, phone_number) => {
-    console.log("inside signup.... " + username, password);
+  // signUp = (username, password, email, phone_number) => {
+  //   console.log("inside signup.... " + username, password);
 
-    Auth.signUp({
-        username: this.state.emailAddress,
-        password,
-        attributes: {
-            email,          // optional
-        },
-        validationData: []  //optional
-        })
-        .then(data => console.log(data))
-        .catch(err => console.log(err));
+  //   Auth.signUp({
+  //     username: this.state.email,
+  //     password,
+  //     attributes: {
+  //       email,          // optional
+  //       phone_number
+  //     },
+  //     validationData: []  //optional
+  //   })
+  //     .then(data => console.log(data))
+  //     .catch(err => console.log(err));
+  // }
+
+  //this method saves the new profile information to the redux database
+  saveNewTeacherInfo = () => {
+    const { name, phoneNumber, emailAddress } = this.state;
+
+    if (name.trim() === "" || phoneNumber.trim() === "" || emailAddress.trim() === "") {
+      alert(strings.PleaseMakeSureAllFieldsAreFilledOut);
+    } else {
+      // trick to remove modalVisible and hilightedImagesIndices from state and pass in everything else
+      const { modalVisible, highlightedImagesIndices, ...params } = this.state;
+
+      //generate a new id for the new teacher
+      var nanoid = require('nanoid/non-secure')
+      let id = nanoid()
+
+      // save the relevant teacher properties
+      this.props.saveTeacherInfo(
+        { id, ...params }
+      );
+
+      this.props.setFirstRunCompleted(true);
+
+      this.refs.toast.show(strings.YourProfileHasBeenSaved, DURATION.LENGTH_SHORT);
+      this.onTeacherFlow();
+    }
   }
 
-    //this method saves the new profile information to the redux database
-    saveNewTeacherInfo = () => {
-        const { name, phoneNumber, emailAddress } = this.state;
-
-        if (name.trim() === "" || phoneNumber.trim() === "" || emailAddress.trim() === "") {
-            alert(strings.PleaseMakeSureAllFieldsAreFilledOut);
-        } else {
-            // trick to remove modalVisible and hilightedImagesIndices from state and pass in everything else
-            const {modalVisible, highlightedImagesIndices, ...params} = this.state;
-
-            //generate a new id for the new teacher
-            var nanoid = require('nanoid/non-secure')
-            let id = nanoid()
-
-            // save the relevant teacher properties
-            this.props.saveTeacherInfo(
-                {id, ...params}
-            );
-
-            this.props.setFirstRunCompleted(true);
-
-            this.refs.toast.show(strings.YourProfileHasBeenSaved, DURATION.LENGTH_SHORT);
-            this.onTeacherFlow();
-        }
-    }
-
-    //--- event handlers, handle user interaction ------------------
+  //--- event handlers, handle user interaction ------------------
   setModalVisible(isModalVisible) {
     this.setState({ modalVisible: isModalVisible });
   }
@@ -133,7 +169,7 @@ export class TeacherWelcomeScreen extends QcParentScreen {
 
   //this method saves the new profile information to the redux database
   saveProfileInfo = teacherID => {
-    const { name, phoneNumber, emailAddress } = this.state;
+    const { name, phoneNumber, emailAddress, password } = this.state;
     if (
       name.trim() === "" ||
       phoneNumber.trim() === "" ||
@@ -143,6 +179,8 @@ export class TeacherWelcomeScreen extends QcParentScreen {
     } else {
       // trick to remove modalVisible and hilightedImagesIndices from state and pass in everything else
       const { modalVisible, highlightedImagesIndices, ...params } = this.state;
+
+      this.signUp(emailAddress, password, emailAddress, phoneNumber);
 
       // save the relevant teacher properties
       this.props.saveTeacherInfo(teacherID, params);
@@ -169,6 +207,9 @@ export class TeacherWelcomeScreen extends QcParentScreen {
   onEmailAddressChanged = value => {
     this.setState({ emailAddress: value });
   };
+  onPasswordChanged = value => {
+    this.setState({ password: value })
+  }
 
   //---------- render method ---------------------------------
   // The following custom components are used below:
@@ -177,6 +218,15 @@ export class TeacherWelcomeScreen extends QcParentScreen {
   // -    ImageSelectionRow: a row with suggested avatars, and a button to invoke the pop up with more avatars
   //-----------------------------------------------------------
   render() {
+    const { auth: {
+      showSignUpConfirmationModal,
+      isAuthenticating,
+      signUpError,
+      signUpErrorMessage
+    } } = this.props
+
+    console.log(this.props);
+
     return (
       //Random image appears, still need to hook up database, see to-do above
       <KeyboardAvoidingView style={styles.container} behavior="padding">
@@ -192,22 +242,26 @@ export class TeacherWelcomeScreen extends QcParentScreen {
             />
 
             <View style={styles.picContainer}>
-            <FadeInView>
-              <Image
-                style={styles.welcomeImage}
-                source={require("assets/images/salam.png")}
-              />
+              <FadeInView
+                style={{alignItems: 'center', justifyContent: 'center'}}>
+                <Image
+                  style={styles.welcomeImage}
+                  source={require("assets/images/salam.png")}
+                />
+                <Text style={styles.quote}>{strings.TeacherWelcomeMessage}</Text>
               </FadeInView>
-              <Text style={styles.quote}>{strings.TeacherWelcomeMessage}</Text>
+
             </View>
             <View style={styles.editInfo} behavior="padding">
               <TeacherInfoEntries
                 name={this.state.name}
                 phoneNumber={this.state.phoneNumber}
                 emailAddress={this.state.emailAddress}
+                password={this.state.password}
                 onNameChanged={this.onNameChanged}
                 onPhoneNumberChanged={this.onPhoneNumberChanged}
                 onEmailAddressChanged={this.onEmailAddressChanged}
+                onPasswordChanged={this.onPasswordChanged}
               />
               <ImageSelectionRow
                 images={teacherImages.images}
@@ -220,13 +274,38 @@ export class TeacherWelcomeScreen extends QcParentScreen {
             </View>
             <View style={styles.buttonsContainer}>
               <QcActionButton
-                text={strings.Save}
-                onPress={() => this.saveProfileInfo(0)} //to-do: Make sure that teacher ID
+                text={strings.CreateAccount}
+                //onPress={() => this.saveProfileInfo(0)} //to-do: Make sure that teacher ID
+                onPress={this.saveProfileInfo.bind(this)}
+                isLoading={isAuthenticating}
                 //is passed instead of 0
                 screen={this.name}
               />
             </View>
             <View style={styles.filler} />
+            <Text style={[styles.errorMessage, signUpError && { color: 'black' }]}>Error logging in. Please try again.</Text>
+            <Text style={[styles.errorMessage, signUpError && { color: 'black' }]}>{signUpErrorMessage}</Text>
+            {
+              showSignUpConfirmationModal && (
+                <Modal>
+                  <View style={styles.modal}>
+                    <Input
+                      placeholder="Authorization Code"
+                      type='authCode'
+                      keyboardType='numeric'
+                      onChangeText={this.onChangeText}
+                      value={this.state.authCode}
+                      keyboardType='numeric'
+                    />
+                    <Button
+                      title='Confirm'
+                      onPress={this.confirm.bind(this)}
+                      isLoading={isAuthenticating}
+                    />
+                  </View>
+                </Modal>
+              )
+            }
             <Toast ref="toast" />
           </View>
         </TouchableWithoutFeedback>
@@ -276,20 +355,32 @@ const styles = StyleSheet.create({
   filler: {
     flexDirection: "column",
     flex: 1
+  },
+  modal: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  errorMessage: {
+    fontSize: 12,
+    marginTop: 10,
+    color: 'transparent'
   }
 });
 
 //-------------- Redux hooks ----------------------------------------------------
 const mapStateToProps = state => {
-    const { name, phoneNumber, emailAddress, profileImageId } = state.data.teacher;
-    return { name, phoneNumber, emailAddress, profileImageId };
+  const { name, phoneNumber, emailAddress, profileImageId } = state.data.teacher;
+  return { name, phoneNumber, emailAddress, profileImageId, auth: state.auth  };
 };
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       saveTeacherInfo,
-      setFirstRunCompleted
+      setFirstRunCompleted,
+      confirmUserSignUp,
+      createUser
     },
     dispatch
   );
