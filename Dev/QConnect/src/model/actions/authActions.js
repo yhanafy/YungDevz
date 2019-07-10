@@ -18,6 +18,7 @@ import {
 
 import { Alert } from 'react-native'
 import { Auth } from 'aws-amplify'
+import strings from 'config/strings'
 
 function signUp() {
   return {
@@ -65,7 +66,7 @@ export function createUser(username, password, email, phone_number) {
     })
     .catch(err => {
       console.log('error signing up: ', err)
-      Alert.alert('Error signing up: ', err.message)
+      Alert.alert(strings.ErrorSigningUp, err.message)
       dispatch(signUpFailure(err))
     });
   }
@@ -175,7 +176,7 @@ export function confirmUserSignUp(username, authCode, navigation) {
       })
       .catch(err => {
         console.log('error signing up: ', err)
-        Alert.alert('Error signing up: ', "" + err.message)
+        Alert.alert(strings.ErrorSigningUp, "" + err.message)
         dispatch(confirmSignUpFailure(err))
       });
   }

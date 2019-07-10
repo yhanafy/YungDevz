@@ -242,10 +242,8 @@ export class TeacherWelcomeScreen extends QcParentScreen {
             <View style={styles.buttonsContainer}>
               <QcActionButton
                 text={strings.CreateAccount}
-                onPress={() => this.saveProfileInfo()} //to-do: Make sure that teacher ID
-                //onPress={this.saveNewTeacherInfo.bind(this)}
+                onPress={() => this.saveProfileInfo()} 
                 isLoading={isAuthenticating}
-                //is passed instead of 0
                 screen={this.name}
               />
             </View>
@@ -260,7 +258,7 @@ export class TeacherWelcomeScreen extends QcParentScreen {
                   <View style={styles.modal}>
                     <Text style={styles.confirmationMessage}>Please enter the validation code sent to your email</Text>
                     <Input
-                      placeholder="Authorization Code"
+                      placeholder={strings.AuthorizatonConde}
                       type='authCode'
                       keyboardType='numeric'
                       onChangeText={this.onAuthCodeChanged}
@@ -269,12 +267,12 @@ export class TeacherWelcomeScreen extends QcParentScreen {
                     />
                     <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 5 }}>
                       <QcActionButton
-                        text='Confirm'
+                        text={strings.Confirm}
                         onPress={this.confirm.bind(this)}
                         isLoading={isAuthenticating}
                       />
                       <QcActionButton
-                        text='Cancel'
+                        text={strings.Cancel}
                         onPress={() => { this.setState({ confirmationModalCanceled: true }) }}
                       />
                     </View>
