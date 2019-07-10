@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, View, Image, Text, TouchableWithoutFeedback, KeyboardAvoidingView, Keyboard, Alert, ScrollView } from "react-native";
 import QcActionButton from "components/QcActionButton";
-import Toast from "react-native-easy-toast";
+import Toast, { DURATION } from "react-native-easy-toast";
 import { saveTeacherInfo } from "model/actions/saveTeacherInfo";
 import { setFirstRunCompleted } from "model/actions/setFirstRunCompleted";
 import { bindActionCreators } from "redux";

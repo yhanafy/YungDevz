@@ -16,6 +16,18 @@ export const INITIAL_STATE = {
     profileImageId: 1,
     classes: []
   },
+  student: {
+    id: "",
+    name: "Zyad",
+    imageId: 1,
+    averageRating: 1,
+    totalAssignments: 1,
+    isReady: false,
+    currentAssignment: 'Al-Baqara',
+    assignmentHistory: [],
+    currentClassID: "",
+    classes: []
+  },
   classes: {},
   students: {},
   attendance: {
@@ -171,6 +183,12 @@ export const classReducer = (state = INITIAL_STATE, action) => {
       {
         let { completed } = action;
         let newState = update(baseState, { firstRunCompleted: { $set: completed } });
+        return newState;
+      }
+    case actionTypes.UPDATE_ASSIGNMENT_STATUS:
+      {
+        let { newStatus } = action;
+        let newState = update(baseState, { student: { isReady: { $set: newStatus } } });
         return newState;
       }
     default:
