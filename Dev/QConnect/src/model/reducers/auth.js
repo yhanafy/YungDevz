@@ -28,6 +28,9 @@ const initialState = {
   showSignUpConfirmationModal: false,
   showSignInConfirmationModal: false,
 
+  confirmedLogin: false,
+  confirmedSignUp: false,
+
   confirmSignUpError: false,
   confirmLoginError: false,
 
@@ -61,14 +64,15 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isAuthenticating: false,
-        showSignUpConfirmationModal: false
+        showSignUpConfirmationModal: false,
+        confirmedSignUp: true,
       }
     case CONFIRM_SIGNUP_FAILURE:
       return {
         ...state,
         isAuthenticating: false,
         confirmSignUpError: false,
-        confirmSignupErrorMessage: action.error.message
+        confirmSignupErrorMessage: action.error.message || action.error
       }
     case SIGN_UP:
       return {
@@ -78,14 +82,16 @@ export default (state = initialState, action) => {
     case SIGN_UP_SUCCESS:
       return {
         ...state,
-        isAuthenticating: false
+        isAuthenticating: false,
+        signUpError: false,
+        signUpErrorMessage: ''
       }
     case SIGN_UP_FAILURE:
       return {
         ...state,
         isAuthenticating: false,
         signUpError: true,
-        signUpErrorMessage: action.error.message
+        signUpErrorMessage: action.error.message || action.error
       }
     case LOG_IN:
       return {
@@ -104,7 +110,7 @@ export default (state = initialState, action) => {
         ...state,
         isAuthenticating: false,
         signInError: true,
-        signInErrorMessage: action.error.message
+        signInErrorMessage: action.error.message || action.error
       }
     case CONFIRM_LOGIN: {
       return {
@@ -116,7 +122,8 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isAuthenticating: false,
-        showSignInConfirmationModal: false
+        showSignInConfirmationModal: false,
+        confirmedLogin: true,
       }
     case CONFIRM_LOGIN_FAILURE: {
       return {

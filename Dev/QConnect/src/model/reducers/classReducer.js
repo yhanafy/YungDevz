@@ -13,6 +13,7 @@ export const INITIAL_STATE = {
       name: "",
       phoneNumber: "",
       emailAddress: "",
+      password: "",
       currentClassId: "",
       profileImageId: 1,
       classes: []

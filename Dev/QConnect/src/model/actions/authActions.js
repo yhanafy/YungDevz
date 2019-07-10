@@ -65,6 +65,7 @@ export function createUser(username, password, email, phone_number) {
     })
     .catch(err => {
       console.log('error signing up: ', err)
+      Alert.alert('Error signing up: ', err.message)
       dispatch(signUpFailure(err))
     });
   }
@@ -160,7 +161,7 @@ function confirmLoginFailure() {
   }
 }
 
-export function confirmUserSignUp(username, authCode) {
+export function confirmUserSignUp(username, authCode, navigation) {
   return (dispatch) => {
     dispatch(confirmSignUp())
     Auth.confirmSignUp(username, authCode)
@@ -168,11 +169,13 @@ export function confirmUserSignUp(username, authCode) {
         console.log('data from confirmSignUp: ', data)
         dispatch(confirmSignUpSuccess())
         setTimeout(() => {
-          Alert.alert('Successfully Signed Up!', 'Please Sign')
+          console.log("csignup successful, alling navigation...")
+          navigation.push("AddClass");
         }, 0)
       })
       .catch(err => {
         console.log('error signing up: ', err)
+        Alert.alert('Error signing up: ', "" + err.message)
         dispatch(confirmSignUpFailure(err))
       });
   }

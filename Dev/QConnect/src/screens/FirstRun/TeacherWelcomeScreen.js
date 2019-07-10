@@ -19,24 +19,16 @@ import { createUser, confirmUserSignUp } from 'model/actions/authActions'
 import { Input, Button } from 'react-native-elements'
 
 const initialState = {
-  password: '',
-  emailAddress: '',
-  phoneNumber: '',
-  authCode: ''
+  authCode: '',
+  password: ''
 }
 
 //To-Do: All info in this class is static, still needs to be hooked up to data base in order
 //to function dynamically
 export class TeacherWelcomeScreen extends QcParentScreen {
-  state = initialState
+  state = initialState; ƒ
 
-  onChangeText = (key, value) => {
-    this.setState({
-      [key]: value
-    })
-  }
-
-  signUp(username, password, email, phone_number ) {
+  signUp(username, password, email, phone_number) {
     console.log("calling create User: " + username + " - " + "password: " + password);
     console.log("about to call actiion: " + JSON.stringify({ username, password, email, phone_number }))
     this.props.createUser(username, password, email, phone_number)
@@ -44,11 +36,11 @@ export class TeacherWelcomeScreen extends QcParentScreen {
 
   confirm() {
     const { authCode, emailAddress } = this.state
-    this.props.confirmUserSignUp(emailAddress, authCode)
+    this.props.confirmUserSignUp(emailAddress, authCode, this.props.navigation)
   }
 
   componentWillReceiveProps(nextProps) {
-    const { auth: { showSignUpConfirmationModal } } = nextProps
+    const { auth: { showSignUpConfirmationModal, confirmedSignUp } } = nextProps
     if (!showSignUpConfirmationModal && this.props.auth.showSignUpConfirmationModal) {
       this.setState(initialState)
     }
@@ -91,55 +83,14 @@ export class TeacherWelcomeScreen extends QcParentScreen {
 
   //--- state captures the inputted user info ------------------
   state = {
-    phoneNumber: this.props.phoneNumber === undefined? "" : this.props.phoneNumber,
-    emailAddress: this.props.emailAddress === undefined? "" : this.props.emailAddress,
-    name: this.props.name === undefined? "" : this.props.name,
+    phoneNumber: this.props.phoneNumber === undefined ? "" : this.props.phoneNumber,
+    emailAddress: this.props.emailAddress === undefined ? "" : this.props.emailAddress,
+    name: this.props.name === undefined ? "" : this.props.name,
     modalVisible: false,
     profileImageId: this.initialDefaultImageId,
-    highlightedImagesIndices: this.getHighlightedImages()
+    highlightedImagesIndices: this.getHighlightedImages(),
+    confirmationModalCanceled: false,
   };
-
-  // signUp = (username, password, email, phone_number) => {
-  //   console.log("inside signup.... " + username, password);
-
-  //   Auth.signUp({
-  //     username: this.state.email,
-  //     password,
-  //     attributes: {
-  //       email,          // optional
-  //       phone_number
-  //     },
-  //     validationData: []  //optional
-  //   })
-  //     .then(data => console.log(data))
-  //     .catch(err => console.log(err));
-  // }
-
-  //this method saves the new profile information to the redux database
-  saveNewTeacherInfo = () => {
-    const { name, phoneNumber, emailAddress } = this.state;
-
-    if (name.trim() === "" || phoneNumber.trim() === "" || emailAddress.trim() === "") {
-      alert(strings.PleaseMakeSureAllFieldsAreFilledOut);
-    } else {
-      // trick to remove modalVisible and hilightedImagesIndices from state and pass in everything else
-      const { modalVisible, highlightedImagesIndices, ...params } = this.state;
-
-      //generate a new id for the new teacher
-      var nanoid = require('nanoid/non-secure')
-      let id = nanoid()
-
-      // save the relevant teacher properties
-      this.props.saveTeacherInfo(
-        { id, ...params }
-      );
-
-      this.props.setFirstRunCompleted(true);
-
-      this.refs.toast.show(strings.YourProfileHasBeenSaved, DURATION.LENGTH_SHORT);
-      this.onTeacherFlow();
-    }
-  }
 
   //--- event handlers, handle user interaction ------------------
   setModalVisible(isModalVisible) {
@@ -168,30 +119,44 @@ export class TeacherWelcomeScreen extends QcParentScreen {
   };
 
   //this method saves the new profile information to the redux database
+  // This is reused for teacher profile page and teacher welcome page
+  // In teacher welcome page, teacher ID will be passed as undefined, in which case
+  // we will generate a new ID before saving to the store.
   saveProfileInfo = teacherID => {
     const { name, phoneNumber, emailAddress, password } = this.state;
-    if (
-      name.trim() === "" ||
-      phoneNumber.trim() === "" ||
-      emailAddress.trim() === ""
-    ) {
-      Alert.alert(strings.Whoops, strings.PleaseMakeSureAllFieldsAreFilledOut);
+
+    if (!name || 
+      !phoneNumber ||
+      !emailAddress || 
+      !password || 
+      name.trim() === ""
+      || phoneNumber.trim() === ""
+      || emailAddress.trim() === ""
+      || password.trim() === "") {
+      alert(strings.PleaseMakeSureAllFieldsAreFilledOut);
     } else {
+      //Reset the confirmation dialog state cancelation state
+      //In case user canceled the confirmation code dialog before, we reset that state so we can show the dialog again upon new submission
+      this.setState({ confirmationModalCanceled: false });
+
       // trick to remove modalVisible and hilightedImagesIndices from state and pass in everything else
       const { modalVisible, highlightedImagesIndices, ...params } = this.state;
 
+
       this.signUp(emailAddress, password, emailAddress, phoneNumber);
 
+      //generate a new id if this is a new teacher 
+      if (teacherID === undefined) {
+        var nanoid = require('nanoid/non-secure')
+        teacherID = nanoid()
+      }
+
       // save the relevant teacher properties
-      this.props.saveTeacherInfo(teacherID, params);
+      this.props.saveTeacherInfo(
+        { teacherID, ...params }
+      );
 
       this.props.setFirstRunCompleted(true);
-
-      this.refs.toast.show(
-        strings.YourProfileHasBeenSaved,
-        DURATION.LENGTH_SHORT
-      );
-      this.onTeacherFlow();
     }
   };
 
@@ -210,6 +175,9 @@ export class TeacherWelcomeScreen extends QcParentScreen {
   onPasswordChanged = value => {
     this.setState({ password: value })
   }
+  onAuthCodeChanged = value => {
+    this.setState({ authCode: value })
+  }
 
   //---------- render method ---------------------------------
   // The following custom components are used below:
@@ -222,10 +190,9 @@ export class TeacherWelcomeScreen extends QcParentScreen {
       showSignUpConfirmationModal,
       isAuthenticating,
       signUpError,
-      signUpErrorMessage
+      signUpErrorMessage,
+      confirmedSignUp
     } } = this.props
-
-    console.log(this.props);
 
     return (
       //Random image appears, still need to hook up database, see to-do above
@@ -243,7 +210,7 @@ export class TeacherWelcomeScreen extends QcParentScreen {
 
             <View style={styles.picContainer}>
               <FadeInView
-                style={{alignItems: 'center', justifyContent: 'center'}}>
+                style={{ alignItems: 'center', justifyContent: 'center' }}>
                 <Image
                   style={styles.welcomeImage}
                   source={require("assets/images/salam.png")}
@@ -275,33 +242,42 @@ export class TeacherWelcomeScreen extends QcParentScreen {
             <View style={styles.buttonsContainer}>
               <QcActionButton
                 text={strings.CreateAccount}
-                //onPress={() => this.saveProfileInfo(0)} //to-do: Make sure that teacher ID
-                onPress={this.saveProfileInfo.bind(this)}
+                onPress={() => this.saveProfileInfo()} //to-do: Make sure that teacher ID
+                //onPress={this.saveNewTeacherInfo.bind(this)}
                 isLoading={isAuthenticating}
                 //is passed instead of 0
                 screen={this.name}
               />
             </View>
             <View style={styles.filler} />
-            <Text style={[styles.errorMessage, signUpError && { color: 'black' }]}>Error logging in. Please try again.</Text>
-            <Text style={[styles.errorMessage, signUpError && { color: 'black' }]}>{signUpErrorMessage}</Text>
             {
-              showSignUpConfirmationModal && (
-                <Modal>
+              showSignUpConfirmationModal &&
+              !this.state.confirmationModalCanceled && 
+              !signUpErrorMessage && 
+              !signUpError && (
+                <Modal
+                  transparent={true}>
                   <View style={styles.modal}>
+                    <Text style={styles.confirmationMessage}>Please enter the validation code sent to your email</Text>
                     <Input
                       placeholder="Authorization Code"
                       type='authCode'
                       keyboardType='numeric'
-                      onChangeText={this.onChangeText}
+                      onChangeText={this.onAuthCodeChanged}
                       value={this.state.authCode}
                       keyboardType='numeric'
                     />
-                    <Button
-                      title='Confirm'
-                      onPress={this.confirm.bind(this)}
-                      isLoading={isAuthenticating}
-                    />
+                    <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 5 }}>
+                      <QcActionButton
+                        text='Confirm'
+                        onPress={this.confirm.bind(this)}
+                        isLoading={isAuthenticating}
+                      />
+                      <QcActionButton
+                        text='Cancel'
+                        onPress={() => { this.setState({ confirmationModalCanceled: true }) }}
+                      />
+                    </View>
                   </View>
                 </Modal>
               )
@@ -357,21 +333,37 @@ const styles = StyleSheet.create({
     flex: 1
   },
   modal: {
-    flex: 1,
+    backgroundColor: colors.white,
+    alignItems: 'center',
     justifyContent: 'center',
-    alignItems: 'center'
+    flexDirection: 'column',
+    marginTop: 230,
+    borderWidth: 1,
+    borderRadius: 2,
+    borderColor: colors.grey,
+    borderBottomWidth: 1,
+    shadowColor: colors.darkGrey,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 3,
+    elevation: 2,
+    marginLeft: 45,
+    marginRight: 45,
+    paddingRight: 5,
+    paddingLeft: 5
   },
-  errorMessage: {
-    fontSize: 12,
-    marginTop: 10,
-    color: 'transparent'
+  confirmationMessage: {
+    fontSize: 16,
+    marginVertical: 10,
+    fontFamily: 'regular',
+    color: colors.darkGrey
   }
 });
 
 //-------------- Redux hooks ----------------------------------------------------
 const mapStateToProps = state => {
   const { name, phoneNumber, emailAddress, profileImageId } = state.data.teacher;
-  return { name, phoneNumber, emailAddress, profileImageId, auth: state.auth  };
+  return { name, phoneNumber, emailAddress, profileImageId, auth: state.auth };
 };
 
 const mapDispatchToProps = dispatch =>

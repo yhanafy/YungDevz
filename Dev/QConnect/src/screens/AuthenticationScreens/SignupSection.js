@@ -7,7 +7,6 @@ import colors from '../../../config/colors';
 export default class SignupSection extends Component {
   
   render() {
-    console.log(this.props);
     return (
       <View style={styles.container}>
         <TouchableOpacity
