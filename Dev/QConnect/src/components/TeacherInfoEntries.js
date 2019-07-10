@@ -57,6 +57,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         paddingLeft: 20,
         color: colors.darkGrey
+
     },
     infoRow: {
         flexDirection: 'row',
