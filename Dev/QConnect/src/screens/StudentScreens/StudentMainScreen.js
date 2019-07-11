@@ -7,57 +7,29 @@ import studentImages from 'config/studentImages';
 import { Rating } from 'react-native-elements';
 import colors from 'config/colors'
 import strings from 'config/strings';
+import { connect } from "react-redux";
+import mapStateToCurrentStudentProps from './helpers/mapStateToCurrentStudentProps';
+import { updateAssignmentStatus } from 'model/actions/updateAssignmentStatus';
+import { bindActionCreators } from "redux";
 
-export default class StudentMainScreen extends QcParentScreen {
+class StudentMainScreen extends QcParentScreen {
 
     name = "StudentMainScreen";
 
     componentDidMount() {
         super.componentDidMount();
         //Fetches the data for this student and sets it to the state
+
     }
 
     //All the following data values are hard coded, we need to make them variable
     state = {
-        studentName: 'Zyad Elgohary',
-        profileImageID: 1,
-        averageGrade: 4,
-        totalAssignments: 3,
-        isReady: true,
-        currentAssignmet: 'Al-Baqara 1-6',
-        assignmentHistory: [
-            {
-                name: 'Al-Shams',
-                completionDate: "12/5/2019",
-                evaluation: {
-                    grade: 3,
-                    notes: "Great progress on recitation",
-                    improvementAreas: ["Qalqalah", 'Pronouncing']
-                }
-            },
-            {
-                name: 'Al-Noor',
-                completionDate: "11/4/2018",
-                evaluation: {
-                    grade: 4,
-                    notes: "A little more work on the second page",
-                    improvementAreas: []
-                }
-            },
-            {
-                name: 'Al-Hajj',
-                completionDate: "11/1/2018",
-                evaluation: {
-                    grade: 5,
-                    notes: "Good tasmee, but work on mad",
-                    improvementAreas: ["Mad"]
-                }
-            }
-        ]
+        student: this.props.student,
+        isReady: this.props.student.isReady
     }
 
     //Returns the correct caption based on the student's average grade
-    getGradeCaption() {
+    getRatingCaption() {
         let caption = strings.GetStarted;
         let { averageGrade } = this.state;
 
@@ -77,51 +49,57 @@ export default class StudentMainScreen extends QcParentScreen {
     //Renders the screen
     render() {
 
-        const { studentName, profileImageID, averageGrade, totalAssignments, isReady, currentAssignmet, assignmentHistory } = this.state;
+        const { student } = this.state;
 
         return (
             <View style={styles.container}>
                 <View style={styles.topView}>
-                    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                            <View style={{ flex: 0.5 }}></View>
-                            <View style={{ flex: 1 }}>
+                    <View style={styles.profileInfo}>
+                        <View style={styles.profileInfoTop}>
+                            <View style={{ width: 100 }}>
+                            </View>
+                            <View style={styles.profileInfoTopRight}>
+                                <Text numberOfLines={1} style={styles.bigText}>{student.name.toUpperCase()}</Text>
+                                <View style={{ flexDirection: 'row', height: 25 }}>
+                                    <Rating readonly={true} startingValue={student.averageRating} imageSize={25} />
+                                    <View style={{ flexDirection: 'column', justifyContent: 'center' }}>
+                                        <Text style={styles.ratingText}>{student.averageRating === 0 ? "" : parseFloat(student.averageRating).toFixed(1)}</Text>
+                                    </View>
+                                </View>
+                                <Text style={styles.ratingDescText}>{this.getRatingCaption()}</Text>
+                            </View>
+                        </View>
+                        <View style={styles.profileInfoBottom}>
+                            <View style={styles.profileInfoTopLeft}>
                                 <Image
                                     style={styles.profilePic}
-                                    source={studentImages.images[profileImageID]} />
+                                    source={studentImages.images[student.imageId]} />
                             </View>
-                        </View>
-                        <View style={{ flex: 2 }}>
-                            <Text style={styles.studentNameStyle}>{studentName}</Text>
-                        </View>
-                        <View style={{ flexDirection: 'column', flex: 2, justifyContent: 'center' }}>
-                            <Rating readonly={true} startingValue={averageGrade} imageSize={25} />
-                            <View style={{ flexDirection: 'row' }}>
-                                <Text style={styles.ratingDescText}>{averageGrade + "  "}</Text>
-                                <Text style={styles.ratingDescText}>{this.getGradeCaption() + "  "}</Text>
+                            <View style={{ flex: 1, justifyContent: 'space-between', flexDirection: 'column', height: 59 }}>
+                                <Text numberOfLines={1} style={styles.assignmentTextLarge}>{student.currentAssignment.toUpperCase()}</Text>
+                                <Text style={styles.assignmentTextLarge}>{strings.TotalAssignments + " " + student.totalAssignments + "  "}</Text>
                             </View>
-                        </View>
-                    </View>
-                    <View style={{ flex: 1, alignItems: 'flex-end', justifyContent: 'center' }}>
-                        <View style={{ flex: 1 }}>
-                            <Text style={styles.studentNameStyle}>{strings.TotalAssignments + " " + totalAssignments + "  "}</Text>
                         </View>
                     </View>
                 </View>
-                <View style={[styles.middleView, { backgroundColor: (isReady ? colors.green : colors.red) }]}>
+                <View style={[styles.middleView, { backgroundColor: (this.state.isReady === true ? colors.green : colors.red) }]}>
                     <TouchableOpacity style={{ flex: 1 }} onPress={() => {
                         //To-Do: Updates the state of the assignment & communicates it with the teacher
-                        this.setState({ isReady: !isReady })
+                        if (student.currentAssignment !== "None") {
+                            this.props.updateAssignmentStatus(!student.isReady);
+                            this.setState({ isReady: !this.state.isReady });
+                        }
                     }}>
                         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                             <Text>{" "}</Text>
+                            <Text>{" "}</Text>
                             <Text style={styles.studentNameStyle}>{strings.CurrentAssignment}</Text>
                             <Text>{" "}</Text>
-                            <Text style={[styles.studentNameStyle, { fontSize: 20 }]}>{currentAssignmet}</Text>
+                            <Text style={[styles.studentNameStyle, { fontSize: 20 }]}>{student.currentAssignment}</Text>
                         </View>
                         <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center', flexDirection: 'row' }}>
                             <Text>{"  "}</Text>
-                            <Text style={styles.ratingDescText}>{isReady ? strings.Ready : strings.NotReady}</Text>
+                            <Text style={styles.ratingDescText}>{student.isReady ? strings.Ready : strings.NotReady}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -129,7 +107,7 @@ export default class StudentMainScreen extends QcParentScreen {
                     <View style={{ flex: 0.1 }}></View>
                     <ScrollView style={styles.prevAssignments}>
                         <FlatList
-                            data={assignmentHistory}
+                            data={student.assignmentHistory}
                             keyExtractor={(item, index) => item.name + index}
                             renderItem={({ item, index }) => (
                                 <TouchableOpacity onPress={() => {
@@ -175,13 +153,41 @@ const styles = StyleSheet.create({
         flex: 1
     },
     topView: {
-        flex: 1,
-        flexDirection: 'column'
+        flex: 2,
+        flexDirection: 'column',
+        backgroundColor: colors.white
+    },
+    profileInfoTop: {
+        paddingHorizontal: 10,
+        paddingTop: 10,
+        flexDirection: 'row',
+        borderBottomColor: colors.lightGrey,
+        borderBottomWidth: 1,
+    },
+    profileInfoTopLeft: {
+        flexDirection: 'column',
+        marginLeft: 3,
+        marginTop: -66,
+        alignItems: 'center',
+        width: 100
+    },
+    profileInfoTopRight: {
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+        paddingLeft: 10,
+        paddingBottom: 5,
+    },
+    profileInfoBottom: {
+        flexDirection: 'row',
+        paddingHorizontal: 10,
+        borderBottomColor: colors.grey,
+        borderBottomWidth: 1
     },
     profilePic: {
-        width: 50,
-        height: 50,
-        borderRadius: 25,
+        width: 100,
+        height: 100,
+        borderRadius: 50,
+        paddingBottom: 10
     },
     middleView: {
         flex: 1,
@@ -205,6 +211,11 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         height: 90,
         padding: 5,
+    },
+    profileInfo: {
+        flexDirection: 'column',
+        backgroundColor: colors.white,
+        marginBottom: 10
     },
     notesText: {
         fontSize: 14,
@@ -239,4 +250,58 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingLeft: 2
     },
+    profileInfo: {
+        flexDirection: 'column',
+        backgroundColor: colors.white,
+        marginBottom: 10
+    },
+    bigText: {
+        fontSize: 24,
+        fontFamily: 'regular',
+    },
+    subText: {
+        fontSize: 16,
+        fontFamily: 'regular',
+        color: colors.primaryDark
+    },
+    ratingDescText: {
+        fontSize: 18,
+        fontFamily: 'light',
+        color: colors.primaryDark
+    },
+    assignmentTextSmall: {
+        fontSize: 14,
+        fontFamily: 'regular',
+        color: colors.black,
+        paddingTop: 2
+    },
+    assignmentTextLarge: {
+        fontSize: 20,
+        fontFamily: 'regular',
+        color: colors.darkGrey,
+        paddingLeft: 10,
+        paddingRight: 2,
+        paddingTop: 5,
+        textAlign: 'left'
+    },
+    ratingText: {
+        fontSize: 24,
+        fontFamily: 'regular',
+        color: colors.darkGrey,
+        marginLeft: 10,
+    },
 });
+
+const mapStateToProps = (state) => {
+    return mapStateToCurrentStudentProps(state)
+};
+
+const mapDispatchToProps = dispatch =>
+    bindActionCreators(
+        {
+            updateAssignmentStatus
+        },
+        dispatch
+    );
+
+export default connect(mapStateToProps, mapDispatchToProps)(StudentMainScreen);
