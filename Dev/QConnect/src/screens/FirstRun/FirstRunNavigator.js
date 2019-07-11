@@ -35,6 +35,7 @@ const routeConfig = {
 
 const navigatorConfig = {
     headerMode: 'none',
+    initialRouteName: 'FirstRunScreen'
 }
 
 const FirstRunStackNavigator = createStackNavigator(routeConfig, navigatorConfig);

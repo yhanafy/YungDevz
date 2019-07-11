@@ -114,6 +114,7 @@ export default {
     //--------------------------- Settings -------------------------------------------
     Credits: 'Photo Credit',
     PrivacyPolicy: 'Privacy Policy',
+    LogOut: 'Log Out',
 
     //--------------------------- Credits -------------------------------------------
     FirstScreenImageCredits: 'First screen background photo by © Hany Khalaf Photography',
