@@ -8,7 +8,7 @@
       "ios",
       "android"
     ],
-    "version": "1.0.12",
+    "version": "1.0.11",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -28,7 +28,7 @@
     },
     "android": {
       "package": "com.yungdevz.quranconnect",
-      "versionCode": 2
+      "versionCode": 2 
     },
     "description": "QuranConnect is an app started by High School students to serve the Quran teachers, students, and parents and amplify their Quran learning and teaching experience."
   }
