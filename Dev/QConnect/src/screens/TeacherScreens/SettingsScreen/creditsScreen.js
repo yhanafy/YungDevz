@@ -1,5 +1,6 @@
 //This will be the credits screen
-import { View, StyleSheet, Text, ScrollView, Dimensions, Linking } from 'react-native';
+import React from 'react';
+import { View, StyleSheet, Text, ScrollView, Dimensions, Linking, TouchableOpacity } from 'react-native';
 import colors from 'config/colors';
 import strings from 'config/strings';
 import QcParentScreen from "screens/QcParentScreen";
@@ -8,14 +9,19 @@ export default class CreditsScreen extends QcParentScreen {
 
     name = "CreditsScreen";
 
+
+
     render() {
+
         return (
-            <View style={styles.container}>
-                <ScrollView style={styles.creditsContainer} contentContainerStyle={{ }}>
+            <View >
+               <ScrollView style={styles.creditsContainer} contentContainerStyle={{}}>
                     <Text style={{ marginTop: 10, }}>{strings.FirstScreenImageCredits}</Text>
                     <Text style={{ marginTop: 10, color: 'blue' }} onPress={() => {
                         Linking.openURL('https://www.freepik.com/free-photos-vectors/computer')
-                }} >{strings.AvatarCredits}</Text>
+                    }} >{strings.AvatarCredits}</Text>
+
+
                 </ScrollView>
             </View>
         )
@@ -38,4 +44,3 @@ const styles = StyleSheet.create({
         margin: 20
     }
 });
-

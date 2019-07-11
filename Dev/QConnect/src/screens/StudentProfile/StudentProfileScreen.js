@@ -13,6 +13,8 @@ import TouchableText from 'components/TouchableText'
 import ImageSelectionModal from 'components/ImageSelectionModal';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import QcParentScreen from 'screens/QcParentScreen';
+import Autocomplete from 'react-native-autocomplete-input';
+
 
 
 class StudentProfileScreen extends QcParentScreen {
@@ -81,6 +83,8 @@ class StudentProfileScreen extends QcParentScreen {
 
     return (
       <View style={styles.container}>
+        {/**To Be made into a component
+        so that we can add autocomplete. */ }
         <DialogInput
           isDialogVisible={this.state.isDialogVisible}
           title={strings.EditAssignment}
@@ -158,11 +162,11 @@ class StudentProfileScreen extends QcParentScreen {
                 keyExtractor={(item, index) => item.name + index}
                 renderItem={({ item, index }) => (
                   <TouchableOpacity onPress={() => this.props.navigation.push("EvaluationPage", {
-                    classId: classId,
-                    studentId: studentId,
+                    classIndex: classIndex,
+                    studentIndex: studentIndex,
                     assignmentName: item.name,
                     completionDate: item.completionDate,
-                    rating: item.evaluation.grade,
+                    rating: item.evaluation.overallGrade,
                     notes: item.evaluation.notes,
                     improvementAreas: item.evaluation.improvementAreas,
                     readOnly: true

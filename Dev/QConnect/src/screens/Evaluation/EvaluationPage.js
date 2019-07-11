@@ -11,7 +11,7 @@ import strings from 'config/strings';
 import studentImages from 'config/studentImages';
 import QcParentScreen from 'screens/QcParentScreen';
 import FlowLayout from 'components/FlowLayout';
-import AssignmentEntryComponent from 'components/AssignmentEntryComponent';
+
 
 export class EvaluationPage extends QcParentScreen {
 

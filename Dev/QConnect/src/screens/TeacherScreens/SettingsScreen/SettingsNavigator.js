@@ -2,7 +2,7 @@
 import React from 'react';
 import { createStackNavigator } from 'react-navigation';
 import allSettingsScreen from './allSettingsScreen';
-import creditsScreen from './creditsScreen';
+import creditsScreen from 'screens/TeacherScreens/SettingsScreen/CreditsScreen';
 import TopBanner from 'components/TopBanner';
 import strings from '../../../../config/strings';
 
