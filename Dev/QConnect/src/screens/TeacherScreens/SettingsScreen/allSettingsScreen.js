@@ -34,7 +34,19 @@ export default class AllSettingsScreen extends QcParentScreen {
                         iconStyle={{ marginRight: 20 }}
                         color={colors.primaryDark} />
                 </TouchableOpacity>
+
+                <TouchableOpacity style={[styles.cardStyle, { marginTop: 25 }]} onPress={() => {
+                    this.props.navigation.push("FirstRun");
+                }}>
+                    <Text style={styles.textStyle}>{strings.LogOut}</Text>
+                    <Icon
+                        name='angle-right'
+                        type='font-awesome'
+                        iconStyle={{ marginRight: 20 }}
+                        color={colors.primaryDark} />
+                </TouchableOpacity>
             </View>
+            
         )
     }
 }
