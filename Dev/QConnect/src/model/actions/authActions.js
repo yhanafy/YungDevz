@@ -41,16 +41,10 @@ function signUpFailure(err) {
 }
 
 export function createUser(username, password, email, phone_number) {
-  console.log("inside actiion: " + JSON.stringify({username, password, email, phone_number}))
   return (dispatch) => {
     dispatch(signUp())
-    let phone
-    const firstTwoDigits = phone_number.substring(0, 2)
-    if (firstTwoDigits === '+1') {
-      phone = phone_number
-    } else {
-      phone = '+1' + phone_number
-    }
+    let phone = phone_number
+
     Auth.signUp({
       username,
       password,
@@ -60,7 +54,6 @@ export function createUser(username, password, email, phone_number) {
       }
     })
     .then(data => {
-      console.log('data from signUp: ', data)
       dispatch(signUpSuccess(data))
       dispatch(showSignUpConfirmationModal())
     })
@@ -99,20 +92,15 @@ function logInFailure(err) {
 }
 
 export function authenticate(username, password, navigation, nextScreenName) {
-  console.log("calling authenticate" + username + ": " + password + " - " + nextScreenName)
   return (dispatch) => {
     dispatch(logIn())
-    console.log("inside dispatch login")
-
     Auth.signIn(username, password)
       .then(user => {
         console.log("successful login")
         dispatch(logInSuccess(user))
-        console.log("navigating to screen: " + nextScreenName);
         navigation.navigate(nextScreenName);
       })
       .catch(err => {
-        console.log('errror from signIn: ', JSON.stringify(err) + ". username: " + username)
         Alert.alert(strings.ErrorSigningIn, "" + (err.message || err))
         dispatch(logInFailure(err))
       });
@@ -136,7 +124,6 @@ export function confirmUserSignUp(username, password, authCode, navigation, next
     dispatch(confirmSignUp())
     Auth.confirmSignUp(username, authCode)
       .then(data => {
-        console.log('data from confirmSignUp: ', data)
         dispatch(confirmSignUpSuccess())
         dispatch(authenticate(username, password, navigation, nextScreenName))
       })

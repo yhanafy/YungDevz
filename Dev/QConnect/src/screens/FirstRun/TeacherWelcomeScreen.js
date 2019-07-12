@@ -29,8 +29,6 @@ export class TeacherWelcomeScreen extends QcParentScreen {
   state = initialState; ƒ
 
   signUp(username, password, email, phone_number) {
-    console.log("calling create User: " + username + " - " + "password: " + password);
-    console.log("about to call actiion: " + JSON.stringify({ username, password, email, phone_number }))
     this.props.createUser(username, password, email, phone_number)
   }
 
@@ -90,6 +88,7 @@ export class TeacherWelcomeScreen extends QcParentScreen {
     profileImageId: this.initialDefaultImageId,
     highlightedImagesIndices: this.getHighlightedImages(),
     confirmationModalCanceled: false,
+    isPhoneValid: this.props.phoneNumber === undefined ? false : true, //todo: this should be properly validated or saved
   };
 
   //--- event handlers, handle user interaction ------------------
@@ -133,7 +132,9 @@ export class TeacherWelcomeScreen extends QcParentScreen {
       || phoneNumber.trim() === ""
       || emailAddress.trim() === ""
       || password.trim() === "") {
-      alert(strings.PleaseMakeSureAllFieldsAreFilledOut);
+        Alert.alert(strings.Whoops, strings.PleaseMakeSureAllFieldsAreFilledOut);
+    } else if(!this.state.isPhoneValid){
+      Alert.alert(strings.Whoops, strings.InvalidPhoneNumber);
     } else {
       //Reset the confirmation dialog state cancelation state
       //In case user canceled the confirmation code dialog before, we reset that state so we can show the dialog again upon new submission
@@ -165,8 +166,11 @@ export class TeacherWelcomeScreen extends QcParentScreen {
     this.setState({ name: value });
   };
 
-  onPhoneNumberChanged = value => {
-    this.setState({ phoneNumber: value });
+  onPhoneNumberChanged = phone => {
+    this.setState({
+      isPhoneValid: phone.isValidNumber(),
+      phoneNumber: phone.getValue()
+    });
   };
 
   onEmailAddressChanged = value => {
@@ -228,6 +232,7 @@ export class TeacherWelcomeScreen extends QcParentScreen {
                 onNameChanged={this.onNameChanged}
                 onPhoneNumberChanged={this.onPhoneNumberChanged}
                 onEmailAddressChanged={this.onEmailAddressChanged}
+                showPasswordField={true}
                 onPasswordChanged={this.onPasswordChanged}
               />
               <ImageSelectionRow

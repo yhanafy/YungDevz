@@ -24,7 +24,7 @@ Analytics.configure(awsconfig);
 const migrations = {  1: (state) => migrateFromV0ToV1(state)}
 
 const persistConfig = {
-  key: 'qcstorealpha003333',
+  key: 'qcstorealpha001',
   storage: AsyncStorage,
   version: 1,
   debug: true,  //we should consider turn off verbose logs at some point, but we keep them now until we have enough validation.

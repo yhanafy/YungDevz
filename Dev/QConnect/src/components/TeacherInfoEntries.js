@@ -3,6 +3,7 @@ import { View, Text, TextInput, StyleSheet } from 'react-native'
 import PropTypes from 'prop-types'
 import colors from 'config/colors'
 import strings from '../../config/strings';
+import PhoneInput from 'react-native-phone-input'
 
 //--------------------------------------------------------------------------
 // Teacher info entries (Name, Phone number, and Email address). 
@@ -27,14 +28,14 @@ export default TeacherInfoEntries = (props) => {
             <View style={styles.infoRow}>
                 <Text style={styles.infoTitle}>{strings.phoneNumberPlaceHolder}</Text>
                 <View style={{flex: 1}}>
-                <TextInput
-                    style={styles.infoTextInput}
-                    keyboardType='phone-pad'
-                    placeholder='+12223334444'
-                    textContentType='telephoneNumber'
-                    onChangeText={props.onPhoneNumberChanged}
-                    value={props.phoneNumber} />
-                    </View>
+                <PhoneInput
+                    ref={ref => {
+                        this.phone = ref;
+                    }}
+                    value={props.phoneNumber} 
+                    onChangePhoneNumber={() => props.onPhoneNumberChanged(this.phone)}
+                />
+                </View>
             </View>
             <View style={styles.infoRow}>
                 <Text style={styles.infoTitle}>{strings.emailPlaceHolder}</Text>
@@ -49,6 +50,7 @@ export default TeacherInfoEntries = (props) => {
                     />
                     </View>
             </View>
+            {props.showPasswordField &&
             <View style={styles.infoRow}>
                 <Text style={styles.infoTitle}>{strings.password}</Text>
                 <View style={{flex: 1 }}>
@@ -62,6 +64,7 @@ export default TeacherInfoEntries = (props) => {
                     />
                     </View>
             </View>
+            }
         </View>
     );
 }
@@ -73,6 +76,8 @@ TeacherInfoEntries.propTypes = {
     onNameChanged: PropTypes.func.isRequired,
     onPhoneNumberChanged: PropTypes.func.isRequired,
     onEmailAddressChanged: PropTypes.func.isRequired,
+    onPasswordChanged: PropTypes.func,
+    showPasswordField: PropTypes.bool,
 }
 
 //Styles for the Teacher profile class
@@ -83,7 +88,8 @@ const styles = StyleSheet.create({
     subtitle: {
         fontSize: 16,
         paddingLeft: 20,
-        color: colors.darkGrey
+        color: colors.darkGrey,
+        marginVertical: 5,
     },
     infoRow: {
         flexDirection: 'row',
@@ -98,7 +104,7 @@ const styles = StyleSheet.create({
         fontSize: 14,
         color: colors.darkGrey,
         flex: 1,
-        alignSelf: 'stretch'
+        alignSelf: 'stretch',
     },
     infoTitle: {
         paddingLeft: 20,

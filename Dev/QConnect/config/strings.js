@@ -15,6 +15,7 @@ export default {
 
     //--------------------- First Run Screen ---------------------
     IAmATeacher: 'I am a teacher',
+    Login: "LOGIN",
 
     //--------------------- Teacher Welcome Screen ---------------------
     YourProfileHasBeenSaved: 'Your profile has been saved',
@@ -26,6 +27,7 @@ export default {
     Confirm: "Confirm",
     ErrorSigningUp: "Error signing up",
     ErrorSigningIn: "Error signing in",
+    InvalidPhoneNumber: "The phone number is invalid. Please enter a valid phone number.",
 
     //--------------------- Student Profile Screen ---------------------
     EditAssignment: 'Edit Assignment',
