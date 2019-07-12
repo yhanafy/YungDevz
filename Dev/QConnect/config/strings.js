@@ -20,6 +20,7 @@ export default {
 
     //--------------------- First Run Screen ---------------------
     IAmATeacher: 'I am a teacher',
+    IAmAStudent: 'I am a student',
     Login: "LOGIN",
 
     //--------------------- Teacher Welcome Screen ---------------------
