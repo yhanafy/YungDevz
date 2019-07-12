@@ -43,6 +43,7 @@ const ClassHeaderNavigator = createStackNavigator({
           LeftIconName="angle-left"
           LeftOnPress={() => navigation.goBack()}
           Title={strings.Evaluation}
+          RightIconName=""
           RightOnPress={() => { }}
         />
       )
@@ -58,6 +59,7 @@ const ClassHeaderNavigator = createStackNavigator({
         <TopBanner
           Title={strings.EditClass}
           RightTextName={strings.Done}
+          RightIconName=""
           RightOnPress={() => navigation.goBack()}
         />
       )
@@ -71,7 +73,7 @@ const ClassHeaderNavigator = createStackNavigator({
           LeftIconName="angle-left"
           LeftOnPress={() => navigation.goBack()}
           Title={strings.StudentEvaluation}
-          RightIconName="edit"
+          RightIconName=""
           RightOnPress={() => { }}
         />
       )
