@@ -13,6 +13,6 @@ export default createAppContainer(createSwitchNavigator(
     Login: LoginScreen,
   },
   {
-    initialRouteName: 'FirstRun',
+    initialRouteName: 'FirstScreenLoader',
   }
 ));

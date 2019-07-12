@@ -98,14 +98,18 @@ function logInFailure(err) {
   }
 }
 
-export function authenticate(username, password) {
+export function authenticate(username, password, navigation, nextScreenName) {
+  console.log("calling authenticate" + username + ": " + password + " - " + nextScreenName)
   return (dispatch) => {
     dispatch(logIn())
+    console.log("inside dispatch login")
+
     Auth.signIn(username, password)
       .then(user => {
         console.log("successful login")
         dispatch(logInSuccess(user))
-        dispatch(showSignInConfirmationModal())
+        console.log("navigating to screen: " + nextScreenName);
+        navigation.navigate(nextScreenName);
       })
       .catch(err => {
         console.log('errror from signIn: ', JSON.stringify(err) + ". username: " + username)
@@ -127,57 +131,14 @@ export function showSignUpConfirmationModal() {
   }
 }
 
-export function confirmUserLogin(authCode, navigation) {
-  return (dispatch, getState) => {
-    dispatch(confirmLogIn())
-    const { auth: { user }} = getState()
-    console.log('state: ', getState())
-    Auth.confirmSignIn(user, authCode)
-      .then(data => {
-        console.log('data from confirmLogin: ', data)
-        dispatch(confirmLoginSuccess(data))
-        setTimeout(() => {
-          navigation.navigate('App');
-        }, 0)
-      })
-      .catch(err => {
-        console.log('error signing in: ', err)
-        Alert.alert(strings.ErrorSigningIn, "" + (err.message || err))
-        dispatch(confirmLoginFailure(err))
-      })
-  }
-}
-
-function confirmLogIn() {
-  return {
-    type: CONFIRM_LOGIN
-  }
-}
-
-function confirmLoginSuccess(user) {
-  return {
-    type: CONFIRM_LOGIN_SUCCESS,
-    user
-  }
-}
-
-function confirmLoginFailure() {
-  return {
-    type: CONFIRM_LOGIN_FAILURE,
-    user
-  }
-}
-
-export function confirmUserSignUp(username, authCode, navigation) {
+export function confirmUserSignUp(username, password, authCode, navigation, nextScreenName) {
   return (dispatch) => {
     dispatch(confirmSignUp())
     Auth.confirmSignUp(username, authCode)
       .then(data => {
         console.log('data from confirmSignUp: ', data)
         dispatch(confirmSignUpSuccess())
-        setTimeout(() => {
-          navigation.push("AddClass");
-        }, 0)
+        dispatch(authenticate(username, password, navigation, nextScreenName))
       })
       .catch(err => {
         console.log('error signing up: ', err)

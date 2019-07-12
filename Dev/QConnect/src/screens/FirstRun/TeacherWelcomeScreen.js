@@ -35,8 +35,8 @@ export class TeacherWelcomeScreen extends QcParentScreen {
   }
 
   confirm() {
-    const { authCode, emailAddress } = this.state
-    this.props.confirmUserSignUp(emailAddress, authCode, this.props.navigation)
+    const { authCode, emailAddress, password } = this.state
+    this.props.confirmUserSignUp(emailAddress, password, authCode, this.props.navigation, 'AddClass')
   }
 
   componentWillReceiveProps(nextProps) {

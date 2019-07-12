@@ -131,12 +131,12 @@ class LoginScreen extends Component {
 
   onCreateAccount = () => {
     console.log("called oncreateaccount...")
-    this.props.navigation.push('TeacherWelcomeScreen');
+    this.props.navigation.navigate('TeacherWelcomeScreen');
   }
 
   signIn() {
     const { username, password } = this.state
-    this.props.authenticate(username, password, this.props.navigation)
+    this.props.authenticate(username, password, this.props.navigation, "App")
   }
 
   confirm() {
@@ -172,38 +172,6 @@ class LoginScreen extends Component {
             text="LOGIN"
             onSubmit={this.signIn.bind(this)}
             navigation={this.props.navigation} />
-          {
-              showSignInConfirmationModal &&
-              !this.state.confirmationModalCanceled && 
-              !loginErrorMessage && 
-              !loginError && (
-                <Modal
-                  transparent={true}>
-                  <View style={styles.modal}>
-                    <Text style={styles.confirmationMessage}>Please enter the validation code sent to your email</Text>
-                    <Input
-                      placeholder={strings.AuthorizatonConde}
-                      type='authCode'
-                      keyboardType='numeric'
-                      onChangeText={this.onAuthCodeChanged}
-                      value={this.state.authCode}
-                      keyboardType='numeric'
-                    />
-                    <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 5 }}>
-                      <QcActionButton
-                        text={strings.Confirm}
-                        onPress={this.confirm.bind(this)}
-                        isLoading={isAuthenticating}
-                      />
-                      <QcActionButton
-                        text={strings.Cancel}
-                        onPress={() => { this.setState({ confirmationModalCanceled: true }) }}
-                      />
-                    </View>
-                  </View>
-                </Modal>
-              )
-          }
         </ImageBackground>
       </View>
     );

@@ -30,6 +30,7 @@ export default TeacherInfoEntries = (props) => {
                 <TextInput
                     style={styles.infoTextInput}
                     keyboardType='phone-pad'
+                    placeholder='+12223334444'
                     textContentType='telephoneNumber'
                     onChangeText={props.onPhoneNumberChanged}
                     value={props.phoneNumber} />
@@ -41,6 +42,7 @@ export default TeacherInfoEntries = (props) => {
                 <TextInput
                     style={styles.infoTextInput}
                     keyboardType='email-address'
+                    autoCapitalize = 'none'
                     textContentType='emailAddress'
                     onChangeText={props.onEmailAddressChanged}
                     value={props.emailAddress} 
