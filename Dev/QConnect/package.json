@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "aws-amplify": "^1.1.28",
-    "aws-amplify-react-native": "^2.1.13",
+    "aws-amplify-react-native": "^2.1.14",
     "expo": "^32.0.5",
     "immutability-helper": "^3.0.0",
     "nanoid": "^2.0.2",
@@ -20,10 +20,13 @@
     "react-native-dialog-input": "^1.0.7",
     "react-native-easy-toast": "^1.2.0",
     "react-native-elements": "^1.0.0",
+    "react-native-phone-input": "^0.2.4",
     "react-navigation": "^3.2.3",
     "react-redux": "^6.0.0",
     "redux": "^4.0.1",
+    "redux-devtools-extension": "^2.13.8",
     "redux-persist": "^5.10.0",
+    "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0"
   },
   "devDependencies": {

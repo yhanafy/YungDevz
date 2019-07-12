@@ -24,6 +24,7 @@ export class TeacherProfileScreen extends QcParentScreen {
         emailAddress: this.props.emailAddress,
         profileImageId: this.props.profileImageId,
         modalVisible: false,
+        isPhoneValid: this.props.phoneNumber === undefined ? false : true, //todo: this should be properly validated or saved
     }
     //this method resets the text inputs back to the teacher's info
     resetProfileInfo = (teacherID) => {
@@ -32,6 +33,7 @@ export class TeacherProfileScreen extends QcParentScreen {
             phoneNumber: this.props.phoneNumber,
             emailAddress: this.props.emailAddress,
             profileImageId: this.props.profileImageId,
+            isPhoneValid: this.props.phoneNumber === undefined ? false : true, //todo: this should be properly validated or saved
         });
         //Just goes to the first class
         this.props.navigation.push('CurrentClass');
@@ -49,8 +51,15 @@ export class TeacherProfileScreen extends QcParentScreen {
     //this method saves the new profile information to the redux database
     saveProfileInfo = () => {
         const { name, phoneNumber, emailAddress } = this.state;
-        if (name.trim() === "" || phoneNumber.trim() === "" || emailAddress.trim() === "") {
+        if (!name ||
+            !phoneNumber ||
+            !emailAddress ||
+            name.trim() === ""
+            || phoneNumber.trim() === ""
+            || emailAddress.trim() === "") {
             Alert.alert(strings.Whoops, strings.PleaseMakeSureAllFieldsAreFilledOut);
+        } else if (!this.state.isPhoneValid) {
+            Alert.alert(strings.Whoops, strings.InvalidPhoneNumber);
         } else {
             const { modalVisible, ...params } = this.state; // trick to remove modalVisible from state and pass in everything else
             this.props.saveTeacherInfo(
@@ -67,8 +76,11 @@ export class TeacherProfileScreen extends QcParentScreen {
         this.setState({ name: value })
     }
 
-    onPhoneNumberChanged = (value) => {
-        this.setState({ phoneNumber: value })
+    onPhoneNumberChanged = (phone) => {
+        this.setState({
+            isPhoneValid: phone.isValidNumber(),
+            phoneNumber: phone.getValue()
+          });
     }
 
     onEmailAddressChanged = (value) => {
@@ -83,6 +95,7 @@ export class TeacherProfileScreen extends QcParentScreen {
     //-----------renders the teacher profile UI ------------------------------------
     render() {
         return (
+            <View><ScrollView>
             <KeyboardAvoidingView style={styles.container} behavior="padding">
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                     <View style={styles.container}>
@@ -129,6 +142,7 @@ export class TeacherProfileScreen extends QcParentScreen {
                     </View>
                 </TouchableWithoutFeedback>
             </KeyboardAvoidingView>
+            </ScrollView></View>
         )
     }
 
