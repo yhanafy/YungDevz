@@ -21,10 +21,11 @@ export default {
     Cancel: 'Cancel',
     TeacherWelcomeMessage: 'Quran teachers are very dear to our hearts. It is our great honor and pleasure to serve your dedication to the holy book.',
     Save: 'Save',
-    CreateAccount: 'Create Account',
+    CreateAccount: 'CREATE ACCOUNT',
     AuthorizationCode: "Authorization Code",
     Confirm: "Confirm",
     ErrorSigningUp: "Error signing up",
+    ErrorSigningIn: "Error signing in",
 
     //--------------------- Student Profile Screen ---------------------
     EditAssignment: 'Edit Assignment',

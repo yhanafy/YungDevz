@@ -66,7 +66,7 @@ export function createUser(username, password, email, phone_number) {
     })
     .catch(err => {
       console.log('error signing up: ', err)
-      Alert.alert(strings.ErrorSigningUp, err.message)
+      Alert.alert(strings.ErrorSigningUp, "" + (err.message || err))
       dispatch(signUpFailure(err))
     });
   }
@@ -103,11 +103,13 @@ export function authenticate(username, password) {
     dispatch(logIn())
     Auth.signIn(username, password)
       .then(user => {
+        console.log("successful login")
         dispatch(logInSuccess(user))
         dispatch(showSignInConfirmationModal())
       })
       .catch(err => {
-        console.log('errror from signIn: ', err)
+        console.log('errror from signIn: ', JSON.stringify(err) + ". username: " + username)
+        Alert.alert(strings.ErrorSigningIn, "" + (err.message || err))
         dispatch(logInFailure(err))
       });
   }
@@ -125,7 +127,7 @@ export function showSignUpConfirmationModal() {
   }
 }
 
-export function confirmUserLogin(authCode) {
+export function confirmUserLogin(authCode, navigation) {
   return (dispatch, getState) => {
     dispatch(confirmLogIn())
     const { auth: { user }} = getState()
@@ -134,10 +136,14 @@ export function confirmUserLogin(authCode) {
       .then(data => {
         console.log('data from confirmLogin: ', data)
         dispatch(confirmLoginSuccess(data))
+        setTimeout(() => {
+          navigation.navigate('App');
+        }, 0)
       })
       .catch(err => {
         console.log('error signing in: ', err)
-        dispatch(confirmSignUpFailure(err))
+        Alert.alert(strings.ErrorSigningIn, "" + (err.message || err))
+        dispatch(confirmLoginFailure(err))
       })
   }
 }
@@ -170,13 +176,12 @@ export function confirmUserSignUp(username, authCode, navigation) {
         console.log('data from confirmSignUp: ', data)
         dispatch(confirmSignUpSuccess())
         setTimeout(() => {
-          console.log("csignup successful, alling navigation...")
           navigation.push("AddClass");
         }, 0)
       })
       .catch(err => {
         console.log('error signing up: ', err)
-        Alert.alert(strings.ErrorSigningUp, "" + err.message)
+        Alert.alert(strings.ErrorSigningUp, "" + (err.message || err))
         dispatch(confirmSignUpFailure(err))
       });
   }

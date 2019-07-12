@@ -42,7 +42,6 @@ export default class ButtonSubmit extends Component {
     this._isMounted = false;
   }
 
-
   _onPress() {
     this.props.onSubmit();
     if (this.state.isLoading) return;
@@ -90,8 +89,8 @@ export default class ButtonSubmit extends Component {
     });
 
     return (
-      <View style={styles.container}>
-        <Animated.View style={{width: changeWidth}}>
+      <View style={[styles.container, this.props.style]}>
+        <Animated.View style={{width: changeWidth, backgroundColor: 'transparent'}}>
           <TouchableOpacity
             style={styles.button}
             onPress={this._onPress}
@@ -99,7 +98,7 @@ export default class ButtonSubmit extends Component {
             {this.state.isLoading ? (
               <ActivityIndicator size="small" color={colors.white} />
             ) : (
-              <Text style={styles.text}>LOGIN</Text>
+              <Text style={styles.text}>{this.props.text}</Text>
             )}
           </TouchableOpacity>
           <Animated.View
@@ -114,9 +113,9 @@ export default class ButtonSubmit extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    top: -95,
     alignItems: 'center',
     justifyContent: 'flex-start',
+    backgroundColor: 'transparent'
   },
   button: {
     alignItems: 'center',
@@ -139,7 +138,6 @@ const styles = StyleSheet.create({
   },
   text: {
     color: 'white',
-    backgroundColor: 'transparent',
     color: colors.primaryDark
   },
   image: {
