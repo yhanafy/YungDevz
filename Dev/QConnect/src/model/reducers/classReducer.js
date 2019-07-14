@@ -4,6 +4,7 @@ import actionTypes from '../actions/actionTypes';
 import Analytics from '@aws-amplify/analytics';
 import analyticsEvents from 'config/analyticsEvents'
 import awsconfig from '../../../aws-exports';
+import auth from './auth';
 
 export const INITIAL_STATE = {
   firstRunCompleted: false,
@@ -13,6 +14,7 @@ export const INITIAL_STATE = {
     phoneNumber: "",
     emailAddress: "",
     currentClassId: "",
+    password: "",
     profileImageId: 1,
     classes: []
   },
@@ -198,6 +200,7 @@ export const classReducer = (state = INITIAL_STATE, action) => {
 
 export default combineReducers({
   data: classReducer,
+  auth: auth
 });
 
 //calculates new average grade from old average and total number of assignments
