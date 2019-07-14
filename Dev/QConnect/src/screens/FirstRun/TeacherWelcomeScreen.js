@@ -28,7 +28,7 @@ const initialState = {
 //To-Do: All info in this class is static, still needs to be hooked up to data base in order
 //to function dynamically
 export class TeacherWelcomeScreen extends QcParentScreen {
-  state = initialState; ƒ
+  state = initialState;
 
   signUp(username, password, email, phone_number) {
     this.props.createUser(username, password, email, phone_number)

@@ -15,6 +15,7 @@ import {
   CONFIRM_LOGIN_SUCCESS,
   CONFIRM_LOGIN_FAILURE
 } from 'model/reducers/auth'
+import * as actionTypes from './authActionTypes'
 
 import { Alert } from 'react-native'
 import { Auth } from 'aws-amplify'
@@ -22,20 +23,20 @@ import strings from 'config/strings'
 
 function signUp() {
   return {
-    type: SIGN_UP
+    type: actionTypes.SIGN_UP
   }
 }
 
 function signUpSuccess(user) {
   return {
-    type: SIGN_UP_SUCCESS,
+    type: actionTypes.SIGN_UP_SUCCESS,
     user
   }
 }
 
 function signUpFailure(err) {
   return {
-    type: SIGN_UP_FAILURE,
+    type: actionTypes.SIGN_UP_FAILURE,
     error: err
   }
 }
@@ -67,26 +68,26 @@ export function createUser(username, password, email, phone_number) {
 
 function logIn() {
   return {
-    type: LOG_IN
+    type: actionTypes.LOG_IN
   }
 }
 
 export function logOut() {
   return {
-    type: LOG_OUT
+    type: actionTypes.LOG_OUT
   }
 }
 
 function logInSuccess(user) {
   return {
-    type: LOG_IN_SUCCESS,
+    type: actionTypes.LOG_IN_SUCCESS,
     user: user
   }
 }
 
 function logInFailure(err) {
   return {
-    type: LOG_IN_FAILURE,
+    type: actionTypes.LOG_IN_FAILURE,
     error: err
   }
 }
@@ -109,13 +110,13 @@ export function authenticate(username, password, navigation, nextScreenName) {
 
 export function showSignInConfirmationModal() {
   return {
-    type: SHOW_SIGN_IN_CONFIRMATION_MODAL
+    type: actionTypes.SHOW_SIGN_IN_CONFIRMATION_MODAL
   }
 }
 
 export function showSignUpConfirmationModal() {
   return {
-    type: SHOW_SIGN_UP_CONFIRMATION_MODAL
+    type: actionTypes.SHOW_SIGN_UP_CONFIRMATION_MODAL
   }
 }
 
@@ -137,19 +138,19 @@ export function confirmUserSignUp(username, password, authCode, navigation, next
 
 function confirmSignUp() {
   return {
-    type: CONFIRM_SIGNUP
+    type: actionTypes.CONFIRM_SIGNUP
   }
 }
 
 function confirmSignUpSuccess() {
   return {
-    type: CONFIRM_SIGNUP_SUCCESS
+    type: actionTypes.CONFIRM_SIGNUP_SUCCESS
   }
 }
 
 function confirmSignUpFailure(error) {
   return {
-    type: CONFIRM_SIGNUP_FAILURE,
+    type: actionTypes.CONFIRM_SIGNUP_FAILURE,
     error
   }
 }

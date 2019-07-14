@@ -10,13 +10,13 @@ class FirstScreenLoader extends React.Component {
 
   // Fetch the firstRunCompleted flag from storage then navigate to our appropriate place
   _bootstrapAsync = async () => {
-    const { firstRunCompleted, userLogedIn } = this.props;
+    const { firstRunCompleted, userLoggedIn } = this.props;
 
     // This will switch to the App screen or FirstRun screens and this loading
     // screen will be unmounted and thrown away.
     if(!firstRunCompleted){
       this.props.navigation.navigate('FirstRun')
-    } else if (!userLogedIn){
+    } else if (!userLoggedIn){
       this.props.navigation.navigate('Login')
     } else {
       this.props.navigation.navigate('App')
@@ -36,8 +36,8 @@ class FirstScreenLoader extends React.Component {
 
 const mapStateToProps = state => {
   const firstRunCompleted = state.data.firstRunCompleted;
-  const userLogedIn = state.auth.user.username;
-  return { firstRunCompleted, userLogedIn };
+  const userLoggedIn = state.auth.user.username;
+  return { firstRunCompleted, userLoggedIn };
 };
 
 export default connect(mapStateToProps)(FirstScreenLoader);
