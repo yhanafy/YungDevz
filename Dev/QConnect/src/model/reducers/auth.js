@@ -23,7 +23,18 @@ const initialState = {
   confirmSignUpErrorMessage: ''
 }
 
+import Analytics from '@aws-amplify/analytics';
+import analyticsEvents from 'config/analyticsEvents'
+import awsconfig from '../../../aws-exports';
+
 export default (state = initialState, action) => {
+  if (Object.values(actionTypes).indexOf(action.type) > -1) {
+    Analytics.record({
+      name: analyticsEvents.action_dispatched,
+      attributes: { type: action.type }
+    })
+  }
+  
   switch(action.type) {
     case actionTypes.SHOW_SIGN_IN_CONFIRMATION_MODAL:
       return {

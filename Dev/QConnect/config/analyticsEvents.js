@@ -6,4 +6,12 @@ export default {
    image_selected_from_modal: 'image selected from modal',
    image_selected_from_highlights: 'image selected from highlights',
    action_dispatched: 'action dispatched',
+   auth_action_dispatched: 'auth action dispatched',
+   create_user_failed: 'create user failed',
+   create_user_succeeded: 'create user succeeded',
+   login_failed: 'login failed',
+   login_succeeded: 'login succeeded',
+   confirm_new_user_failed: 'confirm new user failed',
+   confirm_new_user_failed: 'confirm new user succeeded',
+   first_screen_loaded: "first screen loaded",
 }

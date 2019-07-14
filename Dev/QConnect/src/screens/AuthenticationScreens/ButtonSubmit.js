@@ -13,7 +13,9 @@ import {
   View,
 } from 'react-native';
 import colors from 'config/colors'
-
+import Analytics from '@aws-amplify/analytics';
+import analyticsEvents from 'config/analyticsEvents'
+import awsconfig from '../../../aws-exports';
 
 const DEVICE_WIDTH = Dimensions.get('window').width;
 const DEVICE_HEIGHT = Dimensions.get('window').height;
@@ -34,6 +36,11 @@ export default class ButtonSubmit extends Component {
   }
 
   componentDidMount() {
+    Analytics.record({
+      name: analyticsEvents.button_pressed,
+      attributes: { text: this.props.text, screenName: this.props.screen }
+    })
+    
     this._isMounted = true;
   }
 
