@@ -92,7 +92,8 @@ class LoginScreen extends Component {
             style={{top: -95}}
             text={strings.Login}
             onSubmit={this.signIn.bind(this)}
-            navigation={this.props.navigation} />
+            navigation={this.props.navigation}
+            screen="LoginScreen" />
         </ImageBackground>
       </View>
     );

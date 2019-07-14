@@ -16,10 +16,14 @@ import {
   CONFIRM_LOGIN_FAILURE
 } from 'model/reducers/auth'
 import * as actionTypes from './authActionTypes'
+import { setFirstRunCompleted } from "model/actions/setFirstRunCompleted";
 
 import { Alert } from 'react-native'
 import { Auth } from 'aws-amplify'
 import strings from 'config/strings'
+import Analytics from '@aws-amplify/analytics';
+import analyticsEvents from 'config/analyticsEvents'
+import awsconfig from '../../../aws-exports';
 
 function signUp() {
   return {
@@ -55,11 +59,20 @@ export function createUser(username, password, email, phone_number) {
       }
     })
     .then(data => {
+      Analytics.record({
+        name: analyticsEvents.create_user_succeeded,
+      })
+
       dispatch(signUpSuccess(data))
       dispatch(showSignUpConfirmationModal())
     })
     .catch(err => {
       console.log('error signing up: ', err)
+      Analytics.record({
+        name: analyticsEvents.create_user_failed,
+        attributes:  err 
+      })
+
       Alert.alert(strings.ErrorSigningUp, "" + (err.message || err))
       dispatch(signUpFailure(err))
     });
@@ -98,10 +111,20 @@ export function authenticate(username, password, navigation, nextScreenName) {
     Auth.signIn(username, password)
       .then(user => {
         console.log("successful login")
+        Analytics.record({
+          name: analyticsEvents.login_succeeded,
+        })
+        
         dispatch(logInSuccess(user))
+        dispatch(setFirstRunCompleted(true));
         navigation.navigate(nextScreenName);
       })
       .catch(err => {
+        Analytics.record({
+          name: analyticsEvents.login_failed,
+          attributes:  err 
+        })
+
         Alert.alert(strings.ErrorSigningIn, "" + (err.message || err))
         dispatch(logInFailure(err))
       });
@@ -125,11 +148,20 @@ export function confirmUserSignUp(username, password, authCode, navigation, next
     dispatch(confirmSignUp())
     Auth.confirmSignUp(username, authCode)
       .then(data => {
+        Analytics.record({
+          name: analyticsEvents.confirm_new_user_succeeded
+        })
+
         dispatch(confirmSignUpSuccess())
         dispatch(authenticate(username, password, navigation, nextScreenName))
       })
       .catch(err => {
         console.log('error signing up: ', err)
+        Analytics.record({
+          name: analyticsEvents.confirm_new_user_failed,
+          attributes:  err 
+        })
+  
         Alert.alert(strings.ErrorSigningUp, "" + (err.message || err))
         dispatch(confirmSignUpFailure(err))
       });

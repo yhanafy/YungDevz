@@ -3,7 +3,6 @@ import { StyleSheet, View, Image, Text, TouchableWithoutFeedback, KeyboardAvoidi
 import QcActionButton from "components/QcActionButton";
 import Toast, { DURATION } from "react-native-easy-toast";
 import { saveTeacherInfo } from "model/actions/saveTeacherInfo";
-import { setFirstRunCompleted } from "model/actions/setFirstRunCompleted";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import colors from "config/colors";
@@ -158,8 +157,6 @@ export class TeacherWelcomeScreen extends QcParentScreen {
       this.props.saveTeacherInfo(
         { teacherID, ...params }
       );
-
-      this.props.setFirstRunCompleted(true);
     }
   };
 
@@ -376,7 +373,6 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       saveTeacherInfo,
-      setFirstRunCompleted,
       confirmUserSignUp,
       createUser
     },
