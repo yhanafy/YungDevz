@@ -65,7 +65,7 @@ class FlowView extends Component {
 					onPress={() => {
 						if (!this.props.readOnly) {
 							this.props.onClick();
-							if (this.props.text !== strings.Ellipses && this.props.text !== strings.PlusSign && !this.props.editMode) {
+							if (this.props.text !== strings.Ellipses && this.props.text !== strings.PlusSign && !this.props.editMode && !this.props.isBadgeVisible) {
 								this.setState({ isSelected: !this.state.isSelected });
 							}
 						}
@@ -175,7 +175,7 @@ export default class FlowLayout extends Component {
 										return (
 											<View key={position}>
 												<FlowView isBadgeVisible={true} ref={this.state.dataValue[position]} text={value} readOnly={false} onClick={() => {
-													dataValue.splice(position, position + 1);
+													dataValue.splice(position, 1);
 													this.setState({ dataValue })
 												}} />
 											</View>
@@ -199,24 +199,19 @@ export default class FlowLayout extends Component {
 										{
 											this.state.isNewAddition === true ? (
 												<TextInput
-													style={[styles.corner, styles.textInputStyle]}
+													style={[styles.textInputStyle, { minWidth: (this.state.newImprovementText.length * 4) + 80 }]}
 													value={this.state.newImprovementText}
 													onChangeText={(text) => { this.setState({ newImprovementText: text }) }}
 													onEndEditing={() => {
 														dataValue.push(this.state.newImprovementText);
-														this.setState({ dataValue, isNewAddition: false });
+														this.setState({ dataValue, isNewAddition: false, newImprovementText: "" });
+														this.setState({ isNewAddition: true });
 													}}
 												/>
 											) : (
 													<View></View>
 												)
 										}
-										<FlowView backgroundColor={colors.primaryLight} text={strings.PlusSign} onClick={() => {
-											this.setState({ isNewAddition: true });
-										}} />
-										<FlowView text={strings.Ellipses} backgroundColor={colors.primaryLight} onClick={() => {
-											this.setState({ isBadgeVisible: false })
-										}} />
 									</View>
 								) : (
 										<FlowView text={strings.Ellipses} backgroundColor={colors.primaryLight} onClick={() => {
@@ -262,8 +257,9 @@ export default class FlowLayout extends Component {
 					{
 						//Only shows the ellipses if this is not read only
 						(!this.props.readOnly) ? (
-							<FlowView text={strings.Ellipses} onClick={() => {
+							<FlowView text={strings.Ellipses} backgroundColor={colors.primaryLight} onClick={() => {
 								this.openCustomImprovements();
+								this.setState({ isNewAddition: true })
 							}} />
 						) :
 							(
@@ -296,10 +292,18 @@ const styles = StyleSheet.create({
 		marginRight: 20,
 	},
 	textInputStyle: {
-		backgroundColor: colors.lightGrey, 
-		textAlign: 'center', 
-		alignItems: 'center', 
-		justifyContent: 'center'
+		backgroundColor: colors.lightGrey,
+		textAlign: 'center',
+		alignItems: 'center',
+		justifyContent: 'center',
+		borderColor: colors.grey,
+		borderWidth: 1 / PixelRatio.get(),
+		borderRadius: 5,
+		height: 35,
+		justifyContent: 'center',
+		alignItems: 'center',
+		marginRight: 10,
+		marginTop: 10,
 	},
 	corner: {
 		borderColor: colors.grey,

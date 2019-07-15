@@ -5,6 +5,7 @@ import allSettingsScreen from './allSettingsScreen';
 import creditsScreen from 'screens/TeacherScreens/SettingsScreen/CreditsScreen';
 import TopBanner from 'components/TopBanner';
 import strings from '../../../../config/strings';
+import FirstRunScreen from '../../FirstRun/FirstRunScreen';
 
 const SettingsNavigator = createStackNavigator({
     Settings: {
@@ -29,6 +30,12 @@ const SettingsNavigator = createStackNavigator({
                     Title={strings.Credits}
                 />
             )
+        }),
+    },
+    FirstRun: {
+        screen: FirstRunScreen,
+        navigationOptions: ({ navigation }) => ({
+            header: (null)
         }),
     },
 },

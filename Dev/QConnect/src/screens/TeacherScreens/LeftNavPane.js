@@ -14,7 +14,7 @@ import QcParentScreen from "screens/QcParentScreen";
 
 class LeftNavPane extends QcParentScreen {
   name = "LeftNavPane";
-  
+
   openClass = (id, className) => {
     //update current class index in redux
     this.props.saveTeacherInfo(
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
 });
 
 const getTeacherClasses = (classIds, classes) => {
-   return Object.values(classes).filter(c => classIds.includes(c.id))
+  return Object.values(classes).filter(c => classIds.includes(c.id))
 }
 
 const mapStateToProps = state => {

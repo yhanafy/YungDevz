@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image, TouchableHighlight } from 'react-native'
+import { Image, TouchableHighlight, Dimensions } from 'react-native'
 import PropTypes from 'prop-types'
 import colors from 'config/colors';
 
@@ -11,7 +11,12 @@ import colors from 'config/colors';
 export default TouchableAvatar = (props) => {
   const { image, onPress, index, selected } = props;
   const backColor = props.backgroundColor ? props.backgroundColor : (selected ? colors.primaryLight : colors.white);
-  const length = props.length ? props.length : (selected ? 70 : 60);
+  var {
+    width,
+    height
+  } = Dimensions.get('window');
+  let imgDiameter = width / 7;
+  const length = props.length ? props.length : (selected ? imgDiameter + 10 : imgDiameter);
 
 
   return (

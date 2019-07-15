@@ -5,6 +5,11 @@ export default {
     AppTitle: 'QuranConnect',
     AppSubTitle: 'Serving your passion for the Quran',
 
+    //--------------------- Student Main Screen ---------------------
+    TotalAssignments: 'Total Assignments',
+    Ready: 'Ready',
+    NotReady: 'Not Ready',
+
     //--------------------- Evaluation Page ---------------------
     None: 'None',
     HowWas: 'How was ',
@@ -15,12 +20,20 @@ export default {
 
     //--------------------- First Run Screen ---------------------
     IAmATeacher: 'I am a teacher',
+    IAmAStudent: 'I am a student',
+    Login: "LOGIN",
 
     //--------------------- Teacher Welcome Screen ---------------------
     YourProfileHasBeenSaved: 'Your profile has been saved',
     Cancel: 'Cancel',
     TeacherWelcomeMessage: 'Quran teachers are very dear to our hearts. It is our great honor and pleasure to serve your dedication to the holy book.',
     Save: 'Save',
+    CreateAccount: 'CREATE ACCOUNT',
+    AuthorizationCode: "Authorization Code",
+    Confirm: "Confirm",
+    ErrorSigningUp: "Error signing up",
+    ErrorSigningIn: "Error signing in",
+    InvalidPhoneNumber: "The phone number is invalid. Please enter a valid phone number.",
 
     //--------------------- Student Profile Screen ---------------------
     EditAssignment: 'Edit Assignment',
@@ -104,10 +117,12 @@ export default {
     namePlaceHolder: "Name",
     emailPlaceHolder: "Email",
     phoneNumberPlaceHolder: "Phone Number",
+    password: "Password",
 
     //--------------------------- Settings -------------------------------------------
     Credits: 'Photo Credit',
     PrivacyPolicy: 'Privacy Policy',
+    LogOut: 'Log Out',
 
     //--------------------------- Credits -------------------------------------------
     FirstScreenImageCredits: 'First screen background photo by © Hany Khalaf Photography',

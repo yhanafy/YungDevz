@@ -6,6 +6,8 @@ import TeacherWelcomeScreen from './TeacherWelcomeScreen';
 import AddClassScreen from '../TeacherScreens/AddClass/AddClassScreen';
 import TopBanner from 'components/TopBanner';
 import strings from 'config/strings';
+import StudentScreensNavigator from '../StudentScreens/StudentScreensNavigator';
+import LoginScreen from 'screens/AuthenticationScreens/LoginScreen'
 
 const routeConfig = {
     FirstRunScreen: {
@@ -16,6 +18,12 @@ const routeConfig = {
     },
     TeacherScreens: {
         screen: TeacherMenu
+    },
+    StudentScreensNavigator: {
+        screen: StudentScreensNavigator
+    },
+    LoginScreen: {
+        screen: LoginScreen
     },
     AddClassScreenFirstRun: {
         screen: AddClassScreen,
@@ -31,6 +39,7 @@ const routeConfig = {
 
 const navigatorConfig = {
     headerMode: 'none',
+    initialRouteName: 'FirstRunScreen'
 }
 
 const FirstRunStackNavigator = createStackNavigator(routeConfig, navigatorConfig);

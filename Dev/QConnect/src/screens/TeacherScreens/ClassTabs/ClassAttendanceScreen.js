@@ -52,8 +52,9 @@ export class ClassAttendanceScreen extends QcParentScreen {
             attendanceInfo = {
                 ...attendanceInfo,
                 [student.id]: {
-                    [date]: !absent.includes(index)}
+                    [date]: !absent.includes(index)
                 }
+            }
         });
 
         this.props.addAttendance(

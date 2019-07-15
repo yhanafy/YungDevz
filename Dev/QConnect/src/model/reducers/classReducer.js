@@ -4,17 +4,31 @@ import actionTypes from '../actions/actionTypes';
 import Analytics from '@aws-amplify/analytics';
 import analyticsEvents from 'config/analyticsEvents'
 import awsconfig from '../../../aws-exports';
+import auth from './auth';
 
 export const INITIAL_STATE = {
   firstRunCompleted: false,
   teacher: {
-      id: "",
-      name: "",
-      phoneNumber: "",
-      emailAddress: "",
-      currentClassId: "",
-      profileImageId: 1,
-      classes: []
+    id: "",
+    name: "",
+    phoneNumber: "",
+    emailAddress: "",
+    currentClassId: "",
+    password: "",
+    profileImageId: 1,
+    classes: []
+  },
+  student: {
+    id: "",
+    name: "Zyad",
+    imageId: 1,
+    averageRating: 1,
+    totalAssignments: 1,
+    isReady: false,
+    currentAssignment: 'Al-Baqara',
+    assignmentHistory: [],
+    currentClassID: "",
+    classes: []
   },
   classes: {},
   students: {},
@@ -26,7 +40,7 @@ export const INITIAL_STATE = {
 
     }
   },
-  assignmentsHistory:{
+  assignmentsHistory: {
     byStudentId: {
 
     }
@@ -59,40 +73,40 @@ export const classReducer = (state = INITIAL_STATE, action) => {
         var nanoid = require('nanoid/non-secure')
         let newStudentId = nanoid()
 
-        let newStudent = {id: newStudentId, ...action.studentInfo.studentInfo}
+        let newStudent = { id: newStudentId, ...action.studentInfo.studentInfo }
 
-        newState = update(baseState, { students: { $merge: {[newStudentId]: newStudent} } } );
-        newState = update(newState, { classes: { [classId]: { students: { $push: [newStudentId] } } } } );
-        newState = editAssignment(newState, classId, newStudentId, {name: 'None', startDate: '', totalAssignments: 0, grade: 0});
+        newState = update(baseState, { students: { $merge: { [newStudentId]: newStudent } } });
+        newState = update(newState, { classes: { [classId]: { students: { $push: [newStudentId] } } } });
+        newState = editAssignment(newState, classId, newStudentId, { name: 'None', startDate: '', totalAssignments: 0, grade: 0 });
         return newState;
       }
     case actionTypes.DELETE_STUDENT:
       {
         //remove student from the class's roster 
-        newState = update(baseState, { classes: { [action.classId]: { students: { $splice: [[action.studentId, 1]] } } } } );
+        newState = update(baseState, { classes: { [action.classId]: { students: { $splice: [[action.studentId, 1]] } } } });
 
-        newState = update(newState, { currentAssignments: { byClassId: { [action.classId]: { byStudentId: {$unset: [action.studentId]}}}}});
+        newState = update(newState, { currentAssignments: { byClassId: { [action.classId]: { byStudentId: { $unset: [action.studentId] } } } } });
 
         //delete the class entry from currentAssignments object if there are no more students in the class
-        if(Object.entries(newState.currentAssignments.byClassId[action.classId].byStudentId).length == 0){
-          newState = update(newState, { currentAssignments: { byClassId: {$unset: [action.classId]}}});
+        if (Object.entries(newState.currentAssignments.byClassId[action.classId].byStudentId).length == 0) {
+          newState = update(newState, { currentAssignments: { byClassId: { $unset: [action.classId] } } });
         }
 
         //delete attendance records
-        if(newState.attendance.byClassId[action.classId] && newState.attendance.byClassId[action.classId].byStudentId){
-          newState = update(newState,  { attendance: { byClassId: { [action.classId]: { byStudentId: {$unset: [action.studentId]} } } }} );
+        if (newState.attendance.byClassId[action.classId] && newState.attendance.byClassId[action.classId].byStudentId) {
+          newState = update(newState, { attendance: { byClassId: { [action.classId]: { byStudentId: { $unset: [action.studentId] } } } } });
         }
 
         //delete the class entry from attendance object if there are no more students in the class
-        if(newState.attendance.byClassId[action.classId] && (Object.entries(newState.attendance.byClassId[action.classId].byStudentId).length === 0)){
-          newState = update(newState, { attendance: { byClassId: {$unset: [action.classId]}}});
+        if (newState.attendance.byClassId[action.classId] && (Object.entries(newState.attendance.byClassId[action.classId].byStudentId).length === 0)) {
+          newState = update(newState, { attendance: { byClassId: { $unset: [action.classId] } } });
         }
 
         return newState;
       }
     case actionTypes.ADD_CLASS:
       {
-        newState = update(baseState, { classes: { $merge: {[action.classInfo.id]: action.classInfo} } } );
+        newState = update(baseState, { classes: { $merge: { [action.classInfo.id]: action.classInfo } } });
         newState = update(newState, { teacher: { classes: { $push: [action.classInfo.id] } } });
         newState = update(newState, { teacher: { currentClassId: { $set: action.classInfo.id } } });
         return newState
@@ -100,21 +114,21 @@ export const classReducer = (state = INITIAL_STATE, action) => {
     case actionTypes.ADD_ATTENDANCE:
       {
         let classId = action.classId;
-        
+
         newState = baseState;
         if (!newState.attendance.byClassId[classId]) {
-          newState = update(baseState, { attendance: { byClassId: { $merge: {[classId]: { byStudentId: { }}}}}});
+          newState = update(baseState, { attendance: { byClassId: { $merge: { [classId]: { byStudentId: {} } } } } });
         }
-      
+
         for (const [key, value] of Object.entries(action.attendanceInfo)) {
-          if(!newState.attendance.byClassId[classId].byStudentId[key]){
-            newState = update(newState,  { attendance: { byClassId: { [classId]: { byStudentId: {[key]: {$set: action.attendanceInfo[key] } } }}}} );
+          if (!newState.attendance.byClassId[classId].byStudentId[key]) {
+            newState = update(newState, { attendance: { byClassId: { [classId]: { byStudentId: { [key]: { $set: action.attendanceInfo[key] } } } } } });
           }
-          else{
-            newState = update(newState,  { attendance: { byClassId: { [classId]: { byStudentId: {[key]: {$merge: action.attendanceInfo[key] } } }}}} );
+          else {
+            newState = update(newState, { attendance: { byClassId: { [classId]: { byStudentId: { [key]: { $merge: action.attendanceInfo[key] } } } } } });
           }
         }
-        
+
         return newState;
       }
     case actionTypes.SAVE_TEACHER_INFO:
@@ -139,14 +153,14 @@ export const classReducer = (state = INITIAL_STATE, action) => {
     case actionTypes.UPDATE_STUDENT_IMAGE:
       {
         let { classId, studentId, imageId } = action;
-        let newState = update(baseState, {students: { [studentId]: { imageId: { $set: imageId } } } });
+        let newState = update(baseState, { students: { [studentId]: { imageId: { $set: imageId } } } });
         return newState;
       }
     case actionTypes.COMPLETE_CURRENT_ASSIGNMENT:
       {
         let { classId, studentId, evaluation } = action;
-        const {grade, totalAssignments, ...oldAssignment} = baseState.currentAssignments.byClassId[classId].byStudentId[studentId][0];
-    
+        const { grade, totalAssignments, ...oldAssignment } = baseState.currentAssignments.byClassId[classId].byStudentId[studentId][0];
+
         //updates the evaluation of the current assignment
         let assignment = {
           ...oldAssignment, //todo, pass index of which assignment (oncw we support multiple current assigments)
@@ -155,15 +169,15 @@ export const classReducer = (state = INITIAL_STATE, action) => {
         }
 
         let newState = addToAssignmentHistory(baseState, classId, studentId, assignment);
-        
+
         //pushes the assignment to the array of assignment history (Remember, this action does not 
         if (evaluation.grade !== 0) {
           let { totalAssignmentsNum, newGrade } = getNewAvgGradeAndTotal(totalAssignments, grade, assignment);
-          let newAssignment = {...oldAssignment, totalAssignments: totalAssignmentsNum, grade: newGrade}
-          
+          let newAssignment = { ...oldAssignment, totalAssignments: totalAssignmentsNum, grade: newGrade }
+
           //todo: right now even though the currentAssignments is an array, we still only support one assignment, so we replace the first element with the new assignment
           // later, once we start officially supporting mutliple assignments, we need to properly replace the right assignment index
-          newState = update(newState, { currentAssignments: { byClassId: { [classId]: { byStudentId: { [studentId]: {$splice: [[0, 1, newAssignment]]} } } }}});
+          newState = update(newState, { currentAssignments: { byClassId: { [classId]: { byStudentId: { [studentId]: { $splice: [[0, 1, newAssignment]] } } } } } });
         }
         return newState;
       }
@@ -173,6 +187,12 @@ export const classReducer = (state = INITIAL_STATE, action) => {
         let newState = update(baseState, { firstRunCompleted: { $set: completed } });
         return newState;
       }
+    case actionTypes.UPDATE_ASSIGNMENT_STATUS:
+      {
+        let { newStatus } = action;
+        let newState = update(baseState, { student: { isReady: { $set: newStatus } } });
+        return newState;
+      }
     default:
       return state
   }
@@ -180,6 +200,7 @@ export const classReducer = (state = INITIAL_STATE, action) => {
 
 export default combineReducers({
   data: classReducer,
+  auth: auth
 });
 
 //calculates new average grade from old average and total number of assignments
@@ -205,7 +226,7 @@ function editAssignment(baseState, classId, studentId, newAssignment) {
   }
   else {
     let oldAssignment = newState.currentAssignments.byClassId[classId].byStudentId[studentId][0];
-    let mergedAssignment = {...oldAssignment, ...newAssignment}
+    let mergedAssignment = { ...oldAssignment, ...newAssignment }
     newState = update(newState, { currentAssignments: { byClassId: { [classId]: { byStudentId: { [studentId]: { $set: [mergedAssignment] } } } } } });
   }
 

@@ -15,7 +15,13 @@ class FirstRunScreen extends QcParentScreen {
 
   onTeacherFlow = () => {
     //todo: get the first class to show from redux persist (current class)
-      this.props.navigation.push('TeacherWelcomeScreen', { classId: 0, classTitle: "Quran Class"});
+    this.props.navigation.push('LoginScreen');
+  }
+
+  //Navigates to the student side
+  onStudentFlow = () => {
+    //todo: Change this to a login so that the correct student can be displayed
+    this.props.navigation.push('StudentScreensNavigator');
   }
 
   render() {
@@ -23,7 +29,7 @@ class FirstRunScreen extends QcParentScreen {
     return (
       <View style={styles.container}>
         <ImageBackground source={BG_IMAGE} style={styles.bgImage}>
-          <View style={{ flex: 4 }} />
+          <View style={{ flex: 3 }} />
           <QcAppBanner />
           <View style={styles.spacer} />
           <View style={{ flex: 1 }}>
@@ -31,6 +37,13 @@ class FirstRunScreen extends QcParentScreen {
               navigation={navigation}
               text={strings.IAmATeacher}
               onPress={this.onTeacherFlow}
+              screen={this.name}
+            />
+            <View style={{ flex: 1 }}></View>
+            <QcActionButton
+              navigation={navigation}
+              text={strings.IAmAStudent}
+              onPress={this.onStudentFlow}
               screen={this.name}
             />
           </View>

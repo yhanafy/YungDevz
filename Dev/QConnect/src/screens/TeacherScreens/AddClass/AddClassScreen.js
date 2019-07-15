@@ -34,9 +34,9 @@ export class AddClassScreen extends QcParentScreen {
 
   //---- helper function to determine if the entered class name is duplicate -------
   classNameAlreadyExists() {
-    let { classes } = this.props;
-    for (let i = 0; i < classes.length; i++) {
-      if (classes[i].name.toLowerCase() === this.state.className.toLowerCase()) {
+    let { teacherClassNames } = this.props;
+    for (let i = 0; i < teacherClassNames.length; i++) {
+      if (teacherClassNames[i].toLowerCase() === this.state.className.toLowerCase()) {
         return true;
       }
     }
@@ -46,7 +46,6 @@ export class AddClassScreen extends QcParentScreen {
 
   // saves the class into redux
   addNewClass() {
-    let { classes } = this.props;
 
     if (!this.state.className || this.state.className.trim().length === 0) {
       Alert.alert(strings.Whoops, strings.PleaseMakeSureAllFieldsAreFilledOut);
@@ -64,8 +63,6 @@ export class AddClassScreen extends QcParentScreen {
       return;
     }
 
-    let newClassIndex = this.props.classes.length;
-
     let classInfo = {
       name: this.state.className,
       imageId: this.state.classImageId,
@@ -75,7 +72,7 @@ export class AddClassScreen extends QcParentScreen {
     //todo: this should be in the reducer??
     var nanoid = require('nanoid/non-secure')
     let newId = nanoid()
-    classInfo = {id: newId, ...classInfo};
+    classInfo = { id: newId, ...classInfo };
 
     this.props.addClass(classInfo);
     this.props.saveTeacherInfo(
@@ -179,9 +176,15 @@ const styles = StyleSheet.create({
 
 }
 );
+
+const getTeacherClassNames = (classIds, classes) => {
+  return Object.values(classes).filter(c => classIds.includes(c.id)).map(cls => {return cls.name})
+}
+
 const mapStateToProps = state => {
-  const { classes } = state.data;
-  return { classes };
+  const { classes, teacher } = state.data;
+  const teacherClassNames =  getTeacherClassNames(teacher.classes, classes);
+  return { teacherClassNames };
 };
 
 export const mapDispatchToProps = dispatch =>
