@@ -42,6 +42,7 @@ export default class Form extends Component {
           autoCorrect={false}
           onChangeText={this.props.onUserNameChange}
         />
+        <View style={styles.container}>
         <UserInput
           source={passwordImg}
           secureTextEntry={this.state.showPass}
@@ -57,6 +58,7 @@ export default class Form extends Component {
           onPress={this.showPass}>
           <Image source={eyeImg} style={styles.iconEye} />
         </TouchableOpacity>
+        </View>
       </KeyboardAvoidingView>
     );
   }
@@ -71,8 +73,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   btnEye: {
+    top: 6,
     position: 'absolute',
-    top: 60,
     right: 28,
   },
   iconEye: {

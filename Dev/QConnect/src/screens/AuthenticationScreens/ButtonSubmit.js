@@ -15,7 +15,8 @@ import {
 import colors from 'config/colors'
 import Analytics from '@aws-amplify/analytics';
 import analyticsEvents from 'config/analyticsEvents'
-import awsconfig from '../../../aws-exports';
+import SignupSection from './SignupSection';
+
 
 const DEVICE_WIDTH = Dimensions.get('window').width;
 const DEVICE_HEIGHT = Dimensions.get('window').height;
@@ -111,6 +112,7 @@ export default class ButtonSubmit extends Component {
           <Animated.View
             style={[styles.circle, {transform: [{scale: changeScale}]}]}
           />
+          
         </Animated.View>
       </View>
     );
@@ -119,18 +121,19 @@ export default class ButtonSubmit extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    marginTop: 20,
     alignItems: 'center',
     justifyContent: 'flex-start',
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
   },
   button: {
     alignItems: 'center',
+    alignSelf: 'stretch',
     justifyContent: 'center',
     backgroundColor: colors.primaryLight,
     height: MARGIN,
     borderRadius: 20,
-    zIndex: 100,
+    zIndex: 10,
   },
   circle: {
     height: MARGIN,
@@ -140,7 +143,7 @@ const styles = StyleSheet.create({
     borderColor: colors.primaryLight,
     borderRadius: 100,
     alignSelf: 'center',
-    zIndex: 99,
+    zIndex: 9,
     backgroundColor: colors.primaryLight,
   },
   text: {

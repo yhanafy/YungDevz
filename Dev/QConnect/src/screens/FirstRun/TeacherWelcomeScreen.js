@@ -258,7 +258,9 @@ export class TeacherWelcomeScreen extends QcParentScreen {
               !signUpErrorMessage && 
               !signUpError && (
                 <Modal
-                  transparent={true}>
+                  transparent={true}
+                  onRequestClode={()=>{}}>
+                  
                   <View style={styles.modal}>
                     <Text style={styles.confirmationMessage}>Please enter the validation code sent to your email</Text>
                     <Input
