@@ -22,15 +22,17 @@ export default class AssignmentEntryComponent extends React.Component {
                 onRequestClose={() => {
                 }}>
                 <View style={{ marginVertical: 50, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', paddingBottom: 20 }}>
-                    <View style={styles.container}>
-
+                    <View style={styles.modal}>
+                        <Text style={styles.modalTitle}>Enter Assignment</Text>
                         <AutoSuggest
-      				onChangeText={(text) => this.setState({input: text})}
-                      terms={surahNames.map(value => {return value.name})}
-                      onItemPress = {(value) => this.setState({input: value})}
-			        />
-                        
-                        
+                            onChangeText={(text) => this.setState({ input: text })}
+                            terms={surahNames.map(value => { return value.name })}
+                            onItemPress={(value) => this.setState({ input: value })}
+                            textInputStyles={{ backgroundColor: colors.lightGrey }}
+                            placeholder="eg. Al-Fatihah Ayahs 1-5"
+                        />
+
+
                         <QcActionButton
                             text={strings.Submit}
                             screen={this.props.screen}
@@ -45,11 +47,12 @@ export default class AssignmentEntryComponent extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    container: {
+    modal: {
         backgroundColor: colors.white,
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 30,
+        flexDirection: 'column',
+        marginTop: 230,
         borderWidth: 1,
         borderRadius: 2,
         borderColor: colors.grey,
@@ -59,9 +62,15 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.8,
         shadowRadius: 3,
         elevation: 2,
-        marginLeft: 5,
-        marginRight: 5,
-        paddingRight: 15,
-        paddingLeft: 15
+        marginLeft: 45,
+        marginRight: 45,
+        paddingRight: 5,
+        paddingLeft: 5
     },
-})
+    modalTitle: {
+        fontSize: 16,
+        marginVertical: 10,
+        fontFamily: 'regular',
+        color: colors.darkGrey
+    }
+});
