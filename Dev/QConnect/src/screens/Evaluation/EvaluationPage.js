@@ -4,7 +4,7 @@ import { AirbnbRating } from 'react-native-elements';
 import colors from 'config/colors';
 import { bindActionCreators } from 'redux';
 import { connect } from "react-redux";
-import QcActionButton from 'components/QcActionButton';
+import QcActionButton  from 'components/QcActionButton';
 import { completeCurrentAssignment } from 'model/actions/completeCurrentAssignment';
 import { editCurrentAssignment } from 'model/actions/editCurrentAssignment';
 import strings from 'config/strings';

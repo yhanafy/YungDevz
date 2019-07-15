@@ -13,7 +13,7 @@ import TouchableText from 'components/TouchableText'
 import ImageSelectionModal from 'components/ImageSelectionModal';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import QcParentScreen from 'screens/QcParentScreen';
-import Autocomplete from 'react-native-autocomplete-input';
+import AssignmentEntryComponent from 'components/AssignmentEntryComponent';
 
 
 
@@ -71,6 +71,7 @@ class StudentProfileScreen extends QcParentScreen {
     return caption
   }
 
+
   //---------- main UI render ===============================
   render() {
     const { classId, studentId, currentStudent, currentAssignment, assignmentsHistory } = this.props
@@ -85,14 +86,21 @@ class StudentProfileScreen extends QcParentScreen {
       <View style={styles.container}>
         {/**To Be made into a component
         so that we can add autocomplete. */ }
-        <DialogInput
+        {/* <DialogInput
           isDialogVisible={this.state.isDialogVisible}
           title={strings.EditAssignment}
           {...dialogInitialText}
           dialogStyle={{ marginBottom: 100 }}
           submitInput={(inputText) =>
             this.editAssignment(classId, studentId, inputText)}
-          closeDialog={() => { this.setState({ isDialogVisible: false }) }} />
+          closeDialog={() => { this.setState({ isDialogVisible: false }) }} /> */}
+
+          <AssignmentEntryComponent 
+          visible= {this.state.isDialogVisible}
+          screen = {this.name}
+          onSubmit = {(inputText) =>
+          this.editAssignment(classId, studentId, inputText)} 
+          />
 
         <ImageSelectionModal
           visible={this.state.isModalVisible}
