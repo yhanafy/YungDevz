@@ -95,7 +95,8 @@ export class TeacherProfileScreen extends QcParentScreen {
     //-----------renders the teacher profile UI ------------------------------------
     render() {
         return (
-            <View><ScrollView>
+            <View>
+            <ScrollView>
             <KeyboardAvoidingView style={styles.container} behavior="padding">
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                     <View style={styles.container}>
@@ -142,7 +143,8 @@ export class TeacherProfileScreen extends QcParentScreen {
                     </View>
                 </TouchableWithoutFeedback>
             </KeyboardAvoidingView>
-            </ScrollView></View>
+            </ScrollView>
+            </View>
         )
     }
 
