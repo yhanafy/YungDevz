@@ -23,7 +23,6 @@ import { Auth } from 'aws-amplify'
 import strings from 'config/strings'
 import Analytics from '@aws-amplify/analytics';
 import analyticsEvents from 'config/analyticsEvents'
-import awsconfig from '../../../aws-exports';
 
 function signUp() {
   return {
@@ -73,7 +72,9 @@ export function createUser(username, password, email, phone_number) {
         attributes:  {...err} 
       })
 
-      Alert.alert(strings.ErrorSigningUp, "" + (err.message || err))
+      setTimeout(() => {
+        Alert.alert(strings.ErrorSigningUp, "" + (err.message || err))
+      }, 100);
       dispatch(signUpFailure(err))
     });
   }
@@ -162,7 +163,9 @@ export function confirmUserSignUp(username, password, authCode, navigation, next
           attributes:  {...err} 
         })
   
-        Alert.alert(strings.ErrorSigningUp, "" + (err.message || err))
+        setTimeout(() => {
+          Alert.alert(strings.ErrorSigningUp, "" + (err.message || err))
+        }, 100);
         dispatch(confirmSignUpFailure(err))
       });
   }

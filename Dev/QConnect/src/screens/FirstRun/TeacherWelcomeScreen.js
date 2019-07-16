@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Image, Text, TouchableWithoutFeedback, KeyboardAvoidingView, Keyboard, Alert, Modal, ScrollView } from "react-native";
+import { StyleSheet, View, Image, Text, TouchableWithoutFeedback, KeyboardAvoidingView, Keyboard, Alert, Modal, ScrollView, LayoutAnimation, Platform } from "react-native";
 import QcActionButton from "components/QcActionButton";
 import Toast, { DURATION } from "react-native-easy-toast";
 import { saveTeacherInfo } from "model/actions/saveTeacherInfo";
@@ -22,12 +22,14 @@ const initialState = {
   password: ''
 }
 
-
-
 //To-Do: All info in this class is static, still needs to be hooked up to data base in order
 //to function dynamically
 export class TeacherWelcomeScreen extends QcParentScreen {
   state = initialState;
+
+  componentWillUnmount() {
+    this.setState({ isModalVisible: false });
+  }
 
   signUp(username, password, email, phone_number) {
     this.props.createUser(username, password, email, phone_number)
@@ -125,40 +127,52 @@ export class TeacherWelcomeScreen extends QcParentScreen {
   saveProfileInfo = teacherID => {
     const { name, phoneNumber, emailAddress, password } = this.state;
 
-    if (!name || 
+    //Reset the confirmation dialog state cancelation state
+    //In case user canceled the confirmation code dialog before, we reset that state so we can show the dialog again upon new submission
+    this.setState({ confirmationModalCanceled: false });
+
+    // trick to remove modalVisible and hilightedImagesIndices from state and pass in everything else
+    const { modalVisible, highlightedImagesIndices, ...params } = this.state;
+
+    this.signUp(emailAddress, password, emailAddress, phoneNumber);
+
+    //generate a new id if this is a new teacher 
+    if (teacherID === undefined) {
+      var nanoid = require('nanoid/non-secure')
+      teacherID = nanoid()
+    }
+
+    // save the relevant teacher properties
+    this.props.saveTeacherInfo(
+      { teacherID, ...params }
+    );
+  };
+
+  //Creates new account, or launches confirmation dialog if account was created but not confirmed yet.
+  onCreateOrConfirmAccount() {
+    //validate entries first
+    const { name, phoneNumber, emailAddress, password } = this.state;
+    if (!name ||
       !phoneNumber ||
-      !emailAddress || 
-      !password || 
+      !emailAddress ||
+      !password ||
       name.trim() === ""
       || phoneNumber.trim() === ""
       || emailAddress.trim() === ""
       || password.trim() === "") {
-        Alert.alert(strings.Whoops, strings.PleaseMakeSureAllFieldsAreFilledOut);
-    } else if(!this.state.isPhoneValid){
+      Alert.alert(strings.Whoops, strings.PleaseMakeSureAllFieldsAreFilledOut);
+    } else if (!this.state.isPhoneValid) {
       Alert.alert(strings.Whoops, strings.InvalidPhoneNumber);
     } else {
-      //Reset the confirmation dialog state cancelation state
-      //In case user canceled the confirmation code dialog before, we reset that state so we can show the dialog again upon new submission
-      this.setState({ confirmationModalCanceled: false });
-
-      // trick to remove modalVisible and hilightedImagesIndices from state and pass in everything else
-      const { modalVisible, highlightedImagesIndices, ...params } = this.state;
-
-
-      this.signUp(emailAddress, password, emailAddress, phoneNumber);
-
-      //generate a new id if this is a new teacher 
-      if (teacherID === undefined) {
-        var nanoid = require('nanoid/non-secure')
-        teacherID = nanoid()
+      //if the account is already created yet we need to confirm, show confirmation dialog
+      if (this.props.auth.showSignUpConfirmationModal) {
+        this.setState({ showSignUpConfirmationModal: true, confirmationModalCanceled: false });
+      } else {
+        //else, create account and save profile info
+        this.saveProfileInfo()
       }
-
-      // save the relevant teacher properties
-      this.props.saveTeacherInfo(
-        { teacherID, ...params }
-      );
     }
-  };
+  }
 
   //------ event handlers to capture user input into state as user modifies the entries -----
   onNameChanged = value => {
@@ -182,6 +196,12 @@ export class TeacherWelcomeScreen extends QcParentScreen {
     this.setState({ authCode: value })
   }
 
+  componentWillMount() {
+    if (Platform.OS === 'ios') {
+      LayoutAnimation.easeInEaseOut();
+    }
+  }
+
   //---------- render method ---------------------------------
   // The following custom components are used below:
   // -    ImageSelectionModal: implements the pop up modal to allow users to customize their avatar
@@ -192,102 +212,99 @@ export class TeacherWelcomeScreen extends QcParentScreen {
     const { auth: {
       showSignUpConfirmationModal,
       isAuthenticating,
-      signUpError,
-      signUpErrorMessage,
-      confirmedSignUp
     } } = this.props
 
     return (
       <View><ScrollView>
-      <KeyboardAvoidingView style={styles.container} behavior="padding">
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-          <View style={styles.container}>
-            <ImageSelectionModal
-              visible={this.state.modalVisible}
-              images={teacherImages.images}
-              cancelText={strings.Cancel}
-              setModalVisible={this.setModalVisible.bind(this)}
-              onImageSelected={this.onImageSelected.bind(this)}
-              screen={this.name}
-            />
-
-            <View style={styles.picContainer}>
-              <FadeInView
-                style={{ alignItems: 'center', justifyContent: 'center' }}>
-                <Image
-                  style={styles.welcomeImage}
-                  source={require("assets/images/salam.png")}
-                />
-                <Text style={styles.quote}>{strings.TeacherWelcomeMessage}</Text>
-              </FadeInView>
-
-            </View>
-            <View style={styles.editInfo} behavior="padding">
-              <TeacherInfoEntries
-                name={this.state.name}
-                phoneNumber={this.state.phoneNumber}
-                emailAddress={this.state.emailAddress}
-                password={this.state.password}
-                onNameChanged={this.onNameChanged}
-                onPhoneNumberChanged={this.onPhoneNumberChanged}
-                onEmailAddressChanged={this.onEmailAddressChanged}
-                showPasswordField={true}
-                onPasswordChanged={this.onPasswordChanged}
-              />
-              <ImageSelectionRow
+        <KeyboardAvoidingView style={styles.container} behavior="padding">
+          <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+            <View style={styles.container}>
+              <ImageSelectionModal
+                visible={this.state.modalVisible}
                 images={teacherImages.images}
-                highlightedImagesIndices={this.state.highlightedImagesIndices}
+                cancelText={strings.Cancel}
+                setModalVisible={this.setModalVisible.bind(this)}
                 onImageSelected={this.onImageSelected.bind(this)}
-                onShowMore={() => this.setModalVisible(true)}
-                selectedImageIndex={this.state.profileImageId}
                 screen={this.name}
               />
-            </View>
-            <View style={styles.buttonsContainer}>
-              <QcActionButton
-                text={strings.CreateAccount}
-                onPress={() => this.saveProfileInfo()} 
-                isLoading={isAuthenticating}
-                screen={this.name}
-              />
-            </View>
-            <View style={styles.filler} />
-            {
-              showSignUpConfirmationModal &&
-              !this.state.confirmationModalCanceled && 
-              !signUpErrorMessage && 
-              !signUpError && (
-                <Modal
-                  transparent={true}>
-                  <View style={styles.modal}>
-                    <Text style={styles.confirmationMessage}>Please enter the validation code sent to your email</Text>
-                    <Input
-                      placeholder={strings.AuthorizatonConde}
-                      type='authCode'
-                      keyboardType='numeric'
-                      onChangeText={this.onAuthCodeChanged}
-                      value={this.state.authCode}
-                      keyboardType='numeric'
-                    />
-                    <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 5 }}>
-                      <QcActionButton
-                        text={strings.Confirm}
-                        onPress={this.confirm.bind(this)}
-                        isLoading={isAuthenticating}
+
+              <View style={styles.picContainer}>
+                <FadeInView
+                  style={{ alignItems: 'center', justifyContent: 'center' }}>
+                  <Image
+                    style={styles.welcomeImage}
+                    source={require("assets/images/salam.png")}
+                  />
+                  <Text style={styles.quote}>{strings.TeacherWelcomeMessage}</Text>
+                </FadeInView>
+
+              </View>
+              <View style={styles.editInfo} behavior="padding">
+                <TeacherInfoEntries
+                  name={this.state.name}
+                  phoneNumber={this.state.phoneNumber}
+                  emailAddress={this.state.emailAddress}
+                  password={this.state.password}
+                  onNameChanged={this.onNameChanged}
+                  onPhoneNumberChanged={this.onPhoneNumberChanged}
+                  onEmailAddressChanged={this.onEmailAddressChanged}
+                  showPasswordField={true}
+                  onPasswordChanged={this.onPasswordChanged}
+                />
+                <ImageSelectionRow
+                  images={teacherImages.images}
+                  highlightedImagesIndices={this.state.highlightedImagesIndices}
+                  onImageSelected={this.onImageSelected.bind(this)}
+                  onShowMore={() => this.setModalVisible(true)}
+                  selectedImageIndex={this.state.profileImageId}
+                  screen={this.name}
+                />
+              </View>
+              <View style={styles.buttonsContainer}>
+                <QcActionButton
+                  text={showSignUpConfirmationModal ? strings.ConfirmAccount : strings.CreateAccount}
+                  onPress={() => this.onCreateOrConfirmAccount()}
+                  isLoading={isAuthenticating}
+                  screen={this.name}
+                />
+              </View>
+              <View style={styles.filler} />
+              {
+                showSignUpConfirmationModal &&
+                !this.state.confirmationModalCanceled && (
+                  <Modal
+                    transparent={true}
+                    onRequestClode={() => { }}>
+
+                    <View style={styles.modal}>
+                      <Text style={styles.confirmationMessage}>Please enter the validation code sent to your email</Text>
+                      <Input
+                        placeholder={strings.AuthorizatonConde}
+                        type='authCode'
+                        keyboardType='numeric'
+                        onChangeText={this.onAuthCodeChanged}
+                        value={this.state.authCode}
+                        keyboardType='numeric'
                       />
-                      <QcActionButton
-                        text={strings.Cancel}
-                        onPress={() => { this.setState({ confirmationModalCanceled: true }) }}
-                      />
+                      <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 5 }}>
+                        <QcActionButton
+                          text={strings.Confirm}
+                          onPress={this.confirm.bind(this)}
+                          isLoading={isAuthenticating}
+                        />
+                        <QcActionButton
+                          text={strings.Cancel}
+                          onPress={() => { this.setState({ confirmationModalCanceled: true }) }}
+                        />
+                      </View>
                     </View>
-                  </View>
-                </Modal>
-              )
-            }
-            <Toast ref="toast" />
-          </View>
-        </TouchableWithoutFeedback>
-      </KeyboardAvoidingView>
+                  </Modal>
+                )
+              }
+              <Toast ref="toast" />
+            </View>
+          </TouchableWithoutFeedback>
+        </KeyboardAvoidingView>
       </ScrollView></View>
     );
   }

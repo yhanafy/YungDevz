@@ -71,7 +71,7 @@ class LoginScreen extends Component {
       isAuthenticating,
       loginError,
       showSignInConfirmationModal
-    }} = this.props
+    } } = this.props
 
     return (
       <View style={{ flex: 1 }}>
@@ -84,17 +84,15 @@ class LoginScreen extends Component {
             onUserNameChange={this.onUserNameChange.bind(this)}
             onPwChange={this.onPwChange.bind(this)}
           />
-
-          <SignupSection 
-            onCreateAccount={this.onCreateAccount.bind(this)}
-          />
           <ButtonSubmit
-            style={{top: -95}}
             text={strings.Login}
             onSubmit={this.signIn.bind(this)}
             navigation={this.props.navigation}
             screen="LoginScreen" />
-        </ImageBackground>
+          <SignupSection
+            onCreateAccount={this.onCreateAccount.bind(this)}
+          />
+         </ImageBackground>
       </View>
     );
   }
