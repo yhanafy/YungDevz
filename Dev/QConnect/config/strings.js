@@ -31,6 +31,7 @@ export default {
     CreateAccount: 'CREATE ACCOUNT',
     AuthorizationCode: "Authorization Code",
     Confirm: "Confirm",
+    ConfirmAccount: "Confirm Account",
     ErrorSigningUp: "Error signing up",
     ErrorSigningIn: "Error signing in",
     InvalidPhoneNumber: "The phone number is invalid. Please enter a valid phone number.",
