@@ -37,7 +37,13 @@ export class EvaluationPage extends QcParentScreen {
 
   //----- Saves the rating to db and pops to previous view ---------
   doSubmitRating(classId, studentId) {
-    const { fontLoaded, ...evaluationDetails } = this.state;
+    let { fontLoaded, grade, notes, improvementAreas} = this.state;
+    notes = notes.trim();
+    let evaluationDetails = {
+      grade,
+      notes,
+      improvementAreas
+    }
     this.props.completeCurrentAssignment(classId, studentId, evaluationDetails);
 
     // keep the assignment name as the last assignment to reduce retype since most of the times the next assignment would be the same surah (next portion) or a redo.
@@ -68,8 +74,8 @@ export class EvaluationPage extends QcParentScreen {
 
   // --------------  Renders Evaluation scree UI --------------
   render() {
-    const { classId, studentId, readOnly, rating, notes, assignmentName, completionDate, improvementAreas } = this.props.navigation.state.params;
-
+    const { classId, studentId, readOnly, rating, assignmentName, completionDate, improvementAreas, notes } = this.props.navigation.state.params;
+  
     const { imageId } = this.props;
 
     _rating = rating ? rating : 0;
@@ -114,11 +120,13 @@ export class EvaluationPage extends QcParentScreen {
                   onChangeText={(teacherNotes) => this.setState({
                     notes: teacherNotes
                   })}
+                  returnKeyType={"done"}
+                  blurOnSubmit={true}
                   placeholder={strings.WriteANote}
                   placeholderColor={colors.black}
                   editable={!readOnly}
                   value={this.state.notes}
-                />
+                />           
                 <View style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
                   <Text style={[{ flex: 1 }, styles.subCategoryText]}>{strings.ImprovementAreas}</Text>
                 </View>
@@ -135,6 +143,7 @@ export class EvaluationPage extends QcParentScreen {
             {!readOnly ?
               <QcActionButton
                 text={strings.Submit}
+          
                 onPress={() => { this.submitRating(classId, studentId) }}
                 screen={this.name}
               /> : <View></View>}
