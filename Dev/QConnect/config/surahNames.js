@@ -112,7 +112,7 @@ export default [
 	{"surah":"111", "name": "المسد"},
 	{"surah":"112", "name": "الإخلاص"},
 	{"surah":"113", "name": "الفلق"},
-	{"surah":"114", "name": "الناس"}
+	{"surah":"114", "name": "الناس"},
     {"surah":"22", "name":"Al-Fatihah"},
     {"surah":"116", "name":"Al-Baqarah"},
     {"surah":"117", "name":"Al-Imran"},

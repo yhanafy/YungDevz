@@ -13,6 +13,8 @@ import TouchableText from 'components/TouchableText'
 import ImageSelectionModal from 'components/ImageSelectionModal';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import QcParentScreen from 'screens/QcParentScreen';
+import AssignmentEntryComponent from 'components/AssignmentEntryComponent';
+
 
 
 class StudentProfileScreen extends QcParentScreen {
@@ -69,6 +71,7 @@ class StudentProfileScreen extends QcParentScreen {
     return caption
   }
 
+
   //---------- main UI render ===============================
   render() {
     const { classId, studentId, currentStudent, currentAssignment, assignmentsHistory } = this.props
@@ -81,14 +84,23 @@ class StudentProfileScreen extends QcParentScreen {
 
     return (
       <View style={styles.container}>
-        <DialogInput
+        {/**To Be made into a component
+        so that we can add autocomplete. */ }
+        {/* <DialogInput
           isDialogVisible={this.state.isDialogVisible}
           title={strings.EditAssignment}
           {...dialogInitialText}
           dialogStyle={{ marginBottom: 100 }}
           submitInput={(inputText) =>
             this.editAssignment(classId, studentId, inputText)}
-          closeDialog={() => { this.setState({ isDialogVisible: false }) }} />
+          closeDialog={() => { this.setState({ isDialogVisible: false }) }} /> */}
+
+          <AssignmentEntryComponent 
+          visible= {this.state.isDialogVisible}
+          screen = {this.name}
+          onSubmit = {(inputText) =>
+          this.editAssignment(classId, studentId, inputText)} 
+          />
 
         <ImageSelectionModal
           visible={this.state.isModalVisible}
@@ -158,11 +170,11 @@ class StudentProfileScreen extends QcParentScreen {
                 keyExtractor={(item, index) => item.name + index}
                 renderItem={({ item, index }) => (
                   <TouchableOpacity onPress={() => this.props.navigation.push("EvaluationPage", {
-                    classId: classId,
-                    studentId: studentId,
+                    classIndex: classIndex,
+                    studentIndex: studentIndex,
                     assignmentName: item.name,
                     completionDate: item.completionDate,
-                    rating: item.evaluation.grade,
+                    rating: item.evaluation.overallGrade,
                     notes: item.evaluation.notes,
                     improvementAreas: item.evaluation.improvementAreas,
                     readOnly: true

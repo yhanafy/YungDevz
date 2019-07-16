@@ -16,6 +16,9 @@
     "react": "16.5.0",
     "react-devtools": "^3.6.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
+    "react-native-autocomplete-input": "github:mrlaessig/react-native-autocomplete-input",
+    "react-native-autocomplete-search": "^1.0.8",
+    "react-native-autosuggest": "^1.0.1",
     "react-native-datepicker": "^1.7.2",
     "react-native-dialog-input": "^1.0.7",
     "react-native-easy-toast": "^1.2.0",
@@ -34,7 +37,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-expo": "^5.0.0",
     "jest": "^24.1.0",
-    "jest-expo": "^32.0.0"
+    "jest-expo": "^33.0.2"
   },
   "jest": {
     "preset": "jest-expo",

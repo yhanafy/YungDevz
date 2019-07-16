@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Image, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, Alert, ScrollView } from 'react-native';
+import { StyleSheet, View, Image, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, Alert, ScrollView} from 'react-native';
 import Toast, { DURATION } from 'react-native-easy-toast'
 import QcActionButton from 'components/QcActionButton';
 import TouchableText from 'components/TouchableText'
