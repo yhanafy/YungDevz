@@ -4,13 +4,14 @@ import { AirbnbRating } from 'react-native-elements';
 import colors from 'config/colors';
 import { bindActionCreators } from 'redux';
 import { connect } from "react-redux";
-import QcActionButton from 'components/QcActionButton';
+import QcActionButton  from 'components/QcActionButton';
 import { completeCurrentAssignment } from 'model/actions/completeCurrentAssignment';
 import { editCurrentAssignment } from 'model/actions/editCurrentAssignment';
 import strings from 'config/strings';
 import studentImages from 'config/studentImages';
 import QcParentScreen from 'screens/QcParentScreen';
-import FlowLayout from 'components/FlowLayout'
+import FlowLayout from 'components/FlowLayout';
+
 
 export class EvaluationPage extends QcParentScreen {
 
@@ -139,9 +140,9 @@ export class EvaluationPage extends QcParentScreen {
                 screen={this.name}
               /> : <View></View>}
           </View>
-          <View style={styles.filler}></View>
-        </KeyboardAvoidingView>
-      </TouchableWithoutFeedback>
+        <View style={styles.filler}></View>
+      </KeyboardAvoidingView>
+    </TouchableWithoutFeedback>  
 
     )
   }

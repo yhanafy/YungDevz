@@ -70,7 +70,7 @@ export function createUser(username, password, email, phone_number) {
       console.log('error signing up: ', err)
       Analytics.record({
         name: analyticsEvents.create_user_failed,
-        attributes:  err 
+        attributes:  {...err} 
       })
 
       Alert.alert(strings.ErrorSigningUp, "" + (err.message || err))
@@ -122,7 +122,7 @@ export function authenticate(username, password, navigation, nextScreenName) {
       .catch(err => {
         Analytics.record({
           name: analyticsEvents.login_failed,
-          attributes:  err 
+          attributes:  {...err} 
         })
 
         Alert.alert(strings.ErrorSigningIn, "" + (err.message || err))
@@ -159,7 +159,7 @@ export function confirmUserSignUp(username, password, authCode, navigation, next
         console.log('error signing up: ', err)
         Analytics.record({
           name: analyticsEvents.confirm_new_user_failed,
-          attributes:  err 
+          attributes:  {...err} 
         })
   
         Alert.alert(strings.ErrorSigningUp, "" + (err.message || err))
