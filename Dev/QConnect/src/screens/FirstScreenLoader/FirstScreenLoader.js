@@ -20,9 +20,13 @@ class FirstScreenLoader extends React.Component {
   // Placeholder loading in case async fetch takes too long
   render() {
     return (
-      <View>
-        <ActivityIndicator />
-        <StatusBar barStyle="default" />
+      <View style={{ flex: 1 }}>
+        <View style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'center' }}>
+          <ActivityIndicator />
+        </View>
+        <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center' }}>
+          <StatusBar barStyle="default" />
+        </View>
       </View>
     );
   }
