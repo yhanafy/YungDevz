@@ -84,9 +84,9 @@ export class TeacherWelcomeScreen extends QcParentScreen {
 
   //--- state captures the inputted user info ------------------
   state = {
-    phoneNumber: this.props.phoneNumber === undefined ? "" : this.props.phoneNumber,
-    emailAddress: this.props.emailAddress === undefined ? "" : this.props.emailAddress,
-    name: this.props.name === undefined ? "" : this.props.name,
+    phoneNumber: this.props.phoneNumber === undefined ? "" : this.props.phoneNumber.trim(),
+    emailAddress: this.props.emailAddress === undefined ? "" : this.props.emailAddress.trim(),
+    name: this.props.name === undefined ? "" : this.props.name.trim(),
     modalVisible: false,
     profileImageId: this.initialDefaultImageId,
     highlightedImagesIndices: this.getHighlightedImages(),
