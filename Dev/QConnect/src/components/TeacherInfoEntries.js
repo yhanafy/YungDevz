@@ -27,43 +27,43 @@ export default TeacherInfoEntries = (props) => {
             </View>
             <View style={styles.infoRow}>
                 <Text style={styles.infoTitle}>{strings.phoneNumberPlaceHolder}</Text>
-                <View style={{flex: 1}}>
-                <PhoneInput
-                    ref={ref => {
-                        this.phone = ref;
-                    }}
-                    value={props.phoneNumber} 
-                    onChangePhoneNumber={() => props.onPhoneNumberChanged(this.phone)}
-                />
+                <View style={{ flex: 1 }}>
+                    <PhoneInput
+                        ref={ref => {
+                            this.phone = ref;
+                        }}
+                        value={props.phoneNumber}
+                        onChangePhoneNumber={() => props.onPhoneNumberChanged(this.phone)}
+                    />
                 </View>
             </View>
             <View style={styles.infoRow}>
                 <Text style={styles.infoTitle}>{strings.emailPlaceHolder}</Text>
-                <View style={{flex: 1 }}>
-                <TextInput
-                    style={styles.infoTextInput}
-                    keyboardType='email-address'
-                    autoCapitalize = 'none'
-                    textContentType='emailAddress'
-                    onChangeText={props.onEmailAddressChanged}
-                    value={props.emailAddress} 
+                <View style={{ flex: 1 }}>
+                    <TextInput
+                        style={styles.infoTextInput}
+                        keyboardType='email-address'
+                        autoCapitalize='none'
+                        textContentType='emailAddress'
+                        onChangeText={props.onEmailAddressChanged}
+                        value={props.emailAddress}
                     />
-                    </View>
+                </View>
             </View>
             {props.showPasswordField &&
-            <View style={styles.infoRow}>
-                <Text style={styles.infoTitle}>{strings.password}</Text>
-                <View style={{flex: 1 }}>
-                <TextInput
-                    style={styles.infoTextInput}
-                    textContentType='password'
-                    autoCompleteType='password'
-                    onChangeText={props.onPasswordChanged}
-                    secureTextEntry={true}
-                    value={props.password} 
-                    />
+                <View style={styles.infoRow}>
+                    <Text style={styles.infoTitle}>{strings.password}</Text>
+                    <View style={{ flex: 1 }}>
+                        <TextInput
+                            style={styles.infoTextInput}
+                            textContentType='password'
+                            autoCompleteType='password'
+                            onChangeText={props.onPasswordChanged}
+                            secureTextEntry={true}
+                            value={props.password}
+                        />
                     </View>
-            </View>
+                </View>
             }
         </View>
     );
