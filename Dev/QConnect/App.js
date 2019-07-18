@@ -3,7 +3,7 @@ import FirstScreenNavigator from 'screens/FirstScreenLoader/FirstScreenNavigator
 import { View, ActivityIndicator } from 'react-native';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import classReducer from 'model/reducers/classReducer'
 import { persistStore, persistReducer, createMigrate } from 'redux-persist'
 import { AsyncStorage } from 'react-native';
@@ -11,6 +11,8 @@ import Auth from '@aws-amplify/auth';
 import Analytics from '@aws-amplify/analytics';
 import migrateFromV0ToV1 from 'model/migrationScripts/migrateFromV0ToV1';
 import migrateFromV1ToV2 from 'model/migrationScripts/migrateFromV1ToV2';
+import thunk from 'redux-thunk';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 import awsconfig from './aws-exports';
 
@@ -35,8 +37,9 @@ const persistedReducer = persistReducer(persistConfig, classReducer)
 
 export const store = createStore(
   persistedReducer,
+  composeWithDevTools(applyMiddleware(thunk))
   //This is to allow react native redux debugger to show redux content
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  //window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 );
 
 export const persistor = persistStore(store);

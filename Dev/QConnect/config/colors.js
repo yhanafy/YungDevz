@@ -8,6 +8,7 @@ export default {
   veryLightGrey: '#f2f2f2',
   lightGrey: '#F3F3F3',
   grey: '#dadada',
+  darkishGrey: '#9f9f9f',
   darkGrey: '#6b6b6b',
   darkestGrey: '#494949',
 };
