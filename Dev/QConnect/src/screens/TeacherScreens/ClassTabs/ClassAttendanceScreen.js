@@ -14,12 +14,41 @@ import mapStateToCurrentClassProps from 'screens/TeacherScreens/helpers/mapState
 import QcParentScreen from 'screens/QcParentScreen';
 
 export class ClassAttendanceScreen extends QcParentScreen {
+
+
+    //This method will set the state of the attendance screen based on the isHere property
+    //from each student's attendance history based on the corresponding date
+    getAttendance = (date) => {
+        const { students, attendance } = this.props;
+        let absent = [];
+        console.log(attendance);
+        //Capture absent students to flag them in the UI.
+        students.map((student, i) => {
+            let wasHere = attendance.byStudentId[student.id][date];
+            console.log(wasHere);
+            if (wasHere === false) {
+                absent.push(i);
+            }
+        })
+
+        this.setState({
+            absentStudents: absent,
+            selectedDate: date
+        })
+
+        return absent;
+    }
+
     name = "ClassAttendanceScreen";
 
     todaysDate = this.props.defaultDate ? this.props.defaultDate : new Date().toLocaleDateString("en-US")
     state = {
         absentStudents: [],
         selectedDate: this.todaysDate
+    }
+
+    componentDidMount() {
+        this.setState({ absentStudents: this.getAttendance(this.todaysDate) });
     }
 
     //This method will set the student selected property to the opposite of whatever it was
@@ -64,29 +93,6 @@ export class ClassAttendanceScreen extends QcParentScreen {
         );
 
         this.refs.toast.show(strings.AttendanceFor + date + strings.HasBeenSaved, DURATION.LENGTH_SHORT);
-    }
-
-    //This method will set the state of the attendance screen based on the isHere property
-    //from each student's attendance history based on the corresponding date
-    getAttendance = (date) => {
-        const { students, classId, attendance } = this.props;
-
-        let absent = [];
-        //Capture absent students to flag them in the UI.
-        if (attendance.byClassId[classId]) {
-            students.map((student, i) => {
-                let wasHere = attendance.byClassId[classId].byStudentId[student.id].date;
-
-                if (!wasHere) {
-                    absent.push(i);
-                }
-            })
-        }
-
-        this.setState({
-            absentStudents: absent,
-            selectedDate: date
-        })
     }
 
     render() {

@@ -1,5 +1,4 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import Dimensions from 'Dimensions';
 import {
   StyleSheet,
@@ -14,8 +13,7 @@ import {
 } from 'react-native';
 import colors from 'config/colors'
 import Analytics from '@aws-amplify/analytics';
-import analyticsEvents from 'config/analyticsEvents'
-import SignupSection from './SignupSection';
+import analyticsEvents from 'config/analyticsEvents';
 
 
 const DEVICE_WIDTH = Dimensions.get('window').width;
@@ -41,7 +39,7 @@ export default class ButtonSubmit extends Component {
       name: analyticsEvents.button_pressed,
       attributes: { text: this.props.text, screenName: this.props.screen }
     })
-    
+
     this._isMounted = true;
   }
 
@@ -54,8 +52,8 @@ export default class ButtonSubmit extends Component {
     this.props.onSubmit();
     if (this.state.isLoading) return;
 
-    if(this._isMounted) {
-      this.setState({isLoading: true});
+    if (this._isMounted) {
+      this.setState({ isLoading: true });
     }
 
     Animated.timing(this.buttonAnimated, {
@@ -70,8 +68,8 @@ export default class ButtonSubmit extends Component {
 
     setTimeout(() => {
       // Actions.secondScreen();
-      if(this._isMounted) {
-        this.setState({isLoading: false});
+      if (this._isMounted) {
+        this.setState({ isLoading: false });
       }
       this.buttonAnimated.setValue(0);
       this.growAnimated.setValue(0);
@@ -98,7 +96,7 @@ export default class ButtonSubmit extends Component {
 
     return (
       <View style={[styles.container, this.props.style]}>
-        <Animated.View style={{width: changeWidth, backgroundColor: 'transparent'}}>
+        <Animated.View style={{ width: changeWidth, backgroundColor: 'transparent' }}>
           <TouchableOpacity
             style={styles.button}
             onPress={this._onPress}
@@ -106,13 +104,13 @@ export default class ButtonSubmit extends Component {
             {this.state.isLoading ? (
               <ActivityIndicator size="small" color={colors.white} />
             ) : (
-              <Text style={styles.text}>{this.props.text}</Text>
-            )}
+                <Text style={styles.text}>{this.props.text}</Text>
+              )}
           </TouchableOpacity>
           <Animated.View
-            style={[styles.circle, {transform: [{scale: changeScale}]}]}
+            style={[styles.circle, { transform: [{ scale: changeScale }] }]}
           />
-          
+
         </Animated.View>
       </View>
     );

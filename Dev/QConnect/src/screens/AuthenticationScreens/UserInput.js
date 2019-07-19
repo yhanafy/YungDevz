@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Dimensions from 'Dimensions';
-import {StyleSheet, View, TextInput, Image} from 'react-native';
+import { StyleSheet, View, TextInput, Image } from 'react-native';
 import colors from 'config/colors';
 
 
@@ -57,5 +57,6 @@ const styles = StyleSheet.create({
     width: 22,
     height: 22,
     left: 35,
-    top: 9  },
+    top: 9
+  },
 });

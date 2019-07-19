@@ -1,11 +1,9 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import Dimensions from 'Dimensions';
 import {
   StyleSheet,
   KeyboardAvoidingView,
   View,
-  ActivityIndicator,
   TouchableOpacity,
   Image,
 } from 'react-native';
@@ -27,8 +25,8 @@ export default class Form extends Component {
 
   showPass() {
     this.state.press === false
-      ? this.setState({showPass: false, press: true})
-      : this.setState({showPass: true, press: false});
+      ? this.setState({ showPass: false, press: true })
+      : this.setState({ showPass: true, press: false });
   }
 
   render() {
@@ -43,21 +41,21 @@ export default class Form extends Component {
           onChangeText={this.props.onUserNameChange}
         />
         <View style={styles.container}>
-        <UserInput
-          source={passwordImg}
-          secureTextEntry={this.state.showPass}
-          placeholder="Password"
-          returnKeyType={'done'}
-          autoCapitalize={'none'}
-          autoCorrect={false}
-          onChangeText={this.props.onPwChange}
-        />
-        <TouchableOpacity
-          activeOpacity={0.7}
-          style={styles.btnEye}
-          onPress={this.showPass}>
-          <Image source={eyeImg} style={styles.iconEye} />
-        </TouchableOpacity>
+          <UserInput
+            source={passwordImg}
+            secureTextEntry={this.state.showPass}
+            placeholder="Password"
+            returnKeyType={'done'}
+            autoCapitalize={'none'}
+            autoCorrect={false}
+            onChangeText={this.props.onPwChange}
+          />
+          <TouchableOpacity
+            activeOpacity={0.7}
+            style={styles.btnEye}
+            onPress={this.showPass}>
+            <Image source={eyeImg} style={styles.iconEye} />
+          </TouchableOpacity>
         </View>
       </KeyboardAvoidingView>
     );

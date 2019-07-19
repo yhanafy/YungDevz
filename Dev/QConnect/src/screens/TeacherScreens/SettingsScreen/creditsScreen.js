@@ -1,6 +1,6 @@
 //This will be the credits screen
 import React from 'react';
-import { View, StyleSheet, Text, ScrollView, Dimensions, Linking, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Text, ScrollView, Dimensions, Linking } from 'react-native';
 import colors from 'config/colors';
 import strings from 'config/strings';
 import QcParentScreen from "screens/QcParentScreen";
