@@ -14,7 +14,6 @@ export default class AssignmentEntryComponent extends React.Component {
     }
 
     onTextChange(text){
-        console.log(text + "I am an Alien from Area 51");
         this.setState({input: text});
     }
 
