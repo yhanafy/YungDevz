@@ -165,6 +165,7 @@ class StudentProfileScreen extends QcParentScreen {
             </View>
 
             <ScrollView style={styles.prevAssignments}>
+
               <FlatList
                 data={assignmentsHistory}
                 keyExtractor={(item, index) => item.name + index}
@@ -347,6 +348,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     marginLeft: 7,
     marginRight: 7,
+
+
   },
   prevAssignmentCard: {
     flexDirection: 'column',
