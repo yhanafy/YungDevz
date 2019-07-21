@@ -17,7 +17,7 @@
     "react-devtools": "^3.6.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
     "react-native-autocomplete-input": "github:mrlaessig/react-native-autocomplete-input",
-    "react-native-autocomplete-search": "^1.0.8",
+    "react-native-autocomplete-search": "file:../../../react-native-autocomplete-search",
     "react-native-autosuggest": "^1.0.1",
     "react-native-datepicker": "^1.7.2",
     "react-native-dialog-input": "^1.0.7",
