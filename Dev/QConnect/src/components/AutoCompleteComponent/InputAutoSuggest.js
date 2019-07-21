@@ -5,7 +5,6 @@ import {
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import * as _ from 'lodash';
-// import { TextInput } from 'react-native-ui-lib';
 import SuggestionListItem from './SuggestionListItem';
 import suggest from './services/suggest';
 
