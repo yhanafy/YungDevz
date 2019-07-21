@@ -46,7 +46,7 @@ export const persistor = persistStore(store);
 export default class App extends Component {
 
   renderLoading = () => (
-    <View>
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <ActivityIndicator size="large" />
     </View>
   );

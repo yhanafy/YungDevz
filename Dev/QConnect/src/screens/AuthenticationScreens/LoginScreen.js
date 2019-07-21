@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
-import { View, ImageBackground, Dimensions, StyleSheet, Modal, Text } from 'react-native';
-import PropTypes from 'prop-types';
+import { View, ImageBackground, Dimensions, StyleSheet } from 'react-native';
 import Form from './Form';
 import ButtonSubmit from './ButtonSubmit';
 import SignupSection from './SignupSection';
-import QcAppBanner from 'components/QcAppBanner'
-import { Auth } from 'aws-amplify';
+import QcAppBanner from 'components/QcAppBanner';
 import { authenticate, confirmUserLogin } from 'model/actions/authActions'
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Input, Button } from 'react-native-elements'
 import strings from "config/strings";
-import QcActionButton from "components/QcActionButton";
 import colors from "config/colors";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;

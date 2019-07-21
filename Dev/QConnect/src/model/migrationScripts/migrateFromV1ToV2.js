@@ -13,7 +13,7 @@ export default function migrateFromV1ToV2(state) {
             assignmentHistory: [],
             currentClassID: "",
             classes: []
-          },
+        },
     }
-    return { data: newState };  
+    return { data: newState };
 }
