@@ -3,7 +3,6 @@ import { Modal, Text, TouchableHighlight, View, StyleSheet } from 'react-native'
 import QcActionButton from 'components/QcActionButton'
 import strings from 'config/strings';
 import colors from 'config/colors';
-//import AutoSuggest from 'react-native-autosuggest';
 import surahNames from 'config/surahNames';
 import InputAutoSuggest from 'components/AutoCompleteComponent/InputAutoSuggest'
 
@@ -29,13 +28,6 @@ export default class AssignmentEntryComponent extends React.Component {
                 <View style={{ marginVertical: 50, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', paddingBottom: 20 }}>
                     <View style={styles.modal}>
                         <Text style={styles.modalTitle}>Enter Assignment</Text>
-                        {/* <AutoSuggest
-                            onChangeText={(text) => this.setState({ input: text })}
-                            terms={surahNames.map(value => { return value.name })}
-                            onItemPress={(value) => this.setState({ input: value })}
-                            textInputStyles={{ backgroundColor: colors.lightGrey }}
-                            placeholder="eg. Al-Fatihah Ayahs 1-5"
-                        /> */}
 
                         <InputAutoSuggest
                             staticData={surahNames}
