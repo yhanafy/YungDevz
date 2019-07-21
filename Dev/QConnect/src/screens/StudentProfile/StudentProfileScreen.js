@@ -2,7 +2,6 @@ import React from 'react';
 import { View, Image, Text, StyleSheet, ScrollView, FlatList, TouchableHighlight, TouchableOpacity, Alert } from 'react-native';
 import colors from 'config/colors';
 import { Rating } from 'react-native-elements';
-import DialogInput from 'react-native-dialog-input';
 import { editCurrentAssignment } from 'model/actions/editCurrentAssignment';
 import { updateStudentImage } from 'model/actions/updateStudentImage';
 import { bindActionCreators } from "redux";
@@ -95,12 +94,12 @@ class StudentProfileScreen extends QcParentScreen {
             this.editAssignment(classId, studentId, inputText)}
           closeDialog={() => { this.setState({ isDialogVisible: false }) }} /> */}
 
-          <AssignmentEntryComponent 
-          visible= {this.state.isDialogVisible}
-          screen = {this.name}
-          onSubmit = {(inputText) =>
-          this.editAssignment(classId, studentId, inputText)} 
-          />
+        <AssignmentEntryComponent
+          visible={this.state.isDialogVisible}
+          screen={this.name}
+          onSubmit={(inputText) =>
+            this.editAssignment(classId, studentId, inputText)}
+        />
 
         <ImageSelectionModal
           visible={this.state.isModalVisible}
@@ -171,11 +170,11 @@ class StudentProfileScreen extends QcParentScreen {
                 keyExtractor={(item, index) => item.name + index}
                 renderItem={({ item, index }) => (
                   <TouchableOpacity onPress={() => this.props.navigation.push("EvaluationPage", {
-                    classIndex: classIndex,
-                    studentIndex: studentIndex,
+                    classId: classId,
+                    studentId: studentId,
                     assignmentName: item.name,
                     completionDate: item.completionDate,
-                    rating: item.evaluation.overallGrade,
+                    rating: item.evaluation.grade,
                     notes: item.evaluation.notes,
                     improvementAreas: item.evaluation.improvementAreas,
                     readOnly: true
@@ -207,7 +206,7 @@ class StudentProfileScreen extends QcParentScreen {
             </ScrollView>
           </View>
         ) : (
-            <View style={{ justifyContent: "center", alignItems: "center" }}>
+            <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
               <LoadingSpinner isVisible={!this.state.fontLoaded} />
             </View>
           )
