@@ -84,13 +84,19 @@ export default {
     //--------------------- Class Edit Screen ---------------------
     YourClassCode: 'Your class code',
     Done: 'Done',
+    IsNowAddedToTheClass: ' is now added to the class',
+    PleaseInputAName: 'Please input a name',
+    StudentName: 'Student name...',
+    AddStudent: 'Add Student',
+    ThereIsAlreadyAStudentWithThatName: 'There is already a student with that name',
+    EnterYourStudentsName: 'Enter your student\'s name',
     Whoops: 'Whoops',
     AddStudents: 'Add Students',
     JoinMyClass: 'Join my class on QuranConnect. Here is the class code: ',
 
     //--------------------- Class Header Navigator ---------------------
     StudentProfile: 'Student Profile',
-    EditClass: 'Edit Students',
+    EditClass: 'Edit Class',
     StudentEvaluation: 'Student Evaluation',
     Completed: 'Completed',
     Evaluation: 'Assignment Evaluation',
