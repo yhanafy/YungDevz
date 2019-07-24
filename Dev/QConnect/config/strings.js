@@ -50,14 +50,14 @@ export default {
     PleaseInputAName: 'Please input a name',
     StudentName: 'Student name...',
     AddStudent: 'Add Student',
-    Done: 'Done',
+    Done: 'Save',
     ThereIsAlreadyAStudentWithThatName: 'There is already a student with that name',
     EnterYourStudentsName: 'Enter your student\'s name',
     Whoops: 'Whoops',
 
     //--------------------- Class Header Navigator ---------------------
     StudentProfile: 'Student Profile',
-    EditClass: 'Edit Students',
+    EditClass: 'Edit Class',
     StudentEvaluation: 'Student Evaluation',
 
     //--------------------- Class Tabs Navigator ---------------------
