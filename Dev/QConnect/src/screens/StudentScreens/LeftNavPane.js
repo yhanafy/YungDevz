@@ -1,7 +1,7 @@
 //This will be the actual drawer items that will display from the student side when the click on
 //the hamburger icon
 import React from "react";
-import { View, FlatList, ScrollView, StyleSheet } from "react-native";
+import { View, FlatList, ScrollView, StyleSheet, Modal, Text } from "react-native";
 import colors from "config/colors";
 import classImages from "config/classImages";
 import { SafeAreaView } from "react-navigation";
@@ -10,12 +10,23 @@ import QcDrawerItem from "components/QcDrawerItem";
 import studentImages from "config/studentImages";
 import strings from 'config/strings';
 import QcParentScreen from "screens/QcParentScreen";
+import { Input } from 'react-native-elements';
+import QcActionButton from 'components/QcActionButton';
 import { saveStudentInfo } from "model/actions/saveStudentInfo";
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 
 class LeftNavPane extends QcParentScreen {
     name = "LeftNavPane";
+
+    state = {
+        modalVisible: false,
+        authCode: ""
+    }
+
+    joinClass() {
+        //Add method to join the class
+    }
 
     openClass = (id, className) => {
         //update current class index in redux
@@ -40,24 +51,21 @@ class LeftNavPane extends QcParentScreen {
             <ScrollView style={{ flex: 1, backgroundColor: colors.lightGrey }}>
                 <SafeAreaView
                     style={styles.container}
-                    forceInset={{ top: "always", horizontal: "never" }}
-                >
+                    forceInset={{ top: "always", horizontal: "never" }}>
                     <View
                         style={{
                             padding: 10,
                             alignContent: "center",
                             alignItems: "center",
                             justifyContent: "center"
-                        }}
-                    >
+                        }}>
                         <QcAppBanner />
                     </View>
 
                     <QcDrawerItem
                         title={profileCaption}
                         image={studentImages.images[studentImageId]}
-                        onPress={() => this.props.navigation.push("StudentProfileScreen")}
-                    />
+                        onPress={() => this.props.navigation.push("StudentProfileScreen")} />
 
                     <FlatList
                         data={classes}
@@ -73,12 +81,39 @@ class LeftNavPane extends QcParentScreen {
                     <QcDrawerItem
                         title={strings.JoinClass}
                         icon="plus"
-                        onPress={() => this.props.navigation.push("JoinClass")} />
-
+                        onPress={() => this.setState({ modalVisible: true })} />
                     <QcDrawerItem
                         title={strings.Settings}
                         icon="cogs"
                         onPress={() => this.props.navigation.push("Settings")} />
+
+                    <Modal
+                        transparent={true}
+                        visible={this.state.modalVisible}
+                        onRequestClode={() => { }}>
+
+                        <View style={styles.modal}>
+                            <Text style={styles.confirmationMessage}>{strings.TypeInAClassCode}</Text>
+                            <Input
+                                placeholder={strings.AuthorizatonConde}
+                                type='authCode'
+                                keyboardType='numeric'
+                                onChangeText={(text) => { this.setState({ authCode: text })}}
+                                value={this.state.authCode}
+                                keyboardType='numeric' />
+                            <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 5 }}>
+                                <QcActionButton
+                                    text={strings.Confirm}
+                                    onPress={() => {
+                                        //Joins the class
+                                        this.joinClass();
+                                    }} />
+                                <QcActionButton
+                                    text={strings.Cancel}
+                                    onPress={() => { this.setState({ confirmationModalCanceled: true }) }} />
+                            </View>
+                        </View>
+                    </Modal>
 
                 </SafeAreaView>
             </ScrollView>
@@ -89,6 +124,12 @@ class LeftNavPane extends QcParentScreen {
 const styles = StyleSheet.create({
     container: {
         flex: 1
+    },
+    confirmationMessage: {
+        fontSize: 16,
+        marginVertical: 10,
+        fontFamily: 'regular',
+        color: colors.darkGrey
     }
 });
 
