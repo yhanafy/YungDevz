@@ -17,13 +17,13 @@ class FirstScreenLoader extends React.Component {
 
     // This will switch to the App screen or FirstRun screens and this loading
     // screen will be unmounted and thrown away.
-    if(!firstRunCompleted){
+    if (!firstRunCompleted) {
       Analytics.record({
         name: analyticsEvents.first_screen_loaded,
         attributes: { firstScreen: "FirstRun" }
       })
       this.props.navigation.navigate('FirstRun')
-    } else if (!userLoggedIn){
+    } else if (!userLoggedIn) {
       Analytics.record({
         name: analyticsEvents.first_screen_loaded,
         attributes: { firstScreen: "Login" }
@@ -41,9 +41,13 @@ class FirstScreenLoader extends React.Component {
   // Placeholder loading in case async fetch takes too long
   render() {
     return (
-      <View>
-        <ActivityIndicator />
-        <StatusBar barStyle="default" />
+      <View style={{ flex: 1 }}>
+        <View style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'center' }}>
+          <ActivityIndicator />
+        </View>
+        <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center' }}>
+          <StatusBar barStyle="default" />
+        </View>
       </View>
     );
   }

@@ -46,7 +46,7 @@ export default class AllSettingsScreen extends QcParentScreen {
                         color={colors.primaryDark} />
                 </TouchableOpacity>
             </View>
-            
+
         )
     }
 }

@@ -84,9 +84,9 @@ export class TeacherWelcomeScreen extends QcParentScreen {
 
   //--- state captures the inputted user info ------------------
   state = {
-    phoneNumber: this.props.phoneNumber === undefined ? "" : this.props.phoneNumber,
-    emailAddress: this.props.emailAddress === undefined ? "" : this.props.emailAddress,
-    name: this.props.name === undefined ? "" : this.props.name,
+    phoneNumber: this.props.phoneNumber === undefined ? "" : this.props.phoneNumber.trim(),
+    emailAddress: this.props.emailAddress === undefined ? "" : this.props.emailAddress.trim(),
+    name: this.props.name === undefined ? "" : this.props.name.trim(),
     modalVisible: false,
     profileImageId: this.initialDefaultImageId,
     highlightedImagesIndices: this.getHighlightedImages(),
@@ -125,7 +125,11 @@ export class TeacherWelcomeScreen extends QcParentScreen {
   // In teacher welcome page, teacher ID will be passed as undefined, in which case
   // we will generate a new ID before saving to the store.
   saveProfileInfo = teacherID => {
-    const { name, phoneNumber, emailAddress, password } = this.state;
+    let { name, phoneNumber, emailAddress, password } = this.state;
+    name = name.trim();
+    phoneNumber = phoneNumber.trim();
+    emailAddress = emailAddress.trim();
+    password = password.trim();
 
     //Reset the confirmation dialog state cancelation state
     //In case user canceled the confirmation code dialog before, we reset that state so we can show the dialog again upon new submission
@@ -138,8 +142,8 @@ export class TeacherWelcomeScreen extends QcParentScreen {
 
     //generate a new id if this is a new teacher 
     if (teacherID === undefined) {
-      var nanoid = require('nanoid/non-secure')
-      teacherID = nanoid()
+      var nanoid = require('nanoid/non-secure');
+      teacherID = nanoid();
     }
 
     // save the relevant teacher properties

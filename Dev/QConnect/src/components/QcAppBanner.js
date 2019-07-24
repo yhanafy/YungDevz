@@ -19,7 +19,7 @@ class QcAppBanner extends FontLoadingComponent {
                         </View>
                     </View>
                 ) : (
-                        <View style={{ justifyContent: "center", alignItems: "center" }}>
+                        <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
                             <LoadingSpinner isVisible={!this.state.fontLoaded} />
                         </View>
                     )
