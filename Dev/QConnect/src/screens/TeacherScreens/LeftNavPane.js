@@ -29,7 +29,7 @@ class LeftNavPane extends QcParentScreen {
   //todo: change the ListItem header and footer below to the shared drawer component intead
   // generalize the QcDrawerItem to accept either an image or an icon
   render() {
-    const { name, profileImageId, currentClassId } = this.props;
+    const { name, profileImageId } = this.props;
 
     const profileCaption = name + strings.sProfile
     const teacherImageId = profileImageId ? profileImageId : 0

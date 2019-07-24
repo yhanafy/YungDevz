@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Image, Text, TouchableWithoutFeedback, KeyboardAvoidingView, Keyboard, Alert, Modal, ScrollView, LayoutAnimation, Platform } from "react-native";
+import { StyleSheet, View, Image, Text, TouchableWithoutFeedback, TouchableOpacity, KeyboardAvoidingView, Keyboard, Alert, Modal, ScrollView, LayoutAnimation, Platform } from "react-native";
 import QcActionButton from "components/QcActionButton";
 import Toast, { DURATION } from "react-native-easy-toast";
 import { saveTeacherInfo } from "model/actions/saveTeacherInfo";
@@ -15,7 +15,7 @@ import QcParentScreen from "screens/QcParentScreen";
 import FadeInView from "../../components/FadeInView";
 import Auth from '@aws-amplify/auth';
 import { createUser, confirmUserSignUp } from 'model/actions/authActions'
-import { Input, Button } from 'react-native-elements'
+import { Input, Button, Icon } from 'react-native-elements'
 
 const initialState = {
   authCode: '',
@@ -233,14 +233,25 @@ export class TeacherWelcomeScreen extends QcParentScreen {
               />
 
               <View style={styles.picContainer}>
-                <FadeInView
-                  style={{ alignItems: 'center', justifyContent: 'center' }}>
-                  <Image
-                    style={styles.welcomeImage}
-                    source={require("assets/images/salam.png")}
-                  />
-                  <Text style={styles.quote}>{strings.TeacherWelcomeMessage}</Text>
-                </FadeInView>
+                <View style={{ flex: 1, alignSelf: 'flex-start', flexDirection: 'row' }}>
+                  <View style={{ flex: 0.25 }}></View>
+                  <TouchableOpacity style={{ flex: 1, alignItems: 'flex-start' }} onPress={() => { this.props.navigation.goBack() }}>
+                    <Icon
+                      name={'angle-left'}
+                      type="font-awesome" />
+                  </TouchableOpacity>
+                  <View style={{ flex: 3 }}></View>
+                </View>
+                <View style={{ flex: 10 }}>
+                  <FadeInView
+                    style={{ alignItems: 'center', justifyContent: 'center' }}>
+                    <Image
+                      style={styles.welcomeImage}
+                      source={require("assets/images/salam.png")}
+                    />
+                    <Text style={styles.quote}>{strings.TeacherWelcomeMessage}</Text>
+                  </FadeInView>
+                </View>
 
               </View>
               <View style={styles.editInfo} behavior="padding">

@@ -1,15 +1,11 @@
 import React from "react";
-import { ScrollView, View, StyleSheet, TextInput, FlatList, TouchableWithoutFeedback, Keyboard, Text, Alert } from "react-native";
-import Toast, { DURATION } from 'react-native-easy-toast'
+import { ScrollView, View, StyleSheet, FlatList, TouchableWithoutFeedback, Keyboard, Text, Alert, Share } from "react-native";
 import { connect } from "react-redux";
 import StudentCard from "components/StudentCard";
 import colors from "config/colors";
 import { bindActionCreators } from "redux";
 import { deleteStudent } from "model/actions/deleteStudent";
 import { addStudent } from "model/actions/addStudent";
-import QcActionButton from "components/QcActionButton";
-import ImageSelectionModal from 'components/ImageSelectionModal'
-import ImageSelectionRow from 'components/ImageSelectionRow'
 import studentImages from "config/studentImages";
 import { Icon } from 'react-native-elements';
 import strings from "config/strings";
@@ -145,77 +141,72 @@ export class ClassEditScreen extends QcParentScreen {
 
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-        <ScrollView style={styles.container}>
-          <ImageSelectionModal
-            visible={this.state.modalVisible}
-            images={studentImages.images}
-            cancelText="Cancel"
-            setModalVisible={this.setModalVisible.bind(this)}
-            onImageSelected={this.onImageSelected.bind(this)}
-            screen={this.name}
-          />
-
-          <View ID={classId} style={styles.inputContainer}>
-            <Text style={styles.inputName}>{strings.EnterYourStudentsName}</Text>
-            <TextInput
-              placeholder={strings.StudentName}
-              onChangeText={newStudentName => this.setState({ newStudentName })}
-              value={this.state.newStudentName}
-              style={{ paddingBottom: 10 }}
-            />
-            <ImageSelectionRow
-              images={studentImages.images}
-              highlightedImagesIndices={this.state.highlightedImagesIndices}
-              onImageSelected={this.onImageSelected.bind(this)}
-              onShowMore={() => this.setModalVisible(true)}
-              selectedImageIndex={this.state.profileImageId}
-              screen={this.name}
-            />
-            <QcActionButton
-              text={strings.AddStudent}
-              onPress={() => this.addNewStudent(classId)}
-              screen={this.name}
-            />
-          </View>
-          <FlatList
-            data={students}
-            keyExtractor={(item, index) => item.name} // fix, should be item.id (add id to classes)
-            renderItem={({ item, index }) => (
-              <StudentCard
-                key={index}
-                studentName={item.name}
-                profilePic={studentImages.images[item.imageId]}
-                background={colors.white}
-                onPress={() => { }}
-                comp={<Icon
-                  name='user-times'
-                  size={25}
+        <View style={styles.container}>
+          <View style={styles.shareCodeContainer}>
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+              <Text style={{ fontSize: 20 }}>{strings.AddStudents}</Text>
+            </View>
+            <View style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flex: 1
+            }}>
+              <View style={{ flex: 1 }}></View>
+              <View style={{ flexDirection: 'column', flex: 6, justifyContent: 'center' }}>
+                <Text style={{ fontSize: 18 }}>{strings.YourClassCode}</Text>
+                <Text style={{ fontSize: 16, color: colors.primaryDark }}>{classId}</Text>
+              </View>
+              <View style={{ flex: 1 }}></View>
+              <View style={{ flex: 1, justifyContent: 'center' }}>
+                <Icon
+                  raised
+                  name='share'
                   type='font-awesome'
-                  color={colors.primaryLight}
-                  onPress={() => {
-                    Alert.alert(
-                      'Delete Student',
-                      'Are you sure you want to delete this student?',
-                      [
-                        {
-                          text: 'Delete', onPress: () => {
-                            deleteStudent(
-                              classId,
-                              index
-                            );
-                          }
-                        },
+                  color={colors.primaryDark}
+                  size={20}
+                  onPress={() => { Share.share({ message: strings.JoinMyClass + classId }) }} />
+              </View>
+              <View style={{ flex: 1 }}></View>
+            </View>
+          </View>
+          <ScrollView style={styles.flatList}>
+            <FlatList
+              data={students}
+              keyExtractor={(item, index) => item.id}
+              renderItem={({ item, index }) => (
+                <StudentCard
+                  key={index}
+                  studentName={item.name}
+                  profilePic={studentImages.images[item.imageId]}
+                  background={colors.white}
+                  onPress={() => { }}
+                  comp={<Icon
+                    name='user-times'
+                    size={25}
+                    type='font-awesome'
+                    color={colors.primaryLight}
+                    onPress={() => {
+                      Alert.alert(
+                        'Delete Student',
+                        'Are you sure you want to delete this student?',
+                        [
+                          {
+                            text: 'Delete', onPress: () => {
+                              deleteStudent(
+                                classId,
+                                index
+                              );
+                            }
+                          },
 
-                        { text: 'Cancel', style: 'cancel' },
-                      ]
-                    );
-                  }}
-                />}
-              />
-            )}
-          />
-          <Toast ref="toast" />
-        </ScrollView>
+                          { text: 'Cancel', style: 'cancel' },
+                        ]
+                      );
+                    }} />} />
+              )} />
+          </ScrollView>
+        </View>
       </TouchableWithoutFeedback>
     );
   }
@@ -228,22 +219,15 @@ const styles = StyleSheet.create({
     backgroundColor: colors.lightGrey,
     flex: 1
   },
-  inputContainer: {
-    flexDirection: "column",
-    backgroundColor: colors.white,
-    padding: 10,
-    paddingTop: 20,
+  flatList: {
     flex: 1
   },
-  classTitle: {
-    color: colors.primaryDark,
-    fontSize: 25
+  shareCodeContainer: {
+    flexDirection: "column",
+    backgroundColor: colors.white,
+    flex: 0.25,
+    alignItems: 'center',
   },
-  inputName: {
-    fontFamily: "regular",
-    fontSize: 18,
-    paddingBottom: 10
-  }
 });
 
 const mapStateToProps = (state) => {
