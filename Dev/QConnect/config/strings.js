@@ -49,6 +49,10 @@ export default {
     PleaseEnterAnAssignmentName: 'Please enter an assignment name',
     ImprovementAreas: 'Things to work on: ',
 
+    //--------------------- Join Class Screen ---------------------
+    JoinClass: 'Join Class',
+    TypeInAClassCode: 'Type in a class code...',
+
     //-------------------- Evaluation Sub-Categories -----------------------
     Memorization: "Memorization", 
     Makharej: "Makharej", 
