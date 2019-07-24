@@ -81,7 +81,10 @@ class LeftNavPane extends QcParentScreen {
                     <QcDrawerItem
                         title={strings.JoinClass}
                         icon="plus"
-                        onPress={() => this.setState({ modalVisible: true })} />
+                        onPress={() => {
+                            this.props.navigation.closeDrawer();
+                            this.setState({ modalVisible: true });
+                        }} />
                     <QcDrawerItem
                         title={strings.Settings}
                         icon="cogs"
@@ -95,22 +98,22 @@ class LeftNavPane extends QcParentScreen {
                         <View style={styles.modal}>
                             <Text style={styles.confirmationMessage}>{strings.TypeInAClassCode}</Text>
                             <Input
-                                placeholder={strings.AuthorizatonConde}
                                 type='authCode'
                                 keyboardType='numeric'
-                                onChangeText={(text) => { this.setState({ authCode: text })}}
+                                onChangeText={(text) => { this.setState({ authCode: text }) }}
                                 value={this.state.authCode}
                                 keyboardType='numeric' />
                             <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 5 }}>
+                                <QcActionButton
+                                    text={strings.Cancel}
+                                    onPress={() => { this.setState({ modalVisible: false }) }} />
                                 <QcActionButton
                                     text={strings.Confirm}
                                     onPress={() => {
                                         //Joins the class
                                         this.joinClass();
+                                        this.setState({ modalVisible: false });
                                     }} />
-                                <QcActionButton
-                                    text={strings.Cancel}
-                                    onPress={() => { this.setState({ confirmationModalCanceled: true }) }} />
                             </View>
                         </View>
                     </Modal>
@@ -130,7 +133,27 @@ const styles = StyleSheet.create({
         marginVertical: 10,
         fontFamily: 'regular',
         color: colors.darkGrey
-    }
+    },
+    modal: {
+        backgroundColor: colors.white,
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'column',
+        marginTop: 230,
+        borderWidth: 1,
+        borderRadius: 2,
+        borderColor: colors.grey,
+        borderBottomWidth: 1,
+        shadowColor: colors.darkGrey,
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.8,
+        shadowRadius: 3,
+        elevation: 2,
+        marginLeft: 45,
+        marginRight: 45,
+        paddingRight: 5,
+        paddingLeft: 5
+    },
 });
 
 const getStudentClasses = (classIds, classes) => {
