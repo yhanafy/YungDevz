@@ -8,6 +8,7 @@
     "test": "node ./node_modules/jest/bin/jest.js"
   },
   "dependencies": {
+    "@unimodules/react-native-adapter": "^2.0.1",
     "aws-amplify": "^1.1.28",
     "aws-amplify-react-native": "^2.1.14",
     "expo": "^32.0.5",
