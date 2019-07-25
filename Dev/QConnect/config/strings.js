@@ -63,6 +63,10 @@ export default {
     PleaseEnterAnAssignmentName: 'Please enter an assignment name',
     ImprovementAreas: 'Things to work on: ',
 
+    //--------------------- Join Class Screen ---------------------
+    JoinClass: 'Join Class',
+    TypeInAClassCode: 'Type in a class code...',
+
     //-------------------- Evaluation Sub-Categories -----------------------
     Memorization: "Memorization", 
     Makharej: "Makharej", 
@@ -92,14 +96,17 @@ export default {
     SaveAttendance: 'Save Attendance',
 
     //--------------------- Class Edit Screen ---------------------
+    YourClassCode: 'Your class code',
+    Done: 'Done',
     IsNowAddedToTheClass: ' is now added to the class',
     PleaseInputAName: 'Please input a name',
     StudentName: 'Student name...',
     AddStudent: 'Add Student',
-    Done: 'Save',
     ThereIsAlreadyAStudentWithThatName: 'There is already a student with that name',
     EnterYourStudentsName: 'Enter your student\'s name',
     Whoops: 'Whoops',
+    AddStudents: 'Add Students',
+    JoinMyClass: 'Join my class on QuranConnect. Here is the class code: ',
 
     //--------------------- Class Header Navigator ---------------------
     StudentProfile: 'Student Profile',

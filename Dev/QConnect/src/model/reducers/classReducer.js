@@ -137,6 +137,12 @@ export const classReducer = (state = INITIAL_STATE, action) => {
         newState = update(baseState, { teacher: { $merge: { ...action.teacherInfo } } });
         return newState;
       }
+    case actionTypes.SAVE_STUDENT_INFO:
+      {
+        //fetches current teacher info
+        newState = update(baseState, { student: { $merge: { ...action.studentInfo } } });
+        return newState;
+      }
     case actionTypes.EDIT_CURRENT_ASSIGNMENT:
       {
         let { classId, studentId, newAssignmentName } = action;

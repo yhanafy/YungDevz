@@ -21,7 +21,7 @@ class FirstRunScreen extends QcParentScreen {
   //Navigates to the student side
   onStudentFlow = () => {
     //todo: Change this to a login so that the correct student can be displayed
-    this.props.navigation.push('StudentScreensNavigator');
+    this.props.navigation.push('StudentMenu');
   }
 
   render() {

@@ -1,12 +1,14 @@
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import React from 'react';
+import { View } from 'react-native';
+import { Icon } from 'react-native-elements';
 import FirstRunScreen from './FirstRunScreen';
 import TeacherMenu from '../TeacherScreens/TeacherMenu';
 import TeacherWelcomeScreen from './TeacherWelcomeScreen';
 import AddClassScreen from '../TeacherScreens/AddClass/AddClassScreen';
 import TopBanner from 'components/TopBanner';
 import strings from 'config/strings';
-import StudentScreensNavigator from '../StudentScreens/StudentScreensNavigator';
+import StudentMenu from '../StudentScreens/StudentMenu';
 import LoginScreen from 'screens/AuthenticationScreens/LoginScreen'
 
 const routeConfig = {
@@ -14,13 +16,13 @@ const routeConfig = {
         screen: FirstRunScreen
     },
     TeacherWelcomeScreen: {
-        screen: TeacherWelcomeScreen
+        screen: TeacherWelcomeScreen,
     },
     TeacherScreens: {
         screen: TeacherMenu
     },
-    StudentScreensNavigator: {
-        screen: StudentScreensNavigator
+    StudentMenu: {
+        screen: StudentMenu
     },
     LoginScreen: {
         screen: LoginScreen

@@ -99,7 +99,7 @@ class StudentMainScreen extends QcParentScreen {
                         </View>
                         <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center', flexDirection: 'row' }}>
                             <Text>{"  "}</Text>
-                            <Text style={styles.ratingDescText}>{student.isReady ? strings.Ready : strings.NotReady}</Text>
+                            <Text style={styles.ratingDescText}>{this.state.isReady ? strings.Ready : strings.NotReady}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
