@@ -2,7 +2,7 @@ import { createDrawerNavigator, createStackNavigator, createAppContainer } from 
 import AddClassNavigator from './AddClass/AddClassNavigator';
 import ClassHeaderNavigator from './ClassTabs/ClassHeaderNavigator';
 import LeftNavPane from './LeftNavPane';
-import SettingsNavigator from './SettingsScreen/SettingsNavigator';
+import SettingsNavigator from '../SettingsScreen/SettingsNavigator';
 import TeacherProfileNavigator from './TeacherProfile/TeacherProfileNavigator';
 import strings from '../../../config/strings'
 
