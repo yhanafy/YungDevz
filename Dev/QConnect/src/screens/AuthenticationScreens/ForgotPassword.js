@@ -3,12 +3,15 @@ import { Text, StyleSheet, View, TextInput, Modal, KeyboardAvoidingView, ImageBa
 import strings from 'config/strings';
 import colors from 'config/colors';
 import QcActionButton from 'components/QcActionButton';
-import QcAppBanner from "components/QcAppBanner";
-import QcParentScreen from "screens/QcParentScreen";
 import { Alert } from 'react-native'
+import { forgotPassword } from 'model/actions/authActions'
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import NewPassword from './NewPassword';
 
 
-export default class ForgotPassword extends Component {
+
+class ForgotPassword extends Component {
     state= {
         isModalVisible: false,
         emailText: ""
@@ -48,9 +51,14 @@ export default class ForgotPassword extends Component {
                                     }
                                     else
                                     { 
-                                     this.setState({isModalVisible: true})}}
+                                     this.setState({isModalVisible: true})
+                                     let emailText = this.state.emailText
+                                     emailText = emailText.trim()
+                                     this.props.forgotPassword(emailText)
+                                     this.props.navigation.push("NewPassword", {
+                                        emailAddress: emailText})
                                     }
-                                  
+                                }}
                             />
                             <View style={styles.spacer} />
                             <View style={{ flex: 1 }}>
@@ -62,7 +70,7 @@ export default class ForgotPassword extends Component {
                         </View>
                     </KeyboardAvoidingView>
                     <View style={{ flex: 1 }} />
-                    <Modal
+                    {/* <Modal
                     transparent={true}
                     visible={this.state.isModalVisible}
                     onRequestClode={() => { }}>
@@ -74,13 +82,24 @@ export default class ForgotPassword extends Component {
                        blurOnSubmit={true}
                        placeholder={strings.EnterCode}
                        placeholderColor={colors.black}
+                       onChangeText={(text) => {
+                           this.setState({verificationCode: text})
+                       }}
+                       value={this.state.verificationCode}
+
                       />
                       <QcActionButton
                           text={strings.Next}
-                          onPress={() => { this.setState({ isModalVisible: false }) }}
+                          onPress={() => { 
+                              this.setState({ isModalVisible: false })
+                              this.props.navigation.push("NewPassword", 
+                              {
+                                emailAddress: this.state.emailText
+                                })
+                            }}
                         />
                     </View>
-                  </Modal>
+                  </Modal> */}
              
             </View>
         )
@@ -151,3 +170,21 @@ const styles = StyleSheet.create({
       }
    
 });
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      forgotPassword
+    },
+    dispatch
+  );
+
+const mapStateToProps = state => ({
+  auth: state.auth
+})
+
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ForgotPassword);

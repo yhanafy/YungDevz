@@ -3,16 +3,19 @@ import { Text, StyleSheet, View, TextInput, Modal, KeyboardAvoidingView, ImageBa
 import strings from 'config/strings';
 import colors from 'config/colors';
 import QcActionButton from 'components/QcActionButton';
-import QcAppBanner from "components/QcAppBanner";
-import QcParentScreen from "screens/QcParentScreen";
-import { Alert } from 'react-native'
+import { Alert } from 'react-native';
+import { renewPassword, authenticate } from 'model/actions/authActions';
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 
 
-export default class NewPassword extends Component {
+class NewPassword extends Component {
     state= {
         isModalVisible: false,
         newPassordText: "",
-        confirmPasswordText: ""
+        confirmPasswordText: "",
+        verificationCode: "",
+        emailAddress: this.props.navigation.state.params.emailAddress
     }
     render() {
         const { navigation } = this.props;
@@ -26,7 +29,17 @@ export default class NewPassword extends Component {
                                 Enter New Password
                             </Text>
                         </View>
-                        
+
+                        <TextInput
+                            style={styles.notesStyle}
+                            returnKeyType={"done"}
+                            blurOnSubmit={true}
+                            placeholder={strings.EnterCode}
+                            placeholderColor={colors.black}
+                            value={this.state.verificationCode}
+                            onChangeText={(text) => { this.setState({ verificationCode: text }) }}
+                        />
+
                         <TextInput
                             style={styles.notesStyle}
                             returnKeyType={"done"}
@@ -58,8 +71,14 @@ export default class NewPassword extends Component {
                                         Alert.alert(strings.ErrorWithConfirm, strings.ConfirmPassword)
                                     }
                                     else{
-                                        this.setState({isModalVisible: true})}}
+                                       this.props.renewPassword(
+                                        this.state.emailAddress, 
+                                        this.state.verificationCode, 
+                                        this.state.newPassordText
+                                        )
+                                        this.props.authenticate(this.state.emailAddress, this.state.newPassordText, this.props.navigation, "TeacherScreens")
                                     }
+                                }}
                                   
                             />
                             <View style={styles.spacer} />
@@ -141,3 +160,22 @@ const styles = StyleSheet.create({
       }
    
 });
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+        renewPassword,
+        authenticate
+    },
+    dispatch
+  );
+
+const mapStateToProps = state => ({
+  auth: state.auth
+})
+
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NewPassword);
