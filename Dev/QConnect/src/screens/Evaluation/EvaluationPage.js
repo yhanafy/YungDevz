@@ -20,7 +20,7 @@ export class EvaluationPage extends QcParentScreen {
   // -------------  Current evaluation state ---------------------
   state = {
     grade: 0,
-    notes: this.props.navigation.state.params.notes,
+    notes: this.props.navigation.state.params.notes ?  this.props.navigation.state.params.notes : "",
     improvementAreas: []
   }
 
