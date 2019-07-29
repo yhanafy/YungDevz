@@ -6,9 +6,10 @@ import colors from "config/colors";
 import studentImages from "config/studentImages"
 import LoadingSpinner from '../../../components/LoadingSpinner';
 import { Font } from 'expo';
+import strings from 'config/strings';
 import mapStateToCurrentClassProps from 'screens/TeacherScreens/helpers/mapStateToCurrentClassProps'
 import QcParentScreen from "screens/QcParentScreen";
-
+import QcActionButton from "components/QcActionButton"
 
 export class ClassMainScreen extends QcParentScreen {
 
@@ -35,10 +36,6 @@ export class ClassMainScreen extends QcParentScreen {
     }
   }
 
-  goToAddStudentPage() {
-    console.log("Hello");
-  };
-
   render() {
     const classId = this.props.classId;
     if (this.state.fontLoaded === false) {
@@ -47,7 +44,8 @@ export class ClassMainScreen extends QcParentScreen {
           <LoadingSpinner isVisible={true} />
         </View>
       )
-    } else if (this.props.students.length === 0) {
+    }
+    else if (this.props.students.length === 0) {
       /**
        * ------Overview:
        * The Page will display a message that will redirect the teacher to the 
@@ -64,44 +62,32 @@ export class ClassMainScreen extends QcParentScreen {
        * triggering the message. */
       return (
         <View
-          style={[styles.container, { alignItems: "center", justifyContent: "center", }]}>
-          {/**touchable opacity start */}
+          style={[styles.container, { alignItems: "center" }, { justifyContent: "center" }]}>
+
+
 
           <Image
-            source={require('assets/emptyClassGif.gif')}
+            source={require('assets/emptyStateIdeas/ghostGif.gif')}
             style={{
-              width: 400,
-              height: 450,
-              resizeMode: 'contain'
+              width: 300,
+              height: 150,
+              resizeMode: 'contain',
             }}
           />
-          <TouchableOpacity
-            onPress={() => this.props.navigation.push("ClassEdit")}
+
+          <Text
             style={{
-              flexDirection: "column",
-              alignItems: "center"
+              fontSize: 30,
+              color: colors.primaryDark,
+              flexDirection: "row",
             }}
           >
-            <Text
-              style={{
-                fontSize: 30,
-                color: colors.primaryDark,
-                flexDirection: "row",
-              }}
-            >
-              You Have no Students
+            Uh Oh! No students!
               </Text>
 
-            <Text
-              style={{
-                fontSize: 10,
-                color: colors.primaryDark,
-                flexDirection: "row",
-                justifyContent: "center"
-              }}>
-              Click me to add a student
-              </Text>
-          </TouchableOpacity>
+          <QcActionButton
+            text={"Click on Me to Add A Student"}
+            onPress={() => this.props.navigation("ClassEditScreen")} />
         </View>
       )
     }
@@ -149,6 +135,7 @@ const styles = StyleSheet.create({
     fontSize: 25
   }
 });
+
 
 const mapStateToProps = (state) => {
   return mapStateToCurrentClassProps(state)
