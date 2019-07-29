@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Font} from 'expo';
+import React, { Component } from 'react';
+import { Font } from 'expo';
 
 class FontLoadingComponent extends Component {
     state = {
@@ -8,11 +8,11 @@ class FontLoadingComponent extends Component {
 
     async componentDidMount() {
         await Font.loadAsync({
-          regular: require('assets/fonts/Montserrat-Regular.ttf'),
-          light: require('assets/fonts/Montserrat-Light.ttf'),
-          bold: require('assets/fonts/Montserrat-Bold.ttf'),
+            regular: require('assets/fonts/Montserrat-Regular.ttf'),
+            light: require('assets/fonts/Montserrat-Light.ttf'),
+            bold: require('assets/fonts/Montserrat-Bold.ttf'),
         });
-    
+
         this.setState({ fontLoaded: true });
     }
 }

@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import { StyleSheet, View, Text, TextInput, Image, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, Alert } from 'react-native'
-import { Rating, AirbnbRating } from 'react-native-elements';
+import React from 'react'
+import { StyleSheet, View, Text, TextInput, Image, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, Alert, ScrollView } from 'react-native'
+import { AirbnbRating } from 'react-native-elements';
 import colors from 'config/colors';
 import { bindActionCreators } from 'redux';
 import { connect } from "react-redux";
@@ -9,67 +9,80 @@ import { completeCurrentAssignment } from 'model/actions/completeCurrentAssignme
 import { editCurrentAssignment } from 'model/actions/editCurrentAssignment';
 import strings from 'config/strings';
 import studentImages from 'config/studentImages';
-import Analytics from '@aws-amplify/analytics';
-import analyticsEvents from 'config/analyticsEvents'
 import QcParentScreen from 'screens/QcParentScreen';
+import FlowLayout from 'components/FlowLayout';
+
 
 export class EvaluationPage extends QcParentScreen {
 
-  name = "EvaluationPage";
+  name = this.props.navigation.state.params.readOnly ? "EvaluationHistoryPage" : "EvaluationPage";
 
   // -------------  Current evaluation state ---------------------
   state = {
-    overallGrade: 0,
-    notes: ""
+    grade: 0,
+    notes: this.props.navigation.state.params.notes ?  this.props.navigation.state.params.notes : "",
+    improvementAreas: []
   }
+
+  areas = [strings.Memorization, strings.Makharej, strings.Edgham, strings.Ekhfae, strings.RulingsOfRaa, strings.Muduud, strings.Qalqalah]
 
   // --------------  Updates state to reflect a change in a category rating --------------
   updateCategoryRating = (name, rating) => {
-    let categoriesGrades = this.state.categoriesGrades.map(cat => (
-      cat.name === name ? { ...cat, grade: rating } : cat
-    ))
+
     this.setState({
-      overallGrade: this.state.overallGrade,
-      overCategoriesGrades: categoriesGrades,
+      grade: this.state.grade,
+      improvementAreas: categoriesGrades,
       notes: this.state.notes
     })
   }
 
   //----- Saves the rating to db and pops to previous view ---------
-  doSubmitRating(classIndex, studentIndex){
-    this.props.completeCurrentAssignment(classIndex, studentIndex, this.state);
+  doSubmitRating(classId, studentId) {
+    let { fontLoaded, grade, notes, improvementAreas } = this.state;
+    notes = notes.trim();
+    let evaluationDetails = {
+      grade,
+      notes,
+      improvementAreas
+    }
+    this.props.completeCurrentAssignment(classId, studentId, evaluationDetails);
 
-      // keep the assignment name as the last assignment to reduce retype since most of the times the next assignment would be the same surah (next portion) or a redo.
-      // todo: eventually right after grading we should have a step for the teacher to update the next assignment
-      this.props.editCurrentAssignment(classIndex, studentIndex, { name: this.props.currentAssignment.name, startDate: "" });
-      this.props.navigation.pop();
+    // keep the assignment name as the last assignment to reduce retype since most of the times the next assignment would be the same surah (next portion) or a redo.
+    // todo: eventually right after grading we should have a step for the teacher to update the next assignment
+    this.props.editCurrentAssignment(classId, studentId, this.props.currentAssignment.name);
+    this.props.navigation.pop();
   }
 
   //------------  Ensures a rating is inputted before submitting it -------
-  submitRating(classIndex, studentIndex) {
-    if (this.state.overallGrade === 0) {
+  submitRating(classId, studentId) {
+    if (this.state.grade === 0) {
       Alert.alert(
         'No Rating',
         strings.AreYouSureYouWantToProceed,
         [
           {
             text: 'Yes', style: 'cancel', onPress: () => {
-              this.doSubmitRating(classIndex, studentIndex)
+              this.doSubmitRating(classId, studentId)
             }
           },
-          { text: 'No', style: 'cancel'}
+          { text: 'No', style: 'cancel' }
         ]
       );
     } else {
-      this.doSubmitRating(classIndex, studentIndex);
+      this.doSubmitRating(classId, studentId);
     }
   }
 
   // --------------  Renders Evaluation scree UI --------------
   render() {
-    const { classIndex, studentIndex } = this.props.navigation.state.params;
+    const { classId, studentId, readOnly, rating, assignmentName, completionDate, improvementAreas, notes } = this.props.navigation.state.params;
+
     const { imageId } = this.props;
 
+    _rating = rating ? rating : 0;
+    _improvementAreas = readOnly ? improvementAreas : this.areas;
+    _headerTitle = readOnly ? strings.Completed + ": " + completionDate : strings.HowWas + this.props.name + strings.sTasmee3;
+    _assignmentName = assignmentName ? assignmentName : this.props.currentAssignment.name;
     return (
       //----- outer view, gray background ------------------------
       //Makes it so keyboard is dismissed when clicked somewhere else
@@ -78,46 +91,63 @@ export class EvaluationPage extends QcParentScreen {
           style={styles.container}
           behavior="padding">
 
-          <View style={styles.evaluationContainer}>
-            <View style={styles.section}>
-              <Image source={studentImages.images[imageId]}
-                style={styles.profilePic} />
-              <Text style={styles.titleText}>{this.props.name}</Text>
-              <Text style={styles.subTitleText}>{this.props.currentAssignment.name}</Text>
-            </View>
-
-            <View style={styles.section}>
-              <Text style={styles.mainQuestionText}>{strings.HowWas}{this.props.name}{strings.sTasmee3}</Text>
-              <View style={{ paddingVertical: 15 }}>
-                <AirbnbRating
-                  defaultRating={0}
-                  size={30}
-                  showRating={false}
-                  onFinishRating={(value) => this.setState({
-                    overallGrade: value
-                  })}
-                />
+          <ScrollView>
+            <View style={styles.evaluationContainer}>
+              <View style={styles.section}>
+                <Image source={studentImages.images[imageId]}
+                  style={styles.profilePic} />
+                <Text style={styles.titleText}>{this.props.name}</Text>
+                <Text style={styles.subTitleText}>{_assignmentName}</Text>
               </View>
 
-              <TextInput
-                style={styles.notesStyle}
-                multiline={true}
-                height={100}
-                onChangeText={(notes) => this.setState({
-                  notes: notes
-                })}
-                placeholder={strings.WriteANote}
-                placeholderColor={colors.black}
-              />
-            </View>
-          </View>
+              <View style={styles.section}>
+                <Text style={styles.mainQuestionText}>{_headerTitle}</Text>
+                <View style={{ paddingVertical: 15 }}>
+                  <AirbnbRating
+                    defaultRating={_rating}
+                    size={30}
+                    showRating={false}
+                    onFinishRating={(value) => this.setState({
+                      grade: value
+                    })}
+                    isDisabled={readOnly}
+                  />
+                </View>
 
+                <TextInput
+                  style={styles.notesStyle}
+                  multiline={true}
+                  height={100}
+                  onChangeText={(teacherNotes) => this.setState({
+                    notes: teacherNotes
+                  })}
+                  returnKeyType={"done"}
+                  blurOnSubmit={true}
+                  placeholder={strings.WriteANote}
+                  placeholderColor={colors.black}
+                  editable={!readOnly}
+                  value={this.state.notes}
+                />
+                <View style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
+                  <Text style={[{ flex: 1 }, styles.subCategoryText]}>{strings.ImprovementAreas}</Text>
+                </View>
+                <FlowLayout ref="flow"
+                  dataValue={_improvementAreas}
+                  title="Improvement Areas"
+                  readOnly={readOnly}
+                  onSelectionChanged={(improvementAreas) => this.setState({ improvementAreas: improvementAreas })}
+                />
+              </View>
+            </View>
+          </ScrollView>
           <View style={styles.buttonsContainer}>
-            <QcActionButton
-              text={strings.Submit}
-              onPress={() => { this.submitRating(classIndex, studentIndex) }}
-              screen={this.name}
-            />
+            {!readOnly ?
+              <QcActionButton
+                text={strings.Submit}
+
+                onPress={() => { this.submitRating(classId, studentId) }}
+                screen={this.name}
+              /> : <View></View>}
           </View>
           <View style={styles.filler}></View>
         </KeyboardAvoidingView>
@@ -194,7 +224,7 @@ const styles = StyleSheet.create({
   subCategoryText: {
     color: colors.darkGrey,
     fontSize: 16,
-    paddingBottom: 7
+    paddingVertical: 4
   },
   buttonsContainer: {
     alignItems: 'center',
@@ -217,8 +247,10 @@ const styles = StyleSheet.create({
 // ------------ Redux hook up --------------------------------
 
 const mapStateToProps = (state, ownProps) => {
-  const { classIndex, studentIndex } = ownProps.navigation.state.params;
-  state = state.data.teachers[0].classes[classIndex].students[studentIndex];
+  const { classId, studentId } = ownProps.navigation.state.params;
+  student = state.data.students[studentId];
+  currentAssignment = state.data.currentAssignments.byClassId[classId].byStudentId[studentId][0]; //todo: support multiple current assignments
+  state = { classId, ...student, currentAssignment }
   return state;
 };
 

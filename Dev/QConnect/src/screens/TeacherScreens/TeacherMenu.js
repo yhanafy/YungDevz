@@ -1,9 +1,8 @@
-import React from 'react';
-import {createDrawerNavigator, createStackNavigator, createAppContainer} from 'react-navigation';
-import { Icon } from 'react-native-elements';
+import { createDrawerNavigator, createStackNavigator, createAppContainer } from 'react-navigation';
 import AddClassNavigator from './AddClass/AddClassNavigator';
 import ClassHeaderNavigator from './ClassTabs/ClassHeaderNavigator';
 import LeftNavPane from './LeftNavPane';
+import SettingsNavigator from '../SettingsScreen/SettingsNavigator';
 import TeacherProfileNavigator from './TeacherProfile/TeacherProfileNavigator';
 import strings from '../../../config/strings'
 
@@ -18,26 +17,32 @@ const routeConfig = {
     screen: ClassHeaderNavigator,
     path: 'teacher/class/tabs', //todo: the path should have class id as a param to be unique
     navigationOptions: ({ navigation }) => ({
-        title: 'Quran Class',
-      }),
- },
- AddClass: {
-  screen: AddClassNavigator,
-  path: 'teacher/class/new',
-  navigationOptions: ({ navigation }) => ({
-     title: strings.AddNewClass,
-   }),
-}
+      title: 'Quran Class',
+    }),
+  },
+  AddClass: {
+    screen: AddClassNavigator,
+    path: 'teacher/class/new',
+    navigationOptions: ({ navigation }) => ({
+      title: strings.AddNewClass,
+    }),
+  },
+  Settings: {
+    screen: SettingsNavigator,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Settings',
+    })
+  }
 };
 
 const navigationConfig = {
-    contentComponent: LeftNavPane,
-    drawerWidth: 325,
-    drawerPosition: 'left',
-    drawerOpenRoute: 'DrawerOpen',
-    drawerCloseRoute: 'DrawerClose',
-    drawerToggleRoute: 'DrawerToggle',
-    initialRouteName: 'CurrentClass'
+  contentComponent: LeftNavPane,
+  drawerWidth: 325,
+  drawerPosition: 'left',
+  drawerOpenRoute: 'DrawerOpen',
+  drawerCloseRoute: 'DrawerClose',
+  drawerToggleRoute: 'DrawerToggle',
+  initialRouteName: 'CurrentClass'
 }
 
 

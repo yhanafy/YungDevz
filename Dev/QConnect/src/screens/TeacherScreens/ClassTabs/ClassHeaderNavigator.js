@@ -1,6 +1,6 @@
 import React from 'react';
 import TopBanner from 'components/TopBanner'
-import { createStackNavigator, DrawerActions } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation';
 import ClassTabsNavigator from './ClassTabsNavigator';
 import StudentProfileScreen from 'screens/StudentProfile/StudentProfileScreen';
 import ClassEditScreen from 'screens/TeacherScreens/ClassTabs/ClassEditScreen';
@@ -30,7 +30,18 @@ const ClassHeaderNavigator = createStackNavigator({
           LeftIconName="angle-left"
           LeftOnPress={() => navigation.goBack()}
           Title={strings.StudentProfile}
-          RightOnPress={() => { }}
+        />
+      )
+    })
+  },
+  EvaluationPage: {
+    screen: EvaluationPage,
+    navigationOptions: ({ navigation }) => ({
+      header: (
+        <TopBanner
+          LeftIconName="angle-left"
+          LeftOnPress={() => navigation.goBack()}
+          Title={strings.Evaluation}
         />
       )
     })
@@ -58,8 +69,6 @@ const ClassHeaderNavigator = createStackNavigator({
           LeftIconName="angle-left"
           LeftOnPress={() => navigation.goBack()}
           Title={strings.StudentEvaluation}
-          RightIconName="edit"
-          RightOnPress={() => { }}
         />
       )
     })

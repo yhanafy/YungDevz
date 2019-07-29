@@ -1,18 +1,20 @@
-import React, { Component } from 'react';
-import { View, Image, Text, StyleSheet, ScrollView, FlatList, TouchableHighlight } from 'react-native';
+import React from 'react';
+import { View, Image, Text, StyleSheet, ScrollView, FlatList, TouchableHighlight, TouchableOpacity, Alert } from 'react-native';
 import colors from 'config/colors';
-import { Rating, Icon } from 'react-native-elements';
-import DialogInput from 'react-native-dialog-input';
+import { Rating } from 'react-native-elements';
 import { editCurrentAssignment } from 'model/actions/editCurrentAssignment';
-import { addNewAssignment } from 'model/actions/addNewAssignment';
 import { updateStudentImage } from 'model/actions/updateStudentImage';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import strings from 'config/strings';
 import studentImages from 'config/studentImages';
 import TouchableText from 'components/TouchableText'
-import ImageSelectionModal from 'components/ImageSelectionModal'
+import ImageSelectionModal from 'components/ImageSelectionModal';
+import LoadingSpinner from '../../components/LoadingSpinner';
 import QcParentScreen from 'screens/QcParentScreen';
+import AssignmentEntryComponent from 'components/AssignmentEntryComponent';
+
+
 
 class StudentProfileScreen extends QcParentScreen {
 
@@ -25,22 +27,22 @@ class StudentProfileScreen extends QcParentScreen {
   }
 
   //method updates the current assignment of the student
-  editAssignment(classIndex, studentIndex, newAssignmentName) {
-    this.props.editCurrentAssignment(classIndex, studentIndex, newAssignmentName);
-    this.setState({ isDialogVisible: false });
-  }
-
-  //method will add a new assignment for the student (only to current assignment, will not add
-  //to assignment history until after completion of the assignment)
-  addAssignment(classIndex, studentIndex, newAssignmentName) {
-    this.props.addNewAssignment(classIndex, studentIndex,
-      newAssignmentName);
-    this.setState({ isDialogVisible: false })
+  editAssignment(classId, studentId, newAssignmentName) {
+    if (newAssignmentName.trim() === "") {
+      Alert.alert(strings.Whoops, strings.PleaseEnterAnAssignmentName);
+    } else {
+      this.props.editCurrentAssignment(classId, studentId, newAssignmentName);
+      this.setState({ isDialogVisible: false });
+    }
   }
 
   //---------- profile image views handlers --------------
   setModalVisible(visible) {
     this.setState({ isModalVisible: visible });
+  }
+
+  setDialogueVisible(visible){
+    this.setState({isDialogVisible: visible})
   }
 
   //this method saves the new profile information to the redux database
@@ -51,55 +53,48 @@ class StudentProfileScreen extends QcParentScreen {
 
   onImageSelected(index) {
     this.setState({ profileImageId: index })
-    let { classIndex, studentIndex } = this.props.navigation.state.params;
-    this.props.updateStudentImage(classIndex, studentIndex, index)
+    let { classId, studentId } = this.props.navigation.state.params;
+    this.props.updateStudentImage(classId, studentId, index)
     this.setModalVisible(false);
   }
 
   getRatingCaption() {
     let caption = strings.GetStarted;
 
-    if(averageRating > 4 ){
+    if (averageRating > 4) {
       caption = strings.OutStanding
     }
-    else if (averageRating >= 3){
+    else if (averageRating >= 3) {
       caption = strings.GreatJob
     }
-    else if (averageRating > 0){
+    else if (averageRating > 0) {
       caption = strings.PracticePerfect
     }
 
     return caption
   }
 
+
   //---------- main UI render ===============================
   render() {
-    const { classIndex, studentIndex } = this.props.navigation.state.params;
-    const currentStudent = this.props.classes[classIndex].students[studentIndex];
-    const hasCurrentAssignment = currentStudent.currentAssignment.name === 'None' ? false : true;
+    const { classId, studentId, currentStudent, currentAssignment, assignmentsHistory } = this.props
+    const hasCurrentAssignment = currentAssignment.name === 'None' ? false : true;
 
     //retrieves the student's average rating. If the student hasn't had any assignments, then 
     //the rating will default to 0.
-    averageRating = currentStudent.totalAssignments === 0 ? 0.0 :
-      (currentStudent.totalGrade / currentStudent.totalAssignments);
-    const dialogInitialText =  currentStudent.currentAssignment.name === 'None' ? {hintInput: strings.EnterAssignmentHere} : {initValueTextInput: currentStudent.currentAssignment.name} 
+    averageRating = currentAssignment.grade;
+    const dialogInitialText = currentAssignment.name === 'None' ? { hintInput: strings.EnterAssignmentHere } : { initValueTextInput: currentAssignment.name }
 
     return (
       <View style={styles.container}>
-        <DialogInput
-          isDialogVisible={this.state.isDialogVisible}
-          title={strings.EditAssignment}
-          {...dialogInitialText}
-          dialogStyle={{ marginBottom: 100 }}
-          submitInput={(inputText) =>
-          //If the student already has an existing assignment, then it will simply edit the
-          //name of the current assignment, if not, then it will create a new assignment
-          {
-            hasCurrentAssignment ? this.editAssignment(classIndex, studentIndex,
-              { name: inputText, startDate: new Date().toLocaleDateString("en-US") })
-              : this.addAssignment(classIndex, studentIndex, inputText)
-          }}
-          closeDialog={() => { this.setState({ isDialogVisible: false }) }} />
+
+        <AssignmentEntryComponent
+          visible={this.state.isDialogVisible}
+          screen={this.name}
+          onSubmit={(inputText) =>
+            this.editAssignment(classId, studentId, inputText)}
+          onCancel = {() => this.setDialogueVisible(false)}
+        />
 
         <ImageSelectionModal
           visible={this.state.isModalVisible}
@@ -123,8 +118,8 @@ class StudentProfileScreen extends QcParentScreen {
                   <Text numberOfLines={1} style={styles.bigText}>{currentStudent.name.toUpperCase()}</Text>
                   <View style={{ flexDirection: 'row', height: 25 }}>
                     <Rating readonly={true} startingValue={averageRating} imageSize={25} />
-                    <View style={{flexDirection: 'column', justifyContent: 'center' }}>
-                      <Text style={styles.ratingText}>{parseFloat(averageRating).toFixed(1)}</Text>
+                    <View style={{ flexDirection: 'column', justifyContent: 'center' }}>
+                      <Text style={styles.ratingText}>{averageRating === 0 ? "" : parseFloat(averageRating).toFixed(1)}</Text>
                     </View>
                   </View>
                   <Text style={styles.ratingDescText}>{this.getRatingCaption()}</Text>
@@ -135,15 +130,15 @@ class StudentProfileScreen extends QcParentScreen {
                 <View style={styles.profileInfoTopLeft}>
                   <Image
                     style={styles.profilePic}
-                    source={studentImages.images[this.state.profileImageId >= 0? this.state.profileImageId : currentStudent.imageId]} />
+                    source={studentImages.images[this.state.profileImageId >= 0 ? this.state.profileImageId : currentStudent.imageId]} />
                   <TouchableText
                     text="update image"
                     onPress={() => this.setModalVisible(true)}
                     style={{ paddingRight: 0, paddingLeft: 0, marginLeft: 0, fontSize: 12 }}
                   />
                 </View>
-                <View style={{ flex: 1, flexDirection: 'column', height: 59}}>
-                  <Text numberOfLines={1} style={styles.assignmentTextLarge}>{currentStudent.currentAssignment.name.toUpperCase()}</Text>
+                <View style={{ flex: 1, flexDirection: 'column', height: 59 }}>
+                  <Text numberOfLines={1} style={styles.assignmentTextLarge}>{currentAssignment.name.toUpperCase()}</Text>
                   <View style={{ flexDirection: 'row' }}>
                     <TouchableHighlight
                       onPress={() => { this.setState({ isDialogVisible: true }) }} >
@@ -152,8 +147,8 @@ class StudentProfileScreen extends QcParentScreen {
 
                     {hasCurrentAssignment ? <TouchableHighlight onPress={() =>
                       this.props.navigation.push("EvaluationPage", {
-                        studentIndex: studentIndex,
-                        classIndex: classIndex
+                        studentId: studentId,
+                        classId: classId
                       })} >
                       <Text style={styles.assignmentActionText}>{strings.Grade}</Text>
                     </TouchableHighlight> : <View />}
@@ -164,33 +159,51 @@ class StudentProfileScreen extends QcParentScreen {
             </View>
 
             <ScrollView style={styles.prevAssignments}>
+
               <FlatList
-                data={currentStudent.assignmentHistory}
+                data={assignmentsHistory}
                 keyExtractor={(item, index) => item.name + index}
                 renderItem={({ item, index }) => (
-                  <View style={styles.prevAssignmentCard} key={index}>
-
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', flex: 1 }}>
-                      <Text style={[styles.subText, { paddingLeft: 10, paddingTop: 3 }]}>{item.completionDate}</Text>
-                      <View style={{ alignItems: 'center', flex: 1 }}>
-                        <Text numberOfLines={1} style={styles.prevAssignmentTitleText}>{item.name}</Text>
+                  <TouchableOpacity onPress={() => this.props.navigation.push("EvaluationPage", {
+                    classId: classId,
+                    studentId: studentId,
+                    assignmentName: item.name,
+                    completionDate: item.completionDate,
+                    rating: item.evaluation.grade,
+                    notes: item.evaluation.notes,
+                    improvementAreas: item.evaluation.improvementAreas,
+                    readOnly: true
+                  })}>
+                    <View style={styles.prevAssignmentCard} key={index}>
+                      <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                        <Text style={[styles.subText]}>{item.completionDate}</Text>
+                        <View style={{ alignItems: 'center', flexWrap: 'wrap', alignSelf: 'baseline', flex: 1 }}>
+                          <Text numberOfLines={1} style={styles.prevAssignmentTitleText}>{item.name}</Text>
+                        </View>
+                        <Rating style={{ paddingRight: 10, paddingTop: 3 }} readonly={true}
+                          startingValue={item.evaluation.grade} imageSize={17} />
                       </View>
-                      <Rating style={{ paddingRight: 10, paddingTop: 3 }} readonly={true}
-                        startingValue={item.evaluation.overallGrade} imageSize={17} />
-                    </View>
-                    {item.evaluation.notes ?
-                      <View style={{ padding: 10 }}>
+                      {item.evaluation.notes ?
                         <Text numberOfLines={2} style={styles.notesText}>{"Notes: " + item.evaluation.notes}</Text>
-                      </View>
-                      : <View />
-                    }
-                  </View>
+                        : <View />
+                      }
+                      {item.evaluation.improvementAreas && item.evaluation.improvementAreas.length > 0 ?
+                        <View style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
+                          <Text style={{ height: 20, marginTop: 5 }}>{strings.ImprovementAreas}</Text>
+                          {item.evaluation.improvementAreas.map((tag) => { return (<Text key={tag} style={styles.corner}>{tag}</Text>) })}
+                        </View>
+                        : <View />
+                      }
+                    </View>
+                  </TouchableOpacity>
                 )}
               />
             </ScrollView>
           </View>
         ) : (
-            <Text style={styles.textStyle}>Loading...</Text>
+            <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+              <LoadingSpinner isVisible={!this.state.fontLoaded} />
+            </View>
           )
         }
       </View>
@@ -227,7 +240,7 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 2,
     paddingTop: 5,
-    flex: 1,
+    textAlign: 'left'
   },
   ratingText: {
     fontSize: 24,
@@ -275,6 +288,18 @@ const styles = StyleSheet.create({
   nonButtons: {
     flexDirection: 'column'
   },
+  corner: {
+    borderColor: '#D0D0D0',
+    borderWidth: 1,
+    borderRadius: 3,
+    height: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingLeft: 5,
+    paddingRight: 5,
+    marginRight: 5,
+    marginTop: 5,
+  },
   profileInfoTop: {
     paddingHorizontal: 10,
     paddingTop: 10,
@@ -317,27 +342,42 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     marginLeft: 7,
     marginRight: 7,
-    marginTop: 10,
+
+
   },
   prevAssignmentCard: {
     flexDirection: 'column',
     borderBottomColor: colors.lightGrey,
     borderBottomWidth: 1,
     height: 90,
-    justifyContent: 'space-between',
-    paddingTop: 10,
+    padding: 5,
   },
 });
 
-const mapStateToProps = state => {
-  const { classes } = state.data.teachers[0];
-  return { classes };
+const mapStateToProps = (state, ownProps) => {
+  const { classId, studentId } = ownProps.navigation.state.params;
+  const currentStudent = state.data.students[studentId];
+  let currentAssignment = { name: 'None', date: '' };
+  let assignmentsHistory = []
+
+  if (state.data.currentAssignments.byClassId[classId] &&
+    state.data.currentAssignments.byClassId[classId].byStudentId[studentId] &&
+    state.data.currentAssignments.byClassId[classId].byStudentId[studentId][0]) {
+    currentAssignment = state.data.currentAssignments.byClassId[classId].byStudentId[studentId][0];
+  }
+
+  if (state.data.assignmentsHistory.byStudentId[studentId] &&
+    state.data.assignmentsHistory.byStudentId[studentId].byClassId[classId]) {
+    assignmentsHistory = state.data.assignmentsHistory.byStudentId[studentId].byClassId[classId];
+  }
+
+  return { classId, studentId, currentStudent, currentAssignment, assignmentsHistory };
 };
+
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       editCurrentAssignment,
-      addNewAssignment,
       updateStudentImage
     },
     dispatch

@@ -3,6 +3,7 @@ import { View, Text, TextInput, StyleSheet } from 'react-native'
 import PropTypes from 'prop-types'
 import colors from 'config/colors'
 import strings from '../../config/strings';
+import PhoneInput from 'react-native-phone-input'
 
 //--------------------------------------------------------------------------
 // Teacher info entries (Name, Phone number, and Email address). 
@@ -10,31 +11,60 @@ import strings from '../../config/strings';
 //--------------------------------------------------------------------------
 export default TeacherInfoEntries = (props) => {
     return (
-        <View  style={styles.container}>
+        <View style={styles.container}>
             <View style={styles.infoRow}>
                 <Text style={styles.subtitle}>Information</Text>
             </View>
             <View style={styles.infoRow}>
                 <Text style={styles.infoTitle}>{strings.namePlaceHolder}</Text>
-                <TextInput
-                    style={styles.infoTextInput}
-                    onChangeText={props.onNameChanged}
-                    value={props.name} />
+                <View style={{ flex: 1 }}>
+                    <TextInput
+                        style={styles.infoTextInput}
+                        textContentType='name'
+                        onChangeText={props.onNameChanged}
+                        value={props.name} />
+                </View>
             </View>
             <View style={styles.infoRow}>
                 <Text style={styles.infoTitle}>{strings.phoneNumberPlaceHolder}</Text>
-                <TextInput
-                    style={styles.infoTextInput}
-                    onChangeText={props.onPhoneNumberChanged}
-                    value={props.phoneNumber} />
+                <View style={{ flex: 1 }}>
+                    <PhoneInput
+                        ref={ref => {
+                            this.phone = ref;
+                        }}
+                        value={props.phoneNumber}
+                        onChangePhoneNumber={() => props.onPhoneNumberChanged(this.phone)}
+                    />
+                </View>
             </View>
             <View style={styles.infoRow}>
                 <Text style={styles.infoTitle}>{strings.emailPlaceHolder}</Text>
-                <TextInput
-                    style={styles.infoTextInput}
-                    onChangeText={props.onEmailAddressChanged}
-                    value={props.emailAddress} />
+                <View style={{ flex: 1 }}>
+                    <TextInput
+                        style={styles.infoTextInput}
+                        keyboardType='email-address'
+                        autoCapitalize='none'
+                        textContentType='emailAddress'
+                        onChangeText={props.onEmailAddressChanged}
+                        value={props.emailAddress}
+                    />
+                </View>
             </View>
+            {props.showPasswordField &&
+                <View style={styles.infoRow}>
+                    <Text style={styles.infoTitle}>{strings.password}</Text>
+                    <View style={{ flex: 1 }}>
+                        <TextInput
+                            style={styles.infoTextInput}
+                            textContentType='password'
+                            autoCompleteType='password'
+                            onChangeText={props.onPasswordChanged}
+                            secureTextEntry={true}
+                            value={props.password}
+                        />
+                    </View>
+                </View>
+            }
         </View>
     );
 }
@@ -46,6 +76,8 @@ TeacherInfoEntries.propTypes = {
     onNameChanged: PropTypes.func.isRequired,
     onPhoneNumberChanged: PropTypes.func.isRequired,
     onEmailAddressChanged: PropTypes.func.isRequired,
+    onPasswordChanged: PropTypes.func,
+    showPasswordField: PropTypes.bool,
 }
 
 //Styles for the Teacher profile class
@@ -56,15 +88,14 @@ const styles = StyleSheet.create({
     subtitle: {
         fontSize: 16,
         paddingLeft: 20,
-        color: colors.darkGrey
-
+        color: colors.darkGrey,
+        marginVertical: 5,
     },
     infoRow: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        paddingTop: 20,
-        paddingBottom: 20,
+        paddingRight: 10,
         borderBottomColor: colors.grey,
         borderBottomWidth: 0.25
     },
@@ -73,12 +104,13 @@ const styles = StyleSheet.create({
         fontSize: 14,
         color: colors.darkGrey,
         flex: 1,
-        alignSelf: 'stretch'
+        alignSelf: 'stretch',
     },
     infoTitle: {
         paddingLeft: 20,
+        paddingVertical: 10,
         fontSize: 14,
         color: colors.darkGrey,
-        width: 115
+        width: 130
     },
 })
