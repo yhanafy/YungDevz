@@ -22,11 +22,7 @@ export class ClassMainScreen extends QcParentScreen {
     // pages before explicitly loading the fonts. 
     // Todo: figure out a safer way to do this without having to hold the UI until the font is loaded.
 
-    // await Font.loadAsync({
-    //   regular: require('assets/fonts/Montserrat-Regular.ttf'),
-    //   light: require('assets/fonts/Montserrat-Light.ttf'),
-    //   bold: require('assets/fonts/Montserrat-Bold.ttf'),
-    // });
+ 
 
 
     const { classId } = this.props;
@@ -62,9 +58,7 @@ export class ClassMainScreen extends QcParentScreen {
        * triggering the message. */
       return (
         <View
-          style={[styles.container, { alignItems: "center" }, { justifyContent: "center" }]}>
-
-
+          style={[styles.container, { alignItems: "center" , justifyContent: "center" }]}>
 
           <Image
             source={require('assets/emptyStateIdeas/ghostGif.gif')}
@@ -82,11 +76,11 @@ export class ClassMainScreen extends QcParentScreen {
               flexDirection: "row",
             }}
           >
-            Uh Oh! No students!
+            {strings.EmptyClass}
               </Text>
 
           <QcActionButton
-            text={"Click on Me to Add A Student"}
+            text={"Click Here to Add A Student"}
             onPress={() => this.props.navigation.push("ClassEdit")} />
         </View>
       )

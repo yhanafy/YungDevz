@@ -50,6 +50,10 @@ export default {
     ErrorSigningIn: "Error signing in",
     InvalidPhoneNumber: "The phone number is invalid. Please enter a valid phone number.",
 
+
+    //----------------------- Teacher Main Screen ----------------------
+    EmptyClass:"Uh Oh! No students",
+
     //--------------------- Student Profile Screen ---------------------
     EditAssignment: 'Edit Assignment',
     EnterAssignmentHere: 'Enter assignment here...',
