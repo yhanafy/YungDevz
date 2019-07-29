@@ -33,13 +33,20 @@ export default class AssignmentEntryComponent extends React.Component {
                             staticData={surahNames}
                             onTextChanged={this.onTextChange.bind(this)}
                         />
-
+                        
+                        <View style = {{
+                            flexDirection: "row-reverse"
+                        }}>
                         <QcActionButton
                             text={strings.Submit}
                             screen={this.props.screen}
                             onPress={() => {
                                 this.props.onSubmit(this.state.input)
                             }} />
+                            <QcActionButton
+                            text = {strings.Cancel}
+                            onPress = {() => this.props.onCancel()}/>
+                            </View>
                     </View>
                 </View>
             </Modal>
