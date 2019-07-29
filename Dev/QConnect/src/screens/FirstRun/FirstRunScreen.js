@@ -39,7 +39,7 @@ class FirstRunScreen extends QcParentScreen {
               onPress={this.onTeacherFlow}
               screen={this.name}
             />
-            <View style={{ flex: 1 }}></View>
+            <View style={{ flex: 1 }}/>
             <QcActionButton
               navigation={navigation}
               text={strings.IAmAStudent}

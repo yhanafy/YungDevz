@@ -61,6 +61,10 @@ class LoginScreen extends Component {
     this.props.confirmUserLogin(authCode, this.props.navigation)
   }
 
+  onForgotPassword = () => {
+    this.props.navigation.navigate('ForgotPassword');
+  }
+
   render() {
     const { auth: {
       loginErrorMessage,
@@ -87,6 +91,7 @@ class LoginScreen extends Component {
             screen="LoginScreen" />
           <SignupSection
             onCreateAccount={this.onCreateAccount.bind(this)}
+            onForgotPassword={this.onForgotPassword.bind(this)}
           />
          </ImageBackground>
       </View>
