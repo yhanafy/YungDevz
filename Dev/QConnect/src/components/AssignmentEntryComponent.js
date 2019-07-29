@@ -35,7 +35,7 @@ export default class AssignmentEntryComponent extends React.Component {
                         />
                         
                         <View style = {{
-                            flexDirection: "row"
+                            flexDirection: "row-reverse"
                         }}>
                         <QcActionButton
                             text={strings.Submit}

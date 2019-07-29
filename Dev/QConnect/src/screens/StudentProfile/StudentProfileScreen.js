@@ -41,6 +41,9 @@ class StudentProfileScreen extends QcParentScreen {
     this.setState({ isModalVisible: visible });
   }
 
+  setDialogueVisible(visible){
+    this.setState({isDialogVisible: visible})
+  }
 
   //this method saves the new profile information to the redux database
   saveProfileInfo = (teacherID) => {
@@ -90,7 +93,7 @@ class StudentProfileScreen extends QcParentScreen {
           screen={this.name}
           onSubmit={(inputText) =>
             this.editAssignment(classId, studentId, inputText)}
-            onCancel = {() => this.setModalVisible(false)}
+          onCancel = {() => this.setDialogueVisible(false)}
         />
 
         <ImageSelectionModal
