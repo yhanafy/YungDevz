@@ -10,6 +10,20 @@ export default {
     Ready: 'Ready',
     NotReady: 'Not Ready',
 
+    //--------------------- Forgot Password Screen-------------------
+    emailPlaceHolder: "Email",
+    Submit: 'Submit',
+    AskForEmail: 'Please Enter Email Here',
+    EnterCode: 'Code',
+    EmailError: 'Please Enter Email',
+    EmailErrorHeader: "Error with Email",
+    NewPasswordPlaceholder: 'New Password',
+    ConfirmPasswordPlaceholder: 'Confirm Password',
+    EnterNewPassword: 'Please Enter New Password',
+    ConfirmPassword: 'Please Confirm Password',
+    Next: 'Next',
+    ErrorWithPassword: 'Error With Password',
+    ErrorWithConfirm: 'Must Confirm Password',
     //--------------------- Evaluation Page ---------------------
     None: 'None',
     HowWas: 'How was ',

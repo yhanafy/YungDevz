@@ -106,6 +106,22 @@ function logInFailure(err) {
   }
 }
 
+export function forgotPassword(username){
+  return (dispatch) => {
+  Auth.forgotPassword(username)
+    .then(data => console.log(data))
+    .catch(err => console.log(err));
+  }
+}
+
+export function renewPassword(username, code, new_password){
+  return(dispatch) => {
+  Auth.forgotPasswordSubmit(username, code, new_password)
+    .then(data => console.log(data))
+    .catch(err => console.log(err));
+  }
+}
+
 export function authenticate(username, password, navigation, nextScreenName) {
   return (dispatch) => {
     dispatch(logIn())

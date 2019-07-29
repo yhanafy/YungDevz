@@ -9,12 +9,20 @@ import AddClassScreen from '../TeacherScreens/AddClass/AddClassScreen';
 import TopBanner from 'components/TopBanner';
 import strings from 'config/strings';
 import StudentMenu from '../StudentScreens/StudentMenu';
-import LoginScreen from 'screens/AuthenticationScreens/LoginScreen'
+import LoginScreen from 'screens/AuthenticationScreens/LoginScreen';
+import ForgotPassword from 'screens/AuthenticationScreens/ForgotPassword';
+import NewPassword from 'screens/AuthenticationScreens/NewPassword';
 
 const routeConfig = {
     FirstRunScreen: {
         screen: FirstRunScreen
     },
+    ForgotPassword:{
+        screen: ForgotPassword
+    },
+    NewPassword:{
+        screen: NewPassword
+    },  
     TeacherWelcomeScreen: {
         screen: TeacherWelcomeScreen,
     },
@@ -36,8 +44,10 @@ const routeConfig = {
                 />
             )
         }),
-    }
+    },
 }
+
+
 
 const navigatorConfig = {
     headerMode: 'none',
