@@ -13,7 +13,11 @@ export default class SignupSection extends Component {
           onPress={() => {this.props.onCreateAccount(); }}>
             <Text style={styles.text}>Create Account</Text>
         </TouchableOpacity>
-        <Text style={styles.text}>Forgot Password?</Text>
+        <TouchableOpacity
+          activeOpacity={1}
+          onPress={() => {this.props.onForgotPassword(); }}>
+            <Text style={styles.text}>Forgot Password?</Text>
+        </TouchableOpacity>
       </View>
     );
   }
